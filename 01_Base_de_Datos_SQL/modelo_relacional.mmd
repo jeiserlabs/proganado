@@ -1,0 +1,66 @@
+erDiagram
+    POTRERO {
+        INTEGER id_potrero PK
+        INTEGER numero_potrero UK
+        VARCHAR nombre_potrero
+        VARCHAR tipo_lote
+        INTEGER capacidad_maxima
+        DECIMAL area_hectareas
+        VARCHAR tipo_pasto
+    }
+    RAZA {
+        INTEGER id_raza PK
+        VARCHAR nombre_raza UK
+        VARCHAR proposito
+    }
+    BOVINO {
+        INTEGER id_bovino PK
+        VARCHAR codigo_arete UK
+        VARCHAR nombre
+        CHAR sexo
+        DATE fecha_nacimiento
+        DECIMAL peso_kg
+        VARCHAR estado
+        INTEGER id_raza FK
+        INTEGER id_potrero FK
+    }
+    FICHA_MEDICA_PERFIL {
+        INTEGER id_ficha PK
+        INTEGER id_bovino FK
+        VARCHAR estado_reproductivo
+        BOOLEAN en_tiempo_retiro
+        DATE fecha_proximo_secado
+        TEXT alergias_observaciones
+    }
+    TIPO_VACUNA {
+        INTEGER id_vacuna PK
+        VARCHAR nombre_vacuna UK
+        VARCHAR enfermedad
+        DECIMAL dosis_ml
+        INTEGER frecuencia_meses
+    }
+    REGISTRO_VACUNACION {
+        INTEGER id_registro PK
+        INTEGER id_bovino FK
+        INTEGER id_vacuna FK
+        DATE fecha_aplicacion
+        DATE proxima_dosis
+        VARCHAR veterinario
+        TEXT observaciones
+    }
+    CONTROL_ORDENO_LECHE {
+        INTEGER id_ordeno PK
+        INTEGER id_bovino FK
+        DATE fecha_ordeno
+        VARCHAR jornada
+        DECIMAL litros_producidos
+        BOOLEAN apta_para_venta
+        VARCHAR ordenador_responsable
+    }
+
+    POTRERO ||--o{ BOVINO : "FK_id_potrero"
+    RAZA ||--o{ BOVINO : "FK_id_raza"
+    BOVINO ||--|| FICHA_MEDICA_PERFIL : "FK_id_bovino"
+    BOVINO ||--o{ REGISTRO_VACUNACION : "FK_id_bovino"
+    TIPO_VACUNA ||--o{ REGISTRO_VACUNACION : "FK_id_vacuna"
+    BOVINO ||--o{ CONTROL_ORDENO_LECHE : "FK_id_bovino"

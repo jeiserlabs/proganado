@@ -1,0 +1,84 @@
+flowchart TD
+    %% ENTIDADES
+    POTRERO[POTRERO]
+    BOVINO[BOVINO]
+    RAZA[RAZA]
+    FICHA[FICHA_MEDICA_PERFIL]
+    VACUNA[TIPO_VACUNA]
+    REGISTRO[REGISTRO_VACUNACION]
+    ORDENO[CONTROL_ORDENO_LECHE]
+
+    %% RELACIONES
+    rel1{alberga}
+    rel2{pertenece a}
+    rel3{tiene}
+    rel4{recibe}
+    rel5{aplicada en}
+    rel6{produce}
+
+    %% CONEXIONES ENTIDAD-RELACION
+    POTRERO --- rel1 --- BOVINO
+    RAZA --- rel2 --- BOVINO
+    BOVINO --- rel3 --- FICHA
+    BOVINO --- rel4 --- REGISTRO
+    VACUNA --- rel5 --- REGISTRO
+    BOVINO --- rel6 --- ORDENO
+
+    %% ATRIBUTOS POTRERO
+    P1([_id_potrero_])
+    P2([numero_potrero])
+    P3([nombre_potrero])
+    P4([tipo_lote])
+    P5([capacidad])
+    P6([area_hectareas])
+    P7([tipo_pasto])
+    POTRERO --- P1 & P2 & P3 & P4 & P5 & P6 & P7
+
+    %% ATRIBUTOS BOVINO
+    B1([_id_bovino_])
+    B2([codigo_arete])
+    B3([nombre])
+    B4([sexo])
+    B5([fecha_nacimiento])
+    B6([peso_kg])
+    B7([estado])
+    BOVINO --- B1 & B2 & B3 & B4 & B5 & B6 & B7
+
+    %% ATRIBUTOS RAZA
+    R1([_id_raza_])
+    R2([nombre_raza])
+    R3([proposito])
+    RAZA --- R1 & R2 & R3
+
+    %% ATRIBUTOS FICHA
+    F1([_id_ficha_])
+    F2([estado_repro])
+    F3([en_retiro])
+    F4([fecha_secado])
+    F5([alergias])
+    FICHA --- F1 & F2 & F3 & F4 & F5
+
+    %% ATRIBUTOS VACUNA
+    V1([_id_vacuna_])
+    V2([nombre_vacuna])
+    V3([enfermedad])
+    V4([dosis_ml])
+    V5([frecuencia_ms])
+    VACUNA --- V1 & V2 & V3 & V4 & V5
+
+    %% ATRIBUTOS REGISTRO
+    RV1([_id_registro_])
+    RV2([fecha_aplicacion])
+    RV3([proxima_dosis])
+    RV4([veterinario])
+    RV5([observaciones])
+    REGISTRO --- RV1 & RV2 & RV3 & RV4 & RV5
+
+    %% ATRIBUTOS ORDENO
+    O1([_id_ordeno_])
+    O2([fecha_ordeno])
+    O3([jornada])
+    O4([litros_prod])
+    O5([apta_venta])
+    O6([ordenador])
+    ORDENO --- O1 & O2 & O3 & O4 & O5 & O6

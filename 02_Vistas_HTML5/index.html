@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GanadoControl - Panel de Control Ganadero</title>
+</head>
+<body>
+  <header>
+    <h1>🐄 GanadoControl - Sistema de Gestión Micro-Ganadera</h1>
+    <nav>
+      <a href="index.html">Dashboard General</a> |
+      <a href="registro_bovino.html">Registrar Bovino</a> |
+      <a href="control_ordeno.html">Control de Ordeño</a> |
+      <a href="sanidad_vacunas.html">Registro Sanitario</a>
+    </nav>
+  </header>
+
+  <hr>
+
+  <main>
+    <section>
+      <h2>Resumen del Hato</h2>
+      <table border="1" width="90%">
+        <caption><strong>Estado Actual del Hato</strong></caption>
+        <thead>
+          <tr>
+            <th>Total Bovinos</th>
+            <th>Vacas en Ordeño</th>
+            <th>Terneras / Levante</th>
+            <th>Toros / Ceba</th>
+            <th>Alerta Retiro Sanitario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>15</td>
+            <td>6</td>
+            <td>5</td>
+            <td>4</td>
+            <td><strong>1 Vaca (Leche NO apta para venta)</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>Ocupación de Potreros (Rotación Voisin)</h2>
+      <table border="1" width="90%">
+        <thead>
+          <tr>
+            <th>Potrero #</th>
+            <th>Nombre Lote</th>
+            <th>Tipo Pasto</th>
+            <th>Capacidad</th>
+            <th>Ocupación</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01</td>
+            <td>Lote Ordeño 1</td>
+            <td>Estrella</td>
+            <td>20 animales</td>
+            <td>6 vacas</td>
+            <td>Ocupado</td>
+          </tr>
+          <tr>
+            <td>07</td>
+            <td>Novillas Vientre</td>
+            <td>Kikuyo</td>
+            <td>12 animales</td>
+            <td>3 novillas</td>
+            <td>Ocupado</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Cunas y Destete</td>
+            <td>Corte Cuba 22</td>
+            <td>8 terneros</td>
+            <td>2 terneras</td>
+            <td>Ocupado</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>Maternidad / Preparto</td>
+            <td>Kikuyo</td>
+            <td>10 animales</td>
+            <td>1 vaca</td>
+            <td>Ocupado</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <hr>
+
+  <footer>
+    <p><strong>Proyecto Integrador CESDE Nivel 1</strong> | Equipo GanadoControl 2026</p>
+  </footer>
+</body>
+</html>

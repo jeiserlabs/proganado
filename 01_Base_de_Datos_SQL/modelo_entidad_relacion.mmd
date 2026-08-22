@@ -1,0 +1,53 @@
+erDiagram
+    POTRERO {
+        int Numero
+        string Nombre
+        string Tipo_Lote
+        int Capacidad_Maxima
+        decimal Area_Hectareas
+        string Tipo_Pasto
+    }
+    RAZA {
+        string Nombre
+        string Proposito
+    }
+    BOVINO {
+        string Codigo_Arete
+        string Nombre
+        char Sexo
+        date Fecha_Nacimiento
+        decimal Peso_Kg
+        string Estado
+    }
+    FICHA_MEDICA_PERFIL {
+        string Estado_Reproductivo
+        boolean En_Tiempo_Retiro
+        date Fecha_Proximo_Secado
+        string Alergias
+    }
+    TIPO_VACUNA {
+        string Nombre
+        string Enfermedad
+        decimal Dosis_ml
+        int Frecuencia_meses
+    }
+    REGISTRO_VACUNACION {
+        date Fecha_Aplicacion
+        date Proxima_Dosis
+        string Veterinario
+        string Observaciones
+    }
+    CONTROL_ORDENO_LECHE {
+        date Fecha_Ordeno
+        string Jornada
+        decimal Litros_Producidos
+        boolean Apta_Venta
+        string Ordenador
+    }
+
+    POTRERO ||--o{ BOVINO : "alberga"
+    RAZA ||--o{ BOVINO : "pertenece_a"
+    BOVINO ||--|| FICHA_MEDICA_PERFIL : "tiene"
+    BOVINO ||--o{ REGISTRO_VACUNACION : "recibe"
+    TIPO_VACUNA ||--o{ REGISTRO_VACUNACION : "es_aplicada_en"
+    BOVINO ||--o{ CONTROL_ORDENO_LECHE : "produce"

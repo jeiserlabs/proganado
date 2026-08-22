@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Bovino - GanadoControl</title>
+</head>
+<body>
+  <header>
+    <h1>Registrar Nuevo Bovino / Cría</h1>
+    <nav>
+      <a href="index.html">Dashboard General</a> |
+      <a href="registro_bovino.html">Registrar Bovino</a>
+    </nav>
+  </header>
+
+  <hr>
+
+  <main>
+    <section>
+      <form action="#" method="POST">
+        <fieldset>
+          <legend><strong>Datos del Animal</strong></legend>
+          <br>
+
+          <label for="txtArete">Código de Arete (Único):</label><br>
+          <input type="text" id="txtArete" name="codigo_arete" placeholder="Ej: ARETE-016" required><br><br>
+
+          <label for="txtNombre">Nombre del Animal:</label><br>
+          <input type="text" id="txtNombre" name="nombre" placeholder="Ej: Paloma"><br><br>
+
+          <p><strong>Sexo:</strong></p>
+          <label><input type="radio" name="sexo" value="H" checked required> Hembra (Vaca / Novilla / Ternera)</label><br>
+          <label><input type="radio" name="sexo" value="M"> Macho (Toro / Novillo)</label><br><br>
+
+          <label for="selRaza">Raza Genética:</label><br>
+          <select id="selRaza" name="id_raza" required>
+            <option value="">-- Seleccionar Raza --</option>
+            <option value="1">Brahman (Carne)</option>
+            <option value="2">Gyr (Leche)</option>
+            <option value="3">Holstein (Leche)</option>
+            <option value="4">Normando (Doble Propósito)</option>
+            <option value="5">Jersey (Leche)</option>
+          </select><br><br>
+
+          <label for="selPotrero">Potrero Asignado:</label><br>
+          <select id="selPotrero" name="id_potrero" required>
+            <option value="">-- Seleccionar Lote --</option>
+            <option value="1">Potrero 01 - Lote Ordeño 1 (Estrella)</option>
+            <option value="7">Potrero 07 - Novillas Vientre (Kikuyo)</option>
+            <option value="11">Potrero 11 - Cunas y Destete (Corte Cuba 22)</option>
+            <option value="16">Potrero 16 - Maternidad / Preparto (Kikuyo)</option>
+          </select><br><br>
+
+          <label for="txtFechaNac">Fecha de Nacimiento:</label><br>
+          <input type="date" id="txtFechaNac" name="fecha_nacimiento" required><br><br>
+
+          <label for="numPeso">Peso Inicial (Kg):</label><br>
+          <input type="number" id="numPeso" name="peso_kg" step="0.5" min="20" max="1200" placeholder="420.5"><br><br>
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+          <legend><strong>Trazabilidad y Linaje</strong></legend>
+          <br>
+          <label for="selMadre">Madre (Bovino Hembra del Hato):</label><br>
+          <select id="selMadre" name="id_madre">
+            <option value="">-- Sin Registro / Animal Fundador --</option>
+            <option value="1">ARETE-001 - Mariposa (Gyr)</option>
+            <option value="7">ARETE-007 - Estrella (Gyr)</option>
+            <option value="13">ARETE-013 - Cielo (Gyr)</option>
+          </select><br><br>
+
+          <label for="selPadre">Toro Padre / Pajilla de Inseminación:</label><br>
+          <select id="selPadre" name="id_padre_genetica">
+            <option value="">-- Sin Registro --</option>
+            <option value="1">TORO-001 - Campeón Dorado (Brahman - Propio)</option>
+            <option value="2">TORO-002 - Potro Brillante (Normando - Propio)</option>
+            <option value="3">TORO-003 - Pajilla Holstein Premium (Comercial)</option>
+            <option value="4">TORO-004 - Relámpago Gyr (Prestado)</option>
+          </select><br><br>
+        </fieldset>
+
+        <br>
+
+        <input type="submit" value="Guardar Registro en el Hato">
+        <input type="reset" value="Limpiar">
+      </form>
+    </section>
+  </main>
+
+  <hr>
+
+  <footer>
+    <p><small>&copy; 2026 GanadoControl - CESDE</small></p>
+  </footer>
+</body>
+</html>
