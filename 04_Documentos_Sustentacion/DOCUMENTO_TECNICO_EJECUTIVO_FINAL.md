@@ -29,4 +29,4 @@ GanadoControl es una solución tecnológica diseñada para micro y pequeñas fin
 - **Camila Salas:** Product Owner & Requerimientos Zootécnicos.
 - **Sebastián Gómez:** Diseñador Frontend & Estructura HTML5.
 - **Emilio Villanueva:** Desarrollador de Lógica & Algoritmos PSeInt.
-- **Hernán Pinto:** QA, Pruebas y Documentación Técnica.
+- **Humberto Pinto:** QA, Pruebas y Documentación Técnica.
