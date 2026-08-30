@@ -1,0 +1,58 @@
+================================================================================
+📋 DATOS DE ENTREGA — PROYECTO INTEGRADOR CESDE (MOMENTO 1)
+================================================================================
+
+📌 INFORMACIÓN ACADÉMICA GENERAL:
+• Institución: CESDE — Escuela de Tecnología e Innovación
+• Submódulo / Asignatura: Introducción a la Programación & Bases de Datos
+• Docente: Jonathan Felipe Piedrahita Nieto
+• Grupo: Grupo N° 3 (Jornada Sábados 7:30 a.m. - 6:00 p.m.)
+• Semestre: 2026-2
+• Momento Evaluativo: Momento 1 — Proyecto Integrador
+• Nombre del Proyecto: ProGanado S.A.S. — Sistema Integral de Gestión Ganadera & Inocuidad Lechera
+• Repositorio Oficial (GitHub): https://github.com/jeiser270997-source/ProGanado
+
+--------------------------------------------------------------------------------
+👥 INTEGRANTES DEL EQUIPO (GRUPO N° 3):
+--------------------------------------------------------------------------------
+
+1. JEISER ABRAHAM GUTIÉRREZ
+   • Cédula / Identificación: 1019156838
+   • Rol en el Proyecto: Chief Technology Officer (CTO) & Tech Lead
+   • Teléfono: 304 461 5613
+   • Correo: jeiser270997@gmail.com
+
+2. SEBASTIÁN GÓMEZ
+   • Rol en el Proyecto: Chief Design Officer (CDO) & Frontend Lead
+   • Responsabilidad: Maquetación HTML5 Semántica y Accesibilidad WCAG 2.1
+
+3. CAMILA SALAS
+   • Rol en el Proyecto: Chief Legal & Financial Officer (CLO / CFO)
+   • Responsabilidad: Marco Legal S.A.S., Régimen Tributario Simple y Facturación
+
+4. DR. HUMBERTO PINTO
+   • Rol en el Proyecto: Chief Medical & Scientific Officer (CSO)
+   • Responsabilidad: Asesoría Médico-Veterinaria, Telemetría y Protocolos ICA
+
+5. EMILIO VILLANUEVA
+   • Rol en el Proyecto: Head of Operations (COO) & Lógica Lead
+   • Responsabilidad: Algoritmia PSeInt y Validación de Reglas en Campo
+
+--------------------------------------------------------------------------------
+📝 TEXTO RESUMIDO LISTO PARA COPIAR Y PEGAR EN EL FORMULARIO:
+--------------------------------------------------------------------------------
+
+PROYECTO: ProGanado S.A.S. (Grupo 3)
+DOCENTE: Jonathan Felipe Piedrahita Nieto
+MOMENTO: 1 (Bases de Datos & Lógica)
+
+INTEGRANTES:
+- Jeiser Abraham Gutiérrez (CC: 1019156838) - Tech Lead / Base de Datos
+- Sebastián Gómez - Frontend / Maquetación HTML5
+- Camila Salas - Legal / Finanzas
+- Dr. Humberto Pinto - Asesor Médico / Zootecnia
+- Emilio Villanueva - Operaciones / Algoritmia PSeInt
+
+ENLACE REPOSITORIO GITHUB:
+https://github.com/jeiser270997-source/ProGanado
+================================================================================
