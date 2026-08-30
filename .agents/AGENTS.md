@@ -33,3 +33,5 @@
 3. **Maquetación HTML5 Semántica Pura:** Uso exclusivo de etiquetas semánticas (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>`, `<footer>`), formularios con `<fieldset>`, `<legend>`, `<label>` y tablas con `<caption>`, `<thead>`, `<tbody>`, `<tfoot>`.
 4. **Clean Code & Modularidad:** Archivos < 300 líneas, funciones puras, separación estricta de capas (Datos -> Lógica -> Presentación).
 5. **Arquitectura Cloud Evolutiva:** Inicio a $0 COP (Local / Vercel / Render / Supabase) con hoja de ruta documentada de migración a AWS Enterprise (S3, CloudFront, Lambda/Fargate, RDS PostgreSQL Multi-AZ).
+6. **Diagramación de BD (MER en Draw.io vs Relacional en Mermaid):** El **Modelo Entidad-Relación (MER Chen: rectángulos y óvalos)** se diseña exclusivamente en **Draw.io** (`.drawio`). El **Modelo Relacional (MR: tablas, PKs, FKs)** se documenta exclusivamente en **Mermaid.js** (`erDiagram`).
+
