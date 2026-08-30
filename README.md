@@ -2,8 +2,8 @@
 
 > **SSOT (Single Source of Truth) — Arquitectura de Software, Modelo de Negocio, Reglas de Inocuidad & Base de Datos**  
 > **Institución:** CESDE — Escuela de Tecnología e Innovación | Semestre 2026-2  
-> **Proyecto Integrador:** Nivel 1 (Bases de Datos Relacionales, Algoritmia, Frontend Semántico & Emprendimiento Tech)  
-> **Tech Lead & Arquitecto:** Jeiser Abraham Gutiérrez  
+> **Proyecto Integrador:** Nivel 1 (Bases de Datos Relacionales, Algoritmia, Frontend Semántico, Tipado Fuerte & Emprendimiento Tech)  
+> **Tech Lead & QA Lead:** Jeiser Abraham Gutiérrez  
 > **Repositorio Público de Verificación:** [https://github.com/jeiser270997-source/ProGanado](https://github.com/jeiser270997-source/ProGanado)  
 > **Fecha de Entrega Momento 1:** Domingo, 30 de Agosto de 2026
 
@@ -27,7 +27,67 @@
 
 ---
 
-## 💼 2. Modelo de Negocio SaaS & Pricing Tiers (Freemium)
+## 🛡️ 2. Gobernanza de Datos & Tipado Fuerte (TypeScript & Zod)
+Como **Tech Lead y QA Lead**, la arquitectura de ProGanado implementa el principio de **Defensa en Profundidad (Defense in Depth)** y **Tolerancia Cero a Datos Corruptos**. Al tratarse de una S.A.S. de inocuidad alimentaria, los datos ingresados por operarios en campo se validan de forma estricta:
+
+```
+[ Entrada Operario / HTML5 ] 
+          │  (Validación nativa: required, pattern, min/max)
+          ▼
+[ Esquema Zod en Runtime ] ──> Rechaza si: Litros <= 0, Fecha futura o Fármaco sin tiempo de retiro
+          │  (src/schemas/validation.schemas.ts)
+          ▼
+[ Contrato TypeScript ] ─────> Cero 'any'. Tipado estricto de 12 entidades
+          │  (src/types/domain.types.ts)
+          ▼
+[ Base de Datos 3FN ] ───────> Restricciones CHECK, NOT NULL, FK ON DELETE RESTRICT
+```
+
+* **Contratos TypeScript:** `src/types/domain.types.ts` (12 interfaces con enums zootécnicos).
+* **Esquemas Zod:** `src/schemas/validation.schemas.ts` (Validación bidireccional en tiempo de ejecución).
+* **Diccionario de Validación por Celda/Input:** `docs/DICCIONARIO_VALIDACION_INPUTS_Y_CELDAS.md` (Especificación campo por campo).
+
+---
+
+## 🚀 3. Estrategia Pedagógica Bottom-Up (De Fundamentos a AWS Cloud)
+
+ProGanado adopta un modelo evolutivo que respeta y acompaña la formación académica en CESDE:
+
+```
++-----------------------------------------------------------------------------------+
+|               CURVA DE MADUREZ TECNOLÓGICA Y FORMATIVA EN PROGANADO               |
++-----------------------------------------------------------------------------------+
+| [NIVEL 1: FUNDAMENTOS ROBUSTOS] (Semestre Actual - CESDE Nivel 1)                 |
+| • Capa de Datos: 12 Tablas relacionales en 3FN (SQLite / Supabase Free $0)        |
+| • Capa Lógica: Algoritmia pura en PSeInt (Inocuidad, Días Abiertos, UFC)          |
+| • Capa Visual: HTML5 Semántico puro LEGO + Accesibilidad WCAG 2.1 (Sin CSS pesado) |
+| • Gobernanza: Contratos fuertemente tipados en TypeScript & Zod Schema            |
++-----------------------------------------------------------------------------------+
+                                         │
+                                         ▼ (Semestre 2027-1 - CESDE Nivel 2)
++-----------------------------------------------------------------------------------+
+| [NIVEL 2: INTEGRACIÓN FULL-STACK & TIPADO BIDIRECCIONAL]                          |
+| • Backend: Node.js + Express.js modular con TypeScript estricto                   |
+| • Validación: Middleware Zod interceptor en todas las rutas API REST              |
+| • Frontend: CSS3 Moderno (Grid / Flexbox) y Vanilla JS interactivo                |
+| • Base de Datos: PostgreSQL Gestionado (Supabase Pro / Neon / VPS Hetzner)       |
++-----------------------------------------------------------------------------------+
+                                         │
+                                         ▼ (Comercialización S.A.S. - 50 a 500+ Fincas)
++-----------------------------------------------------------------------------------+
+| [NIVEL 3: S.A.S. ENTERPRISE EN AWS CLOUD]                                         |
+| • Frontend: React / Next.js + Tailwind CSS + PWA Móvil para el campo              |
+| • Almacenamiento Media: AWS S3 (Fotos de aretes, actas ICA, reportes PDF)         |
+| • Distribución Global: AWS CloudFront CDN (Baja latencia 3G/4G rural)             |
+| • Cómputo API: AWS App Runner / ECS Fargate (Docker serverless auto-escalable)    |
+| • Base de Datos: AWS RDS PostgreSQL Multi-AZ (Failover automático y réplicas)    |
+| • Eventos y Push: AWS EventBridge + SNS (Alertas WhatsApp/SMS a mayordomos)       |
++-----------------------------------------------------------------------------------+
+```
+
+---
+
+## 💼 4. Modelo de Negocio SaaS & Pricing Tiers (Freemium)
 
 El modelo de monetización se estructura **por FINCA** (Unidad Productiva / Código ICA Predio), permitiendo que un mismo inversionista o usuario administre múltiples predios con facturación independiente.
 
@@ -54,19 +114,19 @@ Si una finca en plan **Pro** no renueva su suscripción mensual:
 
 ---
 
-## 👥 3. Equipo de Trabajo & Roles de Ejecución (CESDE)
+## 👥 5. Equipo de Trabajo & Roles de Ejecución (CESDE)
 
 | Miembro del Equipo | Rol Principal | Responsabilidades Clave |
 |---|---|---|
-| **Jeiser Abraham Gutiérrez** | Tech Lead & Database Architect | Arquitectura de datos (3FN), backend API, integración de inocuidad y control de versiones Git. |
-| **Sebastián Gómez** | Graphic Designer & Frontend Lead | UI/UX Pro Max, identidad visual, maquetación HTML5 semántica y responsive design. |
-| **Camila Salas** | Administrative Assistant & Legal/Tax | Asistencia operativa, validación con planillas de campo, formalización S.A.S. (Ley 1780) y régimen tributario (0% IVA Cloud). |
-| **Dr. Humberto Pinto** | Medical Doctor & Scientific Advisor | Asesoría médica/cardiológica, analogía de telemetría de precisión (Holter = Ordeño AM/PM) y pitch ante jurados. |
-| **Emilio Villanueva** | Collections & Logic / PSeInt Lead | Algoritmia en PSeInt, validación de reglas de negocio en campo y recopilación de requerimientos. |
+| **Jeiser Abraham Gutiérrez** | Tech Lead & QA Lead | Arquitectura de datos (3FN), contratos TypeScript, esquemas Zod, DDL SQL, roadmap AWS y CI/CD. |
+| **Sebastián Gómez** | Graphic Designer & Frontend Lead | UI/UX Pro Max, maquetación HTML5 semántica pura, accesibilidad WCAG 2.1 y blueprints. |
+| **Camila Salas** | Administrative Assistant & Legal/Tax | Asistencia operativa, formalización S.A.S. (Ley 1780), Régimen Simple (RST 1.8%-5.4%) y 0% IVA Cloud. |
+| **Dr. Humberto Pinto** | Medical Doctor & Scientific Advisor | Asesoría médica/cardiológica, telemetría de precisión (Holter = Ordeño AM/PM) y pitch ante jurados. |
+| **Emilio Villanueva** | Collections & Logic / PSeInt Lead | Algoritmia en PSeInt (Cinta Roja, Días Abiertos, Liquidación UFC) y validación de reglas de campo. |
 
 ---
 
-## 🏗️ 4. Pipeline de Arquitectura y Flujo de Operación
+## 🏗️ 6. Pipeline de Arquitectura y Flujo de Operación
 
 ```mermaid
 flowchart TD
@@ -80,7 +140,7 @@ flowchart TD
         B3[Jeiser / Administrador] -->|Control Financiero & KPIs| B2
     end
 
-    subgraph ENGINE["MOTOR DE REGLAS DE NEGOCIO & SEGURIDAD"]
+    subgraph ENGINE["MOTOR DE REGLAS DE NEGOCIO & SEGURIDAD (ZOD + TS)"]
         C1{"¿Tratamiento con Medicamento?"}
         C1 -->|SI: Dias Retiro > 0| C2["ACTIVAR ALERTA CINTA ROJA"]
         C1 -->|NO: Podologia / Descorne| C3[Registrar Procedimiento sin Bloqueo]
@@ -103,7 +163,7 @@ flowchart TD
 
 ---
 
-## 📐 5. Reglas de Negocio Estrictas (Grabadas en Piedra)
+## 📐 7. Reglas de Negocio Estrictas (Grabadas en Piedra)
 
 1. **Inocuidad Lechera y Cinta Roja (Fail-Closed):**
    - Todo tratamiento que utilice un medicamento con `dias_retiro_ica > 0` activa de inmediato el flag `bovinos.alerta_cinta_roja = 1`.
@@ -123,7 +183,7 @@ flowchart TD
 
 ---
 
-## 🗃️ 6. Modelo de Datos Relacional Oficial (12 Tablas en 3FN)
+## 🗃️ 8. Modelo de Datos Relacional Oficial (12 Tablas en 3FN)
 
 ```mermaid
 erDiagram
@@ -245,7 +305,7 @@ erDiagram
 
 ---
 
-## 💻 7. Script DDL SQL de Producción (3FN)
+## 💻 9. Script DDL SQL de Producción (3FN)
 
 ```sql
 PRAGMA foreign_keys = ON;
@@ -256,7 +316,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
     nombre TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
     contrasena_hash TEXT NOT NULL,
-    rol TEXT CHECK(rol IN ('Administrador', 'Asistente')) NOT NULL DEFAULT 'Administrador',
+    rol TEXT CHECK(rol IN ('Administrador', 'Asistente', 'Veterinario', 'Operario')) NOT NULL DEFAULT 'Administrador',
     fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -275,8 +335,8 @@ CREATE TABLE IF NOT EXISTS fincas (
 CREATE TABLE IF NOT EXISTS suscripciones_saas (
     id_suscripcion TEXT PRIMARY KEY,
     id_finca TEXT NOT NULL,
-    plan_tipo TEXT CHECK(plan_tipo IN ('Free', 'Pro_119k')) NOT NULL DEFAULT 'Free',
-    estado_acceso TEXT CHECK(estado_acceso IN ('Activo', 'Solo_Lectura')) NOT NULL DEFAULT 'Activo',
+    plan_tipo TEXT CHECK(plan_tipo IN ('Free', 'Pro_119k', 'Multi_Predio_299k')) NOT NULL DEFAULT 'Free',
+    estado_acceso TEXT CHECK(estado_acceso IN ('Activo', 'Solo_Lectura', 'Suspendido')) NOT NULL DEFAULT 'Activo',
     limite_vacas INTEGER NOT NULL DEFAULT 10,
     fecha_inicio DATE NOT NULL,
     fecha_vencimiento DATE,
@@ -319,7 +379,7 @@ CREATE TABLE IF NOT EXISTS bovinos (
     id_raza TEXT NOT NULL,
     fecha_nacimiento DATE NOT NULL,
     alerta_cinta_roja BOOLEAN NOT NULL DEFAULT 0,
-    estado_lactancia TEXT CHECK(estado_lactancia IN ('En_Ordeño', 'Horra_Seca', 'Novilla')) NOT NULL DEFAULT 'Novilla',
+    estado_lactancia TEXT CHECK(estado_lactancia IN ('En_Ordeño', 'Horra_Seca', 'Novilla', 'Crecimiento', 'Toro')) NOT NULL DEFAULT 'Novilla',
     FOREIGN KEY (id_finca) REFERENCES fincas(id_finca) ON DELETE CASCADE,
     FOREIGN KEY (id_potrero) REFERENCES potreros(id_potrero) ON DELETE SET NULL,
     FOREIGN KEY (id_raza) REFERENCES razas(id_raza) ON DELETE RESTRICT
@@ -329,7 +389,7 @@ CREATE TABLE IF NOT EXISTS bovinos (
 CREATE TABLE IF NOT EXISTS marcaciones (
     id_marcacion TEXT PRIMARY KEY,
     id_bovino TEXT NOT NULL,
-    tipo_marca TEXT CHECK(tipo_marca IN ('Arete_ICA', 'Hierro_Caliente', 'Chapeta', 'Tatuaje')) NOT NULL,
+    tipo_marca TEXT CHECK(tipo_marca IN ('Arete_ICA', 'Arete_SINIGAN', 'Chapeta_Manejo', 'Hierro_Caliente', 'Tatuaje', 'Chip_RFID')) NOT NULL,
     codigo_valor TEXT NOT NULL,
     estado_activo BOOLEAN NOT NULL DEFAULT 1,
     FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE CASCADE
@@ -368,7 +428,7 @@ CREATE TABLE IF NOT EXISTS pesajes_leche (
 CREATE TABLE IF NOT EXISTS eventos_reproductivos (
     id_evento TEXT PRIMARY KEY,
     id_bovino TEXT NOT NULL,
-    tipo_evento TEXT CHECK(tipo_evento IN ('Parto', 'Celo_Observable', 'Inseminacion', 'Palpacion')) NOT NULL,
+    tipo_evento TEXT CHECK(tipo_evento IN ('Parto', 'Celo_Observable', 'Inseminacion', 'Palpacion', 'Aborto')) NOT NULL,
     fecha_evento DATE NOT NULL,
     dias_abiertos_calc INTEGER,
     FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE CASCADE
@@ -384,53 +444,17 @@ CREATE INDEX IF NOT EXISTS idx_tratamientos_fecha ON tratamientos_sanitarios(fec
 
 ---
 
-## ☁️ 8. Plan de Arquitectura y Escalabilidad Cloud (de $0 a AWS Enterprise)
-
-ProGanado implementa una estrategia de infraestructura evolutiva **"Zero-Debt Architecture"**, iniciando con costos fijos de cero pesos y migrando a la nube de **Amazon Web Services (AWS)** a medida que la base de clientes de pago genere flujo de caja positivo:
-
-```
-+-----------------------------------------------------------------------------------+
-|                        HOJA DE RUTA DE INFRAESTRUCTURA CLOUD                      |
-+-----------------------------------------------------------------------------------+
-| FASE 0: Lanzamiento CESDE ($0 COP/mes)                                            |
-| * Frontend: GitHub Pages / Vercel ($0)                                            |
-| * Backend: Node.js Express API en Render Free Tier ($0)                           |
-| * Base de Datos: PostgreSQL en Supabase Free Tier ($0 / 500 MB)                   |
-+-----------------------------------------------------------------------------------+
-                                         |
-                                         v (10 a 30 Clientes / Ingresos 1.2M-3.5M COP)
-+-----------------------------------------------------------------------------------+
-| FASE 1: Crecimiento Regional (~120k COP/mes)                                      |
-| * Frontend: Cloudflare Pages CDN ($0)                                             |
-| * Backend: VPS Gestionado Hetzner / Railway (~40k COP/mes)                        |
-| * Base de Datos: Managed PostgreSQL con backups diarios (~80k COP/mes)            |
-+-----------------------------------------------------------------------------------+
-                                         |
-                                         v (50 a 500+ Haciendas / Escala Nacional)
-+-----------------------------------------------------------------------------------+
-| FASE 2: AWS Enterprise High-Availability (~220k - 300k COP/mes)                   |
-| * Frontend & Media: AWS S3 + AWS CloudFront (CDN global SSL)                      |
-| * Cómputo API: AWS App Runner / ECS Fargate (Contenedores Docker Auto-escalables) |
-| * Base de Datos: AWS RDS PostgreSQL (Multi-AZ, Failover y Cifrado AES-256)        |
-| * Mensajería y Triggers: AWS EventBridge / AWS SNS (Alertas Celo/Cinta Roja)      |
-| * Almacenamiento S3: Fotos de aretes, actas de vacunación ICA y reportes PDF      |
-+-----------------------------------------------------------------------------------+
-```
-
-### Servicios AWS Clave en Fase 2:
-1. **AWS S3:** Almacenamiento seguro para fotos de aretes, actas sanitarias del ICA y documentos PDF de soporte.
-2. **AWS CloudFront:** Distribución CDN de baja latencia con certificados SSL automáticos para acceso rápido en zonas rurales 3G/4G.
-3. **AWS App Runner / ECS Fargate:** Backend en contenedores Docker auto-escalables según horas de ordeño (4am y 2pm).
-4. **AWS RDS PostgreSQL Multi-AZ:** Base de datos relacional administrada con copias de seguridad continuas y replicación síncrona.
-5. **AWS EventBridge + SNS:** Disparador de notificaciones y alertas push SMS/WhatsApp para mayordomos y propietarios.
-
----
-
-## 📂 9. Estructura de Carpetas del Repositorio
+## 📂 10. Estructura de Carpetas del Repositorio
 
 ```text
 ProGanado/
-├── README.md                           # SSOT Arquitectura, Negocio, Reglas y DB
+├── README.md                           # SSOT Arquitectura, Negocio, TypeScript y DB
+├── AGENTS.md                           # Contrato de aislamiento para agentes IA
+├── src/                                # Código Fuente y Contratos Fuertemente Tipados
+│   ├── types/
+│   │   └── domain.types.ts             # 12 Interfaces TypeScript estrictas (Zero-Any)
+│   └── schemas/
+│       └── validation.schemas.ts       # Esquemas Zod en Runtime para prevención de errores
 ├── 01_Base_de_Datos_SQL/               # Scripts DDL, DML y Diagramas Relacionales
 │   ├── schema_produccion_proganado_v3.sql
 │   ├── proganado_mer.mmd
@@ -444,9 +468,14 @@ ProGanado/
 ├── 04_Documentos_Sustentacion/         # Documento Maestro de Entrega Momento 1 (PDF y MD)
 │   ├── PROGANADO_ENTREGA_MOMENTO_1_CESDE.pdf
 │   └── PROGANADO_ENTREGA_MOMENTO_1_CESDE.md
-└── docs/                               # Diagramas (.drawio), Guías PDF y Dossiers
+└── docs/                               # Documentos de Arquitectura, S.A.S. y Guías
+    ├── DICCIONARIO_VALIDACION_INPUTS_Y_CELDAS.md
+    ├── PLAN_ARQUITECTURA_Y_ESCALABILIDAD_BOTTOM_UP.md
+    ├── contexto/
+    │   ├── ESTADO_VIVO_PROGANADO.md
+    │   └── CEREBRO_PROGANADO.md
     ├── diagramas/
-    │   └── ER_PROGANADO.drawio         # MER Chen Oficial en Draw.io
+    │   └── ER_PROGANADO.drawio
     ├── GUIA_MAQUETACION_LANDING_PROGANADO_SEBASTIAN.pdf
     ├── GUIA_LEGAL_FINANCIERA_STARTUP_CAMILA.pdf
     └── GUIA_MEDICA_Y_ESTRATEGICA_DR_HUMBERTO_PINTO.pdf
