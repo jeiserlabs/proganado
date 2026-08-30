@@ -1,88 +1,32 @@
 ================================================================================
-📋 INFORMACIÓN OFICIAL PARA RADICACIÓN — PROYECTO INTEGRADOR CESDE
+PROYECTO INTEGRADOR CESDE — MOMENTO 1 (GRUPO N° 3)
 ================================================================================
 
-📌 1. DATOS GENERALES DE LA ENTREGA:
-• Institución: CESDE — Escuela de Tecnología e Innovación
-• Programa: Técnico Laboral en Desarrollo de Software
-• Submódulo: Introducción a la Programación & Bases de Datos
+• Proyecto: ProGanado S.A.S. — Sistema de Gestión Ganadera & Inocuidad Lechera
+• Submódulo: Introducción a la Programación & Bases de Datos Relacionales
 • Docente Titular: Jonathan Felipe Piedrahita Nieto
-• Momento Evaluativo: Momento 1 — Proyecto Integrador
-• Grupo: Grupo N° 3 (Jornada Sábados 7:30 a.m. – 6:00 p.m.)
-• Semestre: 2026-2
-• Nombre del Proyecto: ProGanado S.A.S. — Sistema Integral de Gestión Ganadera & Inocuidad Lechera
+• Institución: CESDE — Escuela de Tecnología e Innovación (Semestre 2026-2)
 
 --------------------------------------------------------------------------------
-👥 2. INTEGRANTES DEL EQUIPO (GRUPO N° 3):
+👥 INTEGRANTES DEL EQUIPO:
 --------------------------------------------------------------------------------
-1. JEISER ABRAHAM GUTIÉRREZ
-   • Cédula: 1019156838
-   • Teléfono: 304 461 5613
-   • Correo: jeiser270997@gmail.com
-   • Rol: Chief Technology Officer (CTO) & Tech Lead (Arquitectura BD 3FN)
-
-2. SEBASTIÁN GÓMEZ
-   • Rol: Chief Design Officer (CDO) & Frontend Lead (Maquetación HTML5 Semántica)
-
-3. CAMILA SALAS
-   • Rol: Chief Legal & Financial Officer (CLO / CFO) (Estructura S.A.S. & Finanzas)
-
-4. DR. HUMBERTO PINTO
-   • Rol: Chief Medical & Scientific Officer (CSO) (Asesoría Médica & Zootecnia)
-
-5. EMILIO VILLANUEVA
-   • Rol: Head of Operations (COO) & Lógica Lead (Algoritmia PSeInt & Campo)
+1. Jeiser Abraham Gutiérrez (CC: 1019156838) — CTO & Tech Lead (Arquitectura BD 3FN)
+2. Sebastián Gómez — CDO & Frontend Lead (Maquetación HTML5 Semántica)
+3. Camila Salas — CLO / CFO (Marco Legal S.A.S. & Finanzas)
+4. Dr. Humberto Pinto — CSO (Asesoría Médica Veterinaria & Zootecnia)
+5. Emilio Villanueva — COO & Lógica Lead (Algoritmia PSeInt & Operaciones)
 
 --------------------------------------------------------------------------------
-🔗 3. ENLACE OFICIAL DEL REPOSITORIO GITHUB:
+🔗 REPOSITORIO OFICIAL EN GITHUB:
 --------------------------------------------------------------------------------
 https://github.com/jeiser270997-source/ProGanado
 
 --------------------------------------------------------------------------------
-📝 4. NOTA Y JUSTIFICACIÓN TÉCNICA PARA EL PROFESOR JONATHAN PIEDRAHITA:
+📝 NOTA TÉCNICA PARA EL DOCENTE:
 --------------------------------------------------------------------------------
-Apreciado profesor Jonathan:
-
-En el repositorio público de GitHub (https://github.com/jeiser270997-source/ProGanado) hemos centralizado la documentación técnica y el código del proyecto ProGanado S.A.S. como Fuente Única de Verdad (SSOT). En él encontrará:
-
-1. PLANIFICACIÓN Y ROADMAP EVOLUTIVO:
-   - Cronograma modular de desarrollo para los Momentos 1, 2 y 3.
-   - Definición de arquitectura escalable, pasando de PWA Offline-First en SQLite (Monousuario de campo) a entorno Cloud multi-predio en AWS / PostgreSQL.
-
-2. ARQUITECTURA DE DATOS Y AVANCES TÉCNICOS:
-   - Modelo Relacional oficial en Tercera Forma Normal (3FN) con 12 tablas tipadas.
-   - Script DDL de producción ejecutable ('01_Base_de_Datos_SQL/schema_produccion_proganado_v3.sql') con llaves foráneas estrictas, índices de alto rendimiento y restricciones CHECK.
-   - Contratos fuertemente tipados en TypeScript ('src/types/domain.types.ts') y validación de esquemas en tiempo de ejecución con Zod ('src/schemas/validation.schemas.ts').
-
-3. DOMINIO DE NEGOCIO Y CASO REAL:
-   - Estudio de Dominio y Rutinas de Campo ('docs/ESTUDIO_DOMINIO_CAMPO.md') con la operación real de hatos lecheros en Antioquia, acopio Colanta y protocolo de inocuidad "Cinta Roja".
-   - Guía de Seguridad, Concurrencia y Anti-SQL Injection ('docs/GUIA_SEGURIDAD_Y_ESCALABILIDAD.md').
-
-4. HERRAMIENTAS Y STACK TECNOLÓGICO:
-   - Modelado: Mermaid.js y Draw.io.
-   - Lógica y Algoritmia: PSeInt estructurado con 3 bloques comentados (Entrada, Proceso, Salida).
-   - Frontend: Maquetación HTML5 semántica pura con accesibilidad WCAG 2.1.
-   - QA Automation: Suite de pruebas automatizadas con Playwright y Vitest.
-
-Quedamos atentos a sus valiosas observaciones y retroalimentación para la siguiente iteración.
-
---------------------------------------------------------------------------------
-📋 5. RESUMEN COMPACTO LISTO PARA COPIAR Y PEGAR EN CASILLAS DE TEXTO CORTO:
---------------------------------------------------------------------------------
-
-PROYECTO: ProGanado S.A.S. — Gestión Ganadera & Inocuidad Lechera (Grupo 3)
-DOCENTE: Jonathan Felipe Piedrahita Nieto | CESDE 2026-2
-MOMENTO: 1 (Bases de Datos & Introducción a la Programación)
-
-INTEGRANTES:
-- Jeiser Abraham Gutiérrez (CC: 1019156838) - CTO & Tech Lead (Base de Datos)
-- Sebastián Gómez - Frontend Lead (Maquetación HTML5)
-- Camila Salas - CLO / CFO (Legal y Finanzas)
-- Dr. Humberto Pinto - CSO (Asesoría Médica Zootécnica)
-- Emilio Villanueva - COO (Lógica PSeInt & Operaciones)
-
-REPOSITORIO GITHUB:
-https://github.com/jeiser270997-source/ProGanado
-
-NOTA: En el repositorio GitHub se encuentra disponible el roadmap evolutivo, los scripts SQL de producción (12 tablas en 3FN), contratos TypeScript, esquemas Zod, diagramas y la documentación técnica de escalabilidad y herramientas.
+Profesor Jonathan: En el repositorio de GitHub se encuentra centralizada toda la documentación técnica, código fuente y planificación del proyecto:
+• Modelo Relacional oficial en 3FN (12 tablas) y script DDL SQL de producción.
+• Contratos fuertemente tipados en TypeScript y esquemas Zod en tiempo de ejecución.
+• Estudio de dominio de campo lechero (acopio Colanta, protocolo Cinta Roja y días abiertos).
+• Planificación, roadmap evolutivo de la plataforma, herramientas y suites de QA Automation.
 ================================================================================
