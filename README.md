@@ -1,10 +1,11 @@
-# 🐄 ProGanado SaaS — Sistema Integral de Gestión Ganadera & Inocuidad Lechera
+# 🐄 ProGanado S.A.S. — Sistema Integral de Gestión Ganadera & Inocuidad Lechera
 
-> **SSOT (Single Source of Truth) — Arquitectura de Software, Modelo de Negocio, Reglas de Inocuidad & Base de Datos**  
-> **Institución:** CESDE — Escuela de Tecnología e Innovación | Semestre 2026-2  
+> **SSOT (Single Source of Truth) — Arquitectura de Software, Modelo de Negocio, Seguridad Grado Empresa & Base de Datos 3FN**  
+> **Empresa:** ProGanado S.A.S. | Medellín, Colombia  
+> **Institución Académica:** CESDE — Escuela de Tecnología e Innovación | Semestre 2026-2  
 > **Proyecto Integrador:** Nivel 1 (Bases de Datos Relacionales, Algoritmia, Frontend Semántico, Tipado Fuerte & Emprendimiento Tech)  
-> **Tech Lead & QA Lead:** Jeiser Abraham Gutiérrez  
-> **Repositorio Público de Verificación:** [https://github.com/jeiser270997-source/ProGanado](https://github.com/jeiser270997-source/ProGanado)  
+> **Chief Technology Officer (CTO) & QA Lead:** Jeiser Abraham Gutiérrez  
+> **Repositorio Público Oficial:** [https://github.com/jeiser270997-source/ProGanado](https://github.com/jeiser270997-source/ProGanado)  
 > **Fecha de Entrega Momento 1:** Domingo, 30 de Agosto de 2026
 
 ---
@@ -15,9 +16,19 @@
 
 ---
 
+## 📚 DOCUMENTACIÓN MAESTRA DE LA S.A.S.
+
+* 📜 **[Whitepaper Oficial de la S.A.S.](docs/WHITEPAPER_PROGANADO_SAS.md):** Tesis empresarial, análisis de mercado lácteo, Unit Economics y gobernanza legal (Ley 1780 / RST / 0% IVA Cloud E.T. Art 476 Num 24).
+* 🚀 **[Roadmap de Escalabilidad Masiva (1 a 10M+ Bovinos)](docs/ROADMAP_ESCALABILIDAD_MASSIVE_SCALE.md):** Hoja de ruta de infraestructura desde SQLite/Supabase ($0) hasta AWS Enterprise Multi-Región con particionamiento y sharding.
+* 🛡️ **[Guía de Blindaje de Ingeniería y Seguridad](docs/GUIA_BLINDAJE_INGENIERIA_Y_SEGURIDAD.md):** Protocolos anti-SQL Injection, prevención de race conditions (`SELECT ... FOR UPDATE`), integridad referencial `ON DELETE RESTRICT` y deduplicación SHA-256 en AWS S3.
+* 📋 **[Diccionario de Validación por Celda/Input](docs/DICCIONARIO_VALIDACION_INPUTS_Y_CELDAS.md):** Matriz exhaustiva de restricciones, expresiones regulares y tipos TypeScript para cada celda y formulario.
+* 📈 **[Plan de Arquitectura Bottom-Up](docs/PLAN_ARQUITECTURA_Y_ESCALABILIDAD_BOTTOM_UP.md):** Curva de madurez formativa desde fundamentos semánticos hasta la nube AWS.
+
+---
+
 ## 📌 1. Visión del Producto y Problema Real del Campo
 
-**ProGanado** es una plataforma SaaS B2B agropecuaria diseñada para transformar la administración empírica y en papel de las fincas lecheras de Colombia (especialmente en la cuenca norte de Antioquia: Santa Rosa de Osos, San Pedro de los Milagros, Entrerríos y Donmatías) en una operación de alta precisión, inocuidad biológica y rentabilidad financiera.
+**ProGanado S.A.S.** es una plataforma SaaS B2B agropecuaria diseñada para transformar la administración empírica y en papel de las fincas lecheras de Colombia (especialmente en la cuenca norte de Antioquia: Santa Rosa de Osos, San Pedro de los Milagros, Entrerríos y Donmatías) en una operación de alta precisión, inocuidad biológica y rentabilidad financiera.
 
 ### 🛑 Dolores Críticos del Sector Lechero Resueltos:
 1. **La "Pesadilla del Carrotanque" (Contaminación de Leche):** Si una vaca tratada con antibiótico es ordeñada por descuido y su leche entra al tanque comunal de la cooperativa (ej. Colanta), se contamina el viaje entero (10.000+ litros), generando sanciones económicas severas (> $25.000.000 COP) y veto temporal del predio.
@@ -28,7 +39,7 @@
 ---
 
 ## 🛡️ 2. Gobernanza de Datos & Tipado Fuerte (TypeScript & Zod)
-Como **Tech Lead y QA Lead**, la arquitectura de ProGanado implementa el principio de **Defensa en Profundidad (Defense in Depth)** y **Tolerancia Cero a Datos Corruptos**. Al tratarse de una S.A.S. de inocuidad alimentaria, los datos ingresados por operarios en campo se validan de forma estricta:
+Como **CTO y QA Lead**, la arquitectura de ProGanado implementa el principio de **Defensa en Profundidad (Defense in Depth)** y **Tolerancia Cero a Datos Corruptos**:
 
 ```
 [ Entrada Operario / HTML5 ] 
@@ -45,49 +56,10 @@ Como **Tech Lead y QA Lead**, la arquitectura de ProGanado implementa el princip
 
 * **Contratos TypeScript:** `src/types/domain.types.ts` (12 interfaces con enums zootécnicos).
 * **Esquemas Zod:** `src/schemas/validation.schemas.ts` (Validación bidireccional en tiempo de ejecución).
-* **Diccionario de Validación por Celda/Input:** `docs/DICCIONARIO_VALIDACION_INPUTS_Y_CELDAS.md` (Especificación campo por campo).
 
 ---
 
-## 🚀 3. Estrategia Pedagógica Bottom-Up (De Fundamentos a AWS Cloud)
-
-ProGanado adopta un modelo evolutivo que respeta y acompaña la formación académica en CESDE:
-
-```
-+-----------------------------------------------------------------------------------+
-|               CURVA DE MADUREZ TECNOLÓGICA Y FORMATIVA EN PROGANADO               |
-+-----------------------------------------------------------------------------------+
-| [NIVEL 1: FUNDAMENTOS ROBUSTOS] (Semestre Actual - CESDE Nivel 1)                 |
-| • Capa de Datos: 12 Tablas relacionales en 3FN (SQLite / Supabase Free $0)        |
-| • Capa Lógica: Algoritmia pura en PSeInt (Inocuidad, Días Abiertos, UFC)          |
-| • Capa Visual: HTML5 Semántico puro LEGO + Accesibilidad WCAG 2.1 (Sin CSS pesado) |
-| • Gobernanza: Contratos fuertemente tipados en TypeScript & Zod Schema            |
-+-----------------------------------------------------------------------------------+
-                                         │
-                                         ▼ (Semestre 2027-1 - CESDE Nivel 2)
-+-----------------------------------------------------------------------------------+
-| [NIVEL 2: INTEGRACIÓN FULL-STACK & TIPADO BIDIRECCIONAL]                          |
-| • Backend: Node.js + Express.js modular con TypeScript estricto                   |
-| • Validación: Middleware Zod interceptor en todas las rutas API REST              |
-| • Frontend: CSS3 Moderno (Grid / Flexbox) y Vanilla JS interactivo                |
-| • Base de Datos: PostgreSQL Gestionado (Supabase Pro / Neon / VPS Hetzner)       |
-+-----------------------------------------------------------------------------------+
-                                         │
-                                         ▼ (Comercialización S.A.S. - 50 a 500+ Fincas)
-+-----------------------------------------------------------------------------------+
-| [NIVEL 3: S.A.S. ENTERPRISE EN AWS CLOUD]                                         |
-| • Frontend: React / Next.js + Tailwind CSS + PWA Móvil para el campo              |
-| • Almacenamiento Media: AWS S3 (Fotos de aretes, actas ICA, reportes PDF)         |
-| • Distribución Global: AWS CloudFront CDN (Baja latencia 3G/4G rural)             |
-| • Cómputo API: AWS App Runner / ECS Fargate (Docker serverless auto-escalable)    |
-| • Base de Datos: AWS RDS PostgreSQL Multi-AZ (Failover automático y réplicas)    |
-| • Eventos y Push: AWS EventBridge + SNS (Alertas WhatsApp/SMS a mayordomos)       |
-+-----------------------------------------------------------------------------------+
-```
-
----
-
-## 💼 4. Modelo de Negocio SaaS & Pricing Tiers (Freemium)
+## 💼 3. Modelo de Negocio SaaS & Pricing Tiers (Freemium)
 
 El modelo de monetización se estructura **por FINCA** (Unidad Productiva / Código ICA Predio), permitiendo que un mismo inversionista o usuario administre múltiples predios con facturación independiente.
 
@@ -97,7 +69,7 @@ El modelo de monetización se estructura **por FINCA** (Unidad Productiva / Cód
 +------------------------------------+----------------------------------------------+
 | FREE TIER (DataCrédito Ganadero)   | PRO TIER ($119.000 COP / mes por Finca)      |
 +------------------------------------+----------------------------------------------+
-| • Hasta 10 vacas en producción.    | • Capacidad hasta 500+ bovinos por predio.   |
+| • Hasta 15 vacas en producción.    | • Capacidad hasta 500+ bovinos por predio.   |
 | • Ficha zootécnica e historial.    | • Telemetría completa de curva de lactancia. |
 | • Registro básico de pesajes.      | • Sistema de Bloqueo Inocuidad Cinta Roja.   |
 | • 1 usuario administrativo.        | • Semáforo de Rotación Voisin (PRV).         |
@@ -114,76 +86,19 @@ Si una finca en plan **Pro** no renueva su suscripción mensual:
 
 ---
 
-## 👥 5. Equipo de Trabajo & Roles de Ejecución (CESDE)
+## 👥 4. Junta Fundadora & Equipo de Ejecución
 
-| Miembro del Equipo | Rol Principal | Responsabilidades Clave |
-|---|---|---|
-| **Jeiser Abraham Gutiérrez** | Tech Lead & QA Lead | Arquitectura de datos (3FN), contratos TypeScript, esquemas Zod, DDL SQL, roadmap AWS y CI/CD. |
-| **Sebastián Gómez** | Graphic Designer & Frontend Lead | UI/UX Pro Max, maquetación HTML5 semántica pura, accesibilidad WCAG 2.1 y blueprints. |
-| **Camila Salas** | Administrative Assistant & Legal/Tax | Asistencia operativa, formalización S.A.S. (Ley 1780), Régimen Simple (RST 1.8%-5.4%) y 0% IVA Cloud. |
-| **Dr. Humberto Pinto** | Medical Doctor & Scientific Advisor | Asesoría médica/cardiológica, telemetría de precisión (Holter = Ordeño AM/PM) y pitch ante jurados. |
-| **Emilio Villanueva** | Collections & Logic / PSeInt Lead | Algoritmia en PSeInt (Cinta Roja, Días Abiertos, Liquidación UFC) y validación de reglas de campo. |
-
----
-
-## 🏗️ 6. Pipeline de Arquitectura y Flujo de Operación
-
-```mermaid
-flowchart TD
-    subgraph CAMPO["OPERACION EN CAMPO (Finca Lechera)"]
-        A1[Operario / Mayordomo] -->|Planilla Fisica / WhatsApp| A2[Planilla de Pesaje Diario AM/PM]
-        A3[Veterinario de Campo] -->|Diagnostico Clinico| A4[Aplicacion de Farmaco / Podologia]
-    end
-
-    subgraph WEB["GESTION WEB PROGANADO (SaaS)"]
-        B1[Camila / Asistente] -->|Digitacion Diaria| B2[Panel Administrativo Web]
-        B3[Jeiser / Administrador] -->|Control Financiero & KPIs| B2
-    end
-
-    subgraph ENGINE["MOTOR DE REGLAS DE NEGOCIO & SEGURIDAD (ZOD + TS)"]
-        C1{"¿Tratamiento con Medicamento?"}
-        C1 -->|SI: Dias Retiro > 0| C2["ACTIVAR ALERTA CINTA ROJA"]
-        C1 -->|NO: Podologia / Descorne| C3[Registrar Procedimiento sin Bloqueo]
-        C2 --> C4[Bloqueo Inocuidad Fail-Closed en Sala de Ordeño]
-        
-        C5[Calculo de Dias Abiertos] --> C6{"¿Dias post-parto > 100?"}
-        C6 -->|SI| C7["ALERTA ROJA REPRODUCTIVA: Perdida Economica"]
-        C6 -->|NO| C8[Estado Reproductivo Optimo]
-    end
-
-    subgraph DB["BASE DE DATOS TRANSACCIONAL (3FN)"]
-        D1[("12 Tablas Normalizadas en SQLite / PostgreSQL")]
-    end
-
-    A2 --> B1
-    A4 --> B1
-    B2 --> ENGINE
-    ENGINE --> DB
-```
+| Miembro del Equipo | Cargo en la S.A.S. | Rol Académico CESDE | Responsabilidades Clave |
+|---|---|---|---|
+| **Jeiser Abraham Gutiérrez** | Chief Technology Officer (CTO) | Tech Lead & QA Lead | Arquitectura 3FN, gobernanza TypeScript, esquemas Zod, DDL SQL y roadmap Cloud AWS. |
+| **Sebastián Gómez** | Chief Design Officer (CDO) | Frontend Lead | UI/UX Pro Max, maquetación HTML5 semántica pura, accesibilidad WCAG 2.1 y blueprints. |
+| **Camila Salas** | Chief Legal & Financial Officer (CLO/CFO) | Asistente Legal/Admin | Formalización S.A.S. (Ley 1780), Régimen Simple (RST 1.8%-5.4%) y 0% IVA Cloud. |
+| **Dr. Humberto Pinto** | Chief Medical & Scientific Officer (CSO) | Asesor Médico & QA | Telemetría médica (pesaje AM/PM), protocolos de inocuidad y asesoría zootécnica. |
+| **Emilio Villanueva** | Head of Operations (COO) | Lógica & PSeInt Lead | Algoritmia en PSeInt (Cinta Roja, Días Abiertos, Liquidación UFC) y validación de campo. |
 
 ---
 
-## 📐 7. Reglas de Negocio Estrictas (Grabadas en Piedra)
-
-1. **Inocuidad Lechera y Cinta Roja (Fail-Closed):**
-   - Todo tratamiento que utilice un medicamento con `dias_retiro_ica > 0` activa de inmediato el flag `bovinos.alerta_cinta_roja = 1`.
-   - La alerta permanece activa hasta que `fecha_actual >= fecha_tratamiento + dias_retiro_ica`.
-   - La leche de una vaca con Cinta Roja **nunca** debe sumarse al despacho de `entregas_acopio`.
-2. **Tratamientos Sanitarios Flexibles (SaaS EHR):**
-   - Soporta procedimientos clínicos **con medicamento** (antibióticos, desparasitantes) y **sin medicamento** (podología correctiva, corte de pezuñas, descorne).
-   - `id_medicamento` y `dosis_ml` son opcionales (`NULL`).
-   - `tipo_procedimiento` es obligatorio para describir la acción realizada.
-3. **Telemetría Exacta de Ordeño (`hora_pesaje`):**
-   - No se utiliza un discriminador genérico (AM/PM); se registra la hora exacta (`TIME`, ej: `04:30:00`) basada en la planilla física de campo.
-4. **Trazabilidad 1:N de Identificaciones (`marcaciones`):**
-   - Una vaca puede tener múltiples registros de marcación a lo largo de su vida (Arete ICA, Hierro Caliente, Chapeta, Tatuaje).
-   - Si un arete se cae o se pierde, se marca `estado_activo = 0` y se registra el nuevo con `estado_activo = 1`, preservando el historial legal ante el ICA.
-5. **Pastoreo Racional Voisin (PRV):**
-   - Los potreros manejan tiempos estrictos: `dias_ocupacion` (típicamente 1 a 2 días) y `dias_descanso_prv` (30 a 40 días para recuperación biológica del pasto Kikuyo/Ryegrass).
-
----
-
-## 🗃️ 8. Modelo de Datos Relacional Oficial (12 Tablas en 3FN)
+## 🗃️ 5. Modelo de Datos Relacional Oficial (12 Tablas Extensibles en 3FN)
 
 ```mermaid
 erDiagram
@@ -207,7 +122,7 @@ erDiagram
         string nombre
         string email UK
         string contrasena_hash
-        string rol "Admin / Asistente"
+        string rol "Admin / Asistente / Veterinario"
         datetime fecha_registro
     }
 
@@ -223,7 +138,7 @@ erDiagram
     SUSCRIPCIONES_SAAS {
         string id_suscripcion PK
         string id_finca FK
-        string plan_tipo "Free / Pro"
+        string plan_tipo "Free / Pro_119k / Multi_Predio"
         string estado_acceso "Activo / Solo_Lectura"
         int limite_vacas
         date fecha_inicio
@@ -260,13 +175,13 @@ erDiagram
         string id_raza FK
         date fecha_nacimiento
         boolean alerta_cinta_roja
-        string estado_lactancia "Ordeño / Seca / Novilla"
+        string estado_lactancia "En_Ordeño / Horra_Seca / Novilla"
     }
 
     MARCACIONES {
         string id_marcacion PK
         string id_bovino FK
-        string tipo_marca "Arete / Hierro"
+        string tipo_marca "Arete_ICA / SINIGAN / Chapeta"
         string codigo_valor
         boolean estado_activo
     }
@@ -280,7 +195,7 @@ erDiagram
     TRATAMIENTOS_SANITARIOS {
         string id_tratamiento PK
         string id_bovino FK
-        string tipo_procedimiento "Ej: Podologia, Inyeccion"
+        string tipo_procedimiento "Podologia, Inyeccion"
         string id_medicamento FK "Opcional (Null)"
         date fecha_tratamiento
         decimal dosis_ml "Opcional"
@@ -305,7 +220,7 @@ erDiagram
 
 ---
 
-## 💻 9. Script DDL SQL de Producción (3FN)
+## 💻 6. Script DDL SQL de Producción (schema_produccion_proganado_v3.sql)
 
 ```sql
 PRAGMA foreign_keys = ON;
@@ -337,7 +252,7 @@ CREATE TABLE IF NOT EXISTS suscripciones_saas (
     id_finca TEXT NOT NULL,
     plan_tipo TEXT CHECK(plan_tipo IN ('Free', 'Pro_119k', 'Multi_Predio_299k')) NOT NULL DEFAULT 'Free',
     estado_acceso TEXT CHECK(estado_acceso IN ('Activo', 'Solo_Lectura', 'Suspendido')) NOT NULL DEFAULT 'Activo',
-    limite_vacas INTEGER NOT NULL DEFAULT 10,
+    limite_vacas INTEGER NOT NULL DEFAULT 15,
     fecha_inicio DATE NOT NULL,
     fecha_vencimiento DATE,
     FOREIGN KEY (id_finca) REFERENCES fincas(id_finca) ON DELETE CASCADE
@@ -444,18 +359,18 @@ CREATE INDEX IF NOT EXISTS idx_tratamientos_fecha ON tratamientos_sanitarios(fec
 
 ---
 
-## 📂 10. Estructura de Carpetas del Repositorio
+## 📂 7. Estructura de Carpetas del Repositorio
 
 ```text
 ProGanado/
-├── README.md                           # SSOT Arquitectura, Negocio, TypeScript y DB
-├── AGENTS.md                           # Contrato de aislamiento para agentes IA
+├── README.md                           # SSOT Maestro de la S.A.S.
+├── AGENTS.md                           # Contrato de aislamiento y reglas globales
 ├── src/                                # Código Fuente y Contratos Fuertemente Tipados
 │   ├── types/
 │   │   └── domain.types.ts             # 12 Interfaces TypeScript estrictas (Zero-Any)
 │   └── schemas/
 │       └── validation.schemas.ts       # Esquemas Zod en Runtime para prevención de errores
-├── 01_Base_de_Datos_SQL/               # Scripts DDL, DML y Diagramas Relacionales
+├── 01_Base_de_Datos_SQL/               # Scripts DDL de 12 tablas en 3FN y Diagramas
 │   ├── schema_produccion_proganado_v3.sql
 │   ├── proganado_mer.mmd
 │   └── proganado_mr.dbml
@@ -465,18 +380,20 @@ ProGanado/
 ├── 03_Logica_PSeInt/                   # Algoritmia de Negocio y Control de Flujo
 │   ├── asistente_logica_proganado_completo.psc
 │   └── asistente_ganadero_refactorizado.psc
-├── 04_Documentos_Sustentacion/         # Documento Maestro de Entrega Momento 1 (PDF y MD)
-│   ├── PROGANADO_ENTREGA_MOMENTO_1_CESDE.pdf
-│   └── PROGANADO_ENTREGA_MOMENTO_1_CESDE.md
-└── docs/                               # Documentos de Arquitectura, S.A.S. y Guías
+├── 04_Documentos_Sustentacion/         # Documentos de Entrega Oficial Momento 1
+│   ├── 01_SEMANTICA_HTML5_PROGANADO_CESDE.pdf
+│   ├── 02_MODELO_ENTIDAD_RELACION_CHEN_PROGANADO.pdf
+│   ├── 03_MODELO_RELACIONAL_12_TABLAS_PROGANADO.pdf
+│   └── PROGANADO_ENTREGA_MOMENTO_1_CESDE.pdf
+└── docs/                               # Whitepaper, Roadmap y Guías de Seguridad
+    ├── WHITEPAPER_PROGANADO_SAS.md
+    ├── ROADMAP_ESCALABILIDAD_MASSIVE_SCALE.md
+    ├── GUIA_BLINDAJE_INGENIERIA_Y_SEGURIDAD.md
     ├── DICCIONARIO_VALIDACION_INPUTS_Y_CELDAS.md
     ├── PLAN_ARQUITECTURA_Y_ESCALABILIDAD_BOTTOM_UP.md
     ├── contexto/
     │   ├── ESTADO_VIVO_PROGANADO.md
     │   └── CEREBRO_PROGANADO.md
-    ├── diagramas/
-    │   └── ER_PROGANADO.drawio
-    ├── GUIA_MAQUETACION_LANDING_PROGANADO_SEBASTIAN.pdf
-    ├── GUIA_LEGAL_FINANCIERA_STARTUP_CAMILA.pdf
-    └── GUIA_MEDICA_Y_ESTRATEGICA_DR_HUMBERTO_PINTO.pdf
+    └── diagramas/
+        └── ER_PROGANADO.drawio
 ```
