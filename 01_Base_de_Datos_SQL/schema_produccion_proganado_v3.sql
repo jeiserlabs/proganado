@@ -7,13 +7,13 @@
 
 PRAGMA foreign_keys = ON;
 
--- 1. USUARIOS (Autenticación y Seguridad)
+-- 1. USUARIOS (Autenticación y Seguridad) — roles alineados README (Admin/Asistente/Veterinario/Operario)
 CREATE TABLE IF NOT EXISTS usuarios (
     id_usuario TEXT PRIMARY KEY,
     nombre TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
     contrasena_hash TEXT NOT NULL,
-    rol TEXT CHECK(rol IN ('Administrador', 'Asistente')) NOT NULL DEFAULT 'Administrador',
+    rol TEXT CHECK(rol IN ('Administrador', 'Asistente', 'Veterinario', 'Operario')) NOT NULL DEFAULT 'Administrador',
     fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -29,12 +29,13 @@ CREATE TABLE IF NOT EXISTS fincas (
 );
 
 -- 3. SUSCRIPCIONES SAAS (Modelo Freemium DataCrédito por Finca)
+-- DEUDA FIX 2026-08-30: unificado a 15 vacas Free + 3 planes (Free/Pro_119k/Multi) + Suspendido para paridad README/schema
 CREATE TABLE IF NOT EXISTS suscripciones_saas (
     id_suscripcion TEXT PRIMARY KEY,
     id_finca TEXT NOT NULL,
-    plan_tipo TEXT CHECK(plan_tipo IN ('Free', 'Pro_119k')) NOT NULL DEFAULT 'Free',
-    estado_acceso TEXT CHECK(estado_acceso IN ('Activo', 'Solo_Lectura')) NOT NULL DEFAULT 'Activo',
-    limite_vacas INTEGER NOT NULL DEFAULT 10,
+    plan_tipo TEXT CHECK(plan_tipo IN ('Free', 'Pro_119k', 'Multi_Predio_299k')) NOT NULL DEFAULT 'Free',
+    estado_acceso TEXT CHECK(estado_acceso IN ('Activo', 'Solo_Lectura', 'Suspendido')) NOT NULL DEFAULT 'Activo',
+    limite_vacas INTEGER NOT NULL DEFAULT 15,
     fecha_inicio DATE NOT NULL,
     fecha_vencimiento DATE,
     FOREIGN KEY (id_finca) REFERENCES fincas(id_finca) ON DELETE CASCADE
@@ -68,7 +69,7 @@ CREATE TABLE IF NOT EXISTS razas (
     descripcion_proposito TEXT NOT NULL
 );
 
--- 7. BOVINOS (Ficha Central Inmutable del Animal)
+-- 7. BOVINOS (Ficha Central Inmutable del Animal) — estados alineados README (Novilla/Crecimiento/Toro/Horra/En_Ordeño)
 CREATE TABLE IF NOT EXISTS bovinos (
     id_bovino TEXT PRIMARY KEY,
     id_finca TEXT NOT NULL,
@@ -76,17 +77,17 @@ CREATE TABLE IF NOT EXISTS bovinos (
     id_raza TEXT NOT NULL,
     fecha_nacimiento DATE NOT NULL,
     alerta_cinta_roja BOOLEAN NOT NULL DEFAULT 0,
-    estado_lactancia TEXT CHECK(estado_lactancia IN ('En_Ordeño', 'Horra_Seca', 'Novilla')) NOT NULL DEFAULT 'Novilla',
+    estado_lactancia TEXT CHECK(estado_lactancia IN ('En_Ordeño', 'Horra_Seca', 'Novilla', 'Crecimiento', 'Toro')) NOT NULL DEFAULT 'Novilla',
     FOREIGN KEY (id_finca) REFERENCES fincas(id_finca) ON DELETE CASCADE,
     FOREIGN KEY (id_potrero) REFERENCES potreros(id_potrero) ON DELETE SET NULL,
     FOREIGN KEY (id_raza) REFERENCES razas(id_raza) ON DELETE RESTRICT
 );
 
--- 8. MARCACIONES (Aretes ICA, Hierros, Chapetas Normalizados 1:N)
+-- 8. MARCACIONES (Aretes ICA, Hierros, Chapetas Normalizados 1:N) — tipos alineados README (SINIGAN/Chip_RFID)
 CREATE TABLE IF NOT EXISTS marcaciones (
     id_marcacion TEXT PRIMARY KEY,
     id_bovino TEXT NOT NULL,
-    tipo_marca TEXT CHECK(tipo_marca IN ('Arete_ICA', 'Hierro_Caliente', 'Chapeta', 'Tatuaje')) NOT NULL,
+    tipo_marca TEXT CHECK(tipo_marca IN ('Arete_ICA', 'Arete_SINIGAN', 'Chapeta_Manejo', 'Hierro_Caliente', 'Tatuaje', 'Chip_RFID')) NOT NULL,
     codigo_valor TEXT NOT NULL,
     estado_activo BOOLEAN NOT NULL DEFAULT 1,
     FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE CASCADE
@@ -121,11 +122,11 @@ CREATE TABLE IF NOT EXISTS pesajes_leche (
     FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE CASCADE
 );
 
--- 12. EVENTOS REPRODUCTIVOS (Control de los 100 Días Abiertos)
+-- 12. EVENTOS REPRODUCTIVOS (Control de los 100 Días Abiertos) — tipos alineados README (+Aborto)
 CREATE TABLE IF NOT EXISTS eventos_reproductivos (
     id_evento TEXT PRIMARY KEY,
     id_bovino TEXT NOT NULL,
-    tipo_evento TEXT CHECK(tipo_evento IN ('Parto', 'Celo_Observable', 'Inseminacion', 'Palpacion')) NOT NULL,
+    tipo_evento TEXT CHECK(tipo_evento IN ('Parto', 'Celo_Observable', 'Inseminacion', 'Palpacion', 'Aborto')) NOT NULL,
     fecha_evento DATE NOT NULL,
     dias_abiertos_calc INTEGER,
     FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE CASCADE
