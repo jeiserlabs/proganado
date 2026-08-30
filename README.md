@@ -1,9 +1,17 @@
 # 🐄 ProGanado SaaS — Sistema Integral de Gestión Ganadera & Inocuidad Lechera
 
-> **SSOT (Single Source of Truth) — Arquitectura de Software, Modelo de Negocio, Reglas de Negocio & Base de Datos**  
-> **Institución:** CESDE — Escuela de Tecnología e Innovación  
-> **Nivel:** 1 (Bases de Datos, Algoritmia, Frontend Semántico & Emprendimiento Tech)  
+> **SSOT (Single Source of Truth) — Arquitectura de Software, Modelo de Negocio, Reglas de Inocuidad & Base de Datos**  
+> **Institución:** CESDE — Escuela de Tecnología e Innovación | Semestre 2026-2  
+> **Proyecto Integrador:** Nivel 1 (Bases de Datos Relacionales, Algoritmia, Frontend Semántico & Emprendimiento Tech)  
 > **Tech Lead & Arquitecto:** Jeiser Abraham Gutiérrez  
+> **Repositorio Público de Verificación:** [https://github.com/jeiser270997-source/ProGanado](https://github.com/jeiser270997-source/ProGanado)  
+> **Fecha de Entrega Momento 1:** Domingo, 30 de Agosto de 2026
+
+---
+
+> ### ⚠️ SALVEDADES ACADÉMICAS Y DE INGENIERÍA (ENTREGA MOMENTO 1)
+> 1. **Capa Visual y Maquetación HTML5 (En Construcción Semántica Activa):** La capa visual se presenta como una especificación semántica pura (HTML5 estructurado sin frameworks pesados ni estilos CSS definitivos) asignada a **Sebastián Gómez**. Las 6 vistas del SaaS se encuentran en fase de maquetación modular activa siguiendo los blueprints de accesibilidad WCAG 2.1.
+> 2. **Modelo Entidad-Relación y Relacional (Diseño Base Sujeto a Iteración Continua):** El diseño de la base de datos (MER Chen y Modelo Relacional de 12 tablas en 3FN) corresponde a la arquitectura de lanzamiento inicial. Dicho modelo se encuentra sujeto a refinamientos, normalizaciones complementarias y optimizaciones de índices según las pruebas de carga y retroalimentación de campo en el Momento 2.
 
 ---
 
@@ -376,7 +384,49 @@ CREATE INDEX IF NOT EXISTS idx_tratamientos_fecha ON tratamientos_sanitarios(fec
 
 ---
 
-## 📂 8. Estructura de Carpetas del Repositorio
+## ☁️ 8. Plan de Arquitectura y Escalabilidad Cloud (de $0 a AWS Enterprise)
+
+ProGanado implementa una estrategia de infraestructura evolutiva **"Zero-Debt Architecture"**, iniciando con costos fijos de cero pesos y migrando a la nube de **Amazon Web Services (AWS)** a medida que la base de clientes de pago genere flujo de caja positivo:
+
+```
++-----------------------------------------------------------------------------------+
+|                        HOJA DE RUTA DE INFRAESTRUCTURA CLOUD                      |
++-----------------------------------------------------------------------------------+
+| FASE 0: Lanzamiento CESDE ($0 COP/mes)                                            |
+| * Frontend: GitHub Pages / Vercel ($0)                                            |
+| * Backend: Node.js Express API en Render Free Tier ($0)                           |
+| * Base de Datos: PostgreSQL en Supabase Free Tier ($0 / 500 MB)                   |
++-----------------------------------------------------------------------------------+
+                                         |
+                                         v (10 a 30 Clientes / Ingresos 1.2M-3.5M COP)
++-----------------------------------------------------------------------------------+
+| FASE 1: Crecimiento Regional (~120k COP/mes)                                      |
+| * Frontend: Cloudflare Pages CDN ($0)                                             |
+| * Backend: VPS Gestionado Hetzner / Railway (~40k COP/mes)                        |
+| * Base de Datos: Managed PostgreSQL con backups diarios (~80k COP/mes)            |
++-----------------------------------------------------------------------------------+
+                                         |
+                                         v (50 a 500+ Haciendas / Escala Nacional)
++-----------------------------------------------------------------------------------+
+| FASE 2: AWS Enterprise High-Availability (~220k - 300k COP/mes)                   |
+| * Frontend & Media: AWS S3 + AWS CloudFront (CDN global SSL)                      |
+| * Cómputo API: AWS App Runner / ECS Fargate (Contenedores Docker Auto-escalables) |
+| * Base de Datos: AWS RDS PostgreSQL (Multi-AZ, Failover y Cifrado AES-256)        |
+| * Mensajería y Triggers: AWS EventBridge / AWS SNS (Alertas Celo/Cinta Roja)      |
+| * Almacenamiento S3: Fotos de aretes, actas de vacunación ICA y reportes PDF      |
++-----------------------------------------------------------------------------------+
+```
+
+### Servicios AWS Clave en Fase 2:
+1. **AWS S3:** Almacenamiento seguro para fotos de aretes, actas sanitarias del ICA y documentos PDF de soporte.
+2. **AWS CloudFront:** Distribución CDN de baja latencia con certificados SSL automáticos para acceso rápido en zonas rurales 3G/4G.
+3. **AWS App Runner / ECS Fargate:** Backend en contenedores Docker auto-escalables según horas de ordeño (4am y 2pm).
+4. **AWS RDS PostgreSQL Multi-AZ:** Base de datos relacional administrada con copias de seguridad continuas y replicación síncrona.
+5. **AWS EventBridge + SNS:** Disparador de notificaciones y alertas push SMS/WhatsApp para mayordomos y propietarios.
+
+---
+
+## 📂 9. Estructura de Carpetas del Repositorio
 
 ```text
 ProGanado/
@@ -386,10 +436,18 @@ ProGanado/
 │   ├── proganado_mer.mmd
 │   └── proganado_mr.dbml
 ├── 02_Vistas_HTML5/                    # Maquetación Semántica de Vistas del Frontend
+│   ├── esqueleto_lego_semantico.html
+│   └── registro_bovino.html
 ├── 03_Logica_PSeInt/                   # Algoritmia de Negocio y Control de Flujo
-├── 04_Documentos_Sustentacion/         # Dossiers Ejecutivos, Pitch Deck y Guías
-└── docs/                               # Diagramas (.drawio), Guías PDF y Formatos
+│   ├── asistente_logica_proganado_completo.psc
+│   └── asistente_ganadero_refactorizado.psc
+├── 04_Documentos_Sustentacion/         # Documento Maestro de Entrega Momento 1 (PDF y MD)
+│   ├── PROGANADO_ENTREGA_MOMENTO_1_CESDE.pdf
+│   └── PROGANADO_ENTREGA_MOMENTO_1_CESDE.md
+└── docs/                               # Diagramas (.drawio), Guías PDF y Dossiers
     ├── diagramas/
     │   └── ER_PROGANADO.drawio         # MER Chen Oficial en Draw.io
-    └── [Dossiers PDF del Equipo]
+    ├── GUIA_MAQUETACION_LANDING_PROGANADO_SEBASTIAN.pdf
+    ├── GUIA_LEGAL_FINANCIERA_STARTUP_CAMILA.pdf
+    └── GUIA_MEDICA_Y_ESTRATEGICA_DR_HUMBERTO_PINTO.pdf
 ```
