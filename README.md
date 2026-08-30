@@ -18,11 +18,9 @@
 
 ## 📚 DOCUMENTACIÓN MAESTRA DE LA S.A.S.
 
-* 📜 **[Whitepaper Oficial de la S.A.S.](docs/WHITEPAPER_PROGANADO_SAS.md):** Tesis empresarial, análisis de mercado lácteo, Unit Economics y gobernanza legal (Ley 1780 / RST / 0% IVA Cloud E.T. Art 476 Num 24).
-* 🚀 **[Roadmap de Escalabilidad Masiva (1 a 10M+ Bovinos)](docs/ROADMAP_ESCALABILIDAD_MASSIVE_SCALE.md):** Hoja de ruta de infraestructura desde SQLite/Supabase ($0) hasta AWS Enterprise Multi-Región con particionamiento y sharding.
-* 🛡️ **[Guía de Blindaje de Ingeniería y Seguridad](docs/GUIA_BLINDAJE_INGENIERIA_Y_SEGURIDAD.md):** Protocolos anti-SQL Injection, prevención de race conditions (`SELECT ... FOR UPDATE`), integridad referencial `ON DELETE RESTRICT` y deduplicación SHA-256 en AWS S3.
-* 📋 **[Diccionario de Validación por Celda/Input](docs/DICCIONARIO_VALIDACION_INPUTS_Y_CELDAS.md):** Matriz exhaustiva de restricciones, expresiones regulares y tipos TypeScript para cada celda y formulario.
-* 📈 **[Plan de Arquitectura Bottom-Up](docs/PLAN_ARQUITECTURA_Y_ESCALABILIDAD_BOTTOM_UP.md):** Curva de madurez formativa desde fundamentos semánticos hasta la nube AWS.
+* 🐄 **[Estudio de Dominio y Rutinas de Campo](docs/ESTUDIO_DOMINIO_CAMPO.md):** SSOT de la operación real lechera (rutinas AM/PM, acopio Colanta, Cinta Roja, protocolo reproductivo y manejo de crías).
+* 🛡️ **[Guía de Seguridad, Estabilidad y Escalabilidad](docs/GUIA_SEGURIDAD_Y_ESCALABILIDAD.md):** Protocolos anti-SQLi (Prepared Statements), concurrencia (`SELECT FOR UPDATE`), integridad referencial, deduplicación S3 y fases de escalado (1 a 10M+).
+* 📋 **[Diccionario de Validación por Celda/Input](docs/DICCIONARIO_VALIDACION_INPUTS_Y_CELDAS.md):** Matriz de validación Zod, tipos TypeScript y restricciones para cada formulario y tabla.
 
 ---
 
@@ -385,12 +383,10 @@ ProGanado/
 │   ├── 02_MODELO_ENTIDAD_RELACION_CHEN_PROGANADO.pdf
 │   ├── 03_MODELO_RELACIONAL_12_TABLAS_PROGANADO.pdf
 │   └── PROGANADO_ENTREGA_MOMENTO_1_CESDE.pdf
-└── docs/                               # Whitepaper, Roadmap y Guías de Seguridad
-    ├── WHITEPAPER_PROGANADO_SAS.md
-    ├── ROADMAP_ESCALABILIDAD_MASSIVE_SCALE.md
-    ├── GUIA_BLINDAJE_INGENIERIA_Y_SEGURIDAD.md
-    ├── DICCIONARIO_VALIDACION_INPUTS_Y_CELDAS.md
-    ├── PLAN_ARQUITECTURA_Y_ESCALABILIDAD_BOTTOM_UP.md
+└── docs/                               # Documentación Técnica y Dominio
+    ├── ESTUDIO_DOMINIO_CAMPO.md        # Lógica real de la finca lechera y Colanta
+    ├── GUIA_SEGURIDAD_Y_ESCALABILIDAD.md # Anti-SQLi, concurrencia y roadmap de nube
+    ├── DICCIONARIO_VALIDACION_INPUTS_Y_CELDAS.md # Matriz de validación Zod / TypeScript
     ├── contexto/
     │   ├── ESTADO_VIVO_PROGANADO.md
     │   └── CEREBRO_PROGANADO.md
