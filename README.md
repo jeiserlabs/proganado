@@ -11,7 +11,7 @@
 ---
 
 > ### ⚠️ SALVEDADES ACADÉMICAS Y DE INGENIERÍA (ENTREGA MOMENTO 1)
-> 1. **Capa Visual y Maquetación HTML5 (En Construcción Semántica Activa):** La capa visual se presenta como una especificación semántica pura (HTML5 estructurado sin frameworks pesados ni estilos CSS definitivos) asignada a **Sebastián Gómez**. Las 6 vistas del SaaS se encuentran en fase de maquetación modular activa siguiendo los blueprints de accesibilidad WCAG 2.1.
+> 1. **Capa Visual y Maquetación HTML5 (En Construcción Semántica Activa):** La capa visual se presenta como una especificación semántica pura (HTML5 estructurado sin frameworks pesados ni estilos CSS definitivos) asignada a **Sebastián Correa**. Las 6 vistas del SaaS se encuentran en fase de maquetación modular activa siguiendo los blueprints de accesibilidad WCAG 2.1.
 > 2. **Modelo Entidad-Relación y Relacional (Diseño Base Sujeto a Iteración Continua):** El diseño de la base de datos (MER Chen y Modelo Relacional de 12 tablas en 3FN) corresponde a la arquitectura de lanzamiento inicial. Dicho modelo se encuentra sujeto a refinamientos, normalizaciones complementarias y optimizaciones de índices según las pruebas de carga y retroalimentación de campo en el Momento 2.
 
 ---
@@ -89,7 +89,7 @@ Si una finca en plan **Pro** no renueva su suscripción mensual:
 | Miembro del Equipo | Cargo en la S.A.S. | Rol Académico CESDE | Responsabilidades Clave |
 |---|---|---|---|
 | **Jeiser Abraham Gutiérrez** | Chief Technology Officer (CTO) | Tech Lead & QA Lead | Arquitectura 3FN, gobernanza TypeScript, esquemas Zod, DDL SQL y roadmap Cloud AWS. |
-| **Sebastián Gómez** | Chief Design Officer (CDO) | Frontend Lead | UI/UX Pro Max, maquetación HTML5 semántica pura, accesibilidad WCAG 2.1 y blueprints. |
+| **Sebastián Correa** | Chief Design Officer (CDO) | Frontend Lead | UI/UX Pro Max, maquetación HTML5 semántica pura, accesibilidad WCAG 2.1 y blueprints. |
 | **Camila Salas** | Chief Legal & Financial Officer (CLO/CFO) | Asistente Legal/Admin | Formalización S.A.S. (Ley 1780), Régimen Simple (RST 1.8%-5.4%) y 0% IVA Cloud. |
 | **Dr. Humberto Pinto** | Chief Medical & Scientific Officer (CSO) | Asesor Médico & QA | Telemetría médica (pesaje AM/PM), protocolos de inocuidad y asesoría zootécnica. |
 | **Emilio Villanueva** | Head of Operations (COO) | Lógica & PSeInt Lead | Algoritmia en PSeInt (Cinta Roja, Días Abiertos, Liquidación UFC) y validación de campo. |

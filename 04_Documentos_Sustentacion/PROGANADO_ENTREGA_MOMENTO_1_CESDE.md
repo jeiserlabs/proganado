@@ -12,7 +12,7 @@
 
 ### EQUIPO DE DESARROLLO Y ASIGNACIÓN DE ROLES
 1. **Jeiser Abraham Gutiérrez:** Tech Lead, Arquitecto de Base de Datos, QA Lead y Diseñador de Gobernanza Cloud.
-2. **Sebastián Gómez:** Frontend Lead & Desarrollador de Maquetación HTML5 Semántica y Accesibilidad.
+2. **Sebastián Correa:** Frontend Lead & Desarrollador de Maquetación HTML5 Semántica y Accesibilidad.
 3. **Emilio Villanueva:** Desarrollador de Lógica de Negocio, Algoritmia y Validación en Pseudocódigo PSeInt.
 4. **Camila Salas:** Directora Legal, Administrativa y Financiera (Estructuración S.A.S., RST y Cumplimiento ICA/Habeas Data).
 5. **Dr. Humberto Pinto:** Asesor Médico Veterinario, Protocolos de Inocuidad Lechera y Aseguramiento de Calidad (QA).
@@ -20,7 +20,7 @@
 ---
 
 > ### ⚠️ SALVEDADES ACADÉMICAS Y DE INGENIERÍA (MOMENTO 1)
-> 1. **Capa Visual y Maquetación HTML5 (En Construcción Activa):** La capa visual se presenta en esta entrega como una especificación semántica modular estricta (HTML5 puro sin frameworks pesados ni estilos CSS definitivos) asignada a Sebastián Gómez. Las vistas y formularios se encuentran en fase de maquetación activa conforme a los blueprints de accesibilidad WCAG 2.1 y estructura LEGO.
+> 1. **Capa Visual y Maquetación HTML5 (En Construcción Activa):** La capa visual se presenta en esta entrega como una especificación semántica modular estricta (HTML5 puro sin frameworks pesados ni estilos CSS definitivos) asignada a Sebastián Correa. Las vistas y formularios se encuentran en fase de maquetación activa conforme a los blueprints de accesibilidad WCAG 2.1 y estructura LEGO.
 > 2. **Modelo Entidad-Relación y Relacional (Sujetos a Iteración Continua):** El diseño de la base de datos (MER Chen y Modelo Relacional de 12 tablas en 3FN) corresponde a la arquitectura de lanzamiento inicial. Dicho modelo se encuentra sujeto a refinamientos, normalizaciones complementarias y optimizaciones de índices según las pruebas de carga y retroalimentación de campo en el Momento 2.
 
 ---

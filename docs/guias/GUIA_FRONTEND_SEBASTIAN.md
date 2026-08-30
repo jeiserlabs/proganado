@@ -1,5 +1,5 @@
 # 🎨 GUÍA DE IMPLEMENTACIÓN FRONTEND & UI/UX — SEBASTIÁN GÓMEZ
-> **Destinatario:** Sebastián Gómez (Chief Design Officer & Frontend Lead)  
+> **Destinatario:** Sebastián Correa (Chief Design Officer & Frontend Lead)  
 > **Propósito:** Orientación técnica, contexto del negocio ganadero y opciones de diseño para implementar la interfaz web (Móvil, Tablet y Escritorio) con o sin IA.  
 > **Filosofía Gentleman Programming:** Código limpio, componentes desacoplados, nombres semánticos, cero estilos mágicos y responsabilidad única por componente.
 

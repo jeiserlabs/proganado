@@ -10,7 +10,7 @@ REPOSITORIO PÚBLICO GITHUB: https://github.com/jeiser270997-source/ProGanado.gi
 
 INTEGRANTES Y ROLES:
 1. Jeiser Abraham Gutiérrez (Líder / Tech Lead, Arquitecto de Base de Datos y QA Lead)
-2. Sebastián Gómez (Chief Design Officer / Frontend Lead & Maquetación Semántica)
+2. Sebastián Correa (Chief Design Officer / Frontend Lead & Maquetación Semántica)
 3. Emilio Villanueva (Head of Operations / Lógica de Negocio y Algoritmos PSeInt)
 4. Camila Salas (Chief Legal & Financial Officer / Formalización S.A.S. y Facturación)
 5. Dr. Humberto Pinto (Chief Scientific Officer / Asesor Médico Veterinario y QA Inocuidad)
@@ -19,5 +19,5 @@ ESTADO DE LA ENTREGA (MOMENTO 1):
 - [X] Campo 2 Formulario: Modelo Entidad-Relación en Notación Chen (Rectángulos y Óvalos) -> ER PROGANADO.drawio / PDF.
 - [X] Campo 3 Formulario: Modelo Relacional de 12 tablas en 3FN con DDL SQL -> 03_MODELO_RELACIONAL_12_TABLAS_PROGANADO.pdf.
 - [X] Campo 4 Formulario: Registro de Integrantes del Grupo 3 y Repositorio.
-- [ ] Campo 1 Formulario: En espera del archivo HTML final de Sebastián Gómez para renderizar y mapear el documento con capturas de interfaz + código fuente.
+- [ ] Campo 1 Formulario: En espera del archivo HTML final de Sebastián Correa para renderizar y mapear el documento con capturas de interfaz + código fuente.
 ================================================================================

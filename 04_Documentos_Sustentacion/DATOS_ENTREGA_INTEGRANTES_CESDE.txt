@@ -48,7 +48,7 @@ MOMENTO: 1 (Bases de Datos & Lógica)
 
 INTEGRANTES:
 - Jeiser Abraham Gutiérrez (CC: 1019156838) - Tech Lead / Base de Datos
-- Sebastián Gómez - Frontend / Maquetación HTML5
+- Sebastián Correa - Frontend / Maquetación HTML5
 - Camila Salas - Legal / Finanzas
 - Dr. Humberto Pinto - Asesor Médico / Zootecnia
 - Emilio Villanueva - Operaciones / Algoritmia PSeInt

@@ -12,7 +12,7 @@
 - **Documento PDF Oficial:** `04_Documentos_Sustentacion/PROGANADO_ENTREGA_MOMENTO_1_CESDE.pdf` (Generado con Playwright y respaldado en Escritorio).
 - **Git Commit:** `39f515b` en rama `main`.
 - **Salvedades Académicas:**
-  1. *Capa Visual:* Maqueta HTML5 semántica pura en construcción activa modular bajo responsabilidad de Sebastián Gómez.
+  1. *Capa Visual:* Maqueta HTML5 semántica pura en construcción activa modular bajo responsabilidad de Sebastián Correa.
   2. *Capa de Persistencia:* MER Chen y Modelo Relacional 12 tablas 3FN en diseño base de lanzamiento, sujeto a optimizaciones iterativas en Momento 2.
 
 ---
@@ -21,7 +21,7 @@
 | Integrante | Rol | Entregables Clave |
 |---|---|---|
 | **Jeiser Gutiérrez** | Tech Lead & Arquitecto BD | Modelo Relacional 12 tablas 3FN, schema SQL, arquitectura Cloud AWS, control Git. |
-| **Sebastián Gómez** | Frontend Lead & Diseñador | Maquetación HTML5 semántica de las 6 vistas, accesibilidad WCAG 2.1, UI/UX. |
+| **Sebastián Correa** | Frontend Lead & Diseñador | Maquetación HTML5 semántica de las 6 vistas, accesibilidad WCAG 2.1, UI/UX. |
 | **Emilio Villanueva** | Algoritmia & Lógica PSeInt | Algoritmos de Cinta Roja, Días Abiertos y Liquidación Leche con UFC Colanta. |
 | **Camila Salas** | Legal, Admin & S.A.S. | Constitución S.A.S. Ley 1780 ($0 registro), Régimen Simple (RST), 0% IVA Cloud E.T. Art 476. |
 | **Dr. Humberto Pinto** | Asesor Clínico & QA | Inocuidad biológica, telemetría clínica (pesaje AM/PM), pitch y defensa. |

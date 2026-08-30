@@ -2,7 +2,7 @@
 <!-- Describe qué cambios introduce este Pull Request y qué problema o módulo resuelve -->
 
 ## 👤 Asignación de Rol
-- [ ] **Frontend (Sebastián Gómez):** Vistas HTML5 semánticas / Responsive.
+- [ ] **Frontend (Sebastián Correa):** Vistas HTML5 semánticas / Responsive.
 - [ ] **Lógica & PSeInt (Emilio Villanueva):** Algoritmia zootécnica / Subprocesos.
 - [ ] **Legal & Finanzas (Camila Salas):** Términos, pasarelas, S.A.S. o facturación.
 - [ ] **Veterinaria & Inocuidad (Dr. Humberto Pinto):** Protocolos clínicos y tiempos de retiro.

@@ -11,7 +11,7 @@ PROYECTO INTEGRADOR CESDE — MOMENTO 1 (GRUPO N° 3)
 👥 INTEGRANTES DEL EQUIPO:
 --------------------------------------------------------------------------------
 1. Jeiser Abraham Gutiérrez (CC: 1019156838) — CTO & Tech Lead (Arquitectura BD 3FN)
-2. Sebastián Gómez — CDO & Frontend Lead (Maquetación HTML5 Semántica)
+2. Sebastián Correa — CDO & Frontend Lead (Maquetación HTML5 Semántica)
 3. Camila Salas — CLO / CFO (Marco Legal S.A.S. & Finanzas)
 4. Dr. Humberto Pinto — CSO (Asesoría Médica Veterinaria & Zootecnia)
 5. Emilio Villanueva — COO & Lógica Lead (Algoritmia PSeInt & Operaciones)
