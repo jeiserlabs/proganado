@@ -34,4 +34,6 @@
 4. **Clean Code & Modularidad:** Archivos < 300 líneas, funciones puras, separación estricta de capas (Datos -> Lógica -> Presentación).
 5. **Arquitectura Cloud Evolutiva:** Inicio a $0 COP (Local / Vercel / Render / Supabase) con hoja de ruta documentada de migración a AWS Enterprise (S3, CloudFront, Lambda/Fargate, RDS PostgreSQL Multi-AZ).
 6. **Diagramación de BD (MER en Draw.io vs Relacional en Mermaid):** El **Modelo Entidad-Relación (MER Chen: rectángulos y óvalos)** se diseña exclusivamente en **Draw.io** (`.drawio`). El **Modelo Relacional (MR: tablas, PKs, FKs)** se documenta exclusivamente en **Mermaid.js** (`erDiagram`).
+7. **Formato de Evidencias HTML (CESDE):** Mapeo vertical por secciones: Captura parcial de la interfaz renderizada arriba $\rightarrow$ Captura correspondiente del fragmento de código HTML abajo, repitiendo secuencialmente hasta cubrir toda la página y todo el código.
+8. **Algoritmos en PSeInt (Formato CESDE - Jonathan Piedrahita):** En PSeInt las variables se declaran e inicializan directamente con el signo `=` (`variable = 0`, `texto = ""`, una por línea al inicio). Queda prohibido usar `Definir ... Como Entero` o flechas `<-`. La estructura obligatoria consta de 3 bloques comentados: `// DATOS DE ENTRADA`, `// PROCESO` y `// DATOS DE SALIDA` + bloc de notas anexo de análisis de entrada/proceso/salida.
 
