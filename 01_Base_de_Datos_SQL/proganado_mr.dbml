@@ -1,0 +1,125 @@
+// ==========================================
+// PROGANADO - MODELO RELACIONAL (DBML v2)
+// ==========================================
+
+Table hacienda_predio {
+  id_hacienda integer [pk, increment]
+  nombre_hacienda varchar(100) [not null]
+  codigo_predio_ica varchar(30) [unique]
+  municipio varchar(50) [not null]
+  departamento varchar(50) [not null, default: 'Antioquia']
+  area_total_hectareas decimal(10,2)
+  propietario_nombre varchar(100)
+}
+
+Table potrero {
+  id_potrero integer [pk, increment]
+  fk_hacienda integer [not null, ref: > hacienda_predio.id_hacienda]
+  numero_potrero integer [not null]
+  nombre_potrero varchar(60) [not null]
+  area_hectareas decimal(8,2) [not null]
+  tipo_pasto varchar(50)
+  capacidad_maxima_cabezas integer [not null]
+  estado_potrero varchar(20) [default: 'En_Descanso']
+}
+
+Table raza {
+  id_raza integer [pk, increment]
+  nombre_raza varchar(50) [unique, not null]
+  proposito varchar(30) [not null]
+  porcentaje_grasa_promedio decimal(4,2)
+}
+
+Table bovino {
+  id_bovino integer [pk, increment]
+  nombre varchar(60)
+  sexo char(1) [not null]
+  fecha_nacimiento date [not null]
+  peso_nacimiento_kg decimal(6,2)
+  estado_vital varchar(20) [not null, default: 'Vivo']
+  tipo_ingreso varchar(30) [not null]
+  fecha_ingreso date [not null]
+  fk_raza integer [not null, ref: > raza.id_raza]
+  fk_potrero_actual integer [ref: > potrero.id_potrero]
+  fk_padre integer [ref: > bovino.id_bovino]
+  fk_madre integer [ref: > bovino.id_bovino]
+  foto_url varchar(255)
+}
+
+Table marcacion {
+  id_marcacion integer [pk, increment]
+  fk_bovino integer [not null, ref: > bovino.id_bovino]
+  codigo_arete varchar(30) [not null]
+  tipo_marca varchar(30) [not null]
+  fecha_colocacion date [not null]
+  fecha_retiro date
+  estado_marca varchar(20) [not null, default: 'Activa']
+}
+
+Table control_pesaje {
+  id_pesaje integer [pk, increment]
+  fk_bovino integer [not null, ref: > bovino.id_bovino]
+  fecha_pesaje date [not null]
+  peso_kg decimal(6,2) [not null]
+  ganancia_diaria_gdp_kg decimal(5,3)
+  condicion_corporal_escala_5 decimal(3,1)
+}
+
+Table control_ordeno {
+  id_ordeno integer [pk, increment]
+  fk_bovino integer [not null, ref: > bovino.id_bovino]
+  fecha_ordeno date [not null]
+  jornada varchar(20) [not null]
+  litros_leche decimal(5,2) [not null]
+  apta_para_venta boolean [not null, default: true]
+  ordenador_responsable varchar(60)
+}
+
+Table evento_reproductivo {
+  id_evento integer [pk, increment]
+  fk_vaca integer [not null, ref: > bovino.id_bovino]
+  fk_toro_pajilla integer [ref: > bovino.id_bovino]
+  tipo_evento varchar(30) [not null]
+  fecha_evento date [not null]
+  fecha_estimada_parto date
+  fecha_estimada_secado date
+  resultado_diagnostico varchar(100)
+}
+
+Table farmaco_insumo {
+  id_farmaco integer [pk, increment]
+  nombre_comercial varchar(80) [not null]
+  principio_activo varchar(100) [not null]
+  tipo_farmaco varchar(30) [not null]
+  dias_retiro_leche integer [not null, default: 0]
+  dias_retiro_carne integer [not null, default: 0]
+}
+
+Table tratamiento_sanitario {
+  id_tratamiento integer [pk, increment]
+  fk_bovino integer [not null, ref: > bovino.id_bovino]
+  fk_farmaco integer [not null, ref: > farmaco_insumo.id_farmaco]
+  fecha_aplicacion date [not null]
+  dosis_ml decimal(6,2) [not null]
+  via_administracion varchar(30) [not null]
+  fecha_fin_retiro_leche date
+  veterinario_responsable varchar(80)
+}
+
+Table movimiento_potrero {
+  id_movimiento integer [pk, increment]
+  fk_bovino integer [not null, ref: > bovino.id_bovino]
+  fk_potrero_origen integer [ref: > potrero.id_potrero]
+  fk_potrero_destino integer [not null, ref: > potrero.id_potrero]
+  fecha_traslado datetime [not null]
+  motivo_traslado varchar(40) [not null]
+}
+
+Table usuario_sistema {
+  id_usuario integer [pk, increment]
+  nombre_completo varchar(100) [not null]
+  email varchar(100) [unique, not null]
+  password_hash varchar(255) [not null]
+  rol varchar(30) [not null]
+  activo boolean [default: true]
+}

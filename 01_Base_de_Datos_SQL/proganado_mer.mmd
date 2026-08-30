@@ -1,0 +1,98 @@
+erDiagram
+    HACIENDA_PREDIO ||--o{ POTRERO : "subdivide en (1:N)"
+    HACIENDA_PREDIO ||--o{ USUARIO_SISTEMA : "es administrada por (1:N)"
+    HACIENDA_PREDIO ||--o{ ACOPIO_COLANTA : "entrega leche a (1:N)"
+    RAZA ||--o{ BOVINO : "clasifica geneticamente a (1:N)"
+    POTRERO ||--o{ BOVINO : "alberga actualmente a (1:N)"
+    BOVINO ||--o{ BOVINO : "engendra como padre o madre (1:N)"
+    BOVINO ||--o{ MARCACION : "porta historicamente (1:N)"
+    BOVINO ||--o{ CONTROL_ORDENO : "produce leche en (1:N)"
+    BOVINO ||--o{ EVENTO_REPRODUCTIVO : "experimenta ciclo estral (1:N)"
+    BOVINO ||--o{ TRATAMIENTO_SANITARIO : "recibe aplicacion medica (1:N)"
+    FARMACO_INSUMO ||--o{ TRATAMIENTO_SANITARIO : "se prescribe en (1:N)"
+    POTRERO ||--o{ MOVIMIENTO_POTRERO : "origina o recibe traslado (1:N)"
+    BOVINO ||--o{ MOVIMIENTO_POTRERO : "se traslada por (1:N)"
+
+    HACIENDA_PREDIO {
+        int id_hacienda PK
+        string nombre_hacienda
+        string codigo_predio_ica UK
+        int capacidad_maxima_animales "210 cabezas"
+        string municipio "Santa Rosa de Osos"
+    }
+
+    POTRERO {
+        int id_potrero PK
+        int fk_hacienda FK
+        int numero_potrero
+        string nombre_potrero
+        string tipo_pasto "Kikuyo"
+        int capacidad_maxima_cabezas
+        string estado_potrero "Voisin"
+    }
+
+    BOVINO {
+        int id_bovino PK
+        string nombre
+        char sexo "H o M"
+        date fecha_nacimiento
+        string estado_vital "Vivo o Muerto"
+        string estado_productivo "Lactancia o Seca"
+        string categoria_reproductiva "Excelente o Buena o Regular"
+        int fk_raza FK
+        int fk_potrero_actual FK
+        int fk_padre FK
+        int fk_madre FK
+    }
+
+    MARCACION {
+        int id_marcacion PK
+        int fk_bovino FK
+        string codigo_arete "Areteo dia 7"
+        date fecha_colocacion
+        string estado_marca "Activa"
+    }
+
+    CONTROL_ORDENO {
+        int id_ordeno PK
+        int fk_bovino FK
+        date fecha_ordeno
+        decimal litros_am
+        decimal litros_pm
+        decimal litros_total "Calculado"
+        boolean es_alta_produccion_16l "Umbral 16L"
+        boolean apta_para_venta
+        string motivo_no_apta "Cinta Roja o Calostro"
+    }
+
+    ACOPIO_COLANTA {
+        int id_acopio PK
+        int fk_hacienda FK
+        date fecha_recogida
+        string numero_tiquete_colanta UK
+        decimal litros_reportados_tiquete
+        decimal litros_calculados_sistema
+        decimal diferencia_merma_litros
+        decimal total_liquidacion_cop
+    }
+
+    EVENTO_REPRODUCTIVO {
+        int id_evento PK
+        int fk_vaca FK
+        int fk_toro_pajilla FK
+        string tipo_evento "ADE_Dia30 o Parche_Dia50 o Celo o IA o Monta o Palpacion o Secado210d o Parto"
+        date fecha_evento
+        int numero_servicio_en_lactancia
+        int dias_abiertos_al_evento "Alerta dia 90 max 100d"
+    }
+
+    TRATAMIENTO_SANITARIO {
+        int id_tratamiento PK
+        int fk_bovino FK
+        int fk_farmaco FK
+        date fecha_aplicacion
+        decimal dosis_ml
+        date fecha_fin_retiro_leche
+        boolean tiene_cinta_roja_activa "Cinta Roja Pata"
+        boolean ordeno_en_balde_descarte
+    }

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProGanado — Esqueleto Semantico HTML5 Puro</title>
+</head>
+<body>
+
+    <!-- 1. EL TECHO (HEADER) -->
+    <header>
+        <table width="100%" border="0">
+            <tr>
+                <td width="80">
+                    <img src="https://images.unsplash.com/photo-1546445317-29f4545e9d53?w=100" alt="Logo ProGanado" width="70" height="70">
+                </td>
+                <td>
+                    <h1>ProGanado — Software de Gestión Ganadera</h1>
+                    <p><b>Asistente de Control Lechero y Trazabilidad de Hato</b></p>
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <!-- 2. LOS PASILLOS (NAV) -->
+        <nav>
+            <b>Navegación Rápida:</b>
+            <a href="#resumen">Panel General</a> | 
+            <a href="#pesaje">Planilla de Pesaje de Leche</a> | 
+            <a href="#registro">Registrar Bovino</a> | 
+            <a href="#sanidad">Tratamientos Médicos</a>
+        </nav>
+        <hr>
+    </header>
+
+    <table width="100%" border="1" cellpadding="10" style="border-collapse: collapse;">
+        <tr valign="top">
+            <!-- 3. EL CASILLERO (ASIDE) -->
+            <td width="28%">
+                <aside>
+                    <h3>📌 Resumen del Hato</h3>
+                    <p><b>Hacienda:</b> Hato Principal</p>
+                    <p><b>Capacidad Máxima:</b> 210 Animales</p>
+                    <p><b>Inventario Actual:</b> 163 Cabezas</p>
+                    <hr>
+                    <h4>⚠️ Alertas Sanitarias Activas</h4>
+                    <ul>
+                        <li><b>Vaca 893:</b> 🎀 <i>Cinta Roja (Antibiótico / Ordeño en Balde)</i></li>
+                        <li><b>Vaca 990:</b> 🎀 <i>Cinta Roja (Fin de Retiro: 02-Sep)</i></li>
+                        <li><b>Vaca 50:</b> 🟠 <i>Celo Probable Hoy (Ciclo 21 Días)</i></li>
+                    </ul>
+                    <hr>
+                    <h4>📷 Foto de Vaca Estrella</h4>
+                    <figure>
+                        <img src="https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=300" alt="Vaca 972" width="100%">
+                        <figcaption><center><b>Vaca 972 (Lactancia Pico: 21.9 L)</b></center></figcaption>
+                    </figure>
+                    <hr>
+                    <h4>🎧 Nota de Voz del Veterinario</h4>
+                    <p><small>Instrucción de dosis por WhatsApp:</small></p>
+                    <audio controls style="width: 100%;">
+                        <source src="#" type="audio/mpeg">
+                        Tu navegador no soporta audio HTML5.
+                    </audio>
+                </aside>
+            </td>
+
+            <!-- 4. LA SALA CENTRAL (MAIN) -->
+            <td width="72%">
+                <main>
+                    <!-- SECCION 1: TARJETAS KPI -->
+                    <section id="resumen">
+                        <h2>📊 Indicadores Clave del Día</h2>
+                        <table width="100%" border="1" cellpadding="8" style="border-collapse: collapse;">
+                            <tr align="center">
+                                <td bgcolor="#d8f3dc">
+                                    <article>
+                                        <h3>163</h3>
+                                        <p>Total Bovinos Vivos</p>
+                                    </article>
+                                </td>
+                                <td bgcolor="#d8f3dc">
+                                    <article>
+                                        <h3>45</h3>
+                                        <p>Vacas en Ordeño</p>
+                                    </article>
+                                </td>
+                                <td bgcolor="#fff3b0">
+                                    <article>
+                                        <h3>680 L</h3>
+                                        <p>Producción Total Hoy</p>
+                                    </article>
+                                </td>
+                                <td bgcolor="#ffccd5">
+                                    <article>
+                                        <h3>2 Vacas</h3>
+                                        <p>En Retiro (Balde)</p>
+                                    </article>
+                                </td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <br><hr><br>
+
+                    <!-- SECCION 2: TABLA MAESTRA DE PESAJE -->
+                    <section id="pesaje">
+                        <h2>🥛 Planilla de Pesaje de Leche Semanal</h2>
+                        <p><i>Control individual de ordeño mañana y tarde (Semana 35 - Colanta)</i></p>
+
+                        <table width="100%" border="1" cellpadding="6" style="border-collapse: collapse;">
+                            <caption><b>CONTROL LECHERO SEMANAL — HATO PRINCIPAL</b></caption>
+                            <thead>
+                                <tr bgcolor="#e2e8f0" align="center">
+                                    <th>LOTE</th>
+                                    <th>ARETE / VACA</th>
+                                    <th>ORDEÑO AM (L)</th>
+                                    <th>ORDEÑO PM (L)</th>
+                                    <th>TOTAL DÍA (L)</th>
+                                    <th>ESTADO / MANEJO NUTRICIONAL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr align="center" bgcolor="#fef08a">
+                                    <td rowspan="2"><b>ALTA<br>PRODUCCIÓN<br>(>= 16 L)</b></td>
+                                    <td><b>972</b></td>
+                                    <td>12.9</td>
+                                    <td>9.0</td>
+                                    <td><b>21.9 L</b></td>
+                                    <td>🟡 Alta Producción (Ración Extra Concentrado)</td>
+                                </tr>
+                                <tr align="center" bgcolor="#fef08a">
+                                    <td><b>884</b></td>
+                                    <td>13.0</td>
+                                    <td>6.0</td>
+                                    <td><b>19.0 L</b></td>
+                                    <td>🟡 Alta Producción (Ración Extra)</td>
+                                </tr>
+                                <tr align="center">
+                                    <td rowspan="2"><b>PRODUCCIÓN<br>ESTÁNDAR<br>(< 16 L)</b></td>
+                                    <td><b>051</b></td>
+                                    <td>8.4</td>
+                                    <td>4.0</td>
+                                    <td><b>12.4 L</b></td>
+                                    <td>⚪ Producción Estándar (Ración Mantenimiento)</td>
+                                </tr>
+                                <tr align="center" bgcolor="#fecdd3">
+                                    <td><b>893</b></td>
+                                    <td>8.0</td>
+                                    <td>2.0</td>
+                                    <td><b>10.0 L</b></td>
+                                    <td>🎀 <b>CINTA ROJA (Antibiótico / Ordeño en Balde)</b></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr bgcolor="#cbd5e1" align="center">
+                                    <th colspan="2">TOTAL MUESTRA (4 VACAS)</th>
+                                    <th>42.3 L</th>
+                                    <th>21.0 L</th>
+                                    <th>63.3 L</th>
+                                    <th>Acopio Colanta</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </section>
+
+                    <br><hr><br>
+
+                    <!-- SECCION 3: FORMULARIO DE REGISTRO -->
+                    <section id="registro">
+                        <h2>📝 Registro de Nuevo Bovino / Nacimiento</h2>
+                        <form action="#" method="POST">
+                            <fieldset>
+                                <legend><b>Datos de Identificación y Zootecnia</b></legend>
+                                <table width="100%" border="0" cellpadding="4">
+                                    <tr>
+                                        <td><label for="arete">Código de Arete Inicial:</label></td>
+                                        <td><input type="text" id="arete" name="arete" placeholder="Ej: Arete 142" required></td>
+                                        <td><label for="raza">Raza:</label></td>
+                                        <td>
+                                            <select id="raza" name="raza">
+                                                <option value="holstein">Holstein (Leche)</option>
+                                                <option value="jersey">Jersey (Leche)</option>
+                                                <option value="normando">Normando (Doble Propósito)</option>
+                                                <option value="gyr">Gyr Lechero</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="sexo">Sexo:</label></td>
+                                        <td>
+                                            <input type="radio" id="hembra" name="sexo" value="H" checked> <label for="hembra">Hembra</label>
+                                            <input type="radio" id="macho" name="sexo" value="M"> <label for="macho">Macho</label>
+                                        </td>
+                                        <td><label for="fecha">Fecha Nacimiento:</label></td>
+                                        <td><input type="date" id="fecha" name="fecha"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <input type="checkbox" id="venta_inmediata" name="venta_inmediata">
+                                            <label for="venta_inmediata"><b>[✓] Venta Inmediata de Ternero al Nacer</b></label>
+                                        </td>
+                                        <td colspan="2" align="right">
+                                            <button type="submit"><b>Guardar Registro Bovino</b></button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </form>
+                    </section>
+                </main>
+            </td>
+        </tr>
+    </table>
+
+    <!-- 5. LOS CIMIENTOS (FOOTER) -->
+    <footer>
+        <hr>
+        <table width="100%" border="0">
+            <tr>
+                <td>
+                    <p><b>ProGanado © 2026</b> — Sistema de Gestión Ganadera y Trazabilidad Agropecuaria.</p>
+                    <p><small>Proyecto Integrador CESDE Nivel 1 — Desarrollo de Software</small></p>
+                </td>
+                <td align="right">
+                    <p><b>Equipo:</b> Jeiser (Tech Lead), Sebastián (Frontend Lead), Camila, Emilio, Hernán.</p>
+                </td>
+            </tr>
+        </table>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0" pages="2">
+  <diagram id="PageMER" name="1. Modelo Entidad-Relación (MER)">
+    <mxGraphModel dx="1779" dy="644" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title1" parent="1" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" value="&lt;font color=&#39;#1b4332&#39;&gt;&lt;b style=&#39;font-size: 20px;&#39;&gt;🐄 GanadoControl — 1. Modelo Entidad-Relación (MER)&lt;/b&gt;&lt;/font&gt;&lt;br/&gt;&lt;font color=&#39;#6c757d&#39;&gt;CESDE Nivel 1 · Nivel Conceptual &amp; Cardinalidades (Notación Chen)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="50" width="550" x="60" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="raza1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2e3e5;strokeColor=#495057;strokeWidth=2;fontColor=#212529;align=center;shadow=1;" value="&lt;b&gt;RAZA&lt;/b&gt;&lt;hr/&gt;id_raza (PK)&lt;br/&gt;nombre_raza (UK)&lt;br/&gt;proposito" vertex="1">
+          <mxGeometry height="90" width="180" x="240" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="potrero1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2e3e5;strokeColor=#495057;strokeWidth=2;fontColor=#212529;align=center;shadow=1;" value="&lt;b&gt;POTRERO&lt;/b&gt;&lt;hr/&gt;id_potrero (PK)&lt;br/&gt;nombre_potrero (UK)&lt;br/&gt;tipo_pasto | area_ha&lt;br/&gt;capacidad_max | estado" vertex="1">
+          <mxGeometry height="100" width="200" x="540" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="r_clasifica" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#e0e7ff;strokeColor=#4f46e5;fontColor=#312e81;shadow=1;" value="&lt;b&gt;Clasifica&lt;/b&gt;&lt;br/&gt;(1 : N)" vertex="1">
+          <mxGeometry height="65" width="120" x="270" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="r_pastorea" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#e0e7ff;strokeColor=#4f46e5;fontColor=#312e81;shadow=1;" value="&lt;b&gt;Pastorea / Aloja&lt;/b&gt;&lt;br/&gt;(1 : N)" vertex="1">
+          <mxGeometry height="65" width="130" x="575" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="bovino1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4edda;strokeColor=#28a745;strokeWidth=3;fontColor=#155724;align=center;shadow=1;" value="&lt;b&gt;BOVINO (Entidad Central)&lt;/b&gt;&lt;hr/&gt;id_bovino (PK)&lt;br/&gt;codigo_arete (UK)&lt;br/&gt;nombre | sexo&lt;br/&gt;fecha_nacimiento&lt;br/&gt;peso_kg | estado" vertex="1">
+          <mxGeometry height="130" width="220" x="380" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="vacuna1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8d7da;strokeColor=#dc3545;strokeWidth=2;fontColor=#721c24;align=center;shadow=1;" value="&lt;b&gt;TIPO_VACUNA&lt;/b&gt;&lt;hr/&gt;id_vacuna (PK)&lt;br/&gt;nombre_vacuna (UK)&lt;br/&gt;enfermedad | dosis_ml&lt;br/&gt;frecuencia_meses" vertex="1">
+          <mxGeometry height="100" width="190" x="60" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="reg_vac1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8d7da;strokeColor=#dc3545;strokeWidth=2;fontColor=#721c24;align=center;shadow=1;" value="&lt;b&gt;REGISTRO_VACUNACION&lt;/b&gt;&lt;hr/&gt;id_registro (PK)&lt;br/&gt;id_bovino (FK)&lt;br/&gt;id_vacuna (FK)&lt;br/&gt;fecha_aplicacion&lt;br/&gt;proxima_dosis | veterinario" vertex="1">
+          <mxGeometry height="120" width="220" x="50" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="r_posee" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#d97706;fontColor=#92400e;shadow=1;" value="&lt;b&gt;Posee&lt;/b&gt;&lt;br/&gt;(1 : 1 Estricta)" vertex="1">
+          <mxGeometry height="65" width="120" x="430" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="r_ordeno" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#cce5ff;strokeColor=#0284c7;fontColor=#075985;shadow=1;" value="&lt;b&gt;Registra&lt;/b&gt;&lt;div&gt;(1 : N)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="130" x="680" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="ficha1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#ffc107;strokeWidth=2;fontColor=#856404;align=center;shadow=1;" value="&lt;b&gt;FICHA_MEDICA_PERFIL&lt;/b&gt;&lt;hr/&gt;id_ficha (PK)&lt;br/&gt;id_bovino (FK, UK)&lt;br/&gt;estado_reproductivo&lt;br/&gt;en_tiempo_retiro&lt;br/&gt;fecha_proximo_secado" vertex="1">
+          <mxGeometry height="120" width="220" x="380" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="ordeno1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cce5ff;strokeColor=#007bff;strokeWidth=2;fontColor=#004085;align=center;shadow=1;" value="&lt;b&gt;CONTROL_ORDENO_LECHE&lt;/b&gt;&lt;hr&gt;id_ordeno (PK)&lt;br&gt;id_bovino (FK)&lt;br&gt;fecha_ordeno |&amp;nbsp;&lt;div&gt;jornada&lt;br&gt;litros_producidos&lt;br&gt;apta_para_venta&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="220" x="640" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mer_1" edge="1" parent="1" source="raza1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#4f46e5;strokeWidth=2;fontColor=#1e293b;labelBackgroundColor=#ffffff;endArrow=none;" target="r_clasifica" value="(1,1)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mer_2" edge="1" parent="1" source="r_clasifica" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;strokeColor=#4f46e5;strokeWidth=2;fontColor=#1e293b;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;" target="bovino1" value="(0,N)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mer_3" edge="1" parent="1" source="potrero1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#4f46e5;strokeWidth=2;fontColor=#1e293b;labelBackgroundColor=#ffffff;endArrow=none;" target="r_pastorea" value="(1,1)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mer_4" edge="1" parent="1" source="r_pastorea" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;strokeColor=#4f46e5;strokeWidth=2;fontColor=#1e293b;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;" target="bovino1" value="(0,N)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mer_5" edge="1" parent="1" source="vacuna1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#dc3545;strokeWidth=2;fontColor=#1e293b;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;" target="reg_vac1" value="(1,N)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mer_6" edge="1" parent="1" source="bovino1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;strokeColor=#dc3545;strokeWidth=2;fontColor=#1e293b;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;" target="reg_vac1" value="(1,N)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="320" y="458" />
+              <mxPoint x="320" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_mer_7" edge="1" parent="1" source="bovino1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#d97706;strokeWidth=2;fontColor=#1e293b;labelBackgroundColor=#ffffff;endArrow=none;" target="r_posee" value="(1,1)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mer_8" edge="1" parent="1" source="r_posee" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#d97706;strokeWidth=2;fontColor=#1e293b;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;" target="ficha1" value="(1,1)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mer_9" edge="1" parent="1" source="bovino1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.85;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#0284c7;strokeWidth=2;fontColor=#1e293b;labelBackgroundColor=#ffffff;endArrow=none;" target="r_ordeno" value="(1,1)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="567" y="520" />
+              <mxPoint x="745" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_mer_10" edge="1" parent="1" source="r_ordeno" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#0284c7;strokeWidth=2;fontColor=#1e293b;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;" target="ordeno1" value="(0,N)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="PageMR" name="2. Modelo Relacional (MR - 3FN)">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="100" />
+        <mxCell id="101" parent="100" />
+        <mxCell id="title2" value="&lt;font color=&#39;#0284c7&#39;&gt;&lt;b style=&#39;font-size: 20px;&#39;&gt;🗄️ GanadoControl — 2. Modelo Relacional (MR - 3FN)&lt;/b&gt;&lt;/font&gt;&lt;br/&gt;&lt;font color=&#39;#6c757d&#39;&gt;Esquema Lógico Normalizado · 7 Tablas con PK, FK y Notación Pata de Gallo (Crow&#39;s Foot)&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="101">
+          <mxGeometry x="60" y="20" width="600" height="50" as="geometry" />
+        </mxCell>
+        <!-- POTRERO -->
+        <mxCell id="mr_potrero" value="&lt;b&gt;potrero&lt;/b&gt;&lt;hr/&gt;PK  id_potrero : INT&lt;br/&gt;UK  numero_potrero : INT&lt;br/&gt;    nombre_potrero : VARCHAR(100)&lt;br/&gt;    tipo_lote : VARCHAR(50)&lt;br/&gt;    capacidad_maxima : INT&lt;br/&gt;    area_hectareas : DECIMAL(8,2)&lt;br/&gt;    tipo_pasto : VARCHAR(80)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2e3e5;strokeColor=#495057;strokeWidth=2;fontColor=#212529;align=left;spacingLeft=10;shadow=1;" vertex="1" parent="101">
+          <mxGeometry x="60" y="100" width="220" height="150" as="geometry" />
+        </mxCell>
+        <!-- RAZA -->
+        <mxCell id="mr_raza" value="&lt;b&gt;raza&lt;/b&gt;&lt;hr/&gt;PK  id_raza : INT&lt;br/&gt;UK  nombre_raza : VARCHAR(80)&lt;br/&gt;    proposito : VARCHAR(50)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2e3e5;strokeColor=#495057;strokeWidth=2;fontColor=#212529;align=left;spacingLeft=10;shadow=1;" vertex="1" parent="101">
+          <mxGeometry x="500" y="100" width="200" height="90" as="geometry" />
+        </mxCell>
+        <!-- BOVINO -->
+        <mxCell id="mr_bovino" value="&lt;b&gt;bovino (Tabla Central)&lt;/b&gt;&lt;hr/&gt;PK  id_bovino : INT&lt;br/&gt;UK  codigo_arete : VARCHAR(20)&lt;br/&gt;    nombre : VARCHAR(80)&lt;br/&gt;    sexo : CHAR(1)&lt;br/&gt;    fecha_nacimiento : DATE&lt;br/&gt;    peso_kg : DECIMAL(6,2)&lt;br/&gt;    estado : VARCHAR(20)&lt;br/&gt;FK  id_raza : INT&lt;br/&gt;FK  id_potrero : INT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4edda;strokeColor=#28a745;strokeWidth=3;fontColor=#155724;align=left;spacingLeft=10;shadow=1;" vertex="1" parent="101">
+          <mxGeometry x="270" y="320" width="240" height="190" as="geometry" />
+        </mxCell>
+        <!-- TIPO VACUNA -->
+        <mxCell id="mr_vacuna" value="&lt;b&gt;tipo_vacuna (Catálogo)&lt;/b&gt;&lt;hr/&gt;PK  id_vacuna : INT&lt;br/&gt;UK  nombre_vacuna : VARCHAR(100)&lt;br/&gt;    enfermedad : VARCHAR(100)&lt;br/&gt;    dosis_ml : DECIMAL(5,2)&lt;br/&gt;    frecuencia_meses : INT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8d7da;strokeColor=#dc3545;strokeWidth=2;fontColor=#721c24;align=left;spacingLeft=10;shadow=1;" vertex="1" parent="101">
+          <mxGeometry x="840" y="320" width="230" height="130" as="geometry" />
+        </mxCell>
+        <!-- FICHA MEDICA (1:1) -->
+        <mxCell id="mr_ficha" value="&lt;b&gt;ficha_medica_perfil (1:1)&lt;/b&gt;&lt;hr/&gt;PK  id_ficha : INT&lt;br/&gt;FK  id_bovino : INT (UK 1:1)&lt;br/&gt;    estado_reproductivo : VARCHAR(40)&lt;br/&gt;    en_tiempo_retiro : BOOLEAN&lt;br/&gt;    fecha_proximo_secado : DATE&lt;br/&gt;    alergias_observaciones : TEXT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#ffc107;strokeWidth=2;fontColor=#856404;align=left;spacingLeft=10;shadow=1;" vertex="1" parent="101">
+          <mxGeometry x="60" y="620" width="240" height="140" as="geometry" />
+        </mxCell>
+        <!-- REGISTRO VACUNACION (INTERMEDIA N:M) -->
+        <mxCell id="mr_reg_vac" value="&lt;b&gt;registro_vacunacion (N:M)&lt;/b&gt;&lt;hr/&gt;PK  id_registro : INT&lt;br/&gt;FK  id_bovino : INT&lt;br/&gt;FK  id_vacuna : INT&lt;br/&gt;    fecha_aplicacion : DATE&lt;br/&gt;    proxima_dosis : DATE&lt;br/&gt;    veterinario_responsable : VARCHAR(120)&lt;br/&gt;    observaciones : TEXT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8d7da;strokeColor=#dc3545;strokeWidth=2;fontColor=#721c24;align=left;spacingLeft=10;shadow=1;" vertex="1" parent="101">
+          <mxGeometry x="460" y="620" width="250" height="160" as="geometry" />
+        </mxCell>
+        <!-- CONTROL ORDENO -->
+        <mxCell id="mr_ordeno" value="&lt;b&gt;control_ordeno_leche (1:N)&lt;/b&gt;&lt;hr/&gt;PK  id_ordeno : INT&lt;br/&gt;FK  id_bovino : INT&lt;br/&gt;    fecha_ordeno : DATE&lt;br/&gt;    jornada : VARCHAR(20)&lt;br/&gt;    litros_producidos : DECIMAL(5,2)&lt;br/&gt;    apta_para_venta : BOOLEAN&lt;br/&gt;    ordenador_capataz : VARCHAR(100)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cce5ff;strokeColor=#007bff;strokeWidth=2;fontColor=#004085;align=left;spacingLeft=10;shadow=1;" vertex="1" parent="101">
+          <mxGeometry x="840" y="620" width="240" height="160" as="geometry" />
+        </mxCell>
+        <!-- ================= CONEXIONES COMPLETAS PÁGINA 2 ================= -->
+        <!-- POTRERO -> BOVINO -->
+        <mxCell id="mre1" value="pastorea (1:N)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#495057;startArrow=ERone;startFill=0;endArrow=ERzeroToMany;endFill=0;fontColor=#1e293b;labelBackgroundColor=#ffffff;" edge="1" parent="101" source="mr_potrero" target="mr_bovino">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- RAZA -> BOVINO -->
+        <mxCell id="mre2" value="clasifica (1:N)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#495057;startArrow=ERone;startFill=0;endArrow=ERzeroToMany;endFill=0;fontColor=#1e293b;labelBackgroundColor=#ffffff;" edge="1" parent="101" source="mr_raza" target="mr_bovino">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- BOVINO -> FICHA (1:1) -->
+        <mxCell id="mre3" value="posee (1:1)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;strokeColor=#d97706;startArrow=ERone;startFill=0;endArrow=ERone;endFill=0;fontColor=#1e293b;labelBackgroundColor=#ffffff;" edge="1" parent="101" source="mr_bovino" target="mr_ficha">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- BOVINO -> REG_VAC (1:N) -->
+        <mxCell id="mre4" value="recibe (1:N)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#dc3545;startArrow=ERone;startFill=0;endArrow=ERzeroToMany;endFill=0;fontColor=#1e293b;labelBackgroundColor=#ffffff;" edge="1" parent="101" source="mr_bovino" target="mr_reg_vac">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- VACUNA -> REG_VAC (1:N) -->
+        <mxCell id="mre5" value="aplica (1:N)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#dc3545;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;fontColor=#1e293b;labelBackgroundColor=#ffffff;" edge="1" parent="101" source="mr_vacuna" target="mr_reg_vac">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- BOVINO -> ORDENO (1:N) -->
+        <mxCell id="mre6" value="produce (1:N)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#007bff;startArrow=ERone;startFill=0;endArrow=ERzeroToMany;endFill=0;fontColor=#1e293b;labelBackgroundColor=#ffffff;" edge="1" parent="101" source="mr_bovino" target="mr_ordeno">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
