@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Modelo Relacional ProGanado</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      margin: 40px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 15px;
+      width: 100%;
+      max-width: 1200px;
+    }
+    h1 { color: #1e3a8a; margin: 0 0 8px 0; font-size: 26px; }
+    p { color: #475569; margin: 0; font-size: 14px; font-weight: 500; }
+    .mermaid {
+      background: #f8fafc;
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>PROGANADO SaaS — MODELO RELACIONAL (3FN)</h1>
+    <p>Tecnología en Desarrollo de Software | CESDE Nivel 1 | Tech Lead: Jeiser Abraham Gutiérrez</p>
+  </div>
+  <div class="mermaid">
+
+erDiagram
+    USUARIOS ||--o{ FINCAS : "administra (1:N)"
+    FINCAS ||--o{ SUSCRIPCIONES_SAAS : "tiene_plan (1:N)"
+    FINCAS ||--o{ ENTREGAS_ACOPIO : "despacha (1:N)"
+    FINCAS ||--o{ POTREROS : "divide_en (1:N)"
+    FINCAS ||--o{ BOVINOS : "aloja (1:N)"
+    
+    RAZAS ||--o{ BOVINOS : "clasifica (1:N)"
+    POTREROS |o--o{ BOVINOS : "pastorea (1:N)"
+    
+    BOVINOS ||--o{ MARCACIONES : "identificado_por (1:N)"
+    BOVINOS ||--o{ TRATAMIENTOS_SANITARIOS : "recibe_dosis (1:N)"
+    BOVINOS ||--o{ PESAJES_LECHE : "registra_produccion (1:N)"
+    BOVINOS ||--o{ EVENTOS_REPRODUCTIVOS : "presenta_evento (1:N)"
+    MEDICAMENTOS |o--o{ TRATAMIENTOS_SANITARIOS : "se_aplica (0:N)"
+
+    USUARIOS {
+        string id_usuario PK
+        string nombre
+        string email UK
+        string contrasena_hash
+        string rol "Admin / Asistente"
+        datetime fecha_registro
+    }
+
+    FINCAS {
+        string id_finca PK
+        string id_usuario FK
+        string nombre_finca
+        string documento_titular
+        string codigo_ica_predio UK
+        string municipio
+    }
+
+    SUSCRIPCIONES_SAAS {
+        string id_suscripcion PK
+        string id_finca FK
+        string plan_tipo "Free / Pro_119k"
+        string estado_acceso "Activo / Solo_Lectura"
+        int limite_vacas
+        date fecha_inicio
+        date fecha_vencimiento "Opcional"
+    }
+
+    ENTREGAS_ACOPIO {
+        string id_entrega PK
+        string id_finca FK
+        date fecha_entrega
+        decimal litros_totales
+        decimal valor_bruto_est
+        int recuento_ufc
+    }
+
+    POTREROS {
+        string id_potrero PK
+        string id_finca FK
+        string nombre_potrero
+        int dias_ocupacion
+        int dias_descanso_prv
+    }
+
+    RAZAS {
+        string id_raza PK
+        string nombre_raza UK
+        string descripcion_proposito
+    }
+
+    BOVINOS {
+        string id_bovino PK
+        string id_finca FK
+        string id_potrero FK "Opcional"
+        string id_raza FK
+        date fecha_nacimiento
+        boolean alerta_cinta_roja
+        string estado_lactancia "Ordeño / Seca / Novilla"
+    }
+
+    MARCACIONES {
+        string id_marcacion PK
+        string id_bovino FK
+        string tipo_marca "Arete / Hierro"
+        string codigo_valor
+        boolean estado_activo
+    }
+
+    MEDICAMENTOS {
+        string id_medicamento PK
+        string nombre_farmaco UK
+        int dias_retiro_ica
+    }
+
+    TRATAMIENTOS_SANITARIOS {
+        string id_tratamiento PK
+        string id_bovino FK
+        string tipo_procedimiento "Podologia / Inyeccion"
+        string id_medicamento FK "Opcional (Null)"
+        date fecha_tratamiento
+        decimal dosis_ml "Opcional"
+    }
+
+    PESAJES_LECHE {
+        string id_pesaje PK
+        string id_bovino FK
+        date fecha_pesaje
+        time hora_pesaje "04:30:00"
+        decimal litros_obtenidos
+    }
+
+    EVENTOS_REPRODUCTIVOS {
+        string id_evento PK
+        string id_bovino FK
+        string tipo_evento "Parto / Celo / Inseminacion"
+        date fecha_evento
+        int dias_abiertos_calc
+    }
+
+  </div>
+  <script>
+    mermaid.initialize({ 
+      startOnLoad: true, 
+      theme: 'default',
+      er: { useMaxWidth: false }
+    });
+  </script>
+</body>
+</html>
