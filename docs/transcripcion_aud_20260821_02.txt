@@ -1,0 +1,137 @@
+Bienvenidos a esta Masterclass Especial de Fundamentos y Glossario Técnico para el Proyecto Integrador del CESDE.
+Esta clase está disenada específicamente para nosotros.
+Los estudiantes de nivel 1 que estamos empezando a tocar HTML,
+seudocodigo en p.c. int y tablas de bases de datos, pero que al revisar el proyecto o la documentación profesional
+nos encontramos con términos avanzados que nadie nos ha explicado en clase.
+Como a PI, JWT, REST, JOTAZON, BAKEND, FRONTEND, PWA o SAS.
+Hoy vamos a desmitificar cada uno de estos conceptos con ejemplos de la vida real,
+analogias sencillas de potrero y cocina, repasando primero lo que ya vimos en clase
+y luego conectándolo todo con ganado control.
+Empecemos repasando las tres materias que ya estamos cursando en este nivel 1.
+Primera materia introducción a la programación y HTML5 semantico,
+que es HTML, es el esqueleto de una página web,
+no es un lenguaje de programación sino un lenguaje de marcado de etiquetas.
+Cuando decimos HTML semantico, significa usar etiquetas con significado real.
+Eader para la cabezera, nav para el menú de navegación,
+maen para el contenido principal, sectión para bloques tematicos,
+table para mostrar los datos del ganado,
+form para los formularios de captura, input para las casillas donde el usuario
+escribe el peso o aréte y button para el botón de guardar.
+Esto hace que la interfaz sea limpia, accessible y fácil de usar en el potrero.
+Segunda materia, lógica de programación con pese int.
+Aquí aprendemos a pensar como una computadora de forma ordenada y determinista.
+Vemos que una variable es una cajita en la memoria que guarda un dato,
+como el peso del animal o el nombre de la finca.
+Usamos estructuras condicionales con sí, entonces, sino para tomar decisiones.
+Por ejemplo, si el peso es menor a 25 kilos, rechazar el registro por ser un error biológico.
+También usamos operadores matemáticos para calcular la dosis de purgante
+dividiendo el peso entre 50.
+Y tercera materia, base de datos relacional con SQL y SQLite.
+Una base de datos es un archivador digital seguro.
+Cada tabla es como una hoja de calculo donde las columnas son los campos
+y las filas son los registros.
+Aprendimos que una llave primaria,
+o primari k, es la sedula de ciudadania única de cada fila,
+como el número de aréte o el código de la finca.
+Y una llave foranea, o forain k, es un puente que conecta una tabla con otra,
+por ejemplo, indicando a que finca pertenece cada vaca.
+Ahora entremos a los términos técnicos del mundo real,
+que todavía no vemos en las clases, pero que son fundamentales.
+Primero gran término, que es una PI o aplicación programing interface,
+imagina que vas a un restaurante.
+Tu eres el cliente y estás sentado en la mesa.
+La cocina es el servidor donde están guardados todos los ingredientes y la base de datos.
+Tú no puedes entrar a la cocina a prepararte la comida ni a revolver las oyas,
+para eso existe el mesero.
+Tú le pides la orden al mesero.
+El mesero va a la cocina, le dice al cocinero lo que necesitas,
+y luego el mesero te trae el plato listo a tu mesa.
+En el software, la PI es exactamente ese mesero.
+Es un intermediario que comunica la pantalla que ve el usuario
+con la base de datos que está guardada en el servidor.
+Segundo término, que es una PI rest y los métodos HTTP.
+Siguiendo con la analogía del restaurante,
+una PI rest es simplemente el manual de buenos modales
+y el menú estándar que usa el mesero
+para que todos los programas del mundo se entiendan,
+se usan cuatro acciones básicas llamadas métodos HTTP,
+método GT, que significa traerme información,
+por ejemplo listar todas las vacas.
+Metodo Post, que significa crear algo nuevo como registrar un nuevo ternero,
+metodo PUT, que significa actualizar un dato existente,
+como cambiarle el peso a una novilla,
+y metodo del et, que significa eliminar o dar de baja un registro.
+Percer término, que es un endpoint,
+un endpoint es la dirección web específica la que llamas
+para pedir una acción, por ejemplo,
+apibar rabobinos o apibarra fincas.
+Cuarto término, que es jota son o javascript object notatio,
+es el formato de texto universal en el que el mesero anota la comanda,
+es un texto muy liviano con llaves y dos puntos.
+Por ejemplo, abres llave arete dos puntos comillas a 0.01,
+peso 2.450 cierra llave,
+es legible tanto para los humanos como para cualquier computadora.
+Hacemos ahora la seguridad, que es un jvt o json web token,
+para entender el jvt imagina que compras una entrada para un concierto
+o que entras a un hotel todo incluido.
+En la entrada principal muestras tu sedula y tu comprobante de pago una sola vez.
+En ese momento, el recepcionista te coloca una manilla o pulsera
+sellada en la muneca.
+A partir de ahí, cada vez que vas a la piscina al restaurante o al bar,
+nadie te vuelve a pedir tu sedula,
+simplemente miran tu pulsera y te dejan pasar.
+Eso es exactamente un jvt, es una pulsera digital cifrada.
+Cuando el mayor domo o el veterinario inicia sesión con su usuario y clave,
+el servidor le entrega un token jvt.
+En cada clic posterior, el celular envia esa pulsera digital
+para demostrar quién es sin tener que reenviar la contrasena.
+Que eso out, es el protocolo que te permite iniciar sesión usando tu cuenta
+de Google o de Facebook con un solo clic sin crear una clave nueva.
+Hablemos de la estructura completa de un sistema.
+Que es front-end y backend, el front-end es todo lo que el usuario puede ver y tocar,
+los botones, los colores, los formularios en HTML y el diseno en la pantalla,
+el backend es la maquinaria invisible que está detrás,
+el motor que procesa las formulas matemáticas,
+ejecuta las consultas a la base de datos y protege los datos del negocio.
+Quien domina ambos mundos se llama desarrollador FUSTA.
+Que es una PWAA o progresive web app y porque decimos ofline first.
+Una PWAA es una página web construida de forma tan avanzada
+que tu teléfono la puede instalar como si fuera una aplicación de la tienda
+con su propio icono en el inicio.
+Y ofline first significa que la aplicación está disenada
+para funcionar perfectamente en el potrero sin senal deselular,
+guardando los datos en la memoria local del dispositivo
+y subiendo los a la nube cuando regrese la senal.
+Que esa es frente a ese culite local?
+Sae se significa software como servicio,
+que es el modelo donde tienes que pagar una mensualidad en dólares
+para usar un programa en internet.
+En ganado control apostamos por costo cero Sae usando ese culite
+que es un motor de base de datos ultraliviano que se guarda
+en un solo archivo local dentro del dispositivo sin costo alguno.
+Que es hit y hit hub?
+Hit es como el sistema de auto guardado y puntos de control de un videojuego.
+Te permite guardar fotos exactas de tu código en cada avance.
+De modo que si comete es un error grave manana,
+puedes retroceder al punto exacto donde todo funcionaba.
+Y hit hubes la plataforma en la nube donde guardamos esos proyectos
+para trabajar en equipo y respaldar todo nuestro código profesional.
+Ahora unamos todos los puntos en ganado control.
+Cuando el mayor domo abre ganado control en su celular
+en medio del potrero en rio negro, interactua con el frontend en HTML semantico.
+Al escribir los datos de la vaca mariposa, la lógica de pese int entra en acción
+como un filtro de seguridad, verificando que el peso sea real
+y calculando la dosis exacta de desparasitante.
+Esos datos se empaquetan en formato jota son
+y se envían a traves de la PI hacia la base de datos
+ese culite de siete tablas,
+quedando protegidos por la relación uno a uno de la ficha médica
+para que nadie comercialice leche con antibióticos.
+Todo el sistema opera ofline gracias a la arquitectura PWAA,
+blindado con un diseno de una mano y tres clicks para el campo antioqueno.
+Con este dominio conceptual, ya no vemos estos términos técnicos
+como obstáculos extraños,
+sino como las herramientas profesionales
+con las que estamos construyendo nuestro futuro
+como desarrolladores de software de alto nivel.
+Exitos en la sustentación del proyecto integrador.
