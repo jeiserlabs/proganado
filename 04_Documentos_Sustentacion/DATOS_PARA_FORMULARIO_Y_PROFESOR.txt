@@ -3,9 +3,8 @@ PROYECTO INTEGRADOR CESDE — MOMENTO 1 (GRUPO N° 3)
 ================================================================================
 
 • Proyecto: ProGanado S.A.S. — Sistema de Gestión Ganadera & Inocuidad Lechera
-• Submódulo: Introducción a la Programación & Bases de Datos Relacionales
-• Docente Titular: Felipe Piedrahita
-• Docente Acompañante: Liliana
+• Submódulo: Introducción a la Programación, Bases de Datos & HTML5
+• Docente: Felipe Piedrahita
 • Institución: CESDE — Escuela de Tecnología e Innovación (Semestre 2026-2)
 
 --------------------------------------------------------------------------------
@@ -23,9 +22,9 @@ PROYECTO INTEGRADOR CESDE — MOMENTO 1 (GRUPO N° 3)
 https://github.com/jeiser270997-source/ProGanado
 
 --------------------------------------------------------------------------------
-📝 NOTA TÉCNICA PARA LOS DOCENTES:
+📝 NOTA TÉCNICA PARA EL DOCENTE:
 --------------------------------------------------------------------------------
-Profesores Felipe Piedrahita y Liliana: En el repositorio de GitHub se encuentra centralizada toda la documentación técnica, código fuente y planificación del proyecto:
+Profesor Felipe Piedrahita: En el repositorio de GitHub se encuentra centralizada toda la documentación técnica, código fuente y planificación del proyecto:
 • Modelo Relacional oficial en 3FN (12 tablas) y script DDL SQL de producción.
 • Contratos fuertemente tipados en TypeScript y esquemas Zod en tiempo de ejecución.
 • Estudio de dominio de campo lechero (acopio Colanta, protocolo Cinta Roja y días abiertos).
