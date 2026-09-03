@@ -1,0 +1,23 @@
+# Node / Dependencies
+node_modules/
+.env
+.env.local
+*.log
+
+# Binarios y entregables pesados
+*.pdf
+*.pptx
+*.ppsx
+*.docx
+*.zip
+*.mp4
+
+# Python / Tests
+__pycache__/
+*.pyc
+.pytest_cache/
+coverage/
+
+# OS
+.DS_Store
+Thumbs.db
