@@ -21,3 +21,13 @@ coverage/
 # OS
 .DS_Store
 Thumbs.db
+
+# Regla 29: Cero imagenes/medios en Git (usar Drive)
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.mp3
+*.wav
+02_Vistas_HTML5/Imagen/
+02_Vistas_HTML5/Audio/
