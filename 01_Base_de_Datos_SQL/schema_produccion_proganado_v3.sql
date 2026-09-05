@@ -119,7 +119,8 @@ CREATE TABLE IF NOT EXISTS pesajes_leche (
     fecha_pesaje DATE NOT NULL,
     hora_pesaje TIME NOT NULL,
     litros_obtenidos DECIMAL(5,2) NOT NULL,
-    FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE CASCADE
+    FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE CASCADE,
+    CONSTRAINT uq_pesaje_bovino_momento UNIQUE (id_bovino, fecha_pesaje, hora_pesaje)
 );
 
 -- 12. EVENTOS REPRODUCTIVOS (Control de los 100 Días Abiertos) — tipos alineados README (+Aborto)
@@ -138,3 +139,35 @@ CREATE INDEX IF NOT EXISTS idx_bovinos_cinta_roja ON bovinos(alerta_cinta_roja) 
 CREATE INDEX IF NOT EXISTS idx_pesajes_bovino_fecha ON pesajes_leche(id_bovino, fecha_pesaje);
 CREATE INDEX IF NOT EXISTS idx_marcaciones_codigo ON marcaciones(codigo_valor);
 CREATE INDEX IF NOT EXISTS idx_tratamientos_fecha ON tratamientos_sanitarios(fecha_tratamiento);
+
+-- ==============================================================================
+-- 13. VISTA DINÁMICA DE INOCUIDAD LECHERA (Cálculo Automático Cinta Roja)
+-- Resuelve inconsistencia biológica: calcula periodo de retiro en tiempo real
+-- ==============================================================================
+CREATE VIEW IF NOT EXISTS v_bovinos_cinta_roja AS
+SELECT 
+    b.id_bovino,
+    b.id_finca,
+    t.id_tratamiento,
+    m.nombre_farmaco,
+    t.fecha_tratamiento,
+    m.dias_retiro_ica,
+    DATE(t.fecha_tratamiento, '+' || m.dias_retiro_ica || ' days') AS fecha_fin_retiro,
+    CASE 
+        WHEN DATE(t.fecha_tratamiento, '+' || m.dias_retiro_ica || ' days') >= CURRENT_DATE THEN 1 
+        ELSE 0 
+    END AS en_periodo_retiro
+FROM bovinos b
+JOIN tratamientos_sanitarios t ON b.id_bovino = t.id_bovino
+JOIN medicamentos m ON t.id_medicamento = m.id_medicamento
+WHERE DATE(t.fecha_tratamiento, '+' || m.dias_retiro_ica || ' days') >= CURRENT_DATE;
+
+-- TRIGGER DE PROTECCIÓN ACTIVA: Setea alerta_cinta_roja = 1 al insertar tratamiento con medicamento
+CREATE TRIGGER IF NOT EXISTS trg_activar_cinta_roja_tratamiento
+AFTER INSERT ON tratamientos_sanitarios
+WHEN NEW.id_medicamento IS NOT NULL
+BEGIN
+    UPDATE bovinos 
+    SET alerta_cinta_roja = 1 
+    WHERE id_bovino = NEW.id_bovino;
+END;
