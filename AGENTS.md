@@ -37,3 +37,9 @@
 7. **Formato de Evidencias HTML (CESDE):** Mapeo vertical por secciones: Captura parcial de la interfaz renderizada arriba $\rightarrow$ Captura correspondiente del fragmento de código HTML abajo, repitiendo secuencialmente hasta cubrir toda la página y todo el código.
 8. **Algoritmos en PSeInt (Formato CESDE - Jonathan Piedrahita):** En PSeInt las variables se declaran e inicializan directamente con el signo `=` (`variable = 0`, `texto = ""`, una por línea al inicio). Queda prohibido usar `Definir ... Como Entero` o flechas `<-`. La estructura obligatoria consta de 3 bloques comentados: `// DATOS DE ENTRADA`, `// PROCESO` y `// DATOS DE SALIDA` + bloc de notas anexo de análisis de entrada/proceso/salida.
 
+
+## GOLDEN FREEZE v1.0.0 (2026-09-03)
+
+- **ESTADO: CONGELADO**. Repo entregables academicos CESDE (SQL 12 tablas 3FN + HTML5 + PSeInt + docs). Sin suite automatizada.
+- **MANDATO**: NO cambios sin orden del equipo + doble confirmacion.
+- **Verify (2026-09-03)**: git limpio, 43 files, 0 binarios, 0 secrets.
