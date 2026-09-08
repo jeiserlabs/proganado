@@ -69,16 +69,17 @@ CREATE TABLE IF NOT EXISTS razas (
     descripcion_proposito TEXT NOT NULL
 );
 
--- 7. BOVINOS (Ficha Central Inmutable del Animal) — estados alineados README (Novilla/Crecimiento/Toro/Horra/En_Ordeño)
+-- 7. BOVINOS (Ficha Central Inmutable del Animal - 3FN)
 CREATE TABLE IF NOT EXISTS bovinos (
     id_bovino TEXT PRIMARY KEY,
     id_finca TEXT NOT NULL,
     id_potrero TEXT,
     id_raza TEXT NOT NULL,
+    sexo TEXT CHECK(sexo IN ('Hembra', 'Macho')) NOT NULL DEFAULT 'Hembra',
+    estado_fisiologico TEXT CHECK(estado_fisiologico IN ('En_Ordeño', 'Horra_Seca', 'Novilla_Vientre', 'Ternero_Crecimiento', 'Toro_Reproductor')) NOT NULL DEFAULT 'Novilla_Vientre',
+    estado_vital TEXT CHECK(estado_vital IN ('Activo', 'Muerto', 'Vendido', 'Descarte')) NOT NULL DEFAULT 'Activo',
     fecha_nacimiento DATE NOT NULL,
-    alerta_cinta_roja BOOLEAN NOT NULL DEFAULT 0,
-    estado_lactancia TEXT CHECK(estado_lactancia IN ('En_Ordeño', 'Horra_Seca', 'Novilla', 'Crecimiento', 'Toro')) NOT NULL DEFAULT 'Novilla',
-    FOREIGN KEY (id_finca) REFERENCES fincas(id_finca) ON DELETE CASCADE,
+    FOREIGN KEY (id_finca) REFERENCES fincas(id_finca) ON DELETE RESTRICT,
     FOREIGN KEY (id_potrero) REFERENCES potreros(id_potrero) ON DELETE SET NULL,
     FOREIGN KEY (id_raza) REFERENCES razas(id_raza) ON DELETE RESTRICT
 );
@@ -108,7 +109,7 @@ CREATE TABLE IF NOT EXISTS tratamientos_sanitarios (
     id_medicamento TEXT,
     fecha_tratamiento DATE NOT NULL,
     dosis_ml DECIMAL(5,2),
-    FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE CASCADE,
+    FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE RESTRICT,
     FOREIGN KEY (id_medicamento) REFERENCES medicamentos(id_medicamento) ON DELETE RESTRICT
 );
 
@@ -119,7 +120,7 @@ CREATE TABLE IF NOT EXISTS pesajes_leche (
     fecha_pesaje DATE NOT NULL,
     hora_pesaje TIME NOT NULL,
     litros_obtenidos DECIMAL(5,2) NOT NULL,
-    FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE CASCADE,
+    FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE RESTRICT,
     CONSTRAINT uq_pesaje_bovino_momento UNIQUE (id_bovino, fecha_pesaje, hora_pesaje)
 );
 
@@ -130,19 +131,19 @@ CREATE TABLE IF NOT EXISTS eventos_reproductivos (
     tipo_evento TEXT CHECK(tipo_evento IN ('Parto', 'Celo_Observable', 'Inseminacion', 'Palpacion', 'Aborto')) NOT NULL,
     fecha_evento DATE NOT NULL,
     dias_abiertos_calc INTEGER,
-    FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE CASCADE
+    FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE RESTRICT
 );
 
 -- ÍNDICES DE ALTO DESEMPEÑO
 CREATE INDEX IF NOT EXISTS idx_bovinos_finca ON bovinos(id_finca);
-CREATE INDEX IF NOT EXISTS idx_bovinos_cinta_roja ON bovinos(alerta_cinta_roja) WHERE alerta_cinta_roja = 1;
+CREATE INDEX IF NOT EXISTS idx_bovinos_estado ON bovinos(estado_vital, estado_fisiologico);
 CREATE INDEX IF NOT EXISTS idx_pesajes_bovino_fecha ON pesajes_leche(id_bovino, fecha_pesaje);
 CREATE INDEX IF NOT EXISTS idx_marcaciones_codigo ON marcaciones(codigo_valor);
 CREATE INDEX IF NOT EXISTS idx_tratamientos_fecha ON tratamientos_sanitarios(fecha_tratamiento);
 
 -- ==============================================================================
--- 13. VISTA DINÁMICA DE INOCUIDAD LECHERA (Cálculo Automático Cinta Roja)
--- Resuelve inconsistencia biológica: calcula periodo de retiro en tiempo real
+-- 13. VISTA DINÁMICA DE INOCUIDAD LECHERA (Cálculo Automático Cinta Roja SSOT)
+-- Resuelve inconsistencia biológica: calcula periodo de retiro en tiempo real ($0 desincronización)
 -- ==============================================================================
 CREATE VIEW IF NOT EXISTS v_bovinos_cinta_roja AS
 SELECT 
@@ -161,13 +162,3 @@ FROM bovinos b
 JOIN tratamientos_sanitarios t ON b.id_bovino = t.id_bovino
 JOIN medicamentos m ON t.id_medicamento = m.id_medicamento
 WHERE DATE(t.fecha_tratamiento, '+' || m.dias_retiro_ica || ' days') >= CURRENT_DATE;
-
--- TRIGGER DE PROTECCIÓN ACTIVA: Setea alerta_cinta_roja = 1 al insertar tratamiento con medicamento
-CREATE TRIGGER IF NOT EXISTS trg_activar_cinta_roja_tratamiento
-AFTER INSERT ON tratamientos_sanitarios
-WHEN NEW.id_medicamento IS NOT NULL
-BEGIN
-    UPDATE bovinos 
-    SET alerta_cinta_roja = 1 
-    WHERE id_bovino = NEW.id_bovino;
-END;
