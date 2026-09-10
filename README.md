@@ -1,18 +1,18 @@
-# 🐄 ProGanado S.A.S. — Sistema Integral de Gestión Ganadera & Inocuidad Lechera
+# 🐄 ProGanado — Sistema de Gestión Ganadera & Inocuidad Lechera
 
-> **SSOT (Single Source of Truth) — Arquitectura de Software, Modelo de Negocio, Seguridad Grado Empresa & Base de Datos 3FN**  
-> **Empresa:** ProGanado S.A.S. | Medellín, Colombia  
+> **SSOT (Single Source of Truth) — Arquitectura de Software, Modelo de Datos Relacional 3FN & Proyecto Integrador CESDE**  
 > **Institución Académica:** CESDE — Escuela de Tecnología e Innovación | Semestre 2026-2  
 > **Proyecto Integrador:** Nivel 1 (Bases de Datos Relacionales, Algoritmia, Frontend Semántico, Tipado Fuerte & Emprendimiento Tech)  
-> **Chief Technology Officer (CTO) & QA Lead:** Jeiser Abraham Gutiérrez  
-> **Repositorio Público Oficial:** [https://github.com/jeiser270997-source/ProGanado](https://github.com/jeiser270997-source/ProGanado)  
-> **Fecha de Entrega Momento 1:** Domingo, 30 de Agosto de 2026
+> **Chief Technology Officer (CTO) & Arquitecto de Datos:** Jeiser Abraham Gutiérrez  
+> **Repositorio Oficial:** [https://github.com/jeiserlabs/proganado](https://github.com/jeiserlabs/proganado)  
+> **Estado Actual del Proyecto:** **FASE 1 — ESPECIFICACIÓN DE ARQUITECTURA, CONTRATOS DE DATOS & DDL 3FN** (Completada al 100% para Entrega Académica).  
+> *Nota de Realidad Técnica:* Este repositorio representa la base formal de diseño de sistemas, tipos TypeScript, esquemas de validación en runtime Zod y modelado relacional normalizado. No constituye aún un SaaS comercial desplegado en producción (Fase 2: Backend API & Tests / Fase 3: Frontend Framework & Cloud).
 
 ---
 
-> ### ⚠️ SALVEDADES ACADÉMICAS Y DE INGENIERÍA (ENTREGA MOMENTO 1)
-> 1. **Capa Visual y Maquetación HTML5 (En Construcción Semántica Activa):** La capa visual se presenta como una especificación semántica pura (HTML5 estructurado sin frameworks pesados ni estilos CSS definitivos) asignada a **Sebastián Correa**. Las 6 vistas del SaaS se encuentran en fase de maquetación modular activa siguiendo los blueprints de accesibilidad WCAG 2.1.
-> 2. **Modelo Entidad-Relación y Relacional (Diseño Base Sujeto a Iteración Continua):** El diseño de la base de datos (MER Chen y Modelo Relacional de 12 tablas en 3FN) corresponde a la arquitectura de lanzamiento inicial. Dicho modelo se encuentra sujeto a refinamientos, normalizaciones complementarias y optimizaciones de índices según las pruebas de carga y retroalimentación de campo en el Momento 2.
+> ### 📌 ALCANCE Y ESPECIFICACIÓN TÉCNICA (NIVEL 1 CESDE)
+> 1. **Capa Visual y Maquetación HTML5:** Especificación semántica pura (HTML5 estructurado sin dependencias) para modelar la experiencia de usuario y validaciones en campo.
+> 2. **Modelo Entidad-Relación y Relacional (12 Tablas 3FN):** DDL SQL estricto (`schema_produccion_proganado_v3.sql`) con soporte de integridad referencial, soft deletes (`ON DELETE RESTRICT`), telemetría de pesaje con hora exacta y control dinámico de inocuidad lechera (Cinta Roja).
 
 ---
 
