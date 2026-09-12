@@ -76,6 +76,8 @@ Table marcaciones {
   tipo_marca varchar [not null, note: 'Arete_ICA, Arete_SINIGAN, Chip_RFID...']
   codigo_valor varchar [not null]
   estado_activo boolean [not null, default: true]
+
+  Note: 'Regla ICA: uq_marcaciones_codigo_activo (código único en hato) y uq_marcaciones_bovino_tipo_activo (1 activo por tipo por animal)'
 }
 
 Table medicamentos {

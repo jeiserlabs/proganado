@@ -70,6 +70,9 @@ export const EntregaAcopioSchema = z.object({
   diferencia_litros: z.number().nullable().optional()
 });
 
+/** Schema de Inserción: excluye diferencia_litros por ser columna VIRTUAL calculada en SQLite */
+export const CrearEntregaAcopioSchema = EntregaAcopioSchema.omit({ diferencia_litros: true });
+
 /** 5. Schema Potrero */
 export const PotreroSchema = z.object({
   id_potrero: z.string().min(1),

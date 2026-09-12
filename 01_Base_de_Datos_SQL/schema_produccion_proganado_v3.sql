@@ -144,6 +144,7 @@ CREATE INDEX IF NOT EXISTS idx_bovinos_finca ON bovinos(id_finca);
 CREATE INDEX IF NOT EXISTS idx_bovinos_estado ON bovinos(estado_vital, estado_fisiologico);
 CREATE INDEX IF NOT EXISTS idx_pesajes_bovino_fecha ON pesajes_leche(id_bovino, fecha_pesaje);
 CREATE UNIQUE INDEX IF NOT EXISTS uq_marcaciones_codigo_activo ON marcaciones(codigo_valor) WHERE estado_activo = 1;
+CREATE UNIQUE INDEX IF NOT EXISTS uq_marcaciones_bovino_tipo_activo ON marcaciones(id_bovino, tipo_marca) WHERE estado_activo = 1;
 CREATE INDEX IF NOT EXISTS idx_marcaciones_bovino ON marcaciones(id_bovino);
 CREATE INDEX IF NOT EXISTS idx_tratamientos_fecha ON tratamientos_sanitarios(fecha_tratamiento);
 

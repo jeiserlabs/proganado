@@ -106,6 +106,9 @@ export interface EntregaAcopio {
   diferencia_litros?: number | null; // Merma o retención (litros_totales - litros_facturados)
 }
 
+/** Payload de inserción: excluye la columna virtual diferencia_litros calculada en SQLite */
+export type CrearEntregaAcopioInput = Omit<EntregaAcopio, 'diferencia_litros'>;
+
 /** 5. POTREROS: Manejo de Pasturas bajo Pastoreo Racional Voisin (PRV) */
 export interface Potrero {
   readonly id_potrero: string;
