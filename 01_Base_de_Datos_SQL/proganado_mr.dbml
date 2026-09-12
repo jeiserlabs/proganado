@@ -38,6 +38,11 @@ Table entregas_acopio {
   litros_totales decimal(7,2) [not null]
   valor_bruto_est decimal(10,2) [not null]
   recuento_ufc integer
+  numero_tiquete varchar [note: 'Tiquete físico carrotanque Colanta']
+  litros_facturados decimal(7,2) [note: 'Litros medidos por flujómetro del camión']
+  precio_litro_real decimal(8,2) [note: 'Precio liquidado por litro COP']
+  valor_pagado_real decimal(10,2) [note: 'Consignación neta recibida Colanta']
+  diferencia_litros decimal(7,2) [note: 'Columna calculada: merma o retención']
 }
 
 Table potreros {

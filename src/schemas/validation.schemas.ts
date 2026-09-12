@@ -62,7 +62,12 @@ export const EntregaAcopioSchema = z.object({
   fecha_entrega: z.string().regex(REGEX_FECHA_ISO, 'Fecha de entrega inválida'),
   litros_totales: z.number().positive('El volumen entregado debe ser mayor a 0 litros').max(50000, 'Volumen excede capacidad máxima de carrotanque'),
   valor_bruto_est: z.number().nonnegative('El valor estimado no puede ser negativo'),
-  recuento_ufc: z.number().int().nonnegative('El recuento UFC no puede ser negativo').nullable().optional()
+  recuento_ufc: z.number().int().nonnegative('El recuento UFC no puede ser negativo').nullable().optional(),
+  numero_tiquete: z.string().min(1).nullable().optional(),
+  litros_facturados: z.number().positive('Litros facturados debe ser mayor a 0').max(50000).nullable().optional(),
+  precio_litro_real: z.number().positive('Precio por litro debe ser mayor a 0').nullable().optional(),
+  valor_pagado_real: z.number().nonnegative('Valor pagado no puede ser negativo').nullable().optional(),
+  diferencia_litros: z.number().nullable().optional()
 });
 
 /** 5. Schema Potrero */

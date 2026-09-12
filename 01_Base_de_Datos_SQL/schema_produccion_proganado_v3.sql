@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS suscripciones_saas (
     FOREIGN KEY (id_finca) REFERENCES fincas(id_finca) ON DELETE CASCADE
 );
 
--- 4. ENTREGAS ACOPIO (Despacho Diario Carrotanque Colanta)
+-- 4. ENTREGAS ACOPIO (Despacho Diario y Conciliación Carrotanque Colanta)
 CREATE TABLE IF NOT EXISTS entregas_acopio (
     id_entrega TEXT PRIMARY KEY,
     id_finca TEXT NOT NULL,
@@ -49,6 +49,11 @@ CREATE TABLE IF NOT EXISTS entregas_acopio (
     litros_totales DECIMAL(7,2) NOT NULL,
     valor_bruto_est DECIMAL(10,2) NOT NULL,
     recuento_ufc INTEGER,
+    numero_tiquete TEXT,
+    litros_facturados DECIMAL(7,2),
+    precio_litro_real DECIMAL(8,2),
+    valor_pagado_real DECIMAL(10,2),
+    diferencia_litros DECIMAL(7,2) GENERATED ALWAYS AS (litros_totales - COALESCE(litros_facturados, litros_totales)) VIRTUAL,
     FOREIGN KEY (id_finca) REFERENCES fincas(id_finca) ON DELETE CASCADE
 );
 
@@ -138,7 +143,8 @@ CREATE TABLE IF NOT EXISTS eventos_reproductivos (
 CREATE INDEX IF NOT EXISTS idx_bovinos_finca ON bovinos(id_finca);
 CREATE INDEX IF NOT EXISTS idx_bovinos_estado ON bovinos(estado_vital, estado_fisiologico);
 CREATE INDEX IF NOT EXISTS idx_pesajes_bovino_fecha ON pesajes_leche(id_bovino, fecha_pesaje);
-CREATE INDEX IF NOT EXISTS idx_marcaciones_codigo ON marcaciones(codigo_valor);
+CREATE UNIQUE INDEX IF NOT EXISTS uq_marcaciones_codigo_activo ON marcaciones(codigo_valor) WHERE estado_activo = 1;
+CREATE INDEX IF NOT EXISTS idx_marcaciones_bovino ON marcaciones(id_bovino);
 CREATE INDEX IF NOT EXISTS idx_tratamientos_fecha ON tratamientos_sanitarios(fecha_tratamiento);
 
 -- ==============================================================================

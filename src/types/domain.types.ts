@@ -95,10 +95,15 @@ export interface EntregaAcopio {
   readonly id_entrega: string;
   id_finca: string; // FK -> Finca
   fecha_entrega: string; // YYYY-MM-DD
-  litros_totales: number; // Decimal (ej: 1450.50)
-  valor_bruto_est: number; // Moneda COP
+  litros_totales: number; // Decimal (ej: 1450.50) medidos en tanque de finca
+  valor_bruto_est: number; // Moneda COP estimada
   recuento_ufc?: number | null; // Unidades Formadoras de Colonia por ml
   calidad_dictamen?: CalidadHigienicaLeche;
+  numero_tiquete?: string | null; // Tiquete físico entregado por el conductor
+  litros_facturados?: number | null; // Litros registrados por el flujómetro del camión
+  precio_litro_real?: number | null; // Precio neto liquidado por litro COP
+  valor_pagado_real?: number | null; // Consignación neta bancaria Colanta
+  diferencia_litros?: number | null; // Merma o retención (litros_totales - litros_facturados)
 }
 
 /** 5. POTREROS: Manejo de Pasturas bajo Pastoreo Racional Voisin (PRV) */
