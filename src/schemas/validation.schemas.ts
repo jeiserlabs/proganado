@@ -13,10 +13,14 @@ import { z } from 'zod';
 // PATRONES REGEX DE VALIDACIÓN ESTRICTA
 // =============================================================================
 
-const REGEX_HORA_MILITAR = /^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/; // HH:MM:SS
+const REGEX_HORA_MILITAR = /^([01]\d|2[0-3]):([0-5]\d)(?::([0-5]\d))?$/; // HH:MM[:SS]
 const REGEX_FECHA_ISO = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/; // YYYY-MM-DD
 const REGEX_CODIGO_ICA = /^[0-9]{2}-[0-9]{3,5}-[0-9]{3,6}$/; // Ej: 05-647-00129
 const REGEX_CODIGO_ARETE = /^[A-Z0-9\-_]{2,20}$/i; // Arete alfanumérico limpio
+// SQLite guarda DATETIME como "YYYY-MM-DD HH:MM:SS" (con espacio, hora local);
+// el ISO 8601 estricto (con "T") es el otro formato que puede devolver un cliente web.
+// Aceptar solo uno de los dos rechazaba filas LEÍDAS de la propia base.
+const REGEX_DATETIME_LOCAL = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])[ T]([01]\d|2[0-3]):[0-5]\d(:[0-5]\d)?$/;
 
 // =============================================================================
 // ESQUEMAS DE VALIDACIÓN POR ENTIDAD
@@ -31,7 +35,7 @@ export const UsuarioSchema = z.object({
   rol: z.enum(['Administrador', 'Asistente', 'Veterinario', 'Operario'], {
     errorMap: () => ({ message: 'Rol no autorizado en el sistema' })
   }),
-  fecha_registro: z.string().datetime({ message: 'Formato de fecha de registro inválido' }).optional()
+  fecha_registro: z.string().regex(REGEX_DATETIME_LOCAL, 'Formato de fecha de registro inválido (YYYY-MM-DD HH:MM:SS)').optional()
 });
 
 /** 2. Schema Finca */
@@ -89,17 +93,45 @@ export const RazaSchema = z.object({
   descripcion_proposito: z.string().min(3).max(150)
 });
 
-/** 7. Schema Bovino */
+/**
+ * 7. Schema Bovino.
+ * PARIDAD v3.1: las columnas reales de `bovinos` son sexo, estado_fisiologico y
+ * estado_vital. El flag `alerta_cinta_roja` NO es columna: es el resultado calculado
+ * en la vista `v_bovinos_cinta_roja` (fail-closed). Va en CintaRojaBovinoSchema.
+ */
 export const BovinoSchema = z.object({
   id_bovino: z.string().min(1, 'ID de bovino obligatorio'),
   id_finca: z.string().min(1, 'ID de finca obligatorio'),
   id_potrero: z.string().nullable().optional(),
   id_raza: z.string().min(1, 'Raza obligatoria'),
   fecha_nacimiento: z.string().regex(REGEX_FECHA_ISO, 'Fecha de nacimiento debe ser YYYY-MM-DD'),
-  alerta_cinta_roja: z.boolean().default(false),
-  estado_lactancia: z.enum(['En_Ordeño', 'Horra_Seca', 'Novilla', 'Crecimiento', 'Toro'], {
+  sexo: z.enum(['Hembra', 'Macho'], {
+    errorMap: () => ({ message: 'Sexo no reconocido (Hembra / Macho)' })
+  }),
+  estado_fisiologico: z.enum(['En_Ordeño', 'Horra_Seca', 'Novilla_Vientre', 'Ternero_Crecimiento', 'Toro_Reproductor'], {
     errorMap: () => ({ message: 'Estado zootécnico no reconocido' })
+  }),
+  estado_vital: z.enum(['Activo', 'Muerto', 'Vendido', 'Descarte'], {
+    errorMap: () => ({ message: 'Estado vital no reconocido' })
   })
+});
+
+/** Payload de inserción de bovino: SOLO columnas reales (la vista no se escribe). */
+export const CrearBovinoSchema = BovinoSchema;
+
+/**
+ * Lectura del gate de inocuidad: fila de la vista `v_bovinos_cinta_roja`.
+ * Es SOLO LECTURA: nadie puede "desactivar" una cinta roja por formulario.
+ */
+export const CintaRojaBovinoSchema = z.object({
+  id_bovino: z.string().min(1),
+  id_finca: z.string().min(1),
+  id_tratamiento: z.string().min(1),
+  nombre_farmaco: z.string().min(1),
+  fecha_tratamiento: z.string().regex(REGEX_FECHA_ISO, 'Fecha de tratamiento inválida'),
+  dias_retiro_ica: z.number().int().nonnegative(),
+  fecha_fin_retiro: z.string().regex(REGEX_FECHA_ISO, 'Fecha fin de retiro inválida'),
+  en_periodo_retiro: z.union([z.literal(0), z.literal(1)])
 });
 
 /** 8. Schema Marcacion (Aretes) */
@@ -153,7 +185,9 @@ export const PesajeLecheSchema = z.object({
   id_pesaje: z.string().min(1),
   id_bovino: z.string().min(1, 'Bovino pesado obligatorio'),
   fecha_pesaje: z.string().regex(REGEX_FECHA_ISO, 'Fecha de pesaje inválida (YYYY-MM-DD)'),
-  hora_pesaje: z.string().regex(REGEX_HORA_MILITAR, 'Hora de pesaje debe cumplir formato HH:MM:SS (ej: 04:30:00)'),
+  // El input nativo <input type="time"> entrega HH:MM (sin segundos): exigir HH:MM:SS
+  // rechazaba el valor que produce el propio formulario. Se aceptan ambos.
+  hora_pesaje: z.string().regex(REGEX_HORA_MILITAR, 'Hora de pesaje debe cumplir formato HH:MM o HH:MM:SS (ej: 04:30)'),
   litros_obtenidos: z.number().positive('Los litros pesados deben ser mayores a 0').max(60, 'Producción sospechosa (> 60 L/ordeño). Verifique báscula.')
 });
 
@@ -161,7 +195,9 @@ export const PesajeLecheSchema = z.object({
 export const EventoReproductivoSchema = z.object({
   id_evento: z.string().min(1),
   id_bovino: z.string().min(1),
-  tipo_evento: z.enum(['Celo_Observable', 'Inseminacion_Artificial', 'Monta_Natural', 'Diagnostico_Palpacion_Positivo', 'Diagnostico_Palpacion_Vacia', 'Parto', 'Aborto']),
+  // PARIDAD v3.1: vocabulario idéntico al CHECK de la base (5 valores).
+  // Zod aceptaba 4 valores que el motor rechazaba con "CHECK constraint failed".
+  tipo_evento: z.enum(['Parto', 'Celo_Observable', 'Inseminacion', 'Palpacion', 'Aborto']),
   fecha_evento: z.string().regex(REGEX_FECHA_ISO, 'Fecha de evento inválida (YYYY-MM-DD)'),
   dias_abiertos_calc: z.number().int().nonnegative('Los días abiertos no pueden ser negativos').nullable().optional()
 });

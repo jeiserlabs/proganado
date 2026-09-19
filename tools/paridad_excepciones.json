@@ -1,0 +1,152 @@
+{
+  "_doc": "Deuda de paridad CONOCIDA. Cada entrada exige motivo (>=20 caracteres) y fechas. El gate tools/paridad_ssot.mjs falla si: aparece un desajuste que NO esté aquí, una excepción vence (revisar_antes_de), una excepción ya no tapa nada (podrida) o le falta sustento. Así la deuda vieja queda visible y la nueva rompe el build.",
+  "excepciones": [
+    {
+      "codigo": "TS_CAMPO_DERIVADO",
+      "ident": "bovinos.alerta_cinta_roja",
+      "motivo": "Campo DERIVADO de la vista v_bovinos_cinta_roja, expuesto como solo-lectura y excluido del payload de creación (CrearBovinoInput).",
+      "fecha": "2026-09-15",
+      "revisar_antes_de": "2027-03-15"
+    },
+    {
+      "codigo": "TS_CAMPO_DERIVADO",
+      "ident": "bovinos.fecha_fin_retiro",
+      "motivo": "DERIVADO de v_bovinos_cinta_roja.fecha_fin_retiro (fecha_tratamiento + dias_retiro_ica). Sirve para pintar la alerta en la UI.",
+      "fecha": "2026-09-15",
+      "revisar_antes_de": "2027-03-15"
+    },
+    {
+      "codigo": "TS_CAMPO_DERIVADO",
+      "ident": "entregas_acopio.calidad_dictamen",
+      "motivo": "Clasificación higiénica DERIVADA de recuento_ufc según la tabla de bonificación de Colanta. No se persiste: se recalcula.",
+      "fecha": "2026-09-15",
+      "revisar_antes_de": "2027-03-15"
+    },
+    {
+      "codigo": "PSEINT_DEFINIR",
+      "ident": "asistente_ganadero_refactorizado.psc",
+      "motivo": "El archivo se commiteó el 30-ago 13:44 y la regla 8 de formato PSeInt se escribió 49 minutos después (14:33). Corregirlo exige reabrir PSeInt y el artefacto ya está radicado en el PDF del Momento 1. Deuda a cargo de Emilio Villanueva.",
+      "fecha": "2026-09-15",
+      "revisar_antes_de": "2026-10-15"
+    },
+    {
+      "codigo": "PSEINT_FLECHA",
+      "ident": "asistente_ganadero_refactorizado.psc",
+      "motivo": "Misma causa: el algoritmo se entregó antes de que existiera la regla de asignación con '='. Requiere reescritura en la GUI de PSeInt para validar sintaxis.",
+      "fecha": "2026-09-15",
+      "revisar_antes_de": "2026-10-15"
+    },
+    {
+      "codigo": "PSEINT_SIN_INICIALIZACION",
+      "ident": "asistente_ganadero_refactorizado.psc",
+      "motivo": "Misma causa: variables declaradas con 'Definir' en vez de 'variable = valor'. Exige reescritura y prueba dentro de PSeInt.",
+      "fecha": "2026-09-15",
+      "revisar_antes_de": "2026-10-15"
+    },
+    {
+      "codigo": "PSEINT_BLOQUE_ENTRADA",
+      "ident": "asistente_ganadero_refactorizado.psc",
+      "motivo": "Falta el bloque comentado '// DATOS DE ENTRADA' exigido por la regla 8, escrita después de la entrega del algoritmo.",
+      "fecha": "2026-09-15",
+      "revisar_antes_de": "2026-10-15"
+    },
+    {
+      "codigo": "PSEINT_BLOQUE_PROCESO",
+      "ident": "asistente_ganadero_refactorizado.psc",
+      "motivo": "Falta el bloque comentado '// PROCESO' exigido por la regla 8, escrita después de la entrega del algoritmo.",
+      "fecha": "2026-09-15",
+      "revisar_antes_de": "2026-10-15"
+    },
+    {
+      "codigo": "PSEINT_BLOQUE_SALIDA",
+      "ident": "asistente_ganadero_refactorizado.psc",
+      "motivo": "Falta el bloque comentado '// DATOS DE SALIDA' exigido por la regla 8, escrita después de la entrega del algoritmo.",
+      "fecha": "2026-09-15",
+      "revisar_antes_de": "2026-10-15"
+    },
+    {
+      "codigo": "PSEINT_DEFINIR",
+      "ident": "asistente_logica_proganado_completo.psc",
+      "motivo": "El archivo se commiteó el 30-ago 13:44 y la regla 8 de formato PSeInt se escribió 49 minutos después (14:33). Corregirlo exige reabrir PSeInt y el artefacto ya está radicado en el Momento 1.",
+      "fecha": "2026-09-15",
+      "revisar_antes_de": "2026-10-15"
+    },
+    {
+      "codigo": "PSEINT_FLECHA",
+      "ident": "asistente_logica_proganado_completo.psc",
+      "motivo": "Misma causa: usa la flecha '<-' cuando la regla 8 exige '='. Requiere reescritura y validación en la GUI de PSeInt.",
+      "fecha": "2026-09-15",
+      "revisar_antes_de": "2026-10-15"
+    },
+    {
+      "codigo": "PSEINT_SIN_INICIALIZACION",
+      "ident": "asistente_logica_proganado_completo.psc",
+      "motivo": "Misma causa: declara con 'Definir' en lugar de inicializar con 'variable = valor' al inicio del algoritmo.",
+      "fecha": "2026-09-15",
+      "revisar_antes_de": "2026-10-15"
+    },
+    {
+      "codigo": "PSEINT_BLOQUE_ENTRADA",
+      "ident": "asistente_logica_proganado_completo.psc",
+      "motivo": "Falta el bloque comentado '// DATOS DE ENTRADA' exigido por la regla 8, escrita después de la entrega del algoritmo.",
+      "fecha": "2026-09-15",
+      "revisar_antes_de": "2026-10-15"
+    },
+    {
+      "codigo": "PSEINT_BLOQUE_PROCESO",
+      "ident": "asistente_logica_proganado_completo.psc",
+      "motivo": "Falta el bloque comentado '// PROCESO' exigido por la regla 8, escrita después de la entrega del algoritmo.",
+      "fecha": "2026-09-15",
+      "revisar_antes_de": "2026-10-15"
+    },
+    {
+      "codigo": "PSEINT_BLOQUE_SALIDA",
+      "ident": "asistente_logica_proganado_completo.psc",
+      "motivo": "Falta el bloque comentado '// DATOS DE SALIDA' exigido por la regla 8, escrita después de la entrega del algoritmo.",
+      "fecha": "2026-09-15",
+      "revisar_antes_de": "2026-10-15"
+    },
+    {
+      "codigo": "HTML_SIN_TABLA_DECLARADA",
+      "ident": "02_Vistas_HTML5/esqueleto_lego_semantico.html",
+      "motivo": "Artefacto DIDÁCTICO (armar el esqueleto semántico con piezas tipo Lego), no un formulario de alta real: usa vocabulario simplificado a propósito (arete/raza/fecha) y no corresponde a una tabla del modelo físico.",
+      "fecha": "2026-09-16",
+      "revisar_antes_de": "2027-06-30"
+    },
+    {
+      "codigo": "HTML_CAMPO_FANTASMA",
+      "ident": "02_Vistas_HTML5/registro_bovino.html:codigo_arete",
+      "motivo": "DECISIÓN DE DISEÑO PENDIENTE: el arete NO es columna de bovinos, vive en marcaciones.codigo_valor (1:N con tipo_marca Arete_ICA/SINIGAN). Definir si el alta crea una marcación o si se renombra el campo.",
+      "fecha": "2026-09-16",
+      "revisar_antes_de": "2026-10-31"
+    },
+    {
+      "codigo": "HTML_CAMPO_FANTASMA",
+      "ident": "02_Vistas_HTML5/registro_bovino.html:peso_kg",
+      "motivo": "HUECO DEL MODELO v3.1: no existe tabla de pesaje de carne (pesajes_leche mide litros, no kilos). Falta diseñar la tabla de peso/condición corporal y su paridad.",
+      "fecha": "2026-09-16",
+      "revisar_antes_de": "2026-10-31"
+    },
+    {
+      "codigo": "HTML_CAMPO_FANTASMA",
+      "ident": "02_Vistas_HTML5/registro_bovino.html:id_madre",
+      "motivo": "HUECO DEL MODELO v3.1: no existe tabla de genealogía/historial reproductivo por madre. Decidir si el parentesco va en bovinos (id_madre) o en una tabla propia.",
+      "fecha": "2026-09-16",
+      "revisar_antes_de": "2026-10-31"
+    },
+    {
+      "codigo": "HTML_CAMPO_FANTASMA",
+      "ident": "02_Vistas_HTML5/registro_bovino.html:id_padre_genetica",
+      "motivo": "HUECO DEL MODELO v3.1: no existe catálogo de genética/pajillas ni tabla de paternidad. Falta diseñarlo (el formulario ya contempla toro propio y material comercial).",
+      "fecha": "2026-09-16",
+      "revisar_antes_de": "2026-10-31"
+    },
+    {
+      "codigo": "HTML_CAMPO_OTRA_TABLA",
+      "ident": "02_Vistas_HTML5/registro_bovino.html:nombre",
+      "motivo": "HUECO DEL MODELO v3.1: el nombre del animal es un identificador de manejo que bovinos no tiene (usuarios.nombre es el de la persona, no del bovino). Decidir nombre_bovino o eliminar el campo.",
+      "fecha": "2026-09-16",
+      "revisar_antes_de": "2026-10-31"
+    }
+  ]
+}

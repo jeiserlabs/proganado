@@ -1,16 +1,17 @@
 # 🐄 ESTADO VIVO — PROGANADO SAAS (Contexto Maestro del Proyecto Integrador)
 
 > **SSOT (Single Source of Truth) del Proyecto Integrador CESDE Nivel 1**  
-> **Repositorio Oficial:** `https://github.com/jeiser270997-source/ProGanado.git`  
+> **Repositorio Oficial:** `https://github.com/jeiserlabs/proganado` (el slug viejo `jeiser270997-source/ProGanado` ya no corresponde)  
 > **Ubicación Local:** `E:\PROYECTOS\Mis_Proyectos\ProGanado`  
-> **Última Actualización:** 30-Ago-2026 (Entrega Momento 1 Completada)
+> **Última Actualización:** 18-Sep-2026 (integración del prototipo interactivo v1 de Emilio en `prototipo_interfaz/` + protocolo de escalabilidad orgánica en 4 fases en `docs/ARQUITECTURA_Y_PLAN_ESCALABILIDAD.md`)
 
 ---
 
-## 📌 1. Resumen de Estado Actual (Momento 1)
+## 📌 1. Resumen de Estado Actual (Momento 1 & Transición Momento 2)
 - **Estado de Entrega:** Momento 1 (Bases de Datos, Algoritmia, HTML5 Semántico, Emprendimiento Tech) COMPLETADO y RADICADO.
 - **Documento PDF Oficial:** `04_Documentos_Sustentacion/PROGANADO_ENTREGA_MOMENTO_1_CESDE.pdf` (Generado con Playwright y respaldado en Escritorio).
-- **Git Commit:** `39f515b` en rama `main`.
+- **Prototipo Interfaz:** Integrado en `prototipo_interfaz/` (v1.0 interactivo aportado por Emilio con servidor local Python, login y tarjetas de hato).
+- **Protocolo de Escalabilidad:** Formulado en `docs/ARQUITECTURA_Y_PLAN_ESCALABILIDAD.md` estructurando el crecimiento orgánico en 4 fases (Fase 1 Académica CESDE ➔ Fase 2 LAN Finca Local-First ➔ Fase 3 Cloud MVP $0 COP ➔ Fase 4 Cloud Enterprise AWS).
 - **Salvedades Académicas:**
   1. *Capa Visual:* Maqueta HTML5 semántica pura en construcción activa modular bajo responsabilidad de Sebastián Correa.
   2. *Capa de Persistencia:* MER Chen y Modelo Relacional 12 tablas 3FN en diseño base de lanzamiento, sujeto a optimizaciones iterativas en Momento 2.
@@ -29,13 +30,13 @@
 ---
 
 ## 🗃️ 3. Estructura de Datos (12 Tablas 3FN)
-1. `usuarios`: Cuentas y roles (Administrador, Asistente, Veterinario).
+1. `usuarios`: Cuentas y roles (Administrador, Asistente, Veterinario, Operario).
 2. `fincas`: Propiedades ganaderas multi-inquilino con Código ICA Predio.
 3. `suscripciones_saas`: Modelo Freemium / Pro (119k COP/mes) con política *Zero Data Loss* (modo Solo_Lectura en mora).
 4. `entregas_acopio`: Despacho diario/quincenal a Colanta con litros y recuento UFC.
 5. `potreros`: Manejo de pasturas bajo Pastoreo Racional Voisin (PRV: ocupación y descanso).
 6. `razas`: Catálogo zootécnico (Holstein, Jersey, Normando, Gyr, Girolando).
-7. `bovinos`: Ficha central del animal con estado de lactancia y flag Cinta Roja.
+7. `bovinos`: Ficha central del animal con `sexo`, `estado_fisiologico`, `estado_vital` y fecha de nacimiento. La Cinta Roja **no es columna**: se calcula en la vista `v_bovinos_cinta_roja` (fail-closed, nadie la apaga a mano).
 8. `marcaciones`: Historial 1:N de aretes (ICA, SINIGAN, manejo, tatuajes) con flag `estado_activo`.
 9. `medicamentos`: Farmacopea veterinaria con días de retiro oficial ICA.
 10. `tratamientos_sanitarios`: Historial clínico flexible (procedimientos con o sin fármacos).

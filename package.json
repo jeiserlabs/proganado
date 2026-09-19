@@ -1,0 +1,16 @@
+{
+  "name": "proganado",
+  "version": "1.1.0",
+  "private": true,
+  "description": "ProGanado S.A.S. — Gate de paridad SSOT del Proyecto Integrador CESDE Nivel 1.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "paridad": "node tools/paridad_ssot.mjs",
+    "paridad:verbose": "node tools/paridad_ssot.mjs --verbose",
+    "test": "node --test",
+    "verify": "npm run paridad && npm test"
+  }
+}
