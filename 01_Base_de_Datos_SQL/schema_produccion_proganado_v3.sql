@@ -3,6 +3,16 @@
 -- Esquema de Base de Datos Relacional Normalizado (3FN) - Versión Definitiva
 -- Validado con Operativa Real de Finca Lechera (Colanta / Inocuidad Cinta Roja)
 -- Tech Lead: Jeiser Abraham Gutiérrez | CESDE Nivel 1
+-- ------------------------------------------------------------------------------
+-- CHANGELOG
+--   v3   (2026-08-30) Versión entregada en Momento 1: 12 tablas 3FN + vista Cinta Roja.
+--   v3.1 (2026-09-15) BUG DE ZONA HORARIA en el gate de inocuidad. `CURRENT_DATE` y
+--                     `CURRENT_TIMESTAMP` en SQLite devuelven UTC, no la hora de
+--                     Colombia (UTC-5). Entre las 19:00 y las 23:59 COT el UTC ya es
+--                     el día siguiente: la vista soltaba la vaca hasta 5 horas antes
+--                     de cumplir el retiro y `fecha_registro` quedaba 5 horas adelante
+--                     (rastro de auditoría para el ICA). Ahora TODO cálculo de "hoy"
+--                     usa date('now','localtime') / datetime('now','localtime').
 -- ==============================================================================
 
 PRAGMA foreign_keys = ON;
@@ -14,7 +24,9 @@ CREATE TABLE IF NOT EXISTS usuarios (
     email TEXT NOT NULL UNIQUE,
     contrasena_hash TEXT NOT NULL,
     rol TEXT CHECK(rol IN ('Administrador', 'Asistente', 'Veterinario', 'Operario')) NOT NULL DEFAULT 'Administrador',
-    fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP
+    -- Hora LOCAL de Colombia (UTC-5), no UTC: el rastro de auditoría debe coincidir con
+    -- la hora real en que el mayordomo registró el movimiento.
+    fecha_registro DATETIME DEFAULT (datetime('now', 'localtime'))
 );
 
 -- 2. FINCAS (El Predio Ganadero / Unidad Productiva)
@@ -151,6 +163,8 @@ CREATE INDEX IF NOT EXISTS idx_tratamientos_fecha ON tratamientos_sanitarios(fec
 -- ==============================================================================
 -- 13. VISTA DINÁMICA DE INOCUIDAD LECHERA (Cálculo Automático Cinta Roja SSOT)
 -- Resuelve inconsistencia biológica: calcula periodo de retiro en tiempo real ($0 desincronización)
+-- FAIL-CLOSED: el último día de retiro el animal SIGUE bloqueado; solo libera al día
+-- siguiente. Y el "día" se mide con la fecha LOCAL de Colombia, nunca con UTC.
 -- ==============================================================================
 CREATE VIEW IF NOT EXISTS v_bovinos_cinta_roja AS
 SELECT 
@@ -162,10 +176,10 @@ SELECT
     m.dias_retiro_ica,
     DATE(t.fecha_tratamiento, '+' || m.dias_retiro_ica || ' days') AS fecha_fin_retiro,
     CASE 
-        WHEN DATE(t.fecha_tratamiento, '+' || m.dias_retiro_ica || ' days') >= CURRENT_DATE THEN 1 
+        WHEN DATE(t.fecha_tratamiento, '+' || m.dias_retiro_ica || ' days') >= date('now', 'localtime') THEN 1 
         ELSE 0 
     END AS en_periodo_retiro
 FROM bovinos b
 JOIN tratamientos_sanitarios t ON b.id_bovino = t.id_bovino
 JOIN medicamentos m ON t.id_medicamento = m.id_medicamento
-WHERE DATE(t.fecha_tratamiento, '+' || m.dias_retiro_ica || ' days') >= CURRENT_DATE;
+WHERE DATE(t.fecha_tratamiento, '+' || m.dias_retiro_ica || ' days') >= date('now', 'localtime');

@@ -8,7 +8,7 @@ Table usuarios {
   nombre varchar [not null]
   email varchar [unique, not null]
   contrasena_hash varchar [not null]
-  rol varchar [not null, note: 'Admin, Asistente, Veterinario, Operario']
+  rol varchar [not null, note: 'Administrador, Asistente, Veterinario, Operario']
   fecha_registro datetime [default: `now()`]
 }
 
@@ -73,7 +73,7 @@ Table bovinos {
 Table marcaciones {
   id_marcacion varchar [pk]
   id_bovino varchar [not null, ref: > bovinos.id_bovino]
-  tipo_marca varchar [not null, note: 'Arete_ICA, Arete_SINIGAN, Chip_RFID...']
+  tipo_marca varchar [not null, note: 'Arete_ICA, Arete_SINIGAN, Chapeta_Manejo, Hierro_Caliente, Tatuaje, Chip_RFID']
   codigo_valor varchar [not null]
   estado_activo boolean [not null, default: true]
 

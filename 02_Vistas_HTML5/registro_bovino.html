@@ -18,7 +18,8 @@
 
   <main>
     <section>
-      <form action="#" method="POST">
+      <!-- data-tabla declara contra qué tabla del DDL se valida este formulario; el gate de paridad (tools/paridad_ssot.mjs) lo exige. -->
+      <form action="#" method="POST" data-tabla="bovinos">
         <fieldset>
           <legend><strong>Datos del Animal</strong></legend>
           <br>
@@ -30,8 +31,11 @@
           <input type="text" id="txtNombre" name="nombre" placeholder="Ej: Paloma"><br><br>
 
           <p><strong>Sexo:</strong></p>
-          <label><input type="radio" name="sexo" value="H" checked required> Hembra (Vaca / Novilla / Ternera)</label><br>
-          <label><input type="radio" name="sexo" value="M"> Macho (Toro / Novillo)</label><br><br>
+          <!-- value debe ser el VOCABULARIO DE LA BASE ('Hembra'/'Macho'): el CHECK de
+               bovinos.sexo lo rechaza todo lo demás, así que enviar 'H'/'M' hacía fallar
+               el alta aunque el formulario validara "ok". -->
+          <label><input type="radio" name="sexo" value="Hembra" checked required> Hembra (Vaca / Novilla / Ternera)</label><br>
+          <label><input type="radio" name="sexo" value="Macho"> Macho (Toro / Novillo)</label><br><br>
 
           <label for="selRaza">Raza Genética:</label><br>
           <select id="selRaza" name="id_raza" required>

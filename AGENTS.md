@@ -2,7 +2,7 @@
 
 > **SSOT (Single Source of Truth) del Proyecto Integrador CESDE Nivel 1**  
 > **Proyecto:** ProGanado (Software Integral de Gestión Ganadera e Inocuidad Lechera)  
-> **Repositorio Oficial:** `https://github.com/jeiser270997-source/ProGanado.git`  
+> **Repositorio Oficial:** `https://github.com/jeiserlabs/proganado`  
 > **Ubicación Local:** `E:\PROYECTOS\Mis_Proyectos\ProGanado`
 
 ---
@@ -37,6 +37,19 @@
 7. **Formato de Evidencias HTML (CESDE):** Mapeo vertical por secciones: Captura parcial de la interfaz renderizada arriba $\rightarrow$ Captura correspondiente del fragmento de código HTML abajo, repitiendo secuencialmente hasta cubrir toda la página y todo el código.
 8. **Algoritmos en PSeInt (Formato CESDE - Jonathan Piedrahita):** En PSeInt las variables se declaran e inicializan directamente con el signo `=` (`variable = 0`, `texto = ""`, una por línea al inicio). Queda prohibido usar `Definir ... Como Entero` o flechas `<-`. La estructura obligatoria consta de 3 bloques comentados: `// DATOS DE ENTRADA`, `// PROCESO` y `// DATOS DE SALIDA` + bloc de notas anexo de análisis de entrada/proceso/salida.
 
+
+## Verificación obligatoria antes de tocar el modelo de datos (2026-09-15)
+
+El mismo modelo vive en 6 lugares (DDL, DBML, Mermaid, README, Zod, TypeScript) y copiarlo a
+mano ya produjo un desajuste real: el README y los contratos describían un `bovinos` con
+`alerta_cinta_roja` y `estado_lactancia` cuando la tabla v3 tiene `sexo`, `estado_fisiologico`
+y `estado_vital`.
+
+- **Antes de commitear cualquier cambio al DDL:** `npm run paridad` (debe imprimir "Paridad total").
+- **Para alinear las copias:** correr `node tools/gen_readme_diagrama.mjs` y ajustar DBML/Zod/TS.
+- **Deuda declarada:** `tools/paridad_excepciones.json` (con motivo y fecha de revisión; el gate falla si vence o si ya no tapa nada).
+
+---
 
 ## GOLDEN FREEZE v1.0.0 (2026-09-03)
 

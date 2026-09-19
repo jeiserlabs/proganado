@@ -1,7 +1,7 @@
 # 🛡️ DICCIONARIO DE VALIDACIÓN DE INPUTS Y CELDAS — PROGANADO SAAS
 ## Especificación de Tipado Fuerte, Restricciones y Prevención de Malas Prácticas
 **Tech Lead & QA Lead:** Jeiser Abraham Gutiérrez  
-**Repositorio:** [ProGanado](https://github.com/jeiser270997-source/ProGanado.git)
+**Repositorio:** [ProGanado](https://github.com/jeiserlabs/proganado)
 
 ---
 
@@ -42,8 +42,10 @@ Al tratarse de una **S.A.S. Ganadera y de Inocuidad Alimentaria**, los errores d
 | `fecha_nacimiento` | `<input type="date">` | `string` (ISO) | `max="today" min="2005-01-01"` | "La fecha de nacimiento no puede ser futura ni anterior a 2005." | Integridad temporal biológica de la vaca. |
 | `id_raza` | `<select>` | `string` | `required` (FK válida) | "Seleccione la raza zootécnica del bovino." | Clasificación de potencial genético. |
 | `id_potrero` | `<select>` | `string \| null` | Opcional | "Potrero no asignado o inválido." | Permite animales en establo o en pastoreo. |
-| `estado_lactancia` | `<select>` | `EstadoLactancia` | `['En_Ordeño', 'Horra_Seca', 'Novilla', 'Crecimiento', 'Toro']` | "Seleccione un estado productivo válido." | Determina si el animal ingresa a sala de ordeño. |
-| `alerta_cinta_roja` | `<input type="checkbox">` | `boolean` | Solo lectura (calculado por trigger) | "Modificado automáticamente por tratamientos médicos." | **Fail-Closed:** Protege contra bypass manual. |
+| `sexo` | `<input type="radio">` | `SexoBovino` | `['Hembra', 'Macho']` | "Seleccione el sexo del animal." | Determina la ruta productiva (leche vs carne). Sin él, la base asigna 'Hembra' por defecto y un macho queda mal clasificado. |
+| `estado_fisiologico` | `<select>` | `EstadoFisiologico` | `['En_Ordeño', 'Horra_Seca', 'Novilla_Vientre', 'Ternero_Crecimiento', 'Toro_Reproductor']` | "Seleccione un estado productivo válido." | Determina si el animal ingresa a sala de ordeño. Vocabulario idéntico al `CHECK` de la tabla. |
+| `estado_vital` | `<select>` | `EstadoVital` | `['Activo', 'Muerto', 'Vendido', 'Descarte']` | "Seleccione el estado vital del animal." | Permite retirar el animal del hato sin borrar su historia clínica. |
+| `alerta_cinta_roja` | Celda de tabla (solo lectura) | `boolean` | **Calculado en la vista `v_bovinos_cinta_roja`** | "Modificado automáticamente por los tratamientos registrados." | **Fail-Closed:** no es columna escribible, así que ningún formulario ni API puede apagarla a mano. |
 
 ---
 

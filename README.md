@@ -105,10 +105,8 @@ erDiagram
     FINCAS ||--o{ ENTREGAS_ACOPIO : "despacha (1:N)"
     FINCAS ||--o{ POTREROS : "divide_en (1:N)"
     FINCAS ||--o{ BOVINOS : "aloja (1:N)"
-    
     RAZAS ||--o{ BOVINOS : "clasifica (1:N)"
     POTREROS |o--o{ BOVINOS : "pastorea (1:N)"
-    
     BOVINOS ||--o{ MARCACIONES : "identificado_por (1:N)"
     BOVINOS ||--o{ TRATAMIENTOS_SANITARIOS : "recibe_dosis (1:N)"
     BOVINOS ||--o{ PESAJES_LECHE : "registra_produccion (1:N)"
@@ -120,10 +118,9 @@ erDiagram
         string nombre
         string email UK
         string contrasena_hash
-        string rol "Admin / Asistente / Veterinario"
+        string rol "Administrador, Asistente, Veterinario, Operario"
         datetime fecha_registro
     }
-
     FINCAS {
         string id_finca PK
         string id_usuario FK
@@ -132,26 +129,28 @@ erDiagram
         string codigo_ica_predio UK
         string municipio
     }
-
     SUSCRIPCIONES_SAAS {
         string id_suscripcion PK
         string id_finca FK
-        string plan_tipo "Free / Pro_119k / Multi_Predio"
-        string estado_acceso "Activo / Solo_Lectura"
+        string plan_tipo "Free, Pro_119k, Multi_Predio_299k"
+        string estado_acceso "Activo, Solo_Lectura, Suspendido"
         int limite_vacas
         date fecha_inicio
-        date fecha_vencimiento "Opcional"
+        date fecha_vencimiento
     }
-
     ENTREGAS_ACOPIO {
         string id_entrega PK
         string id_finca FK
         date fecha_entrega
-        decimal litros_totales
-        decimal valor_bruto_est
+        string litros_totales
+        string valor_bruto_est
         int recuento_ufc
+        string numero_tiquete
+        string litros_facturados
+        string precio_litro_real
+        string valor_pagado_real
+        string diferencia_litros
     }
-
     POTREROS {
         string id_potrero PK
         string id_finca FK
@@ -159,58 +158,52 @@ erDiagram
         int dias_ocupacion
         int dias_descanso_prv
     }
-
     RAZAS {
         string id_raza PK
         string nombre_raza UK
         string descripcion_proposito
     }
-
     BOVINOS {
         string id_bovino PK
         string id_finca FK
-        string id_potrero FK "Opcional"
+        string id_potrero FK
         string id_raza FK
+        string sexo "Hembra, Macho"
+        string estado_fisiologico "En_Ordeño, Horra_Seca, Novilla_Vientre, Ternero_Crecimiento, Toro_Reproductor"
+        string estado_vital "Activo, Muerto, Vendido, Descarte"
         date fecha_nacimiento
-        boolean alerta_cinta_roja
-        string estado_lactancia "En_Ordeño / Horra_Seca / Novilla"
     }
-
     MARCACIONES {
         string id_marcacion PK
         string id_bovino FK
-        string tipo_marca "Arete_ICA / SINIGAN / Chapeta"
+        string tipo_marca "Arete_ICA, Arete_SINIGAN, Chapeta_Manejo, Hierro_Caliente, Tatuaje, Chip_RFID"
         string codigo_valor
         boolean estado_activo
     }
-
     MEDICAMENTOS {
         string id_medicamento PK
         string nombre_farmaco UK
         int dias_retiro_ica
     }
-
     TRATAMIENTOS_SANITARIOS {
         string id_tratamiento PK
         string id_bovino FK
-        string tipo_procedimiento "Podologia, Inyeccion"
-        string id_medicamento FK "Opcional (Null)"
+        string tipo_procedimiento
+        string id_medicamento FK
         date fecha_tratamiento
-        decimal dosis_ml "Opcional"
+        string dosis_ml
     }
-
     PESAJES_LECHE {
         string id_pesaje PK
         string id_bovino FK
         date fecha_pesaje
-        time hora_pesaje "Ej: 04:30:00"
-        decimal litros_obtenidos
+        time hora_pesaje
+        string litros_obtenidos
     }
-
     EVENTOS_REPRODUCTIVOS {
         string id_evento PK
         string id_bovino FK
-        string tipo_evento "Parto / Celo / Inseminacion"
+        string tipo_evento "Parto, Celo_Observable, Inseminacion, Palpacion, Aborto"
         date fecha_evento
         int dias_abiertos_calc
     }
@@ -221,19 +214,38 @@ erDiagram
 ## 💻 6. Script DDL SQL de Producción (schema_produccion_proganado_v3.sql)
 
 ```sql
+-- ==============================================================================
+-- PROGANADO SaaS - SISTEMA INTEGRAL DE GESTIÓN GANADERA Y TRAZABILIDAD LECHERA
+-- Esquema de Base de Datos Relacional Normalizado (3FN) - Versión Definitiva
+-- Validado con Operativa Real de Finca Lechera (Colanta / Inocuidad Cinta Roja)
+-- Tech Lead: Jeiser Abraham Gutiérrez | CESDE Nivel 1
+-- ------------------------------------------------------------------------------
+-- CHANGELOG
+--   v3   (2026-08-30) Versión entregada en Momento 1: 12 tablas 3FN + vista Cinta Roja.
+--   v3.1 (2026-09-15) BUG DE ZONA HORARIA en el gate de inocuidad. `CURRENT_DATE` y
+--                     `CURRENT_TIMESTAMP` en SQLite devuelven UTC, no la hora de
+--                     Colombia (UTC-5). Entre las 19:00 y las 23:59 COT el UTC ya es
+--                     el día siguiente: la vista soltaba la vaca hasta 5 horas antes
+--                     de cumplir el retiro y `fecha_registro` quedaba 5 horas adelante
+--                     (rastro de auditoría para el ICA). Ahora TODO cálculo de "hoy"
+--                     usa date('now','localtime') / datetime('now','localtime').
+-- ==============================================================================
+
 PRAGMA foreign_keys = ON;
 
--- 1. USUARIOS (Autenticación y Seguridad)
+-- 1. USUARIOS (Autenticación y Seguridad) — roles alineados README (Admin/Asistente/Veterinario/Operario)
 CREATE TABLE IF NOT EXISTS usuarios (
     id_usuario TEXT PRIMARY KEY,
     nombre TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
     contrasena_hash TEXT NOT NULL,
     rol TEXT CHECK(rol IN ('Administrador', 'Asistente', 'Veterinario', 'Operario')) NOT NULL DEFAULT 'Administrador',
-    fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP
+    -- Hora LOCAL de Colombia (UTC-5), no UTC: el rastro de auditoría debe coincidir con
+    -- la hora real en que el mayordomo registró el movimiento.
+    fecha_registro DATETIME DEFAULT (datetime('now', 'localtime'))
 );
 
--- 2. FINCAS (El Predio Ganadero)
+-- 2. FINCAS (El Predio Ganadero / Unidad Productiva)
 CREATE TABLE IF NOT EXISTS fincas (
     id_finca TEXT PRIMARY KEY,
     id_usuario TEXT NOT NULL,
@@ -244,7 +256,8 @@ CREATE TABLE IF NOT EXISTS fincas (
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE RESTRICT
 );
 
--- 3. SUSCRIPCIONES SAAS (Modelo Freemium DataCrédito)
+-- 3. SUSCRIPCIONES SAAS (Modelo Freemium DataCrédito por Finca)
+-- DEUDA FIX 2026-08-30: unificado a 15 vacas Free + 3 planes (Free/Pro_119k/Multi) + Suspendido para paridad README/schema
 CREATE TABLE IF NOT EXISTS suscripciones_saas (
     id_suscripcion TEXT PRIMARY KEY,
     id_finca TEXT NOT NULL,
@@ -256,7 +269,7 @@ CREATE TABLE IF NOT EXISTS suscripciones_saas (
     FOREIGN KEY (id_finca) REFERENCES fincas(id_finca) ON DELETE CASCADE
 );
 
--- 4. ENTREGAS ACOPIO (Despacho Diario Carrotanque Colanta)
+-- 4. ENTREGAS ACOPIO (Despacho Diario y Conciliación Carrotanque Colanta)
 CREATE TABLE IF NOT EXISTS entregas_acopio (
     id_entrega TEXT PRIMARY KEY,
     id_finca TEXT NOT NULL,
@@ -264,6 +277,11 @@ CREATE TABLE IF NOT EXISTS entregas_acopio (
     litros_totales DECIMAL(7,2) NOT NULL,
     valor_bruto_est DECIMAL(10,2) NOT NULL,
     recuento_ufc INTEGER,
+    numero_tiquete TEXT,
+    litros_facturados DECIMAL(7,2),
+    precio_litro_real DECIMAL(8,2),
+    valor_pagado_real DECIMAL(10,2),
+    diferencia_litros DECIMAL(7,2) GENERATED ALWAYS AS (litros_totales - COALESCE(litros_facturados, litros_totales)) VIRTUAL,
     FOREIGN KEY (id_finca) REFERENCES fincas(id_finca) ON DELETE CASCADE
 );
 
@@ -284,21 +302,22 @@ CREATE TABLE IF NOT EXISTS razas (
     descripcion_proposito TEXT NOT NULL
 );
 
--- 7. BOVINOS (Ficha Central Inmutable)
+-- 7. BOVINOS (Ficha Central Inmutable del Animal - 3FN)
 CREATE TABLE IF NOT EXISTS bovinos (
     id_bovino TEXT PRIMARY KEY,
     id_finca TEXT NOT NULL,
     id_potrero TEXT,
     id_raza TEXT NOT NULL,
+    sexo TEXT CHECK(sexo IN ('Hembra', 'Macho')) NOT NULL DEFAULT 'Hembra',
+    estado_fisiologico TEXT CHECK(estado_fisiologico IN ('En_Ordeño', 'Horra_Seca', 'Novilla_Vientre', 'Ternero_Crecimiento', 'Toro_Reproductor')) NOT NULL DEFAULT 'Novilla_Vientre',
+    estado_vital TEXT CHECK(estado_vital IN ('Activo', 'Muerto', 'Vendido', 'Descarte')) NOT NULL DEFAULT 'Activo',
     fecha_nacimiento DATE NOT NULL,
-    alerta_cinta_roja BOOLEAN NOT NULL DEFAULT 0,
-    estado_lactancia TEXT CHECK(estado_lactancia IN ('En_Ordeño', 'Horra_Seca', 'Novilla', 'Crecimiento', 'Toro')) NOT NULL DEFAULT 'Novilla',
-    FOREIGN KEY (id_finca) REFERENCES fincas(id_finca) ON DELETE CASCADE,
+    FOREIGN KEY (id_finca) REFERENCES fincas(id_finca) ON DELETE RESTRICT,
     FOREIGN KEY (id_potrero) REFERENCES potreros(id_potrero) ON DELETE SET NULL,
     FOREIGN KEY (id_raza) REFERENCES razas(id_raza) ON DELETE RESTRICT
 );
 
--- 8. MARCACIONES (Aretes, Hierros, Chapetas Normalizados)
+-- 8. MARCACIONES (Aretes ICA, Hierros, Chapetas Normalizados 1:N) — tipos alineados README (SINIGAN/Chip_RFID)
 CREATE TABLE IF NOT EXISTS marcaciones (
     id_marcacion TEXT PRIMARY KEY,
     id_bovino TEXT NOT NULL,
@@ -323,36 +342,63 @@ CREATE TABLE IF NOT EXISTS tratamientos_sanitarios (
     id_medicamento TEXT,
     fecha_tratamiento DATE NOT NULL,
     dosis_ml DECIMAL(5,2),
-    FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE CASCADE,
+    FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE RESTRICT,
     FOREIGN KEY (id_medicamento) REFERENCES medicamentos(id_medicamento) ON DELETE RESTRICT
 );
 
--- 11. PESAJES LECHE (Telemetría de Curva de Lactancia)
+-- 11. PESAJES LECHE (Telemetría de Curva de Lactancia con Hora Exacta)
 CREATE TABLE IF NOT EXISTS pesajes_leche (
     id_pesaje TEXT PRIMARY KEY,
     id_bovino TEXT NOT NULL,
     fecha_pesaje DATE NOT NULL,
     hora_pesaje TIME NOT NULL,
     litros_obtenidos DECIMAL(5,2) NOT NULL,
-    FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE CASCADE
+    FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE RESTRICT,
+    CONSTRAINT uq_pesaje_bovino_momento UNIQUE (id_bovino, fecha_pesaje, hora_pesaje)
 );
 
--- 12. EVENTOS REPRODUCTIVOS (Control de los 100 Días Abiertos)
+-- 12. EVENTOS REPRODUCTIVOS (Control de los 100 Días Abiertos) — tipos alineados README (+Aborto)
 CREATE TABLE IF NOT EXISTS eventos_reproductivos (
     id_evento TEXT PRIMARY KEY,
     id_bovino TEXT NOT NULL,
     tipo_evento TEXT CHECK(tipo_evento IN ('Parto', 'Celo_Observable', 'Inseminacion', 'Palpacion', 'Aborto')) NOT NULL,
     fecha_evento DATE NOT NULL,
     dias_abiertos_calc INTEGER,
-    FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE CASCADE
+    FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE RESTRICT
 );
 
 -- ÍNDICES DE ALTO DESEMPEÑO
 CREATE INDEX IF NOT EXISTS idx_bovinos_finca ON bovinos(id_finca);
-CREATE INDEX IF NOT EXISTS idx_bovinos_cinta_roja ON bovinos(alerta_cinta_roja) WHERE alerta_cinta_roja = 1;
+CREATE INDEX IF NOT EXISTS idx_bovinos_estado ON bovinos(estado_vital, estado_fisiologico);
 CREATE INDEX IF NOT EXISTS idx_pesajes_bovino_fecha ON pesajes_leche(id_bovino, fecha_pesaje);
-CREATE INDEX IF NOT EXISTS idx_marcaciones_codigo ON marcaciones(codigo_valor);
+CREATE UNIQUE INDEX IF NOT EXISTS uq_marcaciones_codigo_activo ON marcaciones(codigo_valor) WHERE estado_activo = 1;
+CREATE UNIQUE INDEX IF NOT EXISTS uq_marcaciones_bovino_tipo_activo ON marcaciones(id_bovino, tipo_marca) WHERE estado_activo = 1;
+CREATE INDEX IF NOT EXISTS idx_marcaciones_bovino ON marcaciones(id_bovino);
 CREATE INDEX IF NOT EXISTS idx_tratamientos_fecha ON tratamientos_sanitarios(fecha_tratamiento);
+
+-- ==============================================================================
+-- 13. VISTA DINÁMICA DE INOCUIDAD LECHERA (Cálculo Automático Cinta Roja SSOT)
+-- Resuelve inconsistencia biológica: calcula periodo de retiro en tiempo real ($0 desincronización)
+-- FAIL-CLOSED: el último día de retiro el animal SIGUE bloqueado; solo libera al día
+-- siguiente. Y el "día" se mide con la fecha LOCAL de Colombia, nunca con UTC.
+-- ==============================================================================
+CREATE VIEW IF NOT EXISTS v_bovinos_cinta_roja AS
+SELECT 
+    b.id_bovino,
+    b.id_finca,
+    t.id_tratamiento,
+    m.nombre_farmaco,
+    t.fecha_tratamiento,
+    m.dias_retiro_ica,
+    DATE(t.fecha_tratamiento, '+' || m.dias_retiro_ica || ' days') AS fecha_fin_retiro,
+    CASE 
+        WHEN DATE(t.fecha_tratamiento, '+' || m.dias_retiro_ica || ' days') >= date('now', 'localtime') THEN 1 
+        ELSE 0 
+    END AS en_periodo_retiro
+FROM bovinos b
+JOIN tratamientos_sanitarios t ON b.id_bovino = t.id_bovino
+JOIN medicamentos m ON t.id_medicamento = m.id_medicamento
+WHERE DATE(t.fecha_tratamiento, '+' || m.dias_retiro_ica || ' days') >= date('now', 'localtime');
 ```
 
 ---

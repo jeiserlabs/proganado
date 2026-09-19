@@ -17,7 +17,7 @@ erDiagram
         string nombre
         string email UK
         string contrasena_hash
-        string rol "Admin, Asistente, Veterinario, Operario"
+        string rol "Administrador, Asistente, Veterinario, Operario"
         datetime fecha_registro
     }
 
@@ -74,7 +74,7 @@ erDiagram
         string id_potrero FK
         string id_raza FK
         string sexo "Hembra, Macho"
-        string estado_fisiologico "En_Ordeño, Horra_Seca, Novilla_Vientre..."
+        string estado_fisiologico "En_Ordeño, Horra_Seca, Novilla_Vientre, Ternero_Crecimiento, Toro_Reproductor"
         string estado_vital "Activo, Muerto, Vendido, Descarte"
         date fecha_nacimiento
     }
@@ -82,7 +82,7 @@ erDiagram
     marcaciones {
         string id_marcacion PK
         string id_bovino FK
-        string tipo_marca "Arete_ICA, Arete_SINIGAN, Chip_RFID..."
+        string tipo_marca "Arete_ICA, Arete_SINIGAN, Chapeta_Manejo, Hierro_Caliente, Tatuaje, Chip_RFID"
         string codigo_valor
         boolean estado_activo
     }
@@ -113,7 +113,7 @@ erDiagram
     eventos_reproductivos {
         string id_evento PK
         string id_bovino FK
-        string tipo_evento "Parto, Celo_Observable, Inseminacion..."
+        string tipo_evento "Parto, Celo_Observable, Inseminacion, Palpacion, Aborto"
         date fecha_evento
         int dias_abiertos_calc
     }

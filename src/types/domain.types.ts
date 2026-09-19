@@ -17,12 +17,21 @@ export type PlanSaaS = 'Free' | 'Pro_119k' | 'Multi_Predio_299k';
 
 export type EstadoAccesoSaaS = 'Activo' | 'Solo_Lectura' | 'Suspendido';
 
-export type EstadoLactancia = 
-  | 'En_Ordeño' 
-  | 'Horra_Seca' 
-  | 'Novilla' 
-  | 'Crecimiento' 
-  | 'Toro';
+/**
+ * Estado fisiológico/zootécnico REAL del animal (columna `bovinos.estado_fisiologico`).
+ * Antes se llamaba `EstadoLactancia` con un vocabulario distinto al del CHECK de la
+ * base: Zod aprobaba 'Novilla'/'Crecimiento'/'Toro', que el motor rechazaba.
+ */
+export type EstadoFisiologico =
+  | 'En_Ordeño'
+  | 'Horra_Seca'
+  | 'Novilla_Vientre'
+  | 'Ternero_Crecimiento'
+  | 'Toro_Reproductor';
+
+export type SexoBovino = 'Hembra' | 'Macho';
+
+export type EstadoVital = 'Activo' | 'Muerto' | 'Vendido' | 'Descarte';
 
 export type TipoMarca = 
   | 'Arete_ICA' 
@@ -44,13 +53,12 @@ export type TipoProcedimientoSanitario =
   | 'Sincronizacion_IATF' 
   | 'Vitaminas_Minerales';
 
-export type TipoEventoReproductivo = 
-  | 'Celo_Observable' 
-  | 'Inseminacion_Artificial' 
-  | 'Monta_Natural' 
-  | 'Diagnostico_Palpacion_Positivo' 
-  | 'Diagnostico_Palpacion_Vacia' 
-  | 'Parto' 
+/** PARIDAD v3.1: vocabulario idéntico al CHECK de `eventos_reproductivos`. */
+export type TipoEventoReproductivo =
+  | 'Parto'
+  | 'Celo_Observable'
+  | 'Inseminacion'
+  | 'Palpacion'
   | 'Aborto';
 
 export type CalidadHigienicaLeche = 'Excelente_Clase_A' | 'Buena_Clase_B' | 'Aceptable' | 'Deficiente_Penalizada';
@@ -114,8 +122,8 @@ export interface Potrero {
   readonly id_potrero: string;
   id_finca: string; // FK -> Finca
   nombre_potrero: string;
-  dias_ocupacion: number; // Mínimo 1, Máximo 3
-  dias_descanso_prv: number; // Mínimo 25, Óptimo 35-42
+  dias_ocupacion: number; // Mínimo 1 (validación Zod: máximo 5)
+  dias_descanso_prv: number; // Mínimo 15, Óptimo 35-42
 }
 
 /** 6. RAZAS: Catálogo Genético Zootécnico */
@@ -125,15 +133,38 @@ export interface Raza {
   descripcion_proposito: string; // Leche, Carne o Doble Propósito
 }
 
-/** 7. BOVINOS: Ficha Central Inmutable del Animal */
+/**
+ * 7. BOVINOS: Ficha Central del Animal.
+ * Campos que NO son columna (derivados de la vista `v_bovinos_cinta_roja`):
+ * `alerta_cinta_roja` y `fecha_fin_retiro`. Se exponen como SOLO LECTURA para que
+ * ningún formulario pueda apagar la cinta roja a mano (fail-closed).
+ */
 export interface Bovino {
   readonly id_bovino: string;
   id_finca: string; // FK -> Finca
   id_potrero?: string | null; // FK -> Potrero (Opcional)
   id_raza: string; // FK -> Raza
+  sexo: SexoBovino;
+  estado_fisiologico: EstadoFisiologico;
+  estado_vital: EstadoVital;
   fecha_nacimiento: string; // YYYY-MM-DD
-  alerta_cinta_roja: boolean; // Flag crítico de Inocuidad Lechera
-  estado_lactancia: EstadoLactancia;
+  readonly alerta_cinta_roja?: boolean; // DERIVADO de la vista (fail-closed)
+  readonly fecha_fin_retiro?: string | null; // DERIVADO de la vista (YYYY-MM-DD)
+}
+
+/** Payload de creación: sin los campos derivados de la vista. */
+export type CrearBovinoInput = Omit<Bovino, 'alerta_cinta_roja' | 'fecha_fin_retiro'>;
+
+/** Fila de la vista de inocuidad `v_bovinos_cinta_roja`. */
+export interface CintaRojaBovino {
+  readonly id_bovino: string;
+  readonly id_finca: string;
+  readonly id_tratamiento: string;
+  readonly nombre_farmaco: string;
+  readonly fecha_tratamiento: string;
+  readonly dias_retiro_ica: number;
+  readonly fecha_fin_retiro: string;
+  readonly en_periodo_retiro: 0 | 1;
 }
 
 /** 8. MARCACIONES: Historial 1:N de Identificaciones */
