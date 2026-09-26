@@ -18,12 +18,12 @@
 
 ---
 
-## 👥 2. Roles del Equipo y Directivas de Trabajo
+## 👥 2. Roles del Equipo y Directivas de Trabajo (Oficial 4 Integrantes — 26-Sep-2026)
 - **Jeiser Gutiérrez:** Tech Lead & Arquitecto de Base de Datos / Cloud AWS.
 - **Sebastián Correa:** Frontend Lead (HTML5 Semántico, Accesibilidad WCAG 2.1, UI/UX).
-- **Emilio Villanueva:** Desarrollador de Lógica & Algoritmos PSeInt.
-- **Camila Salas:** Directora Legal, Administrativa y Financiera (S.A.S., RST, 0% IVA Cloud E.T. Art 476).
-- **Dr. Humberto Pinto:** Asesor Médico Veterinario, Protocolos de Inocuidad Lechera y QA.
+- **Emilio Villanueva:** Zootecnia, Lógica & Algoritmos PSeInt, Diagramación SSMS.
+- **Héctor Pinto (Dr. Pinto):** Asesor Clínico / Operaciones Campo, Protocolos de Inocuidad Lechera y Pruebas DML.
+*(Nota de auditoría: Camila Salas se retiró formalmente del proyecto y del curso el 26-Sep-2026; equipo consolidado en 4 integrantes en piedra).*
 
 ---
 

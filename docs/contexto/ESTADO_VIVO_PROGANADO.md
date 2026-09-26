@@ -18,14 +18,15 @@
 
 ---
 
-## 👥 2. Asignación de Roles y Responsabilidades
+## 👥 2. Asignación de Roles y Responsabilidades (Oficial 4 Integrantes — 26-Sep-2026)
 | Integrante | Rol | Entregables Clave |
 |---|---|---|
 | **Jeiser Gutiérrez** | Tech Lead & Arquitecto BD | Modelo Relacional 12 tablas 3FN, schema SQL, arquitectura Cloud AWS, control Git. |
 | **Sebastián Correa** | Frontend Lead & Diseñador | Maquetación HTML5 semántica de las 6 vistas, accesibilidad WCAG 2.1, UI/UX. |
-| **Emilio Villanueva** | Algoritmia & Lógica PSeInt | Algoritmos de Cinta Roja, Días Abiertos y Liquidación Leche con UFC Colanta. |
-| **Camila Salas** | Legal, Admin & S.A.S. | Constitución S.A.S. Ley 1780 ($0 registro), Régimen Simple (RST), 0% IVA Cloud E.T. Art 476. |
-| **Dr. Humberto Pinto** | Asesor Clínico & QA | Inocuidad biológica, telemetría clínica (pesaje AM/PM), pitch y defensa. |
+| **Emilio Villanueva** | Algoritmia, Lógica PSeInt & Diagramas | Algoritmos de Cinta Roja, Días Abiertos, Liquidación Leche y Diagramación SSMS. |
+| **Héctor Pinto (Dr. Pinto)** | Asesor Clínico, Telemetría & DML | Inocuidad biológica, telemetría clínica (pesaje AM/PM), pruebas DML y pitch. |
+
+*(Nota de auditoría: Camila Salas se retiró formalmente del proyecto y del curso el 26-Sep-2026; equipo consolidado en 4 integrantes en piedra).*
 
 ---
 

@@ -3,7 +3,7 @@
 > **Documento Rector de Ingeniería y Evolución de Software**  
 > **Sistema:** ProGanado (Software Integral de Gestión Ganadera e Inocuidad Lechera)  
 > **Tech Lead & Arquitectura:** Jeiser Gutiérrez  
-> **Equipo de Proyecto:** Sebastián Correa (Frontend), Emilio Villanueva (Lógica/Prototipo), Camila Salas (Legal/Finanzas), Dr. Humberto Pinto (Asesor Veterinario).  
+> **Equipo de Proyecto (Oficial 4 Integrantes):** Sebastián Correa (Frontend), Emilio Villanueva (Lógica/Prototipo/Diagramas), Héctor Pinto (Asesor Clínico/Operaciones), Jeiser Gutiérrez (Tech Lead/BD). *(Camila Salas retirada 26-Sep-2026).*  
 > **Fecha de emisión:** Septiembre 2026 — Versión 1.0.0
 
 ---
