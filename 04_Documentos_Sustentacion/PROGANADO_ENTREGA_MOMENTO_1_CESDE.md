@@ -7,15 +7,15 @@
 ### DATOS INSTITUCIONALES DEL PROYECTO
 * **Nombre del Software:** ProGanado (SaaS Integral de Gestión Ganadera, Trazabilidad e Inocuidad Lechera)
 * **Línea de Formación:** Desarrollo de Software / Arquitectura de Datos, Algoritmia y Web Semántica
-* **Repositorio Público de Verificación (GitHub):** [https://github.com/jeiser270997-source/ProGanado](https://github.com/jeiser270997-source/ProGanado)
+* **Repositorio Público de Verificación (GitHub):** [https://github.com/jeiserlabs/proganado](https://github.com/jeiserlabs/proganado)
 * **Fecha de Entrega:** Domingo, 30 de Agosto de 2026
 
 ### EQUIPO DE DESARROLLO Y ASIGNACIÓN DE ROLES
 1. **Jeiser Abraham Gutiérrez:** Tech Lead, Arquitecto de Base de Datos, QA Lead y Diseñador de Gobernanza Cloud.
 2. **Sebastián Correa:** Frontend Lead & Desarrollador de Maquetación HTML5 Semántica y Accesibilidad.
-3. **Emilio Villanueva:** Desarrollador de Lógica de Negocio, Algoritmia y Validación en Pseudocódigo PSeInt.
-4. **Camila Salas:** Directora Legal, Administrativa y Financiera (Estructuración S.A.S., RST y Cumplimiento ICA/Habeas Data).
-5. **Dr. Humberto Pinto:** Asesor Médico Veterinario, Protocolos de Inocuidad Lechera y Aseguramiento de Calidad (QA).
+3. **Emilio Villanueva:** Desarrollador de Lógica de Negocio, Algoritmia, Validación en Pseudocódigo PSeInt y Diagramación.
+4. **Héctor Pinto (Dr. Humberto Pinto):** Asesor Médico Veterinario, Protocolos de Inocuidad Lechera y Pruebas DML.
+*(Histórico Momento 1: Camila Salas participó en la entrega inicial de agosto y se retiró formalmente el 26-Sep-2026).*
 
 ---
 

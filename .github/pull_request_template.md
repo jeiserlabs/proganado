@@ -3,9 +3,9 @@
 
 ## 👤 Asignación de Rol
 - [ ] **Frontend (Sebastián Correa):** Vistas HTML5 semánticas / Responsive.
-- [ ] **Lógica & PSeInt (Emilio Villanueva):** Algoritmia zootécnica / Subprocesos.
-- [ ] **Legal & Finanzas (Camila Salas):** Términos, pasarelas, S.A.S. o facturación.
-- [ ] **Veterinaria & Inocuidad (Dr. Humberto Pinto):** Protocolos clínicos y tiempos de retiro.
+- [ ] **Lógica & PSeInt / Diagramas (Emilio Villanueva):** Algoritmia zootécnica / Diagramación SSMS.
+- [ ] **Veterinaria & Inocuidad (Héctor Pinto):** Protocolos clínicos, telemetría y pruebas DML.
+- [ ] **Arquitectura & Backend (Jeiser Gutiérrez):** Schema SQL 3FN, APIs y testing.
 
 ## 🧪 Lista de Chequeo QA (Tech Lead Review - Jeiser Gutiérrez)
 - [ ] **Gentleman Programming:** Código limpio, funciones con responsabilidad única y modularidad (<300 líneas).
