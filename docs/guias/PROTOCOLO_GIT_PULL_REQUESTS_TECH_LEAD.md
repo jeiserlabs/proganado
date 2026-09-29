@@ -1,6 +1,6 @@
 # 🌿 PROTOCOLO DE RAMAS GIT, PULL REQUESTS & GOBERNANZA TECH LEAD
 > **Tech Lead & QA Lead:** Jeiser Abraham Gutiérrez  
-> **Repositorio Oficial:** [https://github.com/jeiser270997-source/ProGanado](https://github.com/jeiser270997-source/ProGanado)  
+> **Repositorio Oficial:** [https://github.com/jeiserlabs/proganado](https://github.com/jeiserlabs/proganado)  
 > **Propósito:** Guía de colaboración en Git/GitHub para que el equipo trabaje en ramas independientes y Jeiser apruebe los avances mediante Pull Requests.
 
 ---
@@ -27,7 +27,7 @@ Cuando en el CESDE aprendan a usar Git y GitHub, cada compañero seguirá este f
 ### Paso 1: Clonar y crear su propia rama
 ```bash
 # 1. Clonar el repositorio público
-git clone https://github.com/jeiser270997-source/ProGanado.git
+git clone https://github.com/jeiserlabs/proganado.git
 cd ProGanado
 
 # 2. Crear y cambiarse a su rama personal (Ejemplo para Sebastián)
@@ -47,10 +47,10 @@ git push origin feature/frontend-sebastian
 ```
 
 ### Paso 4: Abrir un Pull Request (PR) en GitHub
-1. Ir a [https://github.com/jeiser270997-source/ProGanado](https://github.com/jeiser270997-source/ProGanado).
+1. Ir a [https://github.com/jeiserlabs/proganado](https://github.com/jeiserlabs/proganado).
 2. Hacer clic en el botón verde **"Compare & pull request"**.
 3. Seleccionar: `base: main` $\leftarrow$ `compare: feature/tu-rama`.
-4. Asignar como Revisor (**Reviewer**) a **Jeiser Gutiérrez** (`jeiser270997-source`).
+4. Asignar como Revisor (**Reviewer**) a **Jeiser Gutiérrez** (`jeiserlabs`).
 
 ---
 

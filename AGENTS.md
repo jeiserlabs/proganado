@@ -22,7 +22,7 @@
 - **Jeiser Gutiérrez:** Tech Lead & Arquitecto de Base de Datos / Cloud AWS.
 - **Sebastián Correa:** Frontend Lead (HTML5 Semántico, Accesibilidad WCAG 2.1, UI/UX).
 - **Emilio Villanueva:** Desarrollador de Lógica & Algoritmos PSeInt.
-- **Camila Salas:** Directora Legal, Administrativa y Financiera (S.A.S., RST, 0% IVA Cloud E.T. Art 476).
+- **Camila Salas:** Directora Legal, Administrativa y Financiera (S.A.S., RST, 0% IVA Cloud E.T. Art 476). *(Retirada formalmente del proyecto y del curso el 26-sep-2026.)*
 - **Dr. Humberto Pinto:** Asesor Médico Veterinario, Protocolos de Inocuidad Lechera y QA.
 
 ---

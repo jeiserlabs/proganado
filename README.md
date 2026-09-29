@@ -90,7 +90,7 @@ Si una finca en plan **Pro** no renueva su suscripción mensual:
 |---|---|---|---|
 | **Jeiser Abraham Gutiérrez** | Chief Technology Officer (CTO) | Tech Lead & QA Lead | Arquitectura 3FN, gobernanza TypeScript, esquemas Zod, DDL SQL y roadmap Cloud AWS. |
 | **Sebastián Correa** | Chief Design Officer (CDO) | Frontend Lead | UI/UX Pro Max, maquetación HTML5 semántica pura, accesibilidad WCAG 2.1 y blueprints. |
-| **Camila Salas** | Chief Legal & Financial Officer (CLO/CFO) | Asistente Legal/Admin | Formalización S.A.S. (Ley 1780), Régimen Simple (RST 1.8%-5.4%) y 0% IVA Cloud. |
+| **Camila Salas** *(retirada del curso el 26-sep-2026)* | Chief Legal & Financial Officer (CLO/CFO) | Asistente Legal/Admin | Formalización S.A.S. (Ley 1780), Régimen Simple (RST 1.8%-5.4%) y 0% IVA Cloud. |
 | **Dr. Humberto Pinto** | Chief Medical & Scientific Officer (CSO) | Asesor Médico & QA | Telemetría médica (pesaje AM/PM), protocolos de inocuidad y asesoría zootécnica. |
 | **Emilio Villanueva** | Head of Operations (COO) | Lógica & PSeInt Lead | Algoritmia en PSeInt (Cinta Roja, Días Abiertos, Liquidación UFC) y validación de campo. |
 
