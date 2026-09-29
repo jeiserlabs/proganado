@@ -1,4 +1,4 @@
-﻿================================================================================
+================================================================================
 INSTITUCIÓN: CESDE - ESCUELA DE TECNOLOGÍA E INNOVACIÓN | MEDELLÍN
 MÓDULO: INTRODUCCIÓN A LA PROGRAMACIÓN / BASES DE DATOS
 DOCENTE: JONATHAN FELIPE PIEDRAHITA NIETO
@@ -6,14 +6,15 @@ EQUIPO: GRUPO NÚMERO 3 (PROGANADO S.A.S.)
 ================================================================================
 
 PROYECTO: ProGanado S.A.S. — Sistema Integral de Gestión Ganadera e Inocuidad Lechera
-REPOSITORIO PÚBLICO GITHUB: https://github.com/jeiser270997-source/ProGanado.git
+REPOSITORIO PÚBLICO GITHUB: https://github.com/jeiserlabs/proganado.git
 
-INTEGRANTES Y ROLES:
+INTEGRANTES Y ROLES (EQUIPO OFICIAL: 4 INTEGRANTES):
 1. Jeiser Abraham Gutiérrez (Líder / Tech Lead, Arquitecto de Base de Datos y QA Lead)
 2. Sebastián Correa (Chief Design Officer / Frontend Lead & Maquetación Semántica)
 3. Emilio Villanueva (Head of Operations / Lógica de Negocio y Algoritmos PSeInt)
-4. Camila Salas (Chief Legal & Financial Officer / Formalización S.A.S. y Facturación)
-5. Dr. Humberto Pinto (Chief Scientific Officer / Asesor Médico Veterinario y QA Inocuidad)
+4. Héctor Pinto (Chief Scientific Officer / Asesor Médico Veterinario y QA Inocuidad)
+
+NOTA: Camila Salas participó en la entrega inicial del Momento 1 y se retiró formalmente del curso el 26-sep-2026.
 
 ESTADO DE LA ENTREGA (MOMENTO 1):
 - [X] Campo 2 Formulario: Modelo Entidad-Relación en Notación Chen (Rectángulos y Óvalos) -> ER PROGANADO.drawio / PDF.

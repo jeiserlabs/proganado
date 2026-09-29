@@ -42,7 +42,7 @@ const q = (db, sql, ...p) => db.prepare(sql).all(...p);
 function sembrar(db, diasRetiro) {
   const hash = 'h'.repeat(12); // fuera del template: dentro, SQLite ve 'h'.repeat( y falla
   db.prepare(`INSERT INTO usuarios (id_usuario, nombre, email, contrasena_hash, rol) VALUES ('U1','Jeiser','j@finca.co',?,'Administrador')`).run(hash);
-  db.exec(`INSERT INTO fincas VALUES ('F1','U1','La Esperanza','1019156838','05-647-0012','Santa Rosa de Osos')`);
+  db.exec(`INSERT INTO fincas VALUES ('F1','U1','La Esperanza','900333222','05-647-0012','Santa Rosa de Osos')`);
   db.exec(`INSERT INTO razas VALUES ('R1','Gyr','Leche')`);
   db.exec(`INSERT INTO medicamentos VALUES ('M1','Oxitetraciclina',${diasRetiro})`);
   db.exec(`INSERT INTO bovinos VALUES ('B1','F1',NULL,'R1','Hembra','En_Ordeño','Activo','2022-01-01')`);
