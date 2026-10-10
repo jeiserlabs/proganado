@@ -20,12 +20,12 @@ const DIAS_SESION = 7;
    el código de seguridad. Las cuentas +alias (correo+etiqueta@gmail.com)
    entregan en el mismo buzón de eavillas1991@gmail.com. */
 const AUTH_DEFAULT = [
-  { correo: 'eavillas1991@gmail.com',        pass: 'ProGanado2026*', nombre: 'Emilio',          role: 'admin',   force: true },
-  { correo: 'eavillas1991+admin2@gmail.com', pass: 'Farma2026*9',    nombre: 'Administrador 2', role: 'admin',   force: true },
-  { correo: 'eavillas1991+admin3@gmail.com', pass: 'Farma2026*13',   nombre: 'Administrador 3', role: 'admin',   force: true },
-  { correo: 'eavillas1991+admin4@gmail.com', pass: 'Farma2026*17',   nombre: 'Administrador 4', role: 'admin',   force: true },
-  { correo: 'eavillas1991+usuario1@gmail.com', pass: 'Ordeño2026*3',  nombre: 'Usuario 1',      role: 'usuario', force: true },
-  { correo: 'eavillas1991+usuario2@gmail.com', pass: 'Potrero2026*5', nombre: 'Usuario 2',      role: 'usuario', force: true }
+  { correo: 'eavillas1991@gmail.com',          pass: 'ProGanado2026*', nombre: 'Emilio Villanueva', role: 'admin',   force: true },
+  { correo: 'jeiser.gutierrez@proganado.co',   pass: 'ProGanado2026*', nombre: 'Jeiser Gutiérrez',  role: 'admin',   force: true },
+  { correo: 'sebastian.correa@proganado.co',   pass: 'ProGanado2026*', nombre: 'Sebastián Correa',  role: 'admin',   force: true },
+  { correo: 'hector.pinto@proganado.co',       pass: 'ProGanado2026*', nombre: 'Dr. Héctor Pinto',  role: 'admin',   force: true },
+  { correo: 'eavillas1991+usuario1@gmail.com', pass: 'Ordeño2026*3',   nombre: 'Operario Ordeño',   role: 'usuario', force: true },
+  { correo: 'eavillas1991+usuario2@gmail.com', pass: 'Potrero2026*5',  nombre: 'Mayordomo PRV',     role: 'usuario', force: true }
 ];
 
 const ES_CORREO = v => /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(String(v || '').trim().toLowerCase());
@@ -97,7 +97,10 @@ function registrarIntento(user, ok) {
 
 /* ---------- Sesión ---------- */
 function sesionActual() {
-  try { return JSON.parse(sessionStorage.getItem('proGanadoSesion')); } catch (e) { return null; }
+  try {
+    const raw = sessionStorage.getItem('proGanadoSesion') || localStorage.getItem('proGanadoSesion');
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
 }
 
 /* Respaldo: si el servidor no responde (página abierta sin servidor),

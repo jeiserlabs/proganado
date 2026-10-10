@@ -1,10 +1,13 @@
 /* ============================================================
-   ProGanado — Funcionalidad sobre el Modelo Relacional v4.0
-   Tablas simuladas en localStorage (12 tablas del MR):
-   usuarios, fincas (fija), razas, potreros, bovinos,
-   marcaciones, medicamentos, tratamientos_sanitarios,
-   eventos_reproductivos, pesajes_leche, entregas_acopio,
-   movimientos_potrero
+   ProGanado — Funcionalidad sobre el Modelo Relacional v4.0 (3FN)
+   12 Tablas Oficiales del Modelo Relacional (SSOT):
+   1. usuarios                7. bovinos
+   2. fincas                  8. marcaciones (1:N con estado_activo)
+   3. suscripciones_saas      9. medicamentos
+   4. entregas_acopio        10. tratamientos_sanitarios
+   5. potreros               11. pesajes_leche
+   6. razas                  12. eventos_reproductivos
+   + Vista Calculada: v_bovinos_cinta_roja (Fail-Closed ICA)
    ============================================================ */
 'use strict';
 
@@ -15,9 +18,10 @@ const hoy = () => new Date().toISOString().slice(0, 10);
 const fmtFecha = f => new Date(f + 'T12:00:00').toLocaleDateString('es-CO', { day: 'numeric', month: 'short' });
 const mesCorto = f => new Date(f + 'T12:00:00').toLocaleDateString('es-CO', { month: 'short' }).replace('.', '').slice(0, 3).toUpperCase();
 const clean = v => String(v == null ? '' : v).trim();
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const uid = p => p + '_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 
-/* ---------- Datos semilla (coherentes con el MR) ---------- */
+/* ---------- Datos semilla (coherentes con las 12 tablas 3FN) ---------- */
 const TODOS_ARETES = '452,458,627,629,635,972,1047,1069,1074,1075,1078,1095,1106,1151,1153,1162,1164,1172,1201,1225,1226,1227,1233,1234,1236,1237,1239,1249,1253,1261,1293,1297,1311,1317,1320,1322,1324,1327,1330,1331,1332,1342,1343,1348,1349,1353,1355,1363,1366,1369,1377,1379,1381,1386,1387,1388,1389,1391,1393,1399,1400,1403,1408,1410,1413,1418,1420,1421,1422,1428,1430,1431,1436,1441,1466,1467,1469,1478,1479,1483,1485,1488,1492,1493,1496,1497,1507,1511,1513,1516,1519,1520,1522,1527,1534,1537,1559,1563,1566,1575,1580,1587,1589,1592,1593,1598,1599,1601,1603,1604,1606,1609,1610,1611,1612,1844'.split(',');
 
 /* Completa el hato con TODAS las vacas fotografiadas del ZIP (arete real + foto) */
@@ -33,7 +37,7 @@ function completarHato(lista, razasRot, potesRot) {
     if (año >= 2026) estado = 'Ternera';
     else if (año === 2025) estado = 'Novilla Vientre';
     else estado = n % 5 === 0 ? 'Horra Seca' : 'En Ordeño';
-    lista.push({ id_bovino: 'bov_' + tag, name: 'Vaca ' + tag, tag: tag, id_raza: razasRot[n % razasRot.length], sexo: 'Hembra', estado: estado, id_potrero: potesRot[n % potesRot.length], birth: año + '-' + mes + '-' + dia, marca: 'Arete ICA ' + tag, foto: 'assets/ganado/vaca_' + tag + '.jpg' });
+    lista.push({ id_bovino: 'bov_' + tag, id_finca: 'finca_1', name: 'Vaca ' + tag, tag: tag, id_raza: razasRot[n % razasRot.length], sexo: 'Hembra', estado: estado, estado_vital: 'Activo', id_potrero: potesRot[n % potesRot.length], birth: año + '-' + mes + '-' + dia, marca: 'Arete ICA ' + tag, foto: 'assets/ganado/vaca_' + tag + '.jpg' });
   }
   return lista;
 }
@@ -42,7 +46,51 @@ function seed() {
   const razaBrahman = 'raza_brahman', razaHolstein = 'raza_holstein', razaGyr = 'raza_gyr', razaSim = 'raza_simmental';
   const potNorte = 'pot_norte', potSur = 'pot_sur', potEste = 'pot_este';
   const medAftosa = 'med_aftosa', medOxi = 'med_oxi', medDesp = 'med_desp';
+  const bovinosSeed = (() => { const l = [
+    // 12 vacas REALES del hato (fotos de assets/ganado/, aretes del registro de la finca)
+    { id_bovino: 'bov_1074', id_finca: 'finca_1', name: 'Vaca 1074', tag: '1074', id_raza: razaGyr, sexo: 'Hembra', estado: 'En Ordeño', estado_vital: 'Activo', id_potrero: potNorte, birth: '2021-06-18', marca: 'Arete ICA 1074', foto: 'assets/ganado/vaca_1074.jpg' },
+    { id_bovino: 'bov_1075', id_finca: 'finca_1', name: 'Vaca 1075', tag: '1075', id_raza: razaHolstein, sexo: 'Hembra', estado: 'En Ordeño', estado_vital: 'Activo', id_potrero: potNorte, birth: '2022-02-03', marca: 'Arete ICA 1075', foto: 'assets/ganado/vaca_1075.jpg' },
+    { id_bovino: 'bov_1078', id_finca: 'finca_1', name: 'Vaca 1078', tag: '1078', id_raza: razaHolstein, sexo: 'Hembra', estado: 'En Ordeño', estado_vital: 'Activo', id_potrero: potSur, birth: '2020-11-24', marca: 'Arete ICA 1078', foto: 'assets/ganado/vaca_1078.jpg' },
+    { id_bovino: 'bov_1095', id_finca: 'finca_1', name: 'Vaca 1095', tag: '1095', id_raza: razaSim, sexo: 'Hembra', estado: 'En Ordeño', estado_vital: 'Activo', id_potrero: potSur, birth: '2020-03-15', marca: 'Arete ICA 1095', foto: 'assets/ganado/vaca_1095.jpg' },
+    { id_bovino: 'bov_1106', id_finca: 'finca_1', name: 'Vaca 1106', tag: '1106', id_raza: razaGyr, sexo: 'Hembra', estado: 'En Ordeño', estado_vital: 'Activo', id_potrero: potNorte, birth: '2022-07-28', marca: 'Arete ICA 1106', foto: 'assets/ganado/vaca_1106.jpg' },
+    { id_bovino: 'bov_1151', id_finca: 'finca_1', name: 'Vaca 1151', tag: '1151', id_raza: razaBrahman, sexo: 'Hembra', estado: 'Horra Seca', estado_vital: 'Activo', id_potrero: potEste, birth: '2020-10-02', marca: 'Arete ICA 1151', foto: 'assets/ganado/vaca_1151.jpg' },
+    { id_bovino: 'bov_1153', id_finca: 'finca_1', name: 'Vaca 1153', tag: '1153', id_raza: razaHolstein, sexo: 'Hembra', estado: 'En Ordeño', estado_vital: 'Activo', id_potrero: potSur, birth: '2023-01-12', marca: 'Arete ICA 1153', foto: 'assets/ganado/vaca_1153.jpg' },
+    { id_bovino: 'bov_1162', id_finca: 'finca_1', name: 'Vaca 1162', tag: '1162', id_raza: razaGyr, sexo: 'Hembra', estado: 'Novilla Vientre', estado_vital: 'Activo', id_potrero: potEste, birth: '2024-09-14', marca: 'Arete ICA 1162', foto: 'assets/ganado/vaca_1162.jpg' },
+    { id_bovino: 'bov_1164', id_finca: 'finca_1', name: 'Vaca 1164', tag: '1164', id_raza: razaHolstein, sexo: 'Hembra', estado: 'En Ordeño', estado_vital: 'Activo', id_potrero: potNorte, birth: '2021-11-08', marca: 'Arete ICA 1164', foto: 'assets/ganado/vaca_1164.jpg' },
+    { id_bovino: 'bov_1172', id_finca: 'finca_1', name: 'Vaca 1172', tag: '1172', id_raza: razaSim, sexo: 'Hembra', estado: 'En Ordeño', estado_vital: 'Activo', id_potrero: potSur, birth: '2022-05-21', marca: 'Arete ICA 1172', foto: 'assets/ganado/vaca_1172.jpg' },
+    { id_bovino: 'bov_635', id_finca: 'finca_1', name: 'Vaca 635', tag: '635', id_raza: razaBrahman, sexo: 'Macho', estado: 'Toro', estado_vital: 'Activo', id_potrero: potEste, birth: '2019-05-11', marca: 'Arete SINIGAN 635', foto: 'assets/ganado/vaca_635.jpg' },
+    { id_bovino: 'bov_1201', id_finca: 'finca_1', name: 'Vaca 1201', tag: '1201', id_raza: razaGyr, sexo: 'Hembra', estado: 'Ternera', estado_vital: 'Activo', id_potrero: potNorte, birth: '2026-04-19', marca: 'Arete ICA 1201', foto: 'assets/ganado/vaca_1201.jpg' }
+  ]; return completarHato(l, [razaGyr, razaHolstein, razaBrahman, razaSim], [potNorte, potSur, potEste]); })();
+
+  const tratamientosSeed = [
+    { id_tratamiento: 'trat_1', id_bovino: 'bov_1075', id_medicamento: medOxi, tipo_procedimiento: 'Tratamiento mastitis', fecha_tratamiento: diasAtras(1), dosis_ml: 15, nota: 'Cuarto trasero izquierdo' },
+    { id_tratamiento: 'trat_2', id_bovino: 'bov_1201', id_medicamento: medDesp, tipo_procedimiento: 'Desparasitación', fecha_tratamiento: diasAtras(5), dosis_ml: 4, nota: '' },
+    { id_tratamiento: 'trat_3', id_bovino: 'bov_1074', id_medicamento: medAftosa, tipo_procedimiento: 'Vacunación', fecha_tratamiento: diasAtras(40), dosis_ml: 2, nota: 'Ciclo anual' }
+  ];
+  const eventosSeed = [
+    { id_evento: 'ev_1', id_bovino: 'bov_1074', tipo_evento: 'Parto', fecha_evento: '2026-04-19', dias_abiertos_calc: null, nota: 'Ternera de la 1074' },
+    { id_evento: 'ev_2', id_bovino: 'bov_1106', tipo_evento: 'Inseminación', fecha_evento: diasAtras(80), dias_abiertos_calc: 80, nota: 'Semen Gyr' },
+    { id_evento: 'ev_3', id_bovino: 'bov_1153', tipo_evento: 'Celo Observable', fecha_evento: diasAtras(6), dias_abiertos_calc: null, nota: '' },
+    { id_evento: 'ev_4', id_bovino: 'bov_1075', tipo_evento: 'Inseminación', fecha_evento: diasAtras(30), dias_abiertos_calc: 30, nota: '' }
+  ];
+  const pesajesSeed = [
+    { id_pesaje: 'pes_1', id_bovino: 'bov_1074', fecha_pesaje: hoy(), hora_pesaje: '06:10', litros_obtenidos: 13.2 },
+    { id_pesaje: 'pes_2', id_bovino: 'bov_1078', fecha_pesaje: hoy(), hora_pesaje: '06:25', litros_obtenidos: 14.8 },
+    { id_pesaje: 'pes_3', id_bovino: 'bov_1106', fecha_pesaje: hoy(), hora_pesaje: '06:40', litros_obtenidos: 11.5 },
+    { id_pesaje: 'pes_4', id_bovino: 'bov_1153', fecha_pesaje: diasAtras(1), hora_pesaje: '06:15', litros_obtenidos: 12.4 },
+    { id_pesaje: 'pes_5', id_bovino: 'bov_1075', fecha_pesaje: diasAtras(2), hora_pesaje: '06:20', litros_obtenidos: 10.9 }
+  ];
+  const entregasSeed = [
+    { id_entrega: 'ent_1', id_finca: 'finca_1', fecha_entrega: diasAtras(2), litros_totales: 391, valor_bruto_est: 893000, recuento_ufc: 80000 }
+  ];
+
   return {
+    fincas: [
+      { id_finca: 'finca_1', nombre_finca: 'Hacienda La Esperanza', municipio: 'San Pedro de los Milagros', departamento: 'Antioquia', codigo_ica_predio: '05-664-00142' }
+    ],
+    suscripciones_saas: [
+      { id_suscripcion: 'sub_1', id_finca: 'finca_1', plan: 'Pro_Mensual', valor_cop: 119000, estado_acceso: 'Activo' }
+    ],
     razas: [
       { id_raza: razaHolstein, nombre_raza: 'Holstein', descripcion_proposito: 'Lechera especializada' },
       { id_raza: razaBrahman, nombre_raza: 'Brahman', descripcion_proposito: 'Doble propósito' },
@@ -50,51 +98,31 @@ function seed() {
       { id_raza: razaSim, nombre_raza: 'Simmental', descripcion_proposito: 'Doble propósito' }
     ],
     potreros: [
-      { id_potrero: potNorte, nombre_potrero: 'Potrero Norte', dias_ocupacion: 1, dias_descanso_prv: 35, estado: 'Ocupado', desde: hoy() },
-      { id_potrero: potSur, nombre_potrero: 'Potrero Sur', dias_ocupacion: 1, dias_descanso_prv: 35, estado: 'Descanso', desde: hoy() },
-      { id_potrero: potEste, nombre_potrero: 'Potrero Este', dias_ocupacion: 2, dias_descanso_prv: 30, estado: 'Libre', desde: null }
+      { id_potrero: potNorte, id_finca: 'finca_1', nombre_potrero: 'Potrero Norte', dias_ocupacion: 1, dias_descanso_prv: 35, estado: 'Ocupado', desde: hoy() },
+      { id_potrero: potSur, id_finca: 'finca_1', nombre_potrero: 'Potrero Sur', dias_ocupacion: 1, dias_descanso_prv: 35, estado: 'Descanso', desde: hoy() },
+      { id_potrero: potEste, id_finca: 'finca_1', nombre_potrero: 'Potrero Este', dias_ocupacion: 2, dias_descanso_prv: 30, estado: 'Libre', desde: null }
     ],
-    bovinos: (() => { const l = [
-      // 12 vacas REALES del hato (fotos de assets/ganado/, aretes del registro de la finca)
-      { id_bovino: 'bov_1074', name: 'Vaca 1074', tag: '1074', id_raza: razaGyr, sexo: 'Hembra', estado: 'En Ordeño', id_potrero: potNorte, birth: '2021-06-18', marca: 'Arete ICA 1074', foto: 'assets/ganado/vaca_1074.jpg' },
-      { id_bovino: 'bov_1075', name: 'Vaca 1075', tag: '1075', id_raza: razaHolstein, sexo: 'Hembra', estado: 'En Ordeño', id_potrero: potNorte, birth: '2022-02-03', marca: 'Arete ICA 1075', foto: 'assets/ganado/vaca_1075.jpg' },
-      { id_bovino: 'bov_1078', name: 'Vaca 1078', tag: '1078', id_raza: razaHolstein, sexo: 'Hembra', estado: 'En Ordeño', id_potrero: potSur, birth: '2020-11-24', marca: 'Arete ICA 1078', foto: 'assets/ganado/vaca_1078.jpg' },
-      { id_bovino: 'bov_1095', name: 'Vaca 1095', tag: '1095', id_raza: razaSim, sexo: 'Hembra', estado: 'En Ordeño', id_potrero: potSur, birth: '2020-03-15', marca: 'Arete ICA 1095', foto: 'assets/ganado/vaca_1095.jpg' },
-      { id_bovino: 'bov_1106', name: 'Vaca 1106', tag: '1106', id_raza: razaGyr, sexo: 'Hembra', estado: 'En Ordeño', id_potrero: potNorte, birth: '2022-07-28', marca: 'Arete ICA 1106', foto: 'assets/ganado/vaca_1106.jpg' },
-      { id_bovino: 'bov_1151', name: 'Vaca 1151', tag: '1151', id_raza: razaBrahman, sexo: 'Hembra', estado: 'Horra Seca', id_potrero: potEste, birth: '2020-10-02', marca: 'Arete ICA 1151', foto: 'assets/ganado/vaca_1151.jpg' },
-      { id_bovino: 'bov_1153', name: 'Vaca 1153', tag: '1153', id_raza: razaHolstein, sexo: 'Hembra', estado: 'En Ordeño', id_potrero: potSur, birth: '2023-01-12', marca: 'Arete ICA 1153', foto: 'assets/ganado/vaca_1153.jpg' },
-      { id_bovino: 'bov_1162', name: 'Vaca 1162', tag: '1162', id_raza: razaGyr, sexo: 'Hembra', estado: 'Novilla Vientre', id_potrero: potEste, birth: '2024-09-14', marca: 'Arete ICA 1162', foto: 'assets/ganado/vaca_1162.jpg' },
-      { id_bovino: 'bov_1164', name: 'Vaca 1164', tag: '1164', id_raza: razaHolstein, sexo: 'Hembra', estado: 'En Ordeño', id_potrero: potNorte, birth: '2021-11-08', marca: 'Arete ICA 1164', foto: 'assets/ganado/vaca_1164.jpg' },
-      { id_bovino: 'bov_1172', name: 'Vaca 1172', tag: '1172', id_raza: razaSim, sexo: 'Hembra', estado: 'En Ordeño', id_potrero: potSur, birth: '2022-05-21', marca: 'Arete ICA 1172', foto: 'assets/ganado/vaca_1172.jpg' },
-      { id_bovino: 'bov_635', name: 'Vaca 635', tag: '635', id_raza: razaBrahman, sexo: 'Macho', estado: 'Toro', id_potrero: potEste, birth: '2019-05-11', marca: 'Arete SINIGAN 635', foto: 'assets/ganado/vaca_635.jpg' },
-      { id_bovino: 'bov_1201', name: 'Vaca 1201', tag: '1201', id_raza: razaGyr, sexo: 'Hembra', estado: 'Ternera', id_potrero: potNorte, birth: '2026-04-19', marca: 'Arete ICA 1201', foto: 'assets/ganado/vaca_1201.jpg' }
-    ]; return completarHato(l, [razaGyr, razaHolstein, razaBrahman, razaSim], [potNorte, potSur, potEste]); })(),
+    bovinos: bovinosSeed,
+    marcaciones: bovinosSeed.map(b => ({
+      id_marcacion: 'marc_' + b.tag,
+      id_bovino: b.id_bovino,
+      tipo_marca: b.tag === '635' ? 'Arete_SINIGAN' : 'Arete_ICA',
+      codigo_marca: b.tag,
+      estado_activo: true
+    })),
     medicamentos: [
       { id_medicamento: medAftosa, nombre_farmaco: 'Vacuna Aftosa', dias_retiro_ica: 0 },
       { id_medicamento: medOxi, nombre_farmaco: 'Oxitetraciclina LA', dias_retiro_ica: 6 },
       { id_medicamento: medDesp, nombre_farmaco: 'Ivermectina 1%', dias_retiro_ica: 8 }
     ],
-    tratamientos: [
-      { id_tratamiento: 'trat_1', id_bovino: 'bov_1075', id_medicamento: medOxi, tipo_procedimiento: 'Tratamiento mastitis', fecha_tratamiento: diasAtras(1), dosis_ml: 15, nota: 'Cuarto trasero izquierdo' },
-      { id_tratamiento: 'trat_2', id_bovino: 'bov_1201', id_medicamento: medDesp, tipo_procedimiento: 'Desparasitación', fecha_tratamiento: diasAtras(5), dosis_ml: 4, nota: '' },
-      { id_tratamiento: 'trat_3', id_bovino: 'bov_1074', id_medicamento: medAftosa, tipo_procedimiento: 'Vacunación', fecha_tratamiento: diasAtras(40), dosis_ml: 2, nota: 'Ciclo anual' }
-    ],
-    eventos: [
-      { id_evento: 'ev_1', id_bovino: 'bov_1074', tipo_evento: 'Parto', fecha_evento: '2026-04-19', dias_abiertos_calc: null, nota: 'Ternera de la 1074' },
-      { id_evento: 'ev_2', id_bovino: 'bov_1106', tipo_evento: 'Inseminación', fecha_evento: diasAtras(80), dias_abiertos_calc: 80, nota: 'Semen Gyr' },
-      { id_evento: 'ev_3', id_bovino: 'bov_1153', tipo_evento: 'Celo Observable', fecha_evento: diasAtras(6), dias_abiertos_calc: null, nota: '' },
-      { id_evento: 'ev_4', id_bovino: 'bov_1075', tipo_evento: 'Inseminación', fecha_evento: diasAtras(30), dias_abiertos_calc: 30, nota: '' }
-    ],
-    pesajes: [
-      { id_pesaje: 'pes_1', id_bovino: 'bov_1074', fecha_pesaje: hoy(), hora_pesaje: '06:10', litros_obtenidos: 13.2 },
-      { id_pesaje: 'pes_2', id_bovino: 'bov_1078', fecha_pesaje: hoy(), hora_pesaje: '06:25', litros_obtenidos: 14.8 },
-      { id_pesaje: 'pes_3', id_bovino: 'bov_1106', fecha_pesaje: hoy(), hora_pesaje: '06:40', litros_obtenidos: 11.5 },
-      { id_pesaje: 'pes_4', id_bovino: 'bov_1153', fecha_pesaje: diasAtras(1), hora_pesaje: '06:15', litros_obtenidos: 12.4 },
-      { id_pesaje: 'pes_5', id_bovino: 'bov_1075', fecha_pesaje: diasAtras(2), hora_pesaje: '06:20', litros_obtenidos: 10.9 }
-    ],
-    entregas: [
-      { id_entrega: 'ent_1', fecha_entrega: diasAtras(2), litros_totales: 391, valor_bruto_est: 893000, recuento_ufc: 80000 }
-    ],
+    tratamientos: tratamientosSeed,
+    tratamientos_sanitarios: tratamientosSeed,
+    eventos: eventosSeed,
+    eventos_reproductivos: eventosSeed,
+    pesajes: pesajesSeed,
+    pesajes_leche: pesajesSeed,
+    entregas: entregasSeed,
+    entregas_acopio: entregasSeed,
     movimientos: [
       { id_mov: 'mov_1', id_potrero: potNorte, accion: 'Entrada', fecha: diasAtras(1), cantidad: 5 }
     ]
@@ -104,6 +132,19 @@ function diasAtras(n) { const d = new Date(); d.setDate(d.getDate() - n); return
 
 /* ---------- Persistencia ---------- */
 let db = load();
+function syncTablas3FN(obj) {
+  if (!obj) return obj;
+  obj.tratamientos_sanitarios = obj.tratamientos;
+  obj.eventos_reproductivos = obj.eventos;
+  obj.pesajes_leche = obj.pesajes;
+  obj.entregas_acopio = obj.entregas;
+  if (!obj.fincas) obj.fincas = [{ id_finca: 'finca_1', nombre_finca: 'Hacienda La Esperanza', municipio: 'San Pedro de los Milagros', departamento: 'Antioquia', codigo_ica_predio: '05-664-00142' }];
+  if (!obj.suscripciones_saas) obj.suscripciones_saas = [{ id_suscripcion: 'sub_1', id_finca: 'finca_1', plan: 'Pro_Mensual', valor_cop: 119000, estado_acceso: 'Activo' }];
+  if (!obj.marcaciones && Array.isArray(obj.bovinos)) {
+    obj.marcaciones = obj.bovinos.map(b => ({ id_marcacion: 'marc_' + b.tag, id_bovino: b.id_bovino, tipo_marca: 'Arete_ICA', codigo_marca: b.tag, estado_activo: true }));
+  }
+  return obj;
+}
 function load() {
   try {
     const raw = localStorage.getItem(DB_KEY);
@@ -115,15 +156,15 @@ function load() {
         parsed.tratamientos = (parsed.tratamientos || []).filter(t => ids.has(t.id_bovino));
         parsed.eventos = (parsed.eventos || []).filter(e => ids.has(e.id_bovino));
         parsed.pesajes = (parsed.pesajes || []).filter(p => ids.has(p.id_bovino));
-        return parsed;
+        return syncTablas3FN(parsed);
       }
     }
   } catch (e) { /* datos corruptos: regenerar */ }
-  const fresh = seed();
+  const fresh = syncTablas3FN(seed());
   save(fresh);
   return fresh;
 }
-function save(data) { try { localStorage.setItem(DB_KEY, JSON.stringify(data || db)); } catch (e) { /* cuota llena */ } }
+function save(data) { try { localStorage.setItem(DB_KEY, JSON.stringify(syncTablas3FN(data || db))); } catch (e) { /* cuota llena */ } }
 
 /* ---------- Helpers de dominio ---------- */
 const raza = id => (db.razas.find(r => r.id_raza === id) || {}).nombre_raza || '—';
@@ -164,8 +205,8 @@ function renderGanado() {
     const tr = document.createElement('tr');
     const retiro = retiroPendiente(b.id_bovino);
     const td1 = document.createElement('td');
-    const avatar = b.foto ? '<img class="animal-foto" loading="lazy" title="Ver foto grande" src="' + b.foto + '" alt="' + b.name + '" />' : '<span class="animal-avatar">' + (b.sexo === 'Macho' ? '♂' : b.estado.includes('Tern') ? '◌' : '♀') + '</span>';
-    td1.innerHTML = '<div class="animal-cell">' + avatar + '<strong>' + b.name + '</strong></div>';
+    const avatar = b.foto ? '<img class="animal-foto" loading="lazy" title="Ver foto grande" src="' + esc(b.foto) + '" alt="' + esc(b.name) + '" />' : '<span class="animal-avatar">' + (b.sexo === 'Macho' ? '♂' : b.estado.includes('Tern') ? '◌' : '♀') + '</span>';
+    td1.innerHTML = '<div class="animal-cell">' + avatar + '<strong>' + esc(b.name) + '</strong></div>';
     tr.append(td1);
     if (b.foto) { td1.querySelector('.animal-foto').addEventListener('click', () => abrirFoto(b.id_bovino)); }
     const celdas = [ '#' + b.tag, raza(b.id_raza), b.estado, (potrero(b.id_potrero) || {}).nombre_potrero || '—' ];
@@ -209,25 +250,25 @@ function renderCartilla() {
   const pesajes = db.pesajes.filter(p => p.id_bovino === id).sort((a, c) => (c.fecha_pesaje + c.hora_pesaje).localeCompare(a.fecha_pesaje + a.hora_pesaje));
   const retiro = retiroPendiente(id);
   cont.innerHTML =
-    '<div class="cartilla-head">' + (b.foto ? '<img src="' + b.foto + '" alt="' + b.name + '" />' : '') + '<div><strong>' + b.name + '</strong><span>' + (b.marca || 'Sin marca') + ' · ' + raza(b.id_raza) + '</span></div></div>' +
+    '<div class="cartilla-head">' + (b.foto ? '<img src="' + esc(b.foto) + '" alt="' + esc(b.name) + '" />' : '') + '<div><strong>' + esc(b.name) + '</strong><span>' + esc(b.marca || 'Sin marca') + ' · ' + esc(raza(b.id_raza)) + '</span></div></div>' +
     '<div class="kpi-list">' +
-    '<div><span>Raza</span><b>' + raza(b.id_raza) + '</b></div>' +
+    '<div><span>Raza</span><b>' + esc(raza(b.id_raza)) + '</b></div>' +
     '<div><span>Edad</span><b>' + edadTexto(b.birth) + '</b></div>' +
-    '<div><span>Estado fisiológico</span><b>' + b.estado + '</b></div>' +
-    '<div><span>Potrero</span><b>' + ((potrero(b.id_potrero) || {}).nombre_potrero || '—') + '</b></div>' +
-    '<div><span>Identificación</span><b>' + (b.marca || 'Sin marca registrada') + '</b></div>' +
+    '<div><span>Estado fisiológico</span><b>' + esc(b.estado) + '</b></div>' +
+    '<div><span>Potrero</span><b>' + esc((potrero(b.id_potrero) || {}).nombre_potrero || '—') + '</b></div>' +
+    '<div><span>Identificación</span><b>' + esc(b.marca || 'Sin marca registrada') + '</b></div>' +
     '<div><span>Seguimiento médico</span><b>' + (retiro > 0 ? '<span class="badge b-red">LECHE SUSPENDIDA · retiro ' + retiro + ' días</span>' : '<span class="badge b-green">Sin retiro activo</span>') + '</b></div>' +
     '</div>' +
     '<p class="section-eyebrow eyebrow">Tratamientos y vacunas (' + tratamientos.length + ')</p>' +
     (tratamientos.length ? '<div class="reto-list">' + tratamientos.map(t => {
       const med = medicamento(t.id_medicamento) || {};
       const r = retiroDeTrat(t);
-      return '<div class="reto"><span class="calendar">' + t.fecha_tratamiento.slice(8) + '<br><b>' + mesCorto(t.fecha_tratamiento) + '</b></span><div><strong>' + t.tipo_procedimiento + ' · ' + (med.nombre_farmaco || '?') + '</strong><p>Dosis ' + t.dosis_ml + ' ml' + (t.nota ? ' · ' + t.nota : '') + '</p></div><span class="spacer">' + (r > 0 ? '<span class="badge b-red">Leche suspendida ' + r + ' d</span>' : '<span class="badge b-green">Retiro cumplido</span>') + '</span></div>';
+      return '<div class="reto"><span class="calendar">' + esc(t.fecha_tratamiento.slice(8)) + '<br><b>' + esc(mesCorto(t.fecha_tratamiento)) + '</b></span><div><strong>' + esc(t.tipo_procedimiento) + ' · ' + esc(med.nombre_farmaco || '?') + '</strong><p>Dosis ' + Number(t.dosis_ml) + ' ml' + (t.nota ? ' · ' + esc(t.nota) : '') + '</p></div><span class="spacer">' + (r > 0 ? '<span class="badge b-red">Leche suspendida ' + r + ' d</span>' : '<span class="badge b-green">Retiro cumplido</span>') + '</span></div>';
     }).join('') + '</div>' : '<p class="empty" style="display:block">Sin tratamientos registrados.</p>') +
     '<p class="section-eyebrow eyebrow">Eventos reproductivos (' + eventos.length + ')</p>' +
-    (eventos.length ? '<div class="reto-list">' + eventos.map(e => '<div class="reto"><span class="calendar">' + e.fecha_evento.slice(8) + '<br><b>' + mesCorto(e.fecha_evento) + '</b></span><div><strong>' + e.tipo_evento + '</strong><p>' + (e.nota || '') + '</p></div><span class="spacer">' + (e.dias_abiertos_calc ? '<span class="badge b-amber">' + diasDesde(e.fecha_evento) + ' d abiertos</span>' : '') + '</span></div>').join('') + '</div>' : '<p class="empty" style="display:block">Sin eventos reproductivos.</p>') +
+    (eventos.length ? '<div class="reto-list">' + eventos.map(e => '<div class="reto"><span class="calendar">' + esc(e.fecha_evento.slice(8)) + '<br><b>' + esc(mesCorto(e.fecha_evento)) + '</b></span><div><strong>' + esc(e.tipo_evento) + '</strong><p>' + esc(e.nota || '') + '</p></div><span class="spacer">' + (e.dias_abiertos_calc ? '<span class="badge b-amber">' + diasDesde(e.fecha_evento) + ' d abiertos</span>' : '') + '</span></div>').join('') + '</div>' : '<p class="empty" style="display:block">Sin eventos reproductivos.</p>') +
     '<p class="section-eyebrow eyebrow">Últimos pesajes (' + pesajes.length + ')</p>' +
-    (pesajes.length ? '<div class="reto-list">' + pesajes.slice(0, 5).map(p => '<div class="reto"><span class="calendar">' + p.fecha_pesaje.slice(8) + '<br><b>' + mesCorto(p.fecha_pesaje) + '</b></span><div><strong>' + p.litros_obtenidos + ' L</strong><p>Ordeño de las ' + p.hora_pesaje + '</p></div></div>').join('') + '</div>' : '<p class="empty" style="display:block">Sin pesajes.</p>');
+    (pesajes.length ? '<div class="reto-list">' + pesajes.slice(0, 5).map(p => '<div class="reto"><span class="calendar">' + esc(p.fecha_pesaje.slice(8)) + '<br><b>' + esc(mesCorto(p.fecha_pesaje)) + '</b></span><div><strong>' + Number(p.litros_obtenidos) + ' L</strong><p>Ordeño de las ' + esc(p.hora_pesaje) + '</p></div></div>').join('') + '</div>' : '<p class="empty" style="display:block">Sin pesajes.</p>');
 }
 function retiroDeTrat(t) {
   const med = medicamento(t.id_medicamento);
@@ -248,7 +289,7 @@ function renderSalud() {
     const r = retiroDeTrat(t);
     if (r > 0) { enRetiro++; activos++; }
     const tr = document.createElement('tr');
-    tr.innerHTML = '<td><strong>' + nombreBov(t.id_bovino) + '</strong></td><td>' + t.tipo_procedimiento + '</td><td>' + (med.nombre_farmaco || '?') + '</td><td>' + fmtFecha(t.fecha_tratamiento) + '</td><td>' + t.dosis_ml + ' ml</td><td>' + (med.dias_retiro_ica || 0) + ' días</td><td>' + (r > 0 ? '<span class="badge b-red">Retiro ' + r + ' d</span>' : '<span class="badge b-green">Cumplido</span>') + '</td>';
+    tr.innerHTML = '<td><strong>' + esc(nombreBov(t.id_bovino)) + '</strong></td><td>' + esc(t.tipo_procedimiento) + '</td><td>' + esc(med.nombre_farmaco || '?') + '</td><td>' + fmtFecha(t.fecha_tratamiento) + '</td><td>' + Number(t.dosis_ml) + ' ml</td><td>' + Number(med.dias_retiro_ica || 0) + ' días</td><td>' + (r > 0 ? '<span class="badge b-red">Retiro ' + r + ' d</span>' : '<span class="badge b-green">Cumplido</span>') + '</td>';
     tb.append(tr);
   }
   $('#emptyTrat').style.display = lista.length ? 'none' : 'block';
@@ -259,7 +300,7 @@ function renderSalud() {
   const mt = $('#medicamentosTable'); mt.replaceChildren();
   for (const m of db.medicamentos) {
     const tr = document.createElement('tr');
-    tr.innerHTML = '<td><strong>' + m.nombre_farmaco + '</strong></td><td>' + (m.dias_retiro_ica ? '<span class="badge b-amber">' + m.dias_retiro_ica + ' días</span>' : '<span class="badge b-green">Sin retiro</span>') + '</td>';
+    tr.innerHTML = '<td><strong>' + esc(m.nombre_farmaco) + '</strong></td><td>' + (m.dias_retiro_ica ? '<span class="badge b-amber">' + Number(m.dias_retiro_ica) + ' días</span>' : '<span class="badge b-green">Sin retiro</span>') + '</td>';
     mt.append(tr);
   }
 }
@@ -270,7 +311,7 @@ function renderRepro() {
   const lista = [...db.eventos].sort((a, b) => b.fecha_evento.localeCompare(a.fecha_evento));
   for (const e of lista.slice(0, 12)) {
     const tr = document.createElement('tr');
-    tr.innerHTML = '<td><strong>' + nombreBov(e.id_bovino) + '</strong></td><td>' + e.tipo_evento + '</td><td>' + fmtFecha(e.fecha_evento) + '</td><td>' + (e.dias_abiertos_calc ? diasDesde(e.fecha_evento) + ' d' : '—') + '</td><td>' + (e.nota || '') + '</td>';
+    tr.innerHTML = '<td><strong>' + esc(nombreBov(e.id_bovino)) + '</strong></td><td>' + esc(e.tipo_evento) + '</td><td>' + fmtFecha(e.fecha_evento) + '</td><td>' + (e.dias_abiertos_calc ? diasDesde(e.fecha_evento) + ' d' : '—') + '</td><td>' + esc(e.nota || '') + '</td>';
     tb.append(tr);
   }
   $('#emptyRepro').style.display = lista.length ? 'none' : 'block';
