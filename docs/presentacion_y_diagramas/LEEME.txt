@@ -1,0 +1,37 @@
+========================================================================
+PROGANADO SAAS • CARPETA PRINCIPAL DE SUSTENTACIÓN CESDE
+========================================================================
+
+Esta carpeta contiene todos los archivos del proyecto ProGanado listos para
+abrir con doble clic en Google Chrome o Microsoft Edge:
+
+1. 1_PRESENTACION_PITCH.html
+   - Keynote / Presentación ejecutiva interactiva (10 diapositivas).
+   - Estilo visual de alta gama inspirado en Aceternity UI y Magic UI.
+   - Controles: Flecha derecha (→) o Espacio para avanzar; Flecha izquierda (←) para retroceder; Tecla 'F' para Pantalla Completa.
+   - Simuladores integrados:
+     * Slide 4: Simulador en vivo de Cinta Roja ICA (Inocuidad Fail-Closed).
+     * Slide 6: Calculadora de Bonificación Colanta por UFC (+80 COP / -120 COP).
+     * Slide 7: Auditoría del frontend de Emilio (116 fotos reales mapeadas).
+
+2. 2_STUDIO_DIAGRAMAS.html
+   - Studio de Diagramación Multi-Herramienta:
+     * Pestaña 1: React Flow / xyflow (Nodos interactivos con cables de pulso SVG animados e inspector lateral al hacer clic en cada nodo).
+     * Pestaña 2: drawDB (Esquema relacional de 12 tablas en 3FN con badges PK/FK).
+     * Pestaña 3: Eraser.io (Diagrama de arquitectura de sistema y límites offline).
+
+3. 3_DASHBOARD_SAAS.html
+   - Dashboard analítico SaaS estilo Tremor UI.
+   - KPIs con deltas porcentuales (Leche acopiada, liquidación estimada en M COP, vacas en cinta roja, días abiertos).
+   - Curva SVG de producción diaria con degradado esmeralda.
+   - Tabla de monitoreo sanitario en tiempo real.
+
+4. 4_ARQUITECTURA_INTERACTIVA.html
+   - Visor clásico de arquitectura por capas y máquina de estados.
+
+5. SLIDES_HD/
+   - Carpeta con las 10 diapositivas en formato PNG de alta resolución (1440x900 px) para insertar en documentos o compartir.
+
+6. DIAGRAMAS_D2/
+   - Archivo de especificación declarativa D2 (proganado_architecture.d2).
+========================================================================

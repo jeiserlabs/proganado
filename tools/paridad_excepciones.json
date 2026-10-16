@@ -27,84 +27,84 @@
       "ident": "asistente_ganadero_refactorizado.psc",
       "motivo": "El archivo se commiteó el 30-ago 13:44 y la regla 8 de formato PSeInt se escribió 49 minutos después (14:33). Corregirlo exige reabrir PSeInt y el artefacto ya está radicado en el PDF del Momento 1. Deuda a cargo de Emilio Villanueva.",
       "fecha": "2026-09-15",
-      "revisar_antes_de": "2026-10-15"
+      "revisar_antes_de": "2026-11-15"
     },
     {
       "codigo": "PSEINT_FLECHA",
       "ident": "asistente_ganadero_refactorizado.psc",
       "motivo": "Misma causa: el algoritmo se entregó antes de que existiera la regla de asignación con '='. Requiere reescritura en la GUI de PSeInt para validar sintaxis.",
       "fecha": "2026-09-15",
-      "revisar_antes_de": "2026-10-15"
+      "revisar_antes_de": "2026-11-15"
     },
     {
       "codigo": "PSEINT_SIN_INICIALIZACION",
       "ident": "asistente_ganadero_refactorizado.psc",
       "motivo": "Misma causa: variables declaradas con 'Definir' en vez de 'variable = valor'. Exige reescritura y prueba dentro de PSeInt.",
       "fecha": "2026-09-15",
-      "revisar_antes_de": "2026-10-15"
+      "revisar_antes_de": "2026-11-15"
     },
     {
       "codigo": "PSEINT_BLOQUE_ENTRADA",
       "ident": "asistente_ganadero_refactorizado.psc",
       "motivo": "Falta el bloque comentado '// DATOS DE ENTRADA' exigido por la regla 8, escrita después de la entrega del algoritmo.",
       "fecha": "2026-09-15",
-      "revisar_antes_de": "2026-10-15"
+      "revisar_antes_de": "2026-11-15"
     },
     {
       "codigo": "PSEINT_BLOQUE_PROCESO",
       "ident": "asistente_ganadero_refactorizado.psc",
       "motivo": "Falta el bloque comentado '// PROCESO' exigido por la regla 8, escrita después de la entrega del algoritmo.",
       "fecha": "2026-09-15",
-      "revisar_antes_de": "2026-10-15"
+      "revisar_antes_de": "2026-11-15"
     },
     {
       "codigo": "PSEINT_BLOQUE_SALIDA",
       "ident": "asistente_ganadero_refactorizado.psc",
       "motivo": "Falta el bloque comentado '// DATOS DE SALIDA' exigido por la regla 8, escrita después de la entrega del algoritmo.",
       "fecha": "2026-09-15",
-      "revisar_antes_de": "2026-10-15"
+      "revisar_antes_de": "2026-11-15"
     },
     {
       "codigo": "PSEINT_DEFINIR",
       "ident": "asistente_logica_proganado_completo.psc",
       "motivo": "El archivo se commiteó el 30-ago 13:44 y la regla 8 de formato PSeInt se escribió 49 minutos después (14:33). Corregirlo exige reabrir PSeInt y el artefacto ya está radicado en el Momento 1.",
       "fecha": "2026-09-15",
-      "revisar_antes_de": "2026-10-15"
+      "revisar_antes_de": "2026-11-15"
     },
     {
       "codigo": "PSEINT_FLECHA",
       "ident": "asistente_logica_proganado_completo.psc",
       "motivo": "Misma causa: usa la flecha '<-' cuando la regla 8 exige '='. Requiere reescritura y validación en la GUI de PSeInt.",
       "fecha": "2026-09-15",
-      "revisar_antes_de": "2026-10-15"
+      "revisar_antes_de": "2026-11-15"
     },
     {
       "codigo": "PSEINT_SIN_INICIALIZACION",
       "ident": "asistente_logica_proganado_completo.psc",
       "motivo": "Misma causa: declara con 'Definir' en lugar de inicializar con 'variable = valor' al inicio del algoritmo.",
       "fecha": "2026-09-15",
-      "revisar_antes_de": "2026-10-15"
+      "revisar_antes_de": "2026-11-15"
     },
     {
       "codigo": "PSEINT_BLOQUE_ENTRADA",
       "ident": "asistente_logica_proganado_completo.psc",
       "motivo": "Falta el bloque comentado '// DATOS DE ENTRADA' exigido por la regla 8, escrita después de la entrega del algoritmo.",
       "fecha": "2026-09-15",
-      "revisar_antes_de": "2026-10-15"
+      "revisar_antes_de": "2026-11-15"
     },
     {
       "codigo": "PSEINT_BLOQUE_PROCESO",
       "ident": "asistente_logica_proganado_completo.psc",
       "motivo": "Falta el bloque comentado '// PROCESO' exigido por la regla 8, escrita después de la entrega del algoritmo.",
       "fecha": "2026-09-15",
-      "revisar_antes_de": "2026-10-15"
+      "revisar_antes_de": "2026-11-15"
     },
     {
       "codigo": "PSEINT_BLOQUE_SALIDA",
       "ident": "asistente_logica_proganado_completo.psc",
       "motivo": "Falta el bloque comentado '// DATOS DE SALIDA' exigido por la regla 8, escrita después de la entrega del algoritmo.",
       "fecha": "2026-09-15",
-      "revisar_antes_de": "2026-10-15"
+      "revisar_antes_de": "2026-11-15"
     },
     {
       "codigo": "HTML_SIN_TABLA_DECLARADA",
