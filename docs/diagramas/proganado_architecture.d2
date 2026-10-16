@@ -1,0 +1,126 @@
+# ==============================================================================
+# PROGANADO SAAS — ARQUITECTURA Y ESPECIFICACIÓN DE SISTEMA (D2 LANGUAGE)
+# Proyecto Integrador CESDE Nivel 1 — Tech Lead: Jeiser Abraham Gutiérrez
+# ==============================================================================
+
+direction: down
+
+title: "ProGanado SaaS — Arquitectura de Sistema y Reglas de Negocio" {
+  near: top-center
+  shape: text
+  style.font-size: 24
+  style.bold: true
+}
+
+# ------------------------------------------------------------------------------
+# 1. CAPA DE PRESENTACIÓN & ACTORES
+# ------------------------------------------------------------------------------
+actores: "Actores de la Finca" {
+  style.fill: "#f8fafc"
+  style.stroke: "#94a3b8"
+
+  ganadero: "Propietario / Administrador\n(Dashboard, Facturación, KPIs)" {
+    shape: person
+  }
+  veterinario: "Médico Veterinario / Asistente\n(EHR Sanitario, Farmacopea, IATF)" {
+    shape: person
+  }
+  operario: "Operario de Campo / Mayordomo\n(Pesaje AM/PM, Areteo, Rotación PRV)" {
+    shape: person
+  }
+}
+
+frontend: "Capa de Presentación (HTML5 Semántico + PWA)" {
+  style.fill: "#f0fdf4"
+  style.stroke: "#16a34a"
+
+  vistas: "Módulos de Interfaz WCAG 2.1" {
+    dashboard: "Panel de Inicio & Resumen Hato"
+    ganado: "Inventario Bovino & Cartillas"
+    sanidad: "Gestión Sanitaria & Alerta Retiro ICA"
+    reproduccion: "Ciclo Reproductivo & Días Abiertos"
+    produccion: "Pesajes AM/PM & Entregas Acopio"
+    potreros: "Pastoreo Racional Voisin (PRV)"
+  }
+}
+
+actores.ganadero -> frontend.vistas.dashboard: "Monitorea negocio"
+actores.veterinario -> frontend.vistas.sanidad: "Registra tratamientos"
+actores.operario -> frontend.vistas.produccion: "Registra litros de ordeño"
+
+# ------------------------------------------------------------------------------
+# 2. CAPA DE APLICACIÓN Y CONTRATOS (TYPESCRIPT + ZOD 4)
+# ------------------------------------------------------------------------------
+backend_api: "Capa de Aplicación y API REST (TypeScript Strict)" {
+  style.fill: "#eff6ff"
+  style.stroke: "#2563eb"
+
+  gateway: "API Router & Middlewares\n(Auth, Roles, Fail-Closed Guards)"
+  
+  schemas: "Contratos de Validación (Zod 4 Specs)" {
+    bovino_val: "BovinoSchema"
+    tratamiento_val: "TratamientoSanitarioSchema"
+    pesaje_val: "PesajeLecheSchema"
+    acopio_val: "EntregaAcopioSchema"
+  }
+}
+
+frontend -> backend_api.gateway: "Peticiones HTTP REST / JSON"
+backend_api.gateway -> backend_api.schemas: "Valida payloads de entrada"
+
+# ------------------------------------------------------------------------------
+# 3. CAPA DE DOMINIO PURO (REGLAS DE NEGOCIO INMUTABLES)
+# ------------------------------------------------------------------------------
+dominio_puro: "Núcleo de Dominio (Pure Business Rules / Zero-Any)" {
+  style.fill: "#fefce8"
+  style.stroke: "#ca8a04"
+
+  regla_cinta_roja: "Regla 1: Inocuidad Biológica (Cinta Roja)\nFail-Closed: Bloqueo activo hasta 23:59:59 del fin de retiro ICA" {
+    style.fill: "#fee2e2"
+    style.stroke: "#dc2626"
+  }
+
+  regla_dias_abiertos: "Regla 2: Fertilidad y Días Abiertos\nMeta < 100 días post-parto. Alerta a 90d, Crítico a 120d" {
+    style.fill: "#fef3c7"
+    style.stroke: "#d97706"
+  }
+
+  regla_liquidacion: "Regla 3: Liquidación Lechera Colanta\nBase COP + Bonificación/Castigo UFC/ml + Merma Carrotanque" {
+    style.fill: "#dbeafe"
+    style.stroke: "#2563eb"
+  }
+}
+
+backend_api.schemas -> dominio_puro: "Ejecuta lógica sin efectos secundarios"
+
+# ------------------------------------------------------------------------------
+# 4. CAPA DE PERSISTENCIA RELACIONAL (12 TABLAS 3FN)
+# ------------------------------------------------------------------------------
+database: "Base de Datos Relacional (PostgreSQL / SQLite WAL)" {
+  style.fill: "#faf5ff"
+  style.stroke: "#9333ea"
+
+  tablas_core: "12 Tablas 3FN Oficiales" {
+    t_usuarios: "usuarios (ID, Rol, Hash, Fecha)"
+    t_fincas: "fincas (ID, Propietario, Código ICA Predio)"
+    t_suscripciones: "suscripciones_saas (Plan, Estado, Límite)"
+    t_bovinos: "bovinos (Sexo, Estado Fisiológico, Estado Vital)"
+    t_marcaciones: "marcaciones (1:N Aretes ICA, SINIGAN, Chips)"
+    t_medicamentos: "medicamentos (Farmacopea, Días Retiro ICA)"
+    t_tratamientos: "tratamientos_sanitarios (EHR Clínico, Dosis)"
+    t_pesajes: "pesajes_leche (Hora AM/PM, Litros)"
+    t_eventos: "eventos_reproductivos (Parto, Celo, IATF)"
+    t_acopio: "entregas_acopio (Litros, UFC, Dictamen Colanta)"
+    t_potreros: "potreros (Ocupación, Descanso PRV)"
+    t_razas: "razas (Catálogo Zootécnico)"
+  }
+
+  vista_inocuidad: "Vista Calculada: v_bovinos_cinta_roja\n(Fail-Closed SQL: fecha_tratamiento + dias_retiro_ica >= fecha_actual)" {
+    style.fill: "#ffe4e6"
+    style.stroke: "#e11d48"
+  }
+}
+
+dominio_puro -> database.tablas_core: "Persiste entidades validadas"
+database.tablas_core -> database.vista_inocuidad: "Calcula en tiempo real sin mutar columnas"
+database.vista_inocuidad -> dominio_puro.regla_cinta_roja: "Alimenta el oráculo de inocuidad"

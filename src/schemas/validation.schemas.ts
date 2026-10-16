@@ -33,7 +33,7 @@ export const UsuarioSchema = z.object({
   email: z.string().email('El formato del correo electrónico no es válido'),
   contrasena_hash: z.string().min(8, 'La contraseña debe tener un hash de al menos 8 caracteres'),
   rol: z.enum(['Administrador', 'Asistente', 'Veterinario', 'Operario'], {
-    errorMap: () => ({ message: 'Rol no autorizado en el sistema' })
+    message: 'Rol no autorizado en el sistema'
   }),
   fecha_registro: z.string().regex(REGEX_DATETIME_LOCAL, 'Formato de fecha de registro inválido (YYYY-MM-DD HH:MM:SS)').optional()
 });
@@ -106,13 +106,13 @@ export const BovinoSchema = z.object({
   id_raza: z.string().min(1, 'Raza obligatoria'),
   fecha_nacimiento: z.string().regex(REGEX_FECHA_ISO, 'Fecha de nacimiento debe ser YYYY-MM-DD'),
   sexo: z.enum(['Hembra', 'Macho'], {
-    errorMap: () => ({ message: 'Sexo no reconocido (Hembra / Macho)' })
+    message: 'Sexo no reconocido (Hembra / Macho)'
   }),
   estado_fisiologico: z.enum(['En_Ordeño', 'Horra_Seca', 'Novilla_Vientre', 'Ternero_Crecimiento', 'Toro_Reproductor'], {
-    errorMap: () => ({ message: 'Estado zootécnico no reconocido' })
+    message: 'Estado zootécnico no reconocido'
   }),
   estado_vital: z.enum(['Activo', 'Muerto', 'Vendido', 'Descarte'], {
-    errorMap: () => ({ message: 'Estado vital no reconocido' })
+    message: 'Estado vital no reconocido'
   })
 });
 

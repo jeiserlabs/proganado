@@ -1,0 +1,50 @@
+================================================================================
+INSTRUCCIONES PARA GENERAR LA PRESENTACIÓN DE PROGANADO SAAS EN GLM 5.3
+================================================================================
+
+¡Hola Jeiser!
+Esta carpeta contiene el paquete completo y profesional para generar la presentación
+ejecutiva de ProGanado SaaS en GLM 5.3 (formato 16:9, Bento Grid Dark Mode AgTech).
+
+DIFERENCIA CLAVE CON PROYECTOS ADMINISTRATIVOS:
+- PROHIBIDAS LAS MATRICES ESCOLARES (NO Matriz EFI, NO Matriz EFE, NO PESTEL).
+- ProGanado se defiende como un Pitch Deck de Startup Tecnológica B2B SaaS (estilo
+  Silicon Valley / Y Combinator), centrado en Arquitectura de Software (12 tablas en 3FN),
+  Algoritmia de Inocuidad (Cinta Roja Fail-Closed), Telemetría de Ordeño AM/PM, Rotación
+  de Pasturas PRV, Modelo de Suscripción Recurrente (119k COP/mes) y Tracción real con
+  un hato de 163 animales en Antioquia.
+
+--------------------------------------------------------------------------------
+ARCHIVOS INCLUIDOS EN ESTA CARPETA:
+--------------------------------------------------------------------------------
+1. PROMPT_MAESTRO_GLM_5.3_PROGANADO.md:
+   Especificación completa y exhaustiva, slide por slide, directrices y narrativa.
+
+2. PROMPT_COPIAR_Y_PEGAR_EN_GLM.txt:
+   Versión en texto plano para copiar y pegar directamente en la ventana de chat de GLM 5.3.
+
+3. PALETA_IDENTIDAD_Y_ESTILO.json:
+   Códigos de color HEX, tipografías y reglas de estilo visual para alimentar a GLM.
+
+4. PAQUETE_PITCH_PROGANADO_GLM53.zip:
+   Archivo comprimido que contiene todos los prompts, diagramas relacionales HD,
+   logos de ProGanado (normal y blanco) y capturas reales de la interfaz (Login,
+   Dashboard, Ganado, Salud Cinta Roja, Telemetría de Ordeño y Potreros PRV).
+
+5. Carpeta assets/:
+   Imágenes y diagramas en alta definición listos para adjuntar si GLM lo solicita.
+
+--------------------------------------------------------------------------------
+PASO A PASO PARA GENERAR EN GLM 5.3:
+--------------------------------------------------------------------------------
+Paso 1: Abre GLM 5.3 (o la herramienta de generación de diapositivas).
+Paso 2: Adjunta el archivo "PAQUETE_PITCH_PROGANADO_GLM53.zip" (o los archivos de assets).
+Paso 3: Abre el archivo "PROMPT_COPIAR_Y_PEGAR_EN_GLM.txt", selecciona todo (Ctrl+A),
+        cópialo (Ctrl+C) y pégalo (Ctrl+V) en el mensaje inicial.
+Paso 4: Envía el mensaje y deja que GLM 5.3 construya las 12 diapositivas 16:9.
+Paso 5: Descarga el PDF y el PPTX resultante en tu carpeta de Descargas.
+Paso 6: Regresa aquí y dime: "audita y puntúa" para verificar y calificar la presentación
+        con los mismos estándares de rigor que aplicamos a Segaso.
+
+¡Todo listo para brillar en la sustentación de Desarrollo de Software del CESDE!
+================================================================================

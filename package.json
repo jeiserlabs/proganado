@@ -8,9 +8,16 @@
     "node": ">=22.5"
   },
   "scripts": {
+    "typecheck": "tsc --noEmit",
     "paridad": "node tools/paridad_ssot.mjs",
     "paridad:verbose": "node tools/paridad_ssot.mjs --verbose",
-    "test": "node --test",
-    "verify": "npm run paridad && npm test"
+    "test": "node --test tests/paridad_ssot.test.mjs tests/domain_rules.test.ts",
+    "verify": "npm run typecheck && npm run paridad && npm test"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5"
   }
 }

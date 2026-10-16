@@ -1,0 +1,72 @@
+{
+  "startup": "ProGanado SaaS",
+  "tagline": "Software Integral de Gestión Ganadera, Trazabilidad e Inocuidad Lechera",
+  "categoria": "B2B AgTech SaaS / Cloud Agriculture",
+  "modelo_visual": "Bento Grid Dark Mode AgTech (Silicon Valley / Y Combinator Style)",
+  "paleta_colores": {
+    "fondo_maestro": {
+      "hex": "#0A110D",
+      "descripcion": "Carbón Pastizal Profundo (Dark Canvas 16:9)"
+    },
+    "fondo_secundario": {
+      "hex": "#101B15",
+      "descripcion": "Carbón Establo Oscuro (Contenedores base)"
+    },
+    "tarjetas_bento": {
+      "hex": "#131F18",
+      "descripcion": "Bento Grid Card translúcida con elevación sutil"
+    },
+    "bordes_bento": {
+      "hex": "#1E3A2B",
+      "descripcion": "Borde perimetral verde esmeralda sutil de 1px"
+    },
+    "primario_esmeralda": {
+      "hex": "#10B981",
+      "descripcion": "Verde Esmeralda Tecnológico (Acentos, CTAs, estado activo)"
+    },
+    "primario_profundo": {
+      "hex": "#059669",
+      "descripcion": "Esmeralda Agropecuario (Gradientes y sombreados)"
+    },
+    "texto_titulares": {
+      "hex": "#F9FAFB",
+      "descripcion": "Blanco Hielo de alto contraste"
+    },
+    "texto_parrafos": {
+      "hex": "#9CA3AF",
+      "descripcion": "Gris Campo Neutro para lectura prolongada"
+    },
+    "alerta_cinta_roja": {
+      "hex": "#EF4444",
+      "descripcion": "Rojo Cuarentena Sanitaria ICA (Fail-Closed, leche suspendida)"
+    },
+    "alerta_reproductiva": {
+      "hex": "#F59E0B",
+      "descripcion": "Ámbar Zootécnico (Días abiertos > 100 y celos AM/PM)"
+    },
+    "telemetria_leche": {
+      "hex": "#3B82F6",
+      "descripcion": "Azul Tanque de Acopio (Litros entregados a Colanta y pesajes)"
+    }
+  },
+  "tipografia": {
+    "titulares": "Outfit / Plus Jakarta Sans / Montserrat (Weights: 700 Bold, 800 ExtraBold)",
+    "cuerpo_datos": "Inter / Plus Jakarta Sans (Weights: 400 Regular, 500 Medium, 600 SemiBold)",
+    "monospaciado_codigo": "JetBrains Mono / Fira Code (Para SQL, DML, regex y contratos Zod)"
+  },
+  "restricciones_editoriales": {
+    "prohibido": [
+      "Matrices escolares de secretariado (NO Matriz EFI, NO Matriz EFE, NO PESTEL)",
+      "Formatos obsoletos de diapositivas con viñetas genéricas de texto aburrido",
+      "Símbolos de dólar sin notación colombiana (Usar estrictamente 119k COP, 249k COP, 5M a 20M COP)",
+      "Narrativas de emprendimiento empírico sin software"
+    ],
+    "obligatorio": [
+      "Enfoque estricto en B2B AgTech SaaS y Arquitectura de Software",
+      "Demostración de algoritmos reales: Cinta Roja Fail-Closed y Días Abiertos",
+      "Respaldo en base de datos formal: 12 tablas en Tercera Forma Normal (3FN)",
+      "Modelo de suscripción recurrente con MRR claro (119k COP/mes)",
+      "Tracción con hato real de 163 animales en Antioquia"
+    ]
+  }
+}

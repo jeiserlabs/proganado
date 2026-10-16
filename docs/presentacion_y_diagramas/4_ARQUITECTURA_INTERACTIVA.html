@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ProGanado SaaS · Arquitectura Interactiva del Sistema</title>
+  <style>
+    :root {
+      --bg: #09090b;
+      --card-bg: #18181b;
+      --card-border: #27272a;
+      --text: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --emerald: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.2);
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --amber: #f59e0b;
+      --purple: #a855f7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); padding: 32px 24px; min-height: 100vh; }
+    header { max-width: 1200px; margin: 0 auto 32px auto; text-align: center; }
+    .badge { display: inline-block; padding: 4px 12px; background: rgba(16, 185, 129, 0.15); border: 1px solid var(--emerald); color: var(--emerald); border-radius: 9999px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+    h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.02em; }
+    p.lead { color: var(--text-muted); font-size: 15px; max-width: 750px; margin: 0 auto; }
+    
+    .canvas-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+    
+    .layer-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 24px; transition: all 0.2s ease; position: relative; }
+    .layer-card:hover { border-color: #3f3f46; box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
+    .layer-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; border-bottom: 1px solid #27272a; padding-bottom: 12px; }
+    .layer-title { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 700; }
+    .layer-indicator { width: 10px; height: 10px; border-radius: 50%; }
+    
+    .nodes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+    .node-item { background: #121215; border: 1px solid #27272a; border-radius: 12px; padding: 16px; cursor: pointer; transition: transform 0.15s, border-color 0.15s; }
+    .node-item:hover { transform: translateY(-2px); border-color: var(--emerald); }
+    .node-item h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
+    .node-item p { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+    
+    .arrow-divider { text-align: center; color: var(--text-muted); font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .arrow-divider::before, .arrow-divider::after { content: ""; height: 1px; flex: 1; background: #27272a; }
+    
+    .drawer { position: fixed; bottom: 0; left: 0; right: 0; background: #18181b; border-top: 1px solid var(--emerald); padding: 24px; max-height: 45vh; overflow-y: auto; box-shadow: 0 -10px 40px rgba(0,0,0,0.8); display: none; z-index: 100; }
+    .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .drawer-title { font-size: 18px; font-weight: 700; color: var(--emerald); }
+    .close-btn { background: #27272a; border: none; color: white; padding: 4px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+    pre { background: #09090b; padding: 16px; border-radius: 8px; font-family: monospace; font-size: 13px; overflow-x: auto; color: #a1a1aa; border: 1px solid #27272a; }
+    
+    .pulse-fail-closed { animation: pulseRed 2s infinite; }
+    @keyframes pulseRed { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); } 70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge">Arquitectura de Software · CESDE 2026</div>
+    <h1>ProGanado SaaS — Arquitectura Interactiva</h1>
+    <p class="lead">Esquema modular de Clean Architecture en 4 capas. Haz clic sobre cualquier nodo para inspeccionar los contratos de datos (Zod 4), reglas de dominio o tablas 3FN.</p>
+  </header>
+
+  <div class="canvas-container">
+    
+    <!-- CAPA 1: PRESENTACIÓN -->
+    <div class="layer-card">
+      <div class="layer-header">
+        <div class="layer-title"><span class="layer-indicator" style="background: var(--blue);"></span> 1. Capa de Presentación (HTML5 Semántico + PWA Móvil)</div>
+        <span style="font-size: 12px; color: var(--text-muted);">Sin frameworks pesados · WCAG 2.1</span>
+      </div>
+      <div class="nodes-grid">
+        <div class="node-item" onclick="mostrarDetalle('Dashboard y Hato', 'Vista principal con resumen en tiempo real del inventario bovino, distribución por raza y potrero.', 'HTML5 Semántico con CSS Grid Bento y gráficos SVG sin dependencias de terceros.')">
+          <h3>Panel & Inventario <span style="color:var(--blue);">→</span></h3>
+          <p>Mapeo de 116 vacas con fotos reales de aretes y cartilla médica individual.</p>
+        </div>
+        <div class="node-item" onclick="mostrarDetalle('Módulo Sanitario EHR', 'Registro de tratamientos médicos, vacunación contra Aftosa/Brucelosis y farmacopea.', 'Alerta visual de Cinta Roja automática en tarjetas de bovinos bajo tiempo de retiro.')">
+          <h3>EHR Clínico Sanitario <span style="color:var(--blue);">→</span></h3>
+          <p>Farmacopea oficial con días de retiro ICA y dosificación en ml.</p>
+        </div>
+        <div class="node-item" onclick="mostrarDetalle('Pesaje de Ordeño AM/PM', 'Captura de telemetría de producción diaria en litros con validación de hora militar.', 'Acepta formato HH:MM nativo y valida contra desvíos anómalos de producción.')">
+          <h3>Producción de Ordeño <span style="color:var(--blue);">→</span></h3>
+          <p>Consolidación diaria por turnos AM / PM y remisión para acopio Colanta.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-divider">↓ HTTP REST JSON / Validaciones Zod 4 en Runtime ↓</div>
+
+    <!-- CAPA 2: APLICACIÓN & CONTRATOS -->
+    <div class="layer-card">
+      <div class="layer-header">
+        <div class="layer-title"><span class="layer-indicator" style="background: var(--emerald);"></span> 2. Capa de Aplicación y Contratos de Validación (TypeScript + Zod 4)</div>
+        <span style="font-size: 12px; color: var(--text-muted);">Zero-Any · Strict Mode TS</span>
+      </div>
+      <div class="nodes-grid">
+        <div class="node-item" onclick="mostrarDetalle('BovinoSchema (Zod 4)', 'Validación de tipos de bovinos contra el CHECK de la base de datos.', 'export const BovinoSchema = z.object({\n  id_bovino: z.string().min(1),\n  id_finca: z.string().min(1),\n  sexo: z.enum([\'Hembra\', \'Macho\']),\n  estado_fisiologico: z.enum([\'En_Ordeño\', \'Horra_Seca\', ...]),\n  estado_vital: z.enum([\'Activo\', \'Muerto\', \'Vendido\', \'Descarte\'])\n});')">
+          <h3>BovinoSchema <span style="color:var(--emerald);">→</span></h3>
+          <p>Garantiza que ningún formulario envíe abreviaturas ni estados fuera del catálogo.</p>
+        </div>
+        <div class="node-item" onclick="mostrarDetalle('TratamientoSanitarioSchema', 'Validación cruzada que exige fármaco obligatorio si el procedimiento es Antibiótico o Vacuna.', 'TratamientoSanitarioSchema.refine(data => {\n  if ([\'Antibiotico\', \'Vacunacion_Aftosa\'].includes(data.tipo_procedimiento)) {\n    return data.id_medicamento !== null;\n  }\n  return true;\n});')">
+          <h3>TratamientoSchema <span style="color:var(--emerald);">→</span></h3>
+          <p>Regla de refinamiento condicional: antibiótico exige fármaco asociado.</p>
+        </div>
+        <div class="node-item" onclick="mostrarDetalle('EntregaAcopioSchema', 'Valida litros totales (hasta 50k L de carrotanque) y recuento de UFC bacteriano.', 'export const EntregaAcopioSchema = z.object({\n  litros_totales: z.number().positive().max(50000),\n  recuento_ufc: z.number().int().nonnegative().optional()\n});')">
+          <h3>EntregaAcopioSchema <span style="color:var(--emerald);">→</span></h3>
+          <p>Control de volumen y umbrales bacteriológicos de Colanta.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-divider">↓ Reglas Puras de Dominio (Sin Efectos Secundarios) ↓</div>
+
+    <!-- CAPA 3: NÚCLEO DE DOMINIO -->
+    <div class="layer-card">
+      <div class="layer-header">
+        <div class="layer-title"><span class="layer-indicator" style="background: var(--amber);"></span> 3. Dominio Zootécnico Puro (Business Rules Engine)</div>
+        <span style="font-size: 12px; color: var(--text-muted);">100% Tests Vitest / Node Native PASS</span>
+      </div>
+      <div class="nodes-grid">
+        <div class="node-item pulse-fail-closed" onclick="mostrarDetalle('Regla 1: Inocuidad Cinta Roja (Fail-Closed)', 'Calcula fecha_tratamiento + dias_retiro_ica. Durante el último día la vaca SIGUE bloqueada.', 'function evaluarCintaRoja(idBovino, tratamientos, fechaEval) {\n  // Vence a medianoche del último día inclusive (fail-closed)\n  const enCintaRoja = tsEvaluacion <= maxFinRetiroTs;\n  return { en_cinta_roja: enCintaRoja, fecha_fin_retiro };\n}')">
+          <h3 style="color:var(--red);">Cinta Roja Fail-Closed <span style="color:var(--red);">🚨</span></h3>
+          <p>Bloqueo automático de leche medicada. Nadie puede apagarla a mano en la interfaz.</p>
+        </div>
+        <div class="node-item" onclick="mostrarDetalle('Regla 2: Días Abiertos & Fertilidad', 'Evalúa el intervalo postparto y categoriza la eficiencia reproductiva de la vaca.', 'diasAbiertos < 90  -> OPTIMO\ndiasAbiertos < 120 -> ALERTA_TEMPRANA\ndiasAbiertos >= 120 -> CRITICO_PERDIDA (Palpación urgente)')">
+          <h3>Días Abiertos (< 100d) <span style="color:var(--amber);">→</span></h3>
+          <p>Alerta temprana para evitar vacas improductivas consumiendo forraje sin preñez.</p>
+        </div>
+        <div class="node-item" onclick="mostrarDetalle('Regla 3: Liquidación Colanta (UFC)', 'Bonifica o penaliza el precio por litro según el recuento microbiológico.', '<= 25k UFC  -> +80 COP/L (Clase A)\n<= 50k UFC  -> +40 COP/L (Clase B)\n> 100k UFC  -> -120 COP/L (Castigo por suciedad)\n+ Cálculo de merma en carrotanque')">
+          <h3>Liquidación Colanta <span style="color:var(--emerald);">→</span></h3>
+          <p>Dictamen higiénico, bonificaciones por sólidos y mermas de transporte.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-divider">↓ Persistencia Atómica Relacional 3FN ↓</div>
+
+    <!-- CAPA 4: BASE DE DATOS -->
+    <div class="layer-card">
+      <div class="layer-header">
+        <div class="layer-title"><span class="layer-indicator" style="background: var(--purple);"></span> 4. Persistencia Relacional (PostgreSQL / SQLite WAL 12 Tablas 3FN)</div>
+        <span style="font-size: 12px; color: var(--text-muted);">SSOT: schema_produccion_proganado_v3.sql</span>
+      </div>
+      <div class="nodes-grid">
+        <div class="node-item" onclick="mostrarDetalle('Entidades Ganaderas', 'bovinos, marcaciones (1:N aretes), razas, potreros PRV.', 'bovinos: id_bovino PK, sexo, estado_fisiologico, estado_vital\nmarcaciones: id_marcacion PK, id_bovino FK, tipo_marca, codigo_valor, estado_activo')">
+          <h3>Hato & Trazabilidad <span style="color:var(--purple);">→</span></h3>
+          <p>12 tablas normalizadas en 3FN con integridad referencial estricta.</p>
+        </div>
+        <div class="node-item" onclick="mostrarDetalle('v_bovinos_cinta_roja (Vista SQL)', 'Vista calculada en tiempo real. La cinta roja NO es columna: es una vista inmutable.', 'CREATE VIEW v_bovinos_cinta_roja AS\nSELECT b.id_bovino, t.fecha_tratamiento, m.dias_retiro_ica,\n  date(t.fecha_tratamiento, \'+\' || m.dias_retiro_ica || \' days\') as fecha_fin_retiro\nFROM bovinos b JOIN tratamientos_sanitarios t ...')">
+          <h3>v_bovinos_cinta_roja <span style="color:var(--red);">→</span></h3>
+          <p>Vista calculada fail-closed que alimenta los gates de entrega sin drift de datos.</p>
+        </div>
+        <div class="node-item" onclick="mostrarDetalle('Suscripciones SaaS', 'Control de acceso Multi-Inquilino con política Zero Data Loss.', 'suscripciones_saas: Free, Pro_119k, Multi_Predio_299k.\nEn mora pasa a estado Solo_Lectura (cero borrado de datos históricos).')">
+          <h3>Suscripción SaaS <span style="color:var(--purple);">→</span></h3>
+          <p>Facturación recurrente mensual con garantía de preservación histórica de registros.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DRAWER INTERACTIVO -->
+  <div class="drawer" id="drawer">
+    <div class="drawer-header">
+      <div class="drawer-title" id="drawerTitle">Detalle del Nodo</div>
+      <button class="close-btn" onclick="cerrarDrawer()">Cerrar ✕</button>
+    </div>
+    <p id="drawerDesc" style="color:var(--text); margin-bottom: 12px; font-size: 14px;"></p>
+    <pre id="drawerCode"></pre>
+  </div>
+
+  <script>
+    function mostrarDetalle(titulo, desc, codigo) {
+      document.getElementById('drawerTitle').innerText = titulo;
+      document.getElementById('drawerDesc').innerText = desc;
+      document.getElementById('drawerCode').innerText = codigo;
+      document.getElementById('drawer').style.display = 'block';
+    }
+    function cerrarDrawer() {
+      document.getElementById('drawer').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

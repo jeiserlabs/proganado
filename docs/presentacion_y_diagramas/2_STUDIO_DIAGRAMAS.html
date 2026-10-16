@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProGanado • Diagram Studio Pro (React Flow, drawDB & D2)</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #08090c;
+      --panel-bg: rgba(16, 18, 24, 0.88);
+      --border: rgba(255, 255, 255, 0.08);
+      --primary: #10b981;
+      --primary-glow: rgba(16, 185, 129, 0.28);
+      --secondary: #06b6d4;
+      --accent: #3b82f6;
+      --danger: #ef4444;
+      --text: #f4f4f5;
+      --text-muted: #94a3b8;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Bar */
+    header {
+      height: 60px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10, 11, 15, 0.9);
+      backdrop-filter: blur(16px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 50;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .badge {
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+      font-family: var(--font-mono);
+    }
+    .tabs-nav {
+      display: flex;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      gap: 4px;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: rgba(16, 185, 129, 0.15);
+      color: #fff;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      box-shadow: 0 0 12px var(--primary-glow);
+    }
+
+    /* Workspace */
+    .workspace {
+      flex: 1;
+      display: flex;
+      position: relative;
+      overflow: hidden;
+    }
+    .view-pane {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .view-pane.active {
+      display: flex;
+    }
+
+    /* Canvas Grid */
+    .canvas-bg {
+      flex: 1;
+      position: relative;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.04) 0%, transparent 80%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 28px 28px, 28px 28px;
+      overflow: hidden;
+    }
+
+    /* Floating Canvas Controls */
+    .canvas-controls {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      display: flex;
+      gap: 8px;
+      background: rgba(18, 20, 26, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 6px;
+      backdrop-filter: blur(12px);
+      z-index: 30;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .ctrl-btn:hover { background: rgba(255, 255, 255, 0.15); }
+
+    /* Draggable React Flow Nodes */
+    .nodes-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-origin: 0 0;
+    }
+    .rf-node {
+      position: absolute;
+      background: rgba(20, 24, 32, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      width: 210px;
+      padding: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      cursor: grab;
+      user-select: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .rf-node:active { cursor: grabbing; }
+    .rf-node:hover {
+      border-color: var(--primary);
+      box-shadow: 0 12px 36px var(--primary-glow);
+    }
+    .rf-node.selected {
+      border-color: #34d399;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.4), 0 12px 36px var(--primary-glow);
+    }
+    .rf-node-tag {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--primary);
+      font-family: var(--font-mono);
+      display: flex;
+      justify-content: space-between;
+    }
+    .rf-node-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      margin-top: 4px;
+    }
+    .rf-node-body {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+    .rf-port {
+      width: 10px;
+      height: 10px;
+      background: var(--primary);
+      border: 2px solid #09090b;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .rf-port.left { left: -6px; }
+    .rf-port.right { right: -6px; }
+
+    /* SVG Connector Cables */
+    svg.connections-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .wire-glow {
+      stroke: var(--primary);
+      stroke-width: 2.5;
+      fill: none;
+      stroke-dasharray: 6 6;
+      animation: wireFlow 1.2s linear infinite;
+    }
+    @keyframes wireFlow {
+      from { stroke-dashoffset: 24; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Inspector Sidebar */
+    .inspector-sidebar {
+      width: 330px;
+      border-left: 1px solid var(--border);
+      background: var(--panel-bg);
+      backdrop-filter: blur(20px);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow-y: auto;
+      z-index: 20;
+    }
+    .inspector-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .inspector-prop {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .inspector-key {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+    .inspector-val {
+      font-size: 13px;
+      color: #fff;
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    /* drawDB Tables */
+    .erd-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 30px;
+      width: 100%;
+      overflow-y: auto;
+      height: 100%;
+    }
+    .drawdb-table {
+      background: rgba(20, 24, 32, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+    .drawdb-head {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .drawdb-head-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .drawdb-field {
+      padding: 8px 14px;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    }
+    .drawdb-field:hover { background: rgba(16, 185, 129, 0.08); }
+    .drawdb-pk { color: #f59e0b; font-weight: 800; font-size: 10px; font-family: var(--font-mono); }
+    .drawdb-fk { color: #38bdf8; font-weight: 800; font-size: 10px; font-family: var(--font-mono); }
+    .drawdb-type { color: var(--text-muted); font-size: 11px; font-family: var(--font-mono); }
+
+    /* D2 Viewer Pane */
+    .d2-frame {
+      width: 100%;
+      height: 100%;
+      background: #090b0e;
+      display: flex;
+      flex-direction: column;
+    }
+    .d2-toolbar {
+      padding: 12px 24px;
+      background: rgba(16, 18, 24, 0.95);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .d2-preview-box {
+      flex: 1;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: auto;
+    }
+    .d2-preview-box object, .d2-preview-box img {
+      max-width: 95%;
+      max-height: 90%;
+      filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-left">
+      <div style="font-size: 20px;">🐄</div>
+      <div>
+        <h1 style="font-size: 15px; font-weight: 800;">ProGanado • Diagram Studio Pro</h1>
+        <p style="font-size: 11px; color: var(--text-muted);">Lienzo Dinámico: Arrastra los nodos con el mouse</p>
+      </div>
+      <span class="badge">D2 CLI v0.9.0 & React Flow</span>
+    </div>
+
+    <!-- Tabs Nav -->
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchView('reactflow')">⚡ 1. React Flow (Nodos Arrastrables)</button>
+      <button class="tab-btn" onclick="switchView('drawdb')">🗄️ 2. drawDB (12 Tablas 3FN)</button>
+      <button class="tab-btn" onclick="switchView('d2')">📐 3. D2 Renderizado Oficial (SVG)</button>
+    </div>
+  </header>
+
+  <!-- Workspace -->
+  <main class="workspace">
+
+    <!-- VIEW 1: REACT FLOW DRAGGABLE CANVAS -->
+    <div id="view-reactflow" class="view-pane active">
+      <div class="canvas-bg" id="rf-canvas">
+        
+        <svg class="connections-layer" id="rf-svg">
+          <path id="wire-1-2" class="wire-glow"></path>
+          <path id="wire-2-3" class="wire-glow"></path>
+          <path id="wire-2-4" class="wire-glow"></path>
+          <path id="wire-3-5" class="wire-glow"></path>
+          <path id="wire-4-5" class="wire-glow"></path>
+        </svg>
+
+        <div class="nodes-container" id="nodesContainer">
+          <!-- Node 1 -->
+          <div class="rf-node selected" id="n1" style="top: 110px; left: 30px;" onclick="selectNode('n1')">
+            <div class="rf-node-tag"><span>Capa 1 • UI</span><span>Web Shell</span></div>
+            <div class="rf-node-title">Frontend Emilio</div>
+            <div class="rf-node-body">116 fotos reales, pesaje y registro de ordeño.</div>
+            <div class="rf-port right"></div>
+          </div>
+
+          <!-- Node 2 -->
+          <div class="rf-node" id="n2" style="top: 190px; left: 280px;" onclick="selectNode('n2')">
+            <div class="rf-port left"></div>
+            <div class="rf-node-tag"><span>Capa 2 • Contratos</span><span>Fastify / Express</span></div>
+            <div class="rf-node-title">API Gateway Zod 4</div>
+            <div class="rf-node-body">Validación de esquemas tipados y sanitización.</div>
+            <div class="rf-port right"></div>
+          </div>
+
+          <!-- Node 3 -->
+          <div class="rf-node" id="n3" style="top: 90px; left: 540px;" onclick="selectNode('n3')">
+            <div class="rf-port left"></div>
+            <div class="rf-node-tag"><span>Capa 3 • Inocuidad</span><span>ICA Fail-Closed</span></div>
+            <div class="rf-node-title">Regla Cinta Roja</div>
+            <div class="rf-node-body">Bloqueo estricto mientras dure el periodo de retiro.</div>
+            <div class="rf-port right"></div>
+          </div>
+
+          <!-- Node 4 -->
+          <div class="rf-node" id="n4" style="top: 290px; left: 540px;" onclick="selectNode('n4')">
+            <div class="rf-port left"></div>
+            <div class="rf-node-tag"><span>Capa 3 • Comercial</span><span>UFC Colanta</span></div>
+            <div class="rf-node-title">Liquidación Leche</div>
+            <div class="rf-node-body">Bonificación (+80 COP) o castigo (-120 COP).</div>
+            <div class="rf-port right"></div>
+          </div>
+
+          <!-- Node 5 -->
+          <div class="rf-node" id="n5" style="top: 190px; left: 810px;" onclick="selectNode('n5')">
+            <div class="rf-port left"></div>
+            <div class="rf-node-tag"><span>Capa 4 • Datos</span><span>SQLite WAL</span></div>
+            <div class="rf-node-title">proganado.db</div>
+            <div class="rf-node-body">12 tablas en 3FN, transacciones ACID locales.</div>
+          </div>
+        </div>
+
+        <!-- Floating Controls -->
+        <div class="canvas-controls">
+          <button class="ctrl-btn" onclick="zoomIn()" title="Acercar">+</button>
+          <button class="ctrl-btn" onclick="zoomOut()" title="Alejar">−</button>
+          <button class="ctrl-btn" onclick="resetZoom()" title="Reiniciar Zoom">⟲</button>
+        </div>
+      </div>
+
+      <!-- Inspector Panel -->
+      <aside class="inspector-sidebar">
+        <div class="inspector-title">
+          <span>🔍 Inspector de Nodo</span>
+        </div>
+        <div id="inspector-content">
+          <div class="inspector-prop">
+            <div class="inspector-key">Componente Activo</div>
+            <div class="inspector-val" id="ins-title">Frontend Emilio (ProGanado UI)</div>
+          </div>
+          <div class="inspector-prop">
+            <div class="inspector-key">Responsabilidad</div>
+            <div class="inspector-val" id="ins-resp">Captura visual de pesajes, sanidad y fichas de 116 vacas.</div>
+          </div>
+          <div class="inspector-prop">
+            <div class="inspector-key">Tecnología / Protocolo</div>
+            <div class="inspector-val" id="ins-tech">HTML5, CSS3, Fetch API hacia REST</div>
+          </div>
+          <div class="inspector-prop">
+            <div class="inspector-key">Calidad & Pruebas</div>
+            <div class="inspector-val" id="ins-qa">Zero-Any, validado con esquemas Zod compartidos</div>
+          </div>
+        </div>
+        <div style="font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-top: auto; border-top: 1px solid var(--border); padding-top: 12px;">
+          💡 <b>Interacción Dinámica:</b> Haz clic sobre cualquier nodo y <b>arrástralo con el cursor</b>. Observa cómo los cables luminosos se recalculan en tiempo real.
+        </div>
+      </aside>
+    </div>
+
+    <!-- VIEW 2: DRAWDB RELATIONAL SCHEMA -->
+    <div id="view-drawdb" class="view-pane">
+      <div class="canvas-bg">
+        <div class="erd-container">
+          
+          <div class="drawdb-table">
+            <div class="drawdb-head">
+              <span class="drawdb-head-title">🐄 bovinos</span>
+              <span style="font-size: 10px; color: var(--primary);">TABLA MADRE</span>
+            </div>
+            <div class="drawdb-field"><span class="drawdb-pk">PK</span>id_bovino <span class="drawdb-type">INTEGER</span></div>
+            <div class="drawdb-field"><span>arete_ica</span> <span class="drawdb-type">VARCHAR(20) UNIQUE</span></div>
+            <div class="drawdb-field"><span>nombre</span> <span class="drawdb-type">VARCHAR(50)</span></div>
+            <div class="drawdb-field"><span>raza</span> <span class="drawdb-type">VARCHAR(30)</span></div>
+            <div class="drawdb-field"><span class="drawdb-fk">FK</span>id_lote <span class="drawdb-type">INTEGER</span></div>
+          </div>
+
+          <div class="drawdb-table">
+            <div class="drawdb-head">
+              <span class="drawdb-head-title">💉 eventos_sanitarios</span>
+              <span style="font-size: 10px; color: var(--danger);">INOCUIDAD</span>
+            </div>
+            <div class="drawdb-field"><span class="drawdb-pk">PK</span>id_evento <span class="drawdb-type">INTEGER</span></div>
+            <div class="drawdb-field"><span class="drawdb-fk">FK</span>id_bovino <span class="drawdb-type">INTEGER</span></div>
+            <div class="drawdb-field"><span>farmaco</span> <span class="drawdb-type">VARCHAR(100)</span></div>
+            <div class="drawdb-field"><span>dias_retiro_leche</span> <span class="drawdb-type">INTEGER</span></div>
+            <div class="drawdb-field"><span>fecha_aplicacion</span> <span class="drawdb-type">DATETIME</span></div>
+          </div>
+
+          <div class="drawdb-table">
+            <div class="drawdb-head">
+              <span class="drawdb-head-title">🥛 ordenos</span>
+              <span style="font-size: 10px; color: var(--primary);">PRODUCCIÓN</span>
+            </div>
+            <div class="drawdb-field"><span class="drawdb-pk">PK</span>id_ordeno <span class="drawdb-type">INTEGER</span></div>
+            <div class="drawdb-field"><span class="drawdb-fk">FK</span>id_bovino <span class="drawdb-type">INTEGER</span></div>
+            <div class="drawdb-field"><span>litros_manana</span> <span class="drawdb-type">DECIMAL(5,2)</span></div>
+            <div class="drawdb-field"><span>litros_tarde</span> <span class="drawdb-type">DECIMAL(5,2)</span></div>
+            <div class="drawdb-field"><span>fecha_ordeno</span> <span class="drawdb-type">DATE</span></div>
+          </div>
+
+          <div class="drawdb-table">
+            <div class="drawdb-head">
+              <span class="drawdb-head-title">⚖️ pesajes</span>
+              <span style="font-size: 10px; color: var(--text-muted);">CRECIMIENTO</span>
+            </div>
+            <div class="drawdb-field"><span class="drawdb-pk">PK</span>id_pesaje <span class="drawdb-type">INTEGER</span></div>
+            <div class="drawdb-field"><span class="drawdb-fk">FK</span>id_bovino <span class="drawdb-type">INTEGER</span></div>
+            <div class="drawdb-field"><span>peso_kg</span> <span class="drawdb-type">DECIMAL(6,2)</span></div>
+            <div class="drawdb-field"><span>fecha_pesaje</span> <span class="drawdb-type">DATE</span></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 3: D2 RENDERED OFFICIAL SVG -->
+    <div id="view-d2" class="view-pane">
+      <div class="d2-frame">
+        <div class="d2-toolbar">
+          <div>
+            <span style="font-size: 13px; font-weight: 800; color: #fff;">Diagrama Compilado Oficial con D2 CLI v0.9.0</span>
+            <span style="font-size: 11px; color: var(--text-muted); margin-left: 10px;">Archivo: DIAGRAMAS_D2/proganado_diagrama_oficial.svg</span>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <a href="DIAGRAMAS_D2/proganado_diagrama_oficial.svg" target="_blank" style="text-decoration: none; background: rgba(16,185,129,0.15); border: 1px solid var(--primary); color: #34d399; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 6px;">Abrir SVG en pestaña nueva ↗</a>
+            <a href="https://play.d2lang.com" target="_blank" style="text-decoration: none; background: rgba(255,255,255,0.06); border: 1px solid var(--border); color: #fff; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 6px;">D2 Web Playground ↗</a>
+          </div>
+        </div>
+        <div class="d2-preview-box">
+          <img src="DIAGRAMAS_D2/proganado_diagrama_oficial.svg" alt="Diagrama Oficial D2">
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function switchView(viewName) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.view-pane').forEach(p => p.classList.remove('active'));
+
+      event.currentTarget.classList.add('active');
+      document.getElementById('view-' + viewName).classList.add('active');
+      if (viewName === 'reactflow') updateWires();
+    }
+
+    // Dynamic Wire Calculator
+    function getPortCoords(el, side) {
+      const containerRect = document.getElementById('nodesContainer').getBoundingClientRect();
+      const rect = el.getBoundingClientRect();
+      const x = side === 'right' ? (rect.right - containerRect.left) : (rect.left - containerRect.left);
+      const y = (rect.top + rect.height / 2) - containerRect.top;
+      return { x, y };
+    }
+
+    function drawBezier(pathId, fromEl, toEl) {
+      const p1 = getPortCoords(fromEl, 'right');
+      const p2 = getPortCoords(toEl, 'left');
+      const dx = Math.abs(p2.x - p1.x) * 0.5;
+      const d = `M ${p1.x} ${p1.y} C ${p1.x + dx} ${p1.y}, ${p2.x - dx} ${p2.y}, ${p2.x} ${p2.y}`;
+      document.getElementById(pathId).setAttribute('d', d);
+    }
+
+    function updateWires() {
+      drawBezier('wire-1-2', document.getElementById('n1'), document.getElementById('n2'));
+      drawBezier('wire-2-3', document.getElementById('n2'), document.getElementById('n3'));
+      drawBezier('wire-2-4', document.getElementById('n2'), document.getElementById('n4'));
+      drawBezier('wire-3-5', document.getElementById('n3'), document.getElementById('n5'));
+      drawBezier('wire-4-5', document.getElementById('n4'), document.getElementById('n5'));
+    }
+
+    // Drag and Drop Logic
+    let isDragging = false;
+    let activeNode = null;
+    let offset = { x: 0, y: 0 };
+    let currentZoom = 1;
+
+    document.querySelectorAll('.rf-node').forEach(node => {
+      node.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        activeNode = node;
+        const rect = node.getBoundingClientRect();
+        offset.x = e.clientX - rect.left;
+        offset.y = e.clientY - rect.top;
+        node.style.zIndex = 50;
+      });
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging || !activeNode) return;
+      const containerRect = document.getElementById('nodesContainer').getBoundingClientRect();
+      const x = (e.clientX - containerRect.left - offset.x) / currentZoom;
+      const y = (e.clientY - containerRect.top - offset.y) / currentZoom;
+      activeNode.style.left = `${x}px`;
+      activeNode.style.top = `${y}px`;
+      updateWires();
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (activeNode) activeNode.style.zIndex = 10;
+      isDragging = false;
+      activeNode = null;
+    });
+
+    // Zoom Controls
+    function zoomIn() {
+      currentZoom = Math.min(currentZoom + 0.15, 1.6);
+      applyZoom();
+    }
+    function zoomOut() {
+      currentZoom = Math.max(currentZoom - 0.15, 0.7);
+      applyZoom();
+    }
+    function resetZoom() {
+      currentZoom = 1;
+      applyZoom();
+    }
+    function applyZoom() {
+      document.getElementById('nodesContainer').style.transform = `scale(${currentZoom})`;
+      document.getElementById('rf-svg').style.transform = `scale(${currentZoom})`;
+      document.getElementById('rf-svg').style.transformOrigin = '0 0';
+      updateWires();
+    }
+
+    // Inspector selection
+    const nodeData = {
+      n1: {
+        title: "Frontend Emilio (ProGanado UI)",
+        resp: "Captura visual de pesajes, sanidad y fichas de 116 vacas reales.",
+        tech: "HTML5, CSS3, Fetch API hacia REST",
+        qa: "Modularizado, desacoplado de localStorage"
+      },
+      n2: {
+        title: "API Gateway (Fastify / Express)",
+        resp: "Validación de contratos estrictos de entrada con Zod 4.",
+        tech: "Node.js v24, TypeScript estricto",
+        qa: "Rechazo de payloads malformados con código HTTP 400"
+      },
+      n3: {
+        title: "Regla Cinta Roja (Inocuidad ICA)",
+        resp: "Protección biológica fail-closed para evitar decomisos de carrotanque.",
+        tech: "TypeScript puro, funciones puras inmutables",
+        qa: "3/3 tests unitarios aprobados en vitest/node"
+      },
+      n4: {
+        title: "Liquidación Leche Colanta",
+        resp: "Cálculo de bonificaciones (+80 COP) y deducciones (-120 COP) por UFC.",
+        tech: "TypeScript puro, reglas deterministas",
+        qa: "3/3 tests unitarios aprobados"
+      },
+      n5: {
+        title: "SQLite WAL Storage",
+        resp: "Persistencia transaccional ACID local para 12 tablas en 3FN.",
+        tech: "SQLite 3, modo Write-Ahead Logging",
+        qa: "Gate de paridad SSOT verificado al 100%"
+      }
+    };
+
+    function selectNode(id) {
+      document.querySelectorAll('.rf-node').forEach(n => n.classList.remove('selected'));
+      document.getElementById(id).classList.add('selected');
+      const data = nodeData[id];
+      if (data) {
+        document.getElementById('ins-title').innerText = data.title;
+        document.getElementById('ins-resp').innerText = data.resp;
+        document.getElementById('ins-tech').innerText = data.tech;
+        document.getElementById('ins-qa').innerText = data.qa;
+      }
+    }
+
+    // Initial render
+    window.addEventListener('DOMContentLoaded', updateWires);
+    window.addEventListener('resize', updateWires);
+  </script>
+</body>
+</html>
