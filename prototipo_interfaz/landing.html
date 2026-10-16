@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProGanado SaaS — Software Ganadero de Precisión & Inocuidad</title>
+  <link rel="icon" type="image/png" href="assets/proganado-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #10B981;
+      --primary-hover: #059669;
+      --primary-glow: rgba(16, 185, 129, 0.35);
+      --danger: #EF4444;
+      --danger-glow: rgba(239, 68, 68, 0.35);
+      --gold: #F59E0B;
+      --bg-deep: #08130C;
+      --bg-surface: #0F1E15;
+      --bg-card: #15271D;
+      --bg-card-hover: #1C3326;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(16, 185, 129, 0.4);
+      --text-white: #FFFFFF;
+      --text-muted: #94A3B8;
+      --text-cream: #E2E8F0;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-deep); color: var(--text-cream);
+      line-height: 1.6; overflow-x: hidden;
+    }
+
+    .container { max-width: 1220px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header Nav */
+    header.site-header {
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(8, 19, 12, 0.85); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle); padding: 14px 0;
+    }
+    .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; font-weight: 800; font-size: 19px; }
+    .nav-logo img { height: 38px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--primary); }
+    .btn-login {
+      background: rgba(16, 185, 129, 0.12); border: 1px solid var(--border-strong);
+      color: var(--primary); padding: 8px 18px; border-radius: var(--radius-sm);
+      font-weight: 700; font-size: 13.5px; text-decoration: none; transition: all 0.2s;
+    }
+    .btn-login:hover { background: var(--primary); color: #fff; box-shadow: 0 4px 16px var(--primary-glow); }
+
+    /* Hero Section */
+    .hero-section { padding: 80px 0 60px; position: relative; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--primary); padding: 6px 14px; border-radius: 999px;
+      font-size: 12.5px; font-weight: 700; margin-bottom: 20px;
+    }
+    .hero-title { font-size: 46px; font-weight: 800; line-height: 1.15; color: #fff; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .hero-title span { color: var(--primary); text-shadow: 0 0 30px var(--primary-glow); }
+    .hero-desc { font-size: 16.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 32px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; }
+    .btn-primary {
+      background: var(--primary); color: #fff; padding: 14px 28px;
+      border-radius: var(--radius-sm); font-weight: 700; font-size: 15px;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.25s; box-shadow: 0 8px 24px var(--primary-glow);
+    }
+    .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 12px 30px var(--primary-glow); }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-subtle);
+      color: #fff; padding: 14px 24px; border-radius: var(--radius-sm);
+      font-weight: 600; font-size: 15px; text-decoration: none; transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
+
+    .hero-stats { display: flex; gap: 28px; border-top: 1px solid var(--border-subtle); padding-top: 24px; }
+    .hero-stat b { display: block; font-size: 24px; font-weight: 800; color: #fff; }
+    .hero-stat span { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
+
+    /* Hero Card Interactive Mockup */
+    .hero-mockup-card {
+      background: var(--bg-card); border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg); overflow: hidden; position: relative;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.8);
+    }
+    .hero-mockup-card img { width: 100%; height: 280px; object-fit: cover; display: block; }
+    .hero-mockup-body { padding: 24px; }
+    .telemetry-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+    .telemetry-item {
+      background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle);
+      padding: 10px 14px; border-radius: var(--radius-sm); font-size: 12.5px;
+    }
+    .telemetry-item strong { display: block; color: #fff; font-size: 14px; margin-bottom: 2px; }
+
+    /* Section Styling */
+    section { padding: 70px 0; }
+    .section-header { text-align: center; max-width: 680px; margin: 0 auto 50px; }
+    .section-badge {
+      display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.5px; color: var(--primary); margin-bottom: 10px;
+    }
+    .section-title { font-size: 34px; font-weight: 800; color: #fff; line-height: 1.25; margin-bottom: 14px; }
+    .section-desc { font-size: 15px; color: var(--text-muted); }
+
+    /* Bento Grid */
+    .bento-grid {
+      display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px;
+    }
+    .bento-card {
+      background: var(--bg-surface); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative;
+    }
+    .bento-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+    .bento-col-8 { grid-column: span 8; }
+    .bento-col-4 { grid-column: span 4; }
+    .bento-col-6 { grid-column: span 6; }
+    .bento-card-img { height: 200px; width: 100%; object-fit: cover; }
+    .bento-card-body { padding: 26px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .bento-card-title { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .bento-card-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.55; }
+
+    /* Cinta Roja High Impact Banner */
+    .cinta-roja-banner {
+      background: linear-gradient(135deg, rgba(239,68,68,0.15) 0%, rgba(15,30,21,0.9) 100%);
+      border: 1px solid rgba(239,68,68,0.4); border-radius: var(--radius-lg);
+      padding: 40px; margin: 40px 0; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 36px; align-items: center;
+    }
+    .cinta-badge { background: var(--danger); color: #fff; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 800; }
+
+    /* ROI Interactive Calculator */
+    .roi-box {
+      background: var(--bg-surface); border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg); padding: 40px; margin-top: 20px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    }
+    .calc-slider-wrap { margin-bottom: 24px; }
+    .calc-slider-wrap label { display: flex; justify-content: space-between; font-weight: 700; color: #fff; margin-bottom: 8px; font-size: 14.5px; }
+    .calc-slider-wrap input[type="range"] {
+      width: 100%; height: 8px; border-radius: 4px; background: #1C3326; outline: none; accent-color: var(--primary);
+    }
+    .calc-results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 30px; }
+    .calc-stat-box { background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); padding: 20px; border-radius: var(--radius-md); text-align: center; }
+    .calc-stat-box strong { display: block; font-size: 26px; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+    .calc-stat-box span { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
+
+    /* Pricing Plans */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 24px; }
+    .pricing-card {
+      background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);
+      padding: 34px 28px; display: flex; flex-direction: column; justify-content: space-between;
+      transition: all 0.3s; position: relative;
+    }
+    .pricing-card:hover { transform: translateY(-6px); border-color: var(--primary); box-shadow: 0 16px 36px rgba(0,0,0,0.6); }
+    .pricing-card.featured { border-color: var(--primary); background: linear-gradient(180deg, rgba(16,185,129,0.08) 0%, var(--bg-surface) 100%); }
+    .pricing-tag { position: absolute; top: 16px; right: 20px; font-size: 11.5px; font-weight: 700; color: var(--gold); }
+    .pricing-name { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .pricing-price { font-size: 38px; font-weight: 800; color: #fff; margin: 16px 0; }
+    .pricing-price small { font-size: 14px; color: var(--text-muted); font-weight: 500; }
+    .pricing-features { list-style: none; margin: 24px 0; display: flex; flex-direction: column; gap: 12px; font-size: 13.5px; }
+    .pricing-features li { display: flex; align-items: center; gap: 10px; color: var(--text-cream); }
+    .pricing-features li span { color: var(--primary); font-weight: 800; }
+
+    /* FAQ */
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+    .faq-item { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); overflow: hidden; }
+    .faq-q { padding: 18px 22px; font-weight: 700; color: #fff; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .faq-a { padding: 0 22px 18px; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; display: none; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-item.open .faq-q span { transform: rotate(180deg); }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border-subtle); padding: 40px 0; text-align: center; font-size: 13px; color: var(--text-muted); }
+
+    @media (max-width: 900px) {
+      .hero-grid, .cinta-roja-banner { grid-template-columns: 1fr; }
+      .bento-col-8, .bento-col-4, .bento-col-6 { grid-column: span 12; }
+      .hero-title { font-size: 34px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="landing.html" class="nav-logo">
+        <img src="assets/proganado-logo.png" alt="ProGanado Logo">
+        <span>ProGanado <small style="font-size: 12px; color: var(--primary); font-weight: 600;">SaaS</small></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#solucion">Solución</a></li>
+        <li><a href="#cinta-roja">Cinta Roja</a></li>
+        <li><a href="#roi">Calculadora ROI</a></li>
+        <li><a href="#planes">Planes</a></li>
+        <li><a href="#faq">Preguntas</a></li>
+      </ul>
+      <a href="index.html" class="btn-login">Ingresar al Sistema ➔</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-badge">🌿 AgroTech Ganadero · Certificación BPG & ICA</div>
+        <h1 class="hero-title">Control Total de tu Hato, <span>Blindado contra Errores.</span></h1>
+        <p class="hero-desc">
+          Monitorea sanidad, días abiertos, rotación PRV y liquidación lechera Colanta con Alerta Cinta Roja biológica. Protege el acopio comunal y opera 100% en corral sin conexión a internet.
+        </p>
+        <div class="hero-actions">
+          <a href="index.html" class="btn-primary">🚀 Iniciar Demostración en Vivo</a>
+          <a href="https://wa.me/573044615613?text=Hola,%20quisiera%20agendar%20una%20demostracion%20de%20ProGanado%20SaaS" target="_blank" class="btn-secondary">📲 Hablar con Asesor Ganadero</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><b>163</b><span>Reses Monitoreadas</span></div>
+          <div class="hero-stat"><b>0 L</b><span>Contaminación Acopio</span></div>
+          <div class="hero-stat"><b>84 d</b><span>Días Abiertos Prom.</span></div>
+          <div class="hero-stat"><b>+80 COP</b><span>Bonif. UFC Colanta</span></div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card -->
+      <div class="hero-mockup-card">
+        <img src="assets/agrotech_hero.jpg" alt="Veterinaria AgroTech inspeccionando vaca en Antioquia">
+        <div class="hero-mockup-body">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 13px; font-weight: 700; color: var(--primary);">Hato Lechero Santa Rosa de Osos</span>
+            <span style="font-size: 11px; background: rgba(16,185,129,0.2); color: var(--primary); padding: 2px 8px; border-radius: 4px; font-weight: 700;">🟢 EN VIVO</span>
+          </div>
+          <div class="telemetry-strip">
+            <div class="telemetry-item">
+              <strong>1 Vaca en Cinta Roja</strong>
+              <span style="color: var(--danger);">Vaca #1078 (Retiro activo)</span>
+            </div>
+            <div class="telemetry-item">
+              <strong>Acopio Colanta Hoy</strong>
+              <span style="color: var(--primary);">1.450 L Aptos (UFC <= 25k)</span>
+            </div>
+            <div class="telemetry-item">
+              <strong>Rotación Potrero PRV</strong>
+              <span>Lote 3: Kikuyo (35d descanso)</span>
+            </div>
+            <div class="telemetry-item">
+              <strong>Sincronización Manga</strong>
+              <span>100% Offline (Local SQLite)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bento Grid Section -->
+  <section id="solucion">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Pilares Tecnológicos</span>
+        <h2 class="section-title">Ingeniería de Precisión en la Manga y el Potrero</h2>
+        <p class="section-desc">Diseñado junto a médicos veterinarios para eliminar el desorden del cuaderno y blindar la inocuidad alimentaria.</p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Bento 1: Cinta Roja (8 cols) -->
+        <div class="bento-card bento-col-8">
+          <img src="assets/cinta_roja_ordeno.jpg" alt="Alerta Cinta Roja en sala de ordeño" class="bento-card-img" style="height: 240px;">
+          <div class="bento-card-body">
+            <div>
+              <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                <span class="cinta-badge">BLINDAJE ICA</span>
+                <span style="font-size: 12px; color: var(--gold); font-weight: 700;">Fail-Closed Nativo</span>
+              </div>
+              <h3 class="bento-card-title">Alerta Cinta Roja: Inocuidad Láctea Innegociable</h3>
+              <p class="bento-card-desc">
+                Si un animal recibe antibióticos o desparasitantes, el sistema lo bloquea automáticamente en la vista de ordeño durante todo el período de retiro. El último día sigue bloqueado y solo se libera al día siguiente en hora local de Colombia.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento 2: Acopio Colanta (4 cols) -->
+        <div class="bento-card bento-col-4">
+          <img src="assets/acopio_carrotanque.jpg" alt="Acopio en carrotanque lechero" class="bento-card-img">
+          <div class="bento-card-body">
+            <div>
+              <span style="font-size: 11px; font-weight: 700; color: var(--primary); text-transform: uppercase;">Liquidación Transparente</span>
+              <h3 class="bento-card-title" style="font-size: 18px; margin-top: 4px;">Parámetros Colanta</h3>
+              <p class="bento-card-desc">
+                Calcula bonificaciones por UFC (Unidades Formadoras de Colonia) y castigos por mermas en carrotanque para asegurar el mejor precio por litro.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento 3: PRV Potreros (4 cols) -->
+        <div class="bento-card bento-col-4">
+          <img src="assets/foto-pastoreo.jpg" alt="Vacas en pastoreo Voisin" class="bento-card-img">
+          <div class="bento-card-body">
+            <div>
+              <span style="font-size: 11px; font-weight: 700; color: var(--primary); text-transform: uppercase;">Pastoreo Voisin</span>
+              <h3 class="bento-card-title" style="font-size: 18px; margin-top: 4px;">Aforo y Descanso PRV</h3>
+              <p class="bento-card-desc">
+                Mapeo de potreros con días de ocupación y descanso. Asegura que el pasto alcance su Punto Óptimo de Reposo (POR) antes del reingreso.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento 4: Trazabilidad y Genealogía (8 cols) -->
+        <div class="bento-card bento-col-8">
+          <img src="assets/foto-hato.jpg" alt="Vaca con cría y arete oficial" class="bento-card-img" style="height: 200px;">
+          <div class="bento-card-body">
+            <div>
+              <span style="font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase;">Hoja de Vida Individual</span>
+              <h3 class="bento-card-title">Trazabilidad Bovina 360° & Días Abiertos</h3>
+              <p class="bento-card-desc">
+                Registro genealógico completo (madre, padre/pajilla), curvas de pesaje y control reproductivo. Clasificación de fertilidad en Óptimo (<90 días), Alerta (90-119 días) y Pérdida Crítica (≥120 días).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI Calculator Section -->
+  <section id="roi" style="background: rgba(15, 30, 21, 0.4); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Calculadora de Retorno</span>
+        <h2 class="section-title">¿Cuánto Dinero Proteges al Año con ProGanado?</h2>
+        <p class="section-desc">El costo de un solo carrotanque devuelto por antibióticos en cooperativas lecheras supera con creces el valor de cualquier software.</p>
+      </div>
+
+      <div class="roi-box">
+        <div class="calc-slider-wrap">
+          <label>
+            <span>Vacas en Ordeño:</span>
+            <b id="lblVacas" style="color: var(--primary); font-size: 18px;">45 Vacas</b>
+          </label>
+          <input type="range" id="sliderVacas" min="10" max="250" value="45" step="5" oninput="recalcROI()">
+        </div>
+
+        <div class="calc-slider-wrap">
+          <label>
+            <span>Producción Promedio por Vaca / Día:</span>
+            <b id="lblLitros" style="color: var(--primary); font-size: 18px;">16 Litros / día</b>
+          </label>
+          <input type="range" id="sliderLitros" min="8" max="30" value="16" step="1" oninput="recalcROI()">
+        </div>
+
+        <div class="calc-results-grid">
+          <div class="calc-stat-box">
+            <strong id="resProduccionMes">21.6k L</strong>
+            <span>Producción Mensual Estimada</span>
+          </div>
+          <div class="calc-stat-box">
+            <strong id="resBonificacion" style="color: var(--gold);">1.7M COP</strong>
+            <span>Bonificación Anual Calidad Colanta</span>
+          </div>
+          <div class="calc-stat-box">
+            <strong id="resRiesgoEvitado" style="color: var(--danger);">18.5M COP</strong>
+            <span>Riesgo Evitado por Devolución de Tanque</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="planes">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Suscripciones Mensuales</span>
+        <h2 class="section-title">Inversión Clara, Retorno Inmediato</h2>
+        <p class="section-desc">Sin costos ocultos ni cobros por usuario adicional. Licenciamiento por capacidad de hato.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Plan 1 -->
+        <div class="pricing-card">
+          <div>
+            <div class="pricing-name">Finca Familiar</div>
+            <p style="font-size: 13px; color: var(--text-muted);">Para hatos lecheros y doble propósito de hasta 50 animales.</p>
+            <div class="pricing-price">119k <small>COP / mes</small></div>
+            <ul class="pricing-features">
+              <li><span>✓</span> Hasta 50 reses registradas</li>
+              <li><span>✓</span> Alerta Cinta Roja biológica (fail-closed)</li>
+              <li><span>✓</span> Modo Offline para manga y corral</li>
+              <li><span>✓</span> Registro de pesajes y partos</li>
+              <li><span>✓</span> Soporte técnico por WhatsApp</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/573044615613?text=Hola,%20me%20interesa%20el%20Plan%20Finca%20Familiar%20de%20ProGanado" target="_blank" class="btn-secondary" style="text-align: center;">Elegir Plan Familiar</a>
+        </div>
+
+        <!-- Plan 2 (Featured) -->
+        <div class="pricing-card featured">
+          <div class="pricing-tag">⭐ MÁS POPULAR</div>
+          <div>
+            <div class="pricing-name">Hato Comercial</div>
+            <p style="font-size: 13px; color: var(--text-muted);">Hatos de alta producción y seguimiento reproductivo intensivo.</p>
+            <div class="pricing-price">249k <small>COP / mes</small></div>
+            <ul class="pricing-features">
+              <li><span>✓</span> Hasta 200 reses registradas</li>
+              <li><span>✓</span> Alerta Cinta Roja + Notificaciones de retiro</li>
+              <li><span>✓</span> Módulo Rotación Racional Voisin (PRV)</li>
+              <li><span>✓</span> Liquidación y bonificaciones Colanta</li>
+              <li><span>✓</span> Control reproductivo y días abiertos</li>
+              <li><span>✓</span> Exportación oficial para auditoría ICA</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/573044615613?text=Hola,%20me%20interesa%20el%20Plan%20Hato%20Comercial%20de%20ProGanado" target="_blank" class="btn-primary" style="justify-content: center;">Elegir Plan Comercial</a>
+        </div>
+
+        <!-- Plan 3 -->
+        <div class="pricing-card">
+          <div>
+            <div class="pricing-name">Hacienda Multi-Finca</div>
+            <p style="font-size: 13px; color: var(--text-muted);">Empresas ganaderas con múltiples predios o más de 500 animales.</p>
+            <div class="pricing-price">Cotizar <small>a medida</small></div>
+            <ul class="pricing-features">
+              <li><span>✓</span> Reses ilimitadas y multi-predio</li>
+              <li><span>✓</span> Módulo veterinario multi-usuario con roles</li>
+              <li><span>✓</span> Integración con básculas y lectores RFID</li>
+              <li><span>✓</span> Auditoría en base de datos PostgreSQL 3FN</li>
+              <li><span>✓</span> Capacitación presencial en finca</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/573044615613?text=Hola,%20quisiera%20cotizar%20un%20plan%20Multi-Finca%20para%20ProGanado" target="_blank" class="btn-secondary" style="text-align: center;">Contactar Ventas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Preguntas Frecuentes</span>
+        <h2 class="section-title">Respuestas Claras para Ganaderos</h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-q">¿Funciona en fincas donde no hay cobertura de celular ni internet? <span>▼</span></div>
+          <div class="faq-a">Sí. ProGanado está diseñado con arquitectura Offline-First. Puedes registrar partos, tratamientos y pesajes directamente en el corral. Todos los datos quedan guardados en tu dispositivo local y se sincronizan en cuanto detecta red.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-q">¿Cómo evita la Cinta Roja que Colanta devuelva la leche? <span>▼</span></div>
+          <div class="faq-a">Al registrar la aplicación de cualquier antibiótico o desparasitante con tiempo de retiro (ej. 72 horas), la vaca entra en lista negra de ordeño. El sistema alerta al operario en pantalla y bloquea el litro en el reporte de acopio hasta que se cumpla el último día de retiro legal.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-q">¿Puedo migrar los datos que ya tengo en Excel o en el cuaderno? <span>▼</span></div>
+          <div class="faq-a">Totalmente. El sistema permite importar el inventario de bovinos desde plantillas estándar de Excel y cuenta con formularios rápidos diseñados para operarios de campo.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-q">¿Puedo usar el software en mi teléfono móvil o tablet? <span>▼</span></div>
+          <div class="faq-a">Sí. La interfaz está construida en HTML5 responsivo y accesible bajo luz solar directa (estándar WCAG 2.1 AA) para que se lea perfectamente en la manga de vacunación.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="margin-bottom: 8px;"><strong>ProGanado SaaS</strong> — Software Ganadero de Precisión & Inocuidad Alimentaria.</p>
+      <p>Proyecto Integrador de Software CESDE 2026 · Jeiser Gutiérrez, Dr. Héctor Pinto, Emilio Villanueva, Sebastián Correa.</p>
+    </div>
+  </footer>
+
+  <script>
+    function recalcROI() {
+      const vacas = parseInt(document.getElementById('sliderVacas').value, 10);
+      const litros = parseInt(document.getElementById('sliderLitros').value, 10);
+
+      document.getElementById('lblVacas').textContent = vacas + ' Vacas';
+      document.getElementById('lblLitros').textContent = litros + ' Litros / día';
+
+      const prodMensualL = vacas * litros * 30;
+      const bonifAnualCOP = (prodMensualL * 12 * 80) / 1000000; // +80 COP/L por UFC <=25k
+      const riesgoCarrotanque = (vacas * litros * 3 * 2200) / 1000000; // 3 días de ordeño contaminado
+
+      document.getElementById('resProduccionMes').textContent = (prodMensualL / 1000).toFixed(1) + 'k L';
+      document.getElementById('resBonificacion').textContent = bonifAnualCOP.toFixed(1) + 'M COP';
+      document.getElementById('resRiesgoEvitado').textContent = Math.max(12.5, riesgoCarrotanque).toFixed(1) + 'M COP';
+    }
+  </script>
+</body>
+</html>
