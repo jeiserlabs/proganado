@@ -14,6 +14,7 @@ Repo: `C:\PROYECTOS\Mis_Proyectos\ProGanado` | GitHub: `jeiserlabs/proganado`
 **R6 — Fecha local Colombia:** SIEMPRE `date('now','localtime')` en SQLite. NUNCA `CURRENT_DATE` ni `CURRENT_TIMESTAMP` (devuelven UTC, bug v3.0 ya corregido en v3.1).  
 **R7 — SRP <300L:** Ningún archivo supera 300 líneas.  
 **R8 — Tests antes de código:** `npm test` debe pasar antes y después de cualquier cambio.  
+**R9 — Metodología ODD:** Rige One-Document-Driven Development (.odd/tasks/<feature>.odd.md). Burocracia SDD multi-archivo abolida.  
 
 ---
 
