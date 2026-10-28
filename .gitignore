@@ -34,3 +34,10 @@ Thumbs.db
 *.wav
 02_Vistas_HTML5/Imagen/
 02_Vistas_HTML5/Audio/
+
+# Credenciales locales del prototipo (nunca a Git)
+prototipo_interfaz/auth_config.js
+prototipo_interfaz/correo_config.json
+
+# Entregable visual pesado (binarios van a Drive)
+02_Vistas_HTML5/bootstrap_m2/

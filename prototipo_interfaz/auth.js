@@ -16,17 +16,12 @@ const MAX_INTENTOS = 5;
 const MINUTOS_BLOQUEO = 5;
 const DIAS_SESION = 7;
 
-/* Cuentas iniciales. El usuario de acceso es el correo Gmail: allí llega
-   el código de seguridad. Las cuentas +alias (correo+etiqueta@gmail.com)
-   entregan en el mismo buzón de eavillas1991@gmail.com. */
-const AUTH_DEFAULT = [
-  { correo: 'eavillas1991@gmail.com',          pass: '***REMOVED***', nombre: 'Emilio Villanueva', role: 'admin',   force: true },
-  { correo: 'jeiser.gutierrez@proganado.co',   pass: '***REMOVED***', nombre: 'Jeiser Gutiérrez',  role: 'admin',   force: true },
-  { correo: 'sebastian.correa@proganado.co',   pass: '***REMOVED***', nombre: 'Sebastián Correa',  role: 'admin',   force: true },
-  { correo: 'hector.pinto@proganado.co',       pass: '***REMOVED***', nombre: 'Dr. Héctor Pinto',  role: 'admin',   force: true },
-  { correo: 'eavillas1991+usuario1@gmail.com', pass: '***REMOVED***',   nombre: 'Operario Ordeño',   role: 'usuario', force: true },
-  { correo: 'eavillas1991+usuario2@gmail.com', pass: '***REMOVED***',  nombre: 'Mayordomo PRV',     role: 'usuario', force: true }
-];
+/* Cuentas iniciales: viven en auth_config.js (local, fuera de Git).
+   Copia auth_config.example.js y define allí las cuentas reales.
+   Prohibido commitear credenciales en este archivo. */
+const AUTH_DEFAULT = (typeof window !== 'undefined' && Array.isArray(window.PROGANADO_AUTH_DEFAULT))
+  ? window.PROGANADO_AUTH_DEFAULT
+  : [];
 
 const ES_CORREO = v => /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(String(v || '').trim().toLowerCase());
 
@@ -57,6 +52,9 @@ async function authLoad() {
     }
   } catch (e) { /* regenerar */ }
   // Primera vez: crear cuentas iniciales con hash
+  if (!AUTH_DEFAULT.length) {
+    throw new Error('Falta auth_config.js. Copia auth_config.example.js y define las cuentas iniciales fuera de Git.');
+  }
   auth = { usuarios: [], intentos: {} };
   for (const def of AUTH_DEFAULT) {
     const salt = nuevoSalt();
@@ -423,7 +421,12 @@ function initAuth() {
    Solo decide visibilidad; el renderizado lo hace app.js al cargar
    (renderAll vive allí y llenar el DOM oculto no tiene costo visible). */
 (async function authBoot() {
-  await authLoad();
+  try {
+    await authLoad();
+  } catch (err) {
+    document.body.innerHTML = '<main style="max-width:640px;margin:15vh auto;padding:24px;font-family:system-ui;color:#e5e7eb;background:#0a0a0a;border:1px solid #27272a;border-radius:12px"><h1 style="font-size:18px;margin:0 0 8px">Configuración pendiente</h1><p style="color:#a1a1aa;line-height:1.5">' + escapeHtml(err.message) + '</p></main>';
+    return;
+  }
   initAuth();
   if (sesionValida()) mostrarApp();
   else mostrarLogin();

@@ -147,6 +147,20 @@
       "motivo": "HUECO DEL MODELO v3.1: el nombre del animal es un identificador de manejo que bovinos no tiene (usuarios.nombre es el de la persona, no del bovino). Decidir nombre_bovino o eliminar el campo.",
       "fecha": "2026-09-16",
       "revisar_antes_de": "2026-10-31"
+    },
+    {
+      "codigo": "HTML_SIN_TABLA_DECLARADA",
+      "ident": "02_Vistas_HTML5/bootstrap_m2/dashboard.html",
+      "motivo": "Maquetación Bootstrap Momento 2 para entrega CESDE (prototipo visual de dashboard interactivo), no es un formulario DDL directo.",
+      "fecha": "2026-10-25",
+      "revisar_antes_de": "2027-06-30"
+    },
+    {
+      "codigo": "HTML_SIN_TABLA_DECLARADA",
+      "ident": "02_Vistas_HTML5/bootstrap_m2/index.html",
+      "motivo": "Maquetación Bootstrap Momento 2 para entrega CESDE (interfaz de acceso y autenticación visual), no es un formulario DDL directo.",
+      "fecha": "2026-10-25",
+      "revisar_antes_de": "2027-06-30"
     }
   ]
 }
