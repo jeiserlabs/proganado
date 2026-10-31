@@ -2,6 +2,8 @@
 ## PROYECTO INTEGRADOR NIVEL 1 | MOMENTO 1 (2026-2)
 **Escuela de Nuevas Tecnologías — CESDE Institución de Educación Superior**
 
+> **DOCUMENTO HISTÓRICO DEL MOMENTO 1 (30-ago-2026).** No es el material de estudio del Momento 2. El estado vigente, las rutas y la timeline están en [`docs/sustentacion_2026/SSOT_Y_TIMELINE.md`](../docs/sustentacion_2026/SSOT_Y_TIMELINE.md).
+
 ---
 
 ### DATOS INSTITUCIONALES DEL PROYECTO
@@ -14,7 +16,7 @@
 1. **Jeiser Abraham Gutiérrez:** Tech Lead, Arquitecto de Base de Datos, QA Lead y Diseñador de Gobernanza Cloud.
 2. **Sebastián Correa:** Frontend Lead & Desarrollador de Maquetación HTML5 Semántica y Accesibilidad.
 3. **Emilio Villanueva:** Desarrollador de Lógica de Negocio, Algoritmia, Validación en Pseudocódigo PSeInt y Diagramación.
-4. **Héctor Pinto (Dr. Humberto Pinto):** Asesor Médico Veterinario, Protocolos de Inocuidad Lechera y Pruebas DML.
+4. **Dr. Héctor Pinto:** Asesor Médico Veterinario, Protocolos de Inocuidad Lechera y Pruebas DML.
 *(Histórico Momento 1: Camila Salas participó en la entrega inicial de agosto y se retiró formalmente el 26-Sep-2026).*
 
 ---

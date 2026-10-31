@@ -1,6 +1,9 @@
 # GEMINI.md — ProGanado SaaS (Antigravity / Gemini Flash)
 
 Repo: `C:\PROYECTOS\Mis_Proyectos\ProGanado` | GitHub: `jeiserlabs/proganado`
+Página: `C:\PROYECTOS\Mis_Proyectos\ProGanado_Web` | GitHub: `jeiserlabs/proganado-producto-momento-2`
+Drive: https://drive.google.com/drive/folders/1_Ozo8XA7UjZPFWDf9WtDfhg5XgCmmKns
+SSOT de rutas y timeline: `docs/sustentacion_2026/SSOT_Y_TIMELINE.md`
 
 ---
 

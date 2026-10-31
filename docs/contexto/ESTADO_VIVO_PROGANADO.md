@@ -2,29 +2,31 @@
 
 > **SSOT (Single Source of Truth) del Proyecto Integrador CESDE Nivel 1**  
 > **Repositorio Oficial:** `https://github.com/jeiserlabs/proganado` (el slug viejo `jeiser270997-source/ProGanado` ya no corresponde)  
-> **Ubicación Local:** `E:\PROYECTOS\Mis_Proyectos\ProGanado`  
-> **Última Actualización:** 18-Sep-2026 (integración del prototipo interactivo v1 de Emilio en `prototipo_interfaz/` + protocolo de escalabilidad orgánica en 4 fases en `docs/ARQUITECTURA_Y_PLAN_ESCALABILIDAD.md`)
+> **Ubicación Local:** `C:\PROYECTOS\Mis_Proyectos\ProGanado`
+> **Página Local:** `C:\PROYECTOS\Mis_Proyectos\ProGanado_Web`
+> **SSOT de rutas y timeline:** [`docs/sustentacion_2026/SSOT_Y_TIMELINE.md`](../sustentacion_2026/SSOT_Y_TIMELINE.md)
+> **Última Actualización:** 31-oct-2026 (auditoría end-to-end del Momento 2, corrección de material, publicación de la web corregida y reorganización de Drive)
 
 ---
 
-## 📌 1. Resumen de Estado Actual (Momento 1 & Transición Momento 2)
-- **Estado de Entrega:** Momento 1 (Bases de Datos, Algoritmia, HTML5 Semántico, Emprendimiento Tech) COMPLETADO y RADICADO.
-- **Documento PDF Oficial:** `04_Documentos_Sustentacion/PROGANADO_ENTREGA_MOMENTO_1_CESDE.pdf` (Generado con Playwright y respaldado en Escritorio).
-- **Prototipo Interfaz:** Integrado en `prototipo_interfaz/` (v1.0 interactivo aportado por Emilio con servidor local Python, login y tarjetas de hato).
-- **Protocolo de Escalabilidad:** Formulado en `docs/ARQUITECTURA_Y_PLAN_ESCALABILIDAD.md` estructurando el crecimiento orgánico en 4 fases (Fase 1 Académica CESDE ➔ Fase 2 LAN Finca Local-First ➔ Fase 3 Cloud MVP $0 COP ➔ Fase 4 Cloud Enterprise AWS).
-- **Salvedades Académicas:**
-  1. *Capa Visual:* Maqueta HTML5 semántica pura en construcción activa modular bajo responsabilidad de Sebastián Correa.
-  2. *Capa de Persistencia:* MER Chen y Modelo Relacional 12 tablas 3FN en diseño base de lanzamiento, sujeto a optimizaciones iterativas en Momento 2.
+## 📌 1. Resumen de Estado Actual (Momento 2 — 14-nov-2026)
+- **Estado:** Momento 1 completado y radicado. Momento 2 en preparación para la defensa del **14-nov-2026** (10–12 min + 5 de preguntas).
+- **Material de estudio:** carpeta oficial de Drive [ProGanado_Sustentacion_Oficial_CESDE](https://drive.google.com/drive/folders/1_Ozo8XA7UjZPFWDf9WtDfhg5XgCmmKns). Guía maestra de 101 páginas corregida, 4 guías individuales, Dummies, deck de 12 slides y guion.
+- **Página web:** https://jeiserlabs.github.io/proganado-producto-momento-2/ — maqueta Bootstrap 5.3; login demo, tabla/filtro/formulario visuales; la persistencia está en la demo SQLite.
+- **Demo SQLite:** `03_PAGINAS_WEB_Y_DEMO_EN_VIVO/demo_sqlite/` (una tabla didáctica; no es el DDL de 12 tablas).
+- **Deuda P0 declarada:** PSeInt no es fail-closed en el último día; tabla UFC distinta entre TS y PSeInt; PDF del M1 con esquema viejo; gate de clon limpio; defaults del DDL; `auth_config.js` del prototipo. Detalle en `SSOT_Y_TIMELINE.md` §6.
+- **Prototipo Interfaz:** `prototipo_interfaz/` (v1.0 interactivo aportado por Emilio con servidor local Python). No es la entrega oficial del Momento 2.
+- **Protocolo de Escalabilidad:** `docs/ARQUITECTURA_Y_PLAN_ESCALABILIDAD.md` (4 fases; AWS es hoja de ruta, no despliegue actual).
 
 ---
 
 ## 👥 2. Asignación de Roles y Responsabilidades (Oficial 4 Integrantes — 26-Sep-2026)
 | Integrante | Rol | Entregables Clave |
 |---|---|---|
-| **Jeiser Gutiérrez** | Tech Lead & Arquitecto BD | Modelo Relacional 12 tablas 3FN, schema SQL, arquitectura Cloud AWS, control Git. |
-| **Sebastián Correa** | Frontend Lead & Diseñador | Maquetación HTML5 semántica de las 6 vistas, accesibilidad WCAG 2.1, UI/UX. |
-| **Emilio Villanueva** | Algoritmia, Lógica PSeInt & Diagramas | Algoritmos de Cinta Roja, Días Abiertos, Liquidación Leche y Diagramación SSMS. |
-| **Héctor Pinto (Dr. Pinto)** | Asesor Clínico, Telemetría & DML | Inocuidad biológica, telemetría clínica (pesaje AM/PM), pruebas DML y pitch. |
+| **Jeiser Gutiérrez** | Tech Lead & Arquitecto BD / QA | Modelo Relacional 12 tablas 3FN, schema SQL, gobernanza TS/Zod, hoja de ruta cloud y control Git. |
+| **Sebastián Correa** | Frontend Lead & Diseñador | Maquetación HTML5 semántica, Bootstrap 5.3, accesibilidad WCAG 2.1, UI/UX y demo. |
+| **Emilio Villanueva** | Algoritmia, Lógica PSeInt & Diagramas | Algoritmos de Cinta Roja, Días Abiertos, Liquidación Leche y diagramación. |
+| **Héctor Pinto (Dr. Pinto)** | Asesor Clínico Veterinario | Sanidad ICA, farmacopea, normativa lechera, inocuidad y apoyo al pitch. |
 
 *(Nota de auditoría: Camila Salas se retiró formalmente del proyecto y del curso el 26-Sep-2026; equipo consolidado en 4 integrantes en piedra).*
 
@@ -41,13 +43,14 @@
 8. `marcaciones`: Historial 1:N de aretes (ICA, SINIGAN, manejo, tatuajes) con flag `estado_activo`.
 9. `medicamentos`: Farmacopea veterinaria con días de retiro oficial ICA.
 10. `tratamientos_sanitarios`: Historial clínico flexible (procedimientos con o sin fármacos).
-11. `pesajes_leche`: Telemetría exacta con `hora_pesaje: TIME` (04:30:00 AM / 14:30:00 PM).
+11. `pesajes_leche`: Registro de pesajes AM/PM con `hora_pesaje: TIME` (04:30:00 / 14:30:00). Los valores de la maqueta son ejemplos, no telemetría real.
 12. `eventos_reproductivos`: Ciclo reproductivo con cálculo de días abiertos (meta < 100).
 
 ---
 
 ## ☁️ 4. Hoja de Ruta de Infraestructura Cloud
-- **Fase 0 (Actual / $0 COP):** Frontend Vercel/GitHub Pages, Backend Express en Render Free, PostgreSQL en Supabase Free (500 MB).
+> **Estado real:** maqueta en GitHub Pages + demo SQLite local. No hay backend desplegado, ni PostgreSQL en producción, ni AWS. Lo siguiente es hoja de ruta.
+- **Fase 0 (prototipo académico, no desplegado):** maqueta GitHub Pages, demo SQLite local; backend Express y PostgreSQL son fase 2.
 - **Fase 1 (10-30 Clientes / ~120k COP mes):** Cloudflare Pages, VPS Hetzner/Railway, Managed PostgreSQL.
 - **Fase 2 (50-500+ Fincas / AWS Enterprise ~180k-300k COP mes):**
   - AWS S3 (imágenes de aretes y actas ICA).

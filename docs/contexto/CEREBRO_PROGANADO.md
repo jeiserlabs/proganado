@@ -2,6 +2,7 @@
 
 > **Mapa Técnico Exhaustivo de ProGanado (Proyecto Integrador CESDE)**  
 > **Ámbito:** 100% Aislado a la operación y desarrollo de ProGanado SaaS.
+> **Rutas, repos y timeline:** [`docs/sustentacion_2026/SSOT_Y_TIMELINE.md`](../sustentacion_2026/SSOT_Y_TIMELINE.md).
 
 ---
 
@@ -18,13 +19,16 @@
      2. Eficiencia Reproductiva y Días Abiertos (`dias_postparto > 100` -> Alerta IATF).
      3. Liquidación Acopio Lechero (Litros * Precio Base +/- Ajuste UFC Colanta).
 3. **Capa de Presentación y Frontend:**
-   - Estándar: HTML5 Semántico Puro + WCAG 2.1 (Accesibilidad para operarios de campo).
-   - Vistas: `02_Vistas_HTML5/` (Dashboard, Registro Bovino, Pesajes, Tratamientos, Acopio, Potreros).
-   - Blueprints y Manual LEGO: `docs/GUIA_MAQUETACION_LANDING_PROGANADO_SEBASTIAN.pdf`, `docs/MANUAL_LEGO_HTML5_PROGANADO_SEBASTIAN.md`.
+   - Estándar: HTML5 Semántico + Bootstrap 5.3 + WCAG 2.1 (Accesibilidad para operarios de campo).
+   - Entrega oficial del Momento 2: repo `jeiserlabs/proganado-producto-momento-2` (`index.html`, `landing.html`, `dashboard.html`).
+   - Vistas base del Momento 1: `02_Vistas_HTML5/` (Dashboard, Registro Bovino, Pesajes, Tratamientos, Acopio, Potreros). Son referencia, no la maqueta publicada.
+   - Blueprints y manuales: en `docs/_archivo_2026-08/` (M1).
 
 ---
 
-## ⚖️ 2. Marco Legal, Administrativo y Tributario (Camila Salas)
+## ⚖️ 2. Marco Legal, Administrativo y Tributario (referencia histórica)
+
+> Camila Salas se retiró del proyecto y del curso el **26-sep-2026**. Esta sección queda como referencia documental; el responsable actual del frente administrativo es Jeiser Gutiérrez.
 - **Constitución S.A.S.:** Ley 1780 de 2016 (Jóvenes Emprendedores, 100% exención matrícula mercantil Cámara de Comercio).
 - **Régimen Tributario:** Régimen Simple de Tributación (RST 1.8% a 5.4%).
 - **Exención de IVA:** Estatuto Tributario Art. 476 Numeral 24 (Software SaaS en la Nube excluido de IVA 19%).
@@ -33,10 +37,9 @@
 
 ---
 
-## ☁️ 3. Pila Tecnológica & Servicios Cloud AWS
-- **Frontend Hosting:** AWS S3 + AWS CloudFront (CDN global con HTTPS).
-- **Multimedia Storage:** AWS S3 Bucket privado (fotos de aretes, actas ICA, reportes PDF).
-- **Compute API:** AWS App Runner / AWS ECS Fargate (Contenedores Docker Express.js).
-- **Database:** AWS RDS PostgreSQL Multi-AZ (backups diarios continuos).
-- **Messaging & Notifications:** AWS EventBridge + AWS SNS (WhatsApp/SMS a mayordomos).
-- **Domain & DNS:** AWS Route 53 (`proganado.co`).
+## ☁️ 3. Pila Tecnológica y hoja de ruta cloud (NO desplegado)
+
+> **Estado real (31-oct-2026):** maqueta estática en GitHub Pages + demo SQLite local. No hay backend, PostgreSQL ni AWS en producción. Lo siguiente es planificado para después del 14-nov-2026.
+
+- **Hoy:** HTML5 + Bootstrap 5.3.3 + CSS propio; Python + SQLite para la demo didáctica; Node.js + TypeScript + Zod + `node:test` en el repo de código.
+- **Hoja de ruta (planificada):** AWS S3 + CloudFront para hosting y multimedia; ECS Fargate/App Runner para la API; RDS PostgreSQL Multi-AZ; EventBridge + SNS para alertas; Route 53 para DNS.

@@ -5,6 +5,9 @@
 > **Proyecto Integrador:** Nivel 1 (Bases de Datos Relacionales, Algoritmia, Frontend Semántico, Tipado Fuerte & Emprendimiento Tech)  
 > **Chief Technology Officer (CTO) & Arquitecto de Datos:** Jeiser Abraham Gutiérrez  
 > **Repositorio Oficial:** [https://github.com/jeiserlabs/proganado](https://github.com/jeiserlabs/proganado)  
+> **Página oficial:** [https://jeiserlabs.github.io/proganado-producto-momento-2/](https://jeiserlabs.github.io/proganado-producto-momento-2/)
+> **Carpeta de estudio (Drive):** [ProGanado_Sustentacion_Oficial_CESDE](https://drive.google.com/drive/folders/1_Ozo8XA7UjZPFWDf9WtDfhg5XgCmmKns)
+> **Material vigente del Momento 2:** [`docs/sustentacion_2026/`](docs/sustentacion_2026/README.md) · **[SSOT de rutas y timeline](docs/sustentacion_2026/SSOT_Y_TIMELINE.md)**
 > **Estado Actual del Proyecto:** **FASE 1 — ESPECIFICACIÓN DE ARQUITECTURA, CONTRATOS DE DATOS & DDL 3FN** (Completada al 100% para Entrega Académica).  
 > *Nota de Realidad Técnica:* Este repositorio representa la base formal de diseño de sistemas, tipos TypeScript, esquemas de validación en runtime Zod y modelado relacional normalizado. No constituye aún un SaaS comercial desplegado en producción (Fase 2: Backend API & Tests / Fase 3: Frontend Framework & Cloud).
 
@@ -88,11 +91,12 @@ Si una finca en plan **Pro** no renueva su suscripción mensual:
 
 | Miembro del Equipo | Cargo en la S.A.S. | Rol Académico CESDE | Responsabilidades Clave |
 |---|---|---|---|
-| **Jeiser Abraham Gutiérrez** | Chief Technology Officer (CTO) | Tech Lead & QA Lead | Arquitectura 3FN, gobernanza TypeScript, esquemas Zod, DDL SQL y roadmap Cloud AWS. |
-| **Sebastián Correa** | Chief Design Officer (CDO) | Frontend Lead | UI/UX Pro Max, maquetación HTML5 semántica pura, accesibilidad WCAG 2.1 y blueprints. |
-| **Camila Salas** *(retirada del curso el 26-sep-2026)* | Chief Legal & Financial Officer (CLO/CFO) | Asistente Legal/Admin | Formalización S.A.S. (Ley 1780), Régimen Simple (RST 1.8%-5.4%) y 0% IVA Cloud. |
-| **Dr. Humberto Pinto** | Chief Medical & Scientific Officer (CSO) | Asesor Médico & QA | Telemetría médica (pesaje AM/PM), protocolos de inocuidad y asesoría zootécnica. |
+| **Jeiser Abraham Gutiérrez** | Chief Technology Officer (CTO) | Tech Lead & QA Lead | Arquitectura 3FN, gobernanza TypeScript, esquemas Zod, DDL SQL y hoja de ruta cloud (AWS). |
+| **Sebastián Correa** | Chief Design Officer (CDO) | Frontend Lead | UI/UX, maquetación HTML5 semántica, Bootstrap 5.3, accesibilidad WCAG 2.1 y blueprints. |
+| **Dr. Héctor Pinto** | Chief Medical & Scientific Officer (CSO) | Asesor Clínico Veterinario | Sanidad ICA, farmacopea, normativa lechera y protocolos de inocuidad. |
 | **Emilio Villanueva** | Head of Operations (COO) | Lógica & PSeInt Lead | Algoritmia en PSeInt (Cinta Roja, Días Abiertos, Liquidación UFC) y validación de campo. |
+
+> **Nota de equipo:** Camila Salas participó en el Momento 1 y se retiró formalmente del proyecto y del curso el **26-sep-2026**. El equipo vigente es de 4 integrantes. El nombre correcto del asesor veterinario es **Dr. Héctor Pinto**.
 
 ---
 

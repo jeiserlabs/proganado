@@ -3,7 +3,11 @@
 > **SSOT (Single Source of Truth) del Proyecto Integrador CESDE Nivel 1**  
 > **Proyecto:** ProGanado (Software Integral de Gestión Ganadera e Inocuidad Lechera)  
 > **Repositorio Oficial:** `https://github.com/jeiserlabs/proganado`  
-> **Ubicación Local:** `E:\PROYECTOS\Mis_Proyectos\ProGanado`
+> **Repositorio de la Página:** `jeiserlabs/proganado-producto-momento-2` (no es el remoto de este repo)
+> **Ubicación Local:** `C:\PROYECTOS\Mis_Proyectos\ProGanado`
+> **Página Local:** `C:\PROYECTOS\Mis_Proyectos\ProGanado_Web`
+> **Carpeta de Estudio (Drive):** `https://drive.google.com/drive/folders/1_Ozo8XA7UjZPFWDf9WtDfhg5XgCmmKns`
+> **SSOT de rutas y timeline:** `docs/sustentacion_2026/SSOT_Y_TIMELINE.md`
 
 ---
 
@@ -11,19 +15,21 @@
 - **Ámbito Exclusivo:** Este repositorio contiene única y exclusivamente el desarrollo, arquitectura, base de datos, lógica algorítmica, frontend y documentación del **Proyecto Integrador ProGanado**.
 - **Cero Mezcla de Dominios:** Queda estrictamente prohibido contaminar o vincular información de finanzas personales, expedientes legales ajenos, tránsito o actividades no relacionadas con ProGanado en este espacio.
 - **Fuentes de Verdad Internas:**
-  1. `docs/contexto/CEREBRO_PROGANADO.md` — Mapa técnico y funcional del sistema.
-  2. `docs/contexto/ESTADO_VIVO_PROGANADO.md` — Estado vivo del desarrollo, asignaciones y backlog.
-  3. `README.md` — Documentación pública oficial del repositorio.
-  4. `01_Base_de_Datos_SQL/schema_produccion_proganado_v3.sql` — DDL oficial de las 12 tablas en 3FN.
+  1. `docs/sustentacion_2026/SSOT_Y_TIMELINE.md` — Rutas, repos, Drive, flujo y timeline única.
+  2. `docs/contexto/CEREBRO_PROGANADO.md` — Mapa técnico y funcional del sistema.
+  3. `docs/contexto/ESTADO_VIVO_PROGANADO.md` — Estado vivo del desarrollo, asignaciones y backlog.
+  4. `README.md` — Documentación pública oficial del repositorio.
+  5. `01_Base_de_Datos_SQL/schema_produccion_proganado_v3.sql` — DDL oficial de las 12 tablas en 3FN.
+- **Documentación histórica:** `docs/_archivo_2026-08/` (Momento 1 y material con roles derogados). No usar sus cifras ni nombres para el Momento 2.
 
 ---
 
 ## 👥 2. Roles del Equipo y Directivas de Trabajo
-- **Jeiser Gutiérrez:** Tech Lead & Arquitecto de Base de Datos / Cloud AWS.
-- **Sebastián Correa:** Frontend Lead (HTML5 Semántico, Accesibilidad WCAG 2.1, UI/UX).
+- **Jeiser Gutiérrez:** Tech Lead & Arquitecto de Base de Datos / QA. Hoja de ruta cloud (AWS), no despliegue actual.
+- **Sebastián Correa:** Frontend Lead (HTML5 Semántico, Bootstrap 5.3, Accesibilidad WCAG 2.1, UI/UX).
 - **Emilio Villanueva:** Desarrollador de Lógica & Algoritmos PSeInt.
-- **Camila Salas:** Directora Legal, Administrativa y Financiera (S.A.S., RST, 0% IVA Cloud E.T. Art 476). *(Retirada formalmente del proyecto y del curso el 26-sep-2026.)*
-- **Dr. Humberto Pinto:** Asesor Médico Veterinario, Protocolos de Inocuidad Lechera y QA.
+- **Dr. Héctor Pinto:** Asesor Clínico Veterinario (Sanidad ICA, farmacopea y normativa lechera).
+- **Camila Salas:** retirada del proyecto y del curso el **26-sep-2026**. No forma parte del equipo vigente ni del material de estudio.
 
 ---
 
