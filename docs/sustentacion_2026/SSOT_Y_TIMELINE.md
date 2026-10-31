@@ -54,20 +54,20 @@ Un cambio no está terminado hasta que está en GitHub (texto/código) y en Driv
 | 2026-09-26 | Camila Salas se retira; el equipo queda en 4 integrantes. | `AGENTS.md`, actas del curso |
 | 2026-10-23/24 | Se publica la maqueta Bootstrap del Momento 2 en GitHub Pages. | Repo `proganado-producto-momento-2` |
 | 2026-10-29 | Se arma el paquete del Momento 2: landing, login, dashboard y demo SQLite. | `docs/sustentacion_2026/` |
-| 2026-10-31 | Auditoría end-to-end: se corrigen afirmaciones falsas, se re-renderiza la guía de 101 páginas (163→116, pie correcto), se publica la web corregida y se reorganiza Drive. | Commit `944a346` del repo web; este documento |
+| 2026-10-31 | Auditoría end-to-end y P0 de código resueltos: PSeInt fail-closed, tabla UFC única, defaults del DDL, gate de clon limpio y login demo del prototipo. Se re-renderiza la guía de 101 páginas (163→116) y se publica la web corregida. | Commits `944a346` (web) y los de `proganado`; `npm run verify` 23/23 |
 | **2026-11-14** | **Sustentación CESDE.** | — |
-| Después del 14-nov | Fase 2: API Node/TS, PSeInt fail-closed, tabla UFC única, DDL defaults, gate de clon limpio. | `.odd/tasks/proganado_fase2_api.odd.md` |
+| Después del 14-nov | Fase 2: API Node/TS, autenticación real y pruebas de integración. | `.odd/tasks/proganado_fase2_api.odd.md` |
 
 ## 6. Deuda declarada (no ocultar)
 
 | P0 | Estado | Dueño |
 |---|---|---|
-| PSeInt libera el último día de retiro (no es fail-closed) | Abierto | Emilio / Jeiser |
-| Tabla UFC: TS +80/+40/0/−120 vs PSeInt +120/+50/0/−150 | Abierto | Emilio |
-| PDF del Momento 1 con esquema `bovinos` viejo | Abierto | Jeiser |
-| `npm run verify` en clon limpio falla porque `bootstrap_m2/` está gitignoreado | Abierto | Jeiser |
-| Defaults del DDL (admin, bovino, antibiótico sin medicamento) | Abierto | Jeiser |
-| Prototipo `auth_config.js` 404 en navegador limpio | Abierto | Jeiser |
+| PSeInt libera el último día de retiro (no es fail-closed) | Resuelto 31-oct-2026 | Emilio / Jeiser |
+| Tabla UFC: TS +80/+40/0/−120 vs PSeInt +120/+50/0/−150 | Resuelto 31-oct-2026: tabla única | Emilio |
+| PDF del Momento 1 con esquema `bovinos` viejo | Resuelto 31-oct-2026: archivado y marcado histórico | Jeiser |
+| `npm run verify` en clon limpio falla porque `bootstrap_m2/` está gitignoreado | Resuelto 31-oct-2026: copia stale retirada y excepciones depuradas | Jeiser |
+| Defaults del DDL (admin, bovino, antibiótico sin medicamento) | Resuelto 31-oct-2026: defaults peligrosos retirados + CHECK | Jeiser |
+| Prototipo `auth_config.js` 404 en navegador limpio | Resuelto 31-oct-2026: login demo sin archivo externo | Jeiser |
 
 **Regla:** si el jurado pregunta por uno de estos, se declara como deuda y se explica el plan. No se inventa que ya está resuelto.
 

@@ -102,20 +102,16 @@ avisa del error de sintaxis al instante.
 
 ---
 
-## 4. INCOHERENCIAS DETECTADAS QUE **NO** SE TOCARON (decisión del Tech Lead)
+## 4. INCOHERENCIAS DETECTADAS Y ESTADO (actualizado 31-oct-2026)
 
-1. **Los PDFs del Momento 1** describen el `bovinos` viejo. No son texto versionado: se regeneran.
+1. **[Resuelto 31-oct-2026] Los PDFs del Momento 1** describen el `bovinos` viejo. El PDF se archivó en `docs/_archivo_2026-08/pdfs_momento1/` y el `.md` lleva banner histórico; no se usa para el Momento 2.
 2. **`entregas_acopio` no tiene índice `(id_finca, fecha_entrega)`** y `eventos_reproductivos`
    tampoco en `(id_bovino, fecha_evento)`: las consultas de conciliación y de curva reproductiva
    escanean la tabla completa. Con 15 vacas no se nota; con 500 sí.
-3. **`tratamientos_sanitarios.tipo_procedimiento` no tiene `CHECK`**: Zod restringe 10 valores y la
-   base acepta cualquier texto. La validación no es la última línea de defensa (el resto sí lo es).
+3. **[Resuelto 31-oct-2026] `tratamientos_sanitarios.tipo_procedimiento` no tiene `CHECK`**: se agregó el vocabulario de 10 valores y el CHECK que exige medicamento en antibióticos/vacunas; probado en `tests/paridad_ssot.test.mjs`.
 4. **`potreros.dias_ocupacion`**: Zod permite máximo 5; el comentario del tipo decía "máximo 3".
    Corregido el comentario, no la regla.
-5. **PSeInt vs SQL en el día límite**: el módulo 1 del `.psc` compara `dias_transcurridos < dias_retiro`
-   y da el retiro por cumplido el día en que se cumple; la vista SQL mantiene el bloqueo ese día
-   (fail-closed). Son dos definiciones distintas del mismo límite sanitario: hay que unificarlas
-   (la correcta es la de la base, la conservadora).
+5. **[Resuelto 31-oct-2026] PSeInt vs SQL en el día límite**: el `.psc` ahora compara `dias_transcurridos <= dias_retiro` y bloquea el último día, igual que la vista SQL; probado en `tests/pseint_rules.test.mjs`. La tabla UFC también quedó unificada en +80/+40/0/−120.
 6. **`04_Documentos_Sustentacion/` tiene dos PDFs numerados `01_` y dos `02_`** (versiones sucesivas
    del mismo ER) y un archivo con espacio en el nombre (`ER PROGANADO.drawio`), que complica
    cualquier comando desde terminal.

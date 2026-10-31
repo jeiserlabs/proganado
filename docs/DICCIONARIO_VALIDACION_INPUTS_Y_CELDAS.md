@@ -82,7 +82,7 @@ Al tratarse de una **S.A.S. Ganadera y de Inocuidad Alimentaria**, los errores d
 |---|---|---|---|---|---|
 | `fecha_entrega` | `<input type="date">` | `string` (ISO) | `max="today"` | "Fecha de entrega inválida." | Control de facturación por quincena. |
 | `litros_totales` | `<input type="number">` | `number` | `min="1.00" max="50000.00" step="0.50"` | "Volumen de litros debe ser positivo y acorde a la capacidad del predio." | Control volumétrico de tanques de enfriamiento. |
-| `recuento_ufc` | `<input type="number">` | `number \| null` | `min="0" max="2000000"` | "El recuento de UFC debe ser un valor entero positivo." | Determina la bonificación higiénica (+120 COP/L o penalización). |
+| `recuento_ufc` | `<input type="number">` | `number \| null` | `min="0" max="2000000"` | "El recuento de UFC debe ser un valor entero positivo." | Determina la bonificación higiénica: +80 / +40 / 0 / -120 COP/L según la tabla única. |
 | `valor_bruto_est` | `<input type="number">` | `number` | `min="0.00" step="100"` | "El valor estimado no puede ser negativo." | Cuadre financiero preliminar. |
 
 ---

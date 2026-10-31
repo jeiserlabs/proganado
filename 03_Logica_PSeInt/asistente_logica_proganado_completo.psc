@@ -40,13 +40,16 @@ Algoritmo ProGanado_Asistente_Logica_Maestro
                 Escribir "Ingrese los dias transcurridos desde la aplicacion: "
                 Leer dias_transcurridos
 
-                Si dias_transcurridos < dias_retiro Entonces
+                Si dias_transcurridos <= dias_retiro Entonces
                     dias_restantes <- dias_retiro - dias_transcurridos
                     Escribir "----------------------------------------------------------------"
                     Escribir " [!] ALERTA CRITICA - CINTA ROJA ACTIVA PARA BOVINO: ", codigo_arete
                     Escribir " Medicamento: ", nombre_farmaco
                     Escribir " DICTAMEN: LECHE CONTAMINADA CON RESIDUOS DE ANTIBIOTICO."
                     Escribir " Dias restantes de cuarentena: ", dias_restantes, " dias."
+                    Si dias_restantes = 0 Entonces
+                        Escribir " ULTIMO DIA DE RETIRO: la leche se libera MANANA."
+                    FinSi
                     Escribir " ACCION FAIL-CLOSED: BLOQUEAR INGRESO AL TANQUE DE ENFRIAMIENTO."
                     Escribir " Desviar produccion a descarte obligatorio para evitar sancion."
                     Escribir "----------------------------------------------------------------"
@@ -111,21 +114,21 @@ Algoritmo ProGanado_Asistente_Logica_Maestro
                 Escribir "Ingrese el recuento de Unidades Formadoras de Colonia (UFC/ml): "
                 Leer recuento_ufc
 
-                // Tabla de calidad higienica segun estandar Colanta / Resolucion 017
-                Si recuento_ufc < 50000 Entonces
-                    bonificacion <- 120.0 // Bonificacion Clase A
-                    Escribir "Calidad Higienica: EXCELENTE (UFC < 50.000). Bonificacion +120 COP/L."
+                // Tabla de calidad higienica alineada con la regla TS (tests de dominio)
+                Si recuento_ufc <= 25000 Entonces
+                    bonificacion <- 80.0 // Bonificacion Clase A
+                    Escribir "Calidad Higienica: EXCELENTE (UFC <= 25.000). Bonificacion +80 COP/L."
                 SiNo
-                    Si recuento_ufc <= 175000 Entonces
-                        bonificacion <- 50.0 // Bonificacion Clase B
-                        Escribir "Calidad Higienica: BUENA (UFC 50.000 - 175.000). Bonificacion +50 COP/L."
+                    Si recuento_ufc <= 50000 Entonces
+                        bonificacion <- 40.0 // Bonificacion Clase B
+                        Escribir "Calidad Higienica: BUENA (UFC 25.000 - 50.000). Bonificacion +40 COP/L."
                     SiNo
-                        Si recuento_ufc <= 300000 Entonces
+                        Si recuento_ufc <= 100000 Entonces
                             bonificacion <- 0.0 // Estandar sin bonificacion
-                            Escribir "Calidad Higienica: ACEPTABLE (UFC 175.000 - 300.000). Sin bonificacion."
+                            Escribir "Calidad Higienica: ACEPTABLE (UFC 50.000 - 100.000). Sin bonificacion."
                         SiNo
-                            bonificacion <- -150.0 // Penalizacion por alta carga bacteriana
-                            Escribir " [!] ALERTA HIGIENICA: Deficiente (UFC > 300.000). Penalizacion -150 COP/L."
+                            bonificacion <- -120.0 // Penalizacion por alta carga bacteriana
+                            Escribir " [!] ALERTA HIGIENICA: Deficiente (UFC > 100.000). Penalizacion -120 COP/L."
                         FinSi
                     FinSi
                 FinSi

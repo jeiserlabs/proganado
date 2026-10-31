@@ -37,7 +37,7 @@ SSOT de rutas y timeline: `docs/sustentacion_2026/SSOT_Y_TIMELINE.md`
 - **Lenguaje:** TypeScript (Node.js) + SQL
 - **BD dev:** SQLite (`better-sqlite3`) | **BD prod:** PostgreSQL (Supabase / AWS RDS)
 - **Validación:** Zod v4
-- **Tests:** Node.js `--test` nativo (19/19 PASS)
+- **Tests:** Node.js `--test` nativo (23/23 PASS)
 - **Typecheck:** `tsc --noEmit` (0 errores)
 - **Paridad:** `node tools/paridad_ssot.mjs`
 
@@ -52,7 +52,7 @@ SSOT de rutas y timeline: `docs/sustentacion_2026/SSOT_Y_TIMELINE.md`
 - [x] 3 reglas de dominio puras con tests (cinta_roja, dias_abiertos, liquidacion_leche)
 - [x] Maquetación HTML5 semántica (`02_Vistas_HTML5/`)
 - [x] Algoritmos PSeInt (`03_Logica_PSeInt/`)
-- [x] Paridad SSOT gate (19/19 tests)
+- [x] Paridad SSOT gate (23/23 tests)
 
 ### FASE 2 — SIGUIENTE PRIORIDAD (post sustentación 14-Nov-2026)
 Objetivo: API funcional conectada a la base de datos real.
@@ -105,7 +105,7 @@ Comando de inicio: `node --loader ts-node/esm src/server/index.ts`
 ## Comandos clave
 
 ```bash
-npm test              # 19/19 tests — DEBE PASAR SIEMPRE
+npm test              # 23/23 tests — DEBE PASAR SIEMPRE
 npm run typecheck     # 0 errores TypeScript
 npm run paridad       # "Paridad total" — antes de commitear cambios al modelo
 npm run verify        # typecheck + paridad + test (todo en uno)

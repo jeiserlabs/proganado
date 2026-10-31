@@ -46,9 +46,9 @@
 
 ### SLIDE 4 — Algoritmo Preventivo: Cinta Roja Fail-Closed
 * **Orador:** Emilio Villanueva (60 segundos)
-* **Texto en Pantalla:** *Cinta Roja · Regla fail-closed en SQL/TS · PSeInt académico pendiente de corregir*
+* **Texto en Pantalla:** *Cinta Roja · Fail-closed en SQL, TypeScript y PSeInt · Último día bloqueado*
 * **Guion Oral:**
-  > "El corazón preventivo de ProGanado es el algoritmo de **Cinta Roja**. En la materia de Lógica lo modelamos en PSeInt y lo llevamos a la base de datos. La regla canónica es **fail-closed** en SQL y TypeScript; el PSeInt académico actual todavía libera el último día y debe corregirse antes de presentarlo como equivalente.
+  > "El corazón preventivo de ProGanado es el algoritmo de **Cinta Roja**. En la materia de Lógica lo modelamos en PSeInt y lo llevamos a la base de datos. La regla canónica es **fail-closed** en SQL, TypeScript y PSeInt: el último día sigue bloqueado y se libera al siguiente.
   > Cuando se aplica un fármaco, el sistema calcula: `Fecha_Tratamiento + Dias_Retiro_ICA`. Mientras la fecha actual sea menor o igual al fin del retiro, la vaca queda bloqueada automáticamente para ordeño.
   > Muy importante: la Cinta Roja **NO es una casilla booleana** que el mayordomo pueda apagar a mano. Se materializa en la vista `v_bovinos_cinta_roja`. Ningún operario puede saltarse la norma sanitaria."
 
@@ -141,7 +141,7 @@
 ## 🛡️ Matriz de Defensa Contra Preguntas Difíciles del Jurado
 
 1. **"¿Por qué no usar simplemente un campo booleano 'enferma = true' en la tabla de vacas?"**
-   * *Respuesta (Jeiser/Emilio):* "Porque violaría la Tercera Forma Normal (3FN) y crearía una vulnerabilidad de seguridad. Un booleano depende de que un operario recuerde desmarcarlo a tiempo o permite que lo apague para ordeñar a escondidas. La Cinta Roja es un **cálculo determinista** basado en la farmacopea del ICA que se materializa en una vista SQL. En SQL/TS es *fail-closed*: mientras la fecha no expire, el sistema prohíbe el ordeño por motor, no por voluntad humana. El PSeInt académico todavía libera el último día; hay que corregirlo antes de decir que es equivalente."
+   * *Respuesta (Jeiser/Emilio):* "Porque violaría la Tercera Forma Normal (3FN) y crearía una vulnerabilidad de seguridad. Un booleano depende de que un operario recuerde desmarcarlo a tiempo o permite que lo apague para ordeñar a escondidas. La Cinta Roja es un **cálculo determinista** basado en la farmacopea del ICA que se materializa en una vista SQL. En SQL/TS es *fail-closed*: mientras la fecha no expire, el sistema prohíbe el ordeño por motor, no por voluntad humana. El PSeInt ya quedó alineado con la misma condición <=."
 
 2. **"¿Por qué tienen una tabla 'marcaciones' separada de 'bovinos'?"**
    * *Respuesta (Jeiser):* "Por la realidad del campo colombiano. Los bovinos pierden los aretes plásticos con frecuencia en los alambres de púas. Si la llave primaria o única fuera el arete en la tabla bovino, al perderse el arete se perdería toda la trazabilidad histórica de pesajes y vacunas. En nuestro modelo, el bovino tiene un `id_bovino` inmutable y la tabla `marcaciones` guarda el historial de re-areteos con cardinalidad 1 a N y un flag de estado activo; la fecha de rearete se puede añadir en la siguiente versión."

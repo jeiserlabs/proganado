@@ -13,4 +13,4 @@ Protecciones incluidas:
 
 Límite importante:
 
-El almacenamiento local no cifra la información ni ofrece usuarios, permisos, auditoría o copias de seguridad. Para una aplicación publicada o usada por varias personas se requiere un backend con HTTPS, autenticación multifactor, roles, base de datos cifrada, registro de auditoría, copias de seguridad y revisiones periódicas de dependencias.
+El login del prototipo es una **demo local** (`demo@proganado.local` / `demo`); no es autenticación de producción. Las cuentas reales y los secretos viven en el backend, no en el navegador. El almacenamiento local no cifra la información ni ofrece usuarios, permisos, auditoría o copias de seguridad. Para una aplicación publicada o usada por varias personas se requiere un backend con HTTPS, autenticación multifactor, roles, base de datos cifrada, registro de auditoría, copias de seguridad y revisiones periódicas de dependencias.

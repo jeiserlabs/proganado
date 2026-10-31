@@ -16,12 +16,11 @@ const MAX_INTENTOS = 5;
 const MINUTOS_BLOQUEO = 5;
 const DIAS_SESION = 7;
 
-/* Cuentas iniciales: viven en auth_config.js (local, fuera de Git).
-   Copia auth_config.example.js y define allí las cuentas reales.
-   Prohibido commitear credenciales en este archivo. */
-const AUTH_DEFAULT = (typeof window !== 'undefined' && Array.isArray(window.PROGANADO_AUTH_DEFAULT))
+/* Modo demo local: el navegador NO carga auth_config.js (el servidor lo bloquea).
+   Las cuentas reales van al backend; aquí solo existe el usuario demo. */
+const AUTH_DEFAULT = (typeof window !== 'undefined' && Array.isArray(window.PROGANADO_AUTH_DEFAULT) && window.PROGANADO_AUTH_DEFAULT.length)
   ? window.PROGANADO_AUTH_DEFAULT
-  : [];
+  : [{ correo: 'demo@proganado.local', pass: 'demo', nombre: 'Administrador Demo', role: 'admin' }];
 
 const ES_CORREO = v => /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(String(v || '').trim().toLowerCase());
 
@@ -51,10 +50,7 @@ async function authLoad() {
       if (auth && Array.isArray(auth.usuarios) && auth.usuarios.length) return;
     }
   } catch (e) { /* regenerar */ }
-  // Primera vez: crear cuentas iniciales con hash
-  if (!AUTH_DEFAULT.length) {
-    throw new Error('Falta auth_config.js. Copia auth_config.example.js y define las cuentas iniciales fuera de Git.');
-  }
+  // Primera vez: crear el usuario demo con hash
   auth = { usuarios: [], intentos: {} };
   for (const def of AUTH_DEFAULT) {
     const salt = nuevoSalt();

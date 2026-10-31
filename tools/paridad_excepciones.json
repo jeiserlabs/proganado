@@ -112,20 +112,6 @@
       "motivo": "Artefacto DIDÁCTICO (armar el esqueleto semántico con piezas tipo Lego), no un formulario de alta real: usa vocabulario simplificado a propósito (arete/raza/fecha) y no corresponde a una tabla del modelo físico.",
       "fecha": "2026-09-16",
       "revisar_antes_de": "2027-06-30"
-    },
-    {
-      "codigo": "HTML_SIN_TABLA_DECLARADA",
-      "ident": "02_Vistas_HTML5/bootstrap_m2/dashboard.html",
-      "motivo": "Maquetación Bootstrap Momento 2 para entrega CESDE (prototipo visual de dashboard interactivo), no es un formulario DDL directo.",
-      "fecha": "2026-10-25",
-      "revisar_antes_de": "2027-06-30"
-    },
-    {
-      "codigo": "HTML_SIN_TABLA_DECLARADA",
-      "ident": "02_Vistas_HTML5/bootstrap_m2/index.html",
-      "motivo": "Maquetación Bootstrap Momento 2 para entrega CESDE (interfaz de acceso y autenticación visual), no es un formulario DDL directo.",
-      "fecha": "2026-10-25",
-      "revisar_antes_de": "2027-06-30"
     }
   ]
 }

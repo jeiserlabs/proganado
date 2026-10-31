@@ -66,7 +66,7 @@ Table bovinos {
   id_raza varchar [not null, ref: > razas.id_raza]
   sexo varchar [not null, note: 'Hembra, Macho']
   estado_fisiologico varchar [not null, note: 'En_Ordeño, Horra_Seca, Novilla_Vientre, Ternero_Crecimiento, Toro_Reproductor']
-  estado_vital varchar [not null, default: 'Activo', note: 'Activo, Muerto, Vendido, Descarte']
+  estado_vital varchar [not null, note: 'Activo, Muerto, Vendido, Descarte']
   fecha_nacimiento date [not null]
 }
 

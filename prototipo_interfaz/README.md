@@ -39,13 +39,15 @@ http://127.0.0.1:8899/index.html
 
 ---
 
-## 🔑 Credenciales Predeterminadas de Acceso
+## 🔑 Credenciales del Modo Demo
 
-El sistema viene preconfigurado con una cuenta de administrador de prueba:
+El prototipo viene con un usuario demo local; no usa correos ni contraseñas reales:
 
-* **Usuario / Correo:** `eavillas1991@gmail.com`
-* **Contraseña:** `***REMOVED***`
-* **Segundo Factor (2FA):** Al ingresar las credenciales, aparecerá un aviso amarillo en la pantalla indicando el código de 6 dígitos del modo de prueba (ej. `123456`). Ingrésalo para acceder al panel principal.
+* **Usuario / Correo:** `demo@proganado.local`
+* **Contraseña:** `demo`
+* **Segundo Factor (2FA):** al ingresar las credenciales, el aviso amarillo muestra el código de 6 dígitos del modo demo. Ingrésalo para acceder al panel principal.
+
+> El navegador ya no carga `auth_config.js` (el servidor lo bloquea). Las cuentas reales y los secretos van al backend en la Fase 2; aquí solo existe el usuario demo.
 
 ---
 

@@ -122,6 +122,41 @@ test('no se puede insertar un bovino sin sexo ni estado vital declarados', () =>
   const columnas = q(db, 'SELECT name FROM pragma_table_info(?)', 'bovinos').map((c) => c.name);
   assert.ok(columnas.includes('sexo') && columnas.includes('estado_fisiologico') && columnas.includes('estado_vital'));
   assert.ok(!columnas.includes('alerta_cinta_roja'), 'la cinta roja NO es columna: es la vista');
+  assert.throws(
+    () => db.exec(`INSERT INTO bovinos (id_bovino, id_finca, id_potrero, id_raza, fecha_nacimiento) VALUES ('B2','F1',NULL,'R1','2026-01-01')`),
+    /NOT NULL/,
+    'el sexo y el estado no pueden tener default silencioso'
+  );
+});
+
+test('no se puede crear un usuario sin rol explícito (sin default Administrador)', () => {
+  const db = baseNueva();
+  assert.throws(
+    () => db.prepare(`INSERT INTO usuarios (id_usuario, nombre, email, contrasena_hash) VALUES ('U2','Sin rol','sinrol@finca.co','h')`).run(),
+    /NOT NULL/,
+    'el rol debe ser explícito: un default Administrador es una escalada silenciosa'
+  );
+});
+
+test('un antibiótico o vacuna sin fármaco no puede entrar a la base', () => {
+  const db = baseNueva();
+  sembrar(db, 5);
+  assert.throws(
+    () => db.prepare(`INSERT INTO tratamientos_sanitarios (id_tratamiento, id_bovino, tipo_procedimiento, id_medicamento, fecha_tratamiento) VALUES ('TX','B1','Antibiotico',NULL,'2026-01-01')`).run(),
+    /CHECK/,
+    'un antibiótico sin medicamento no puede disparar la Cinta Roja'
+  );
+  assert.throws(
+    () => db.prepare(`INSERT INTO tratamientos_sanitarios (id_tratamiento, id_bovino, tipo_procedimiento, id_medicamento, fecha_tratamiento) VALUES ('TV','B1','Vacunacion_Aftosa',NULL,'2026-01-01')`).run(),
+    /CHECK/,
+    'una vacuna sin fármaco tampoco puede entrar'
+  );
+  assert.throws(
+    () => db.prepare(`INSERT INTO tratamientos_sanitarios (id_tratamiento, id_bovino, tipo_procedimiento, id_medicamento, fecha_tratamiento) VALUES ('TI','B1','Inventado',NULL,'2026-01-01')`).run(),
+    /CHECK/,
+    'el vocabulario de procedimientos debe estar cerrado en la base'
+  );
+  db.prepare(`INSERT INTO tratamientos_sanitarios (id_tratamiento, id_bovino, tipo_procedimiento, id_medicamento, fecha_tratamiento) VALUES ('TD','B1','Descorne',NULL,'2026-01-01')`).run();
 });
 
 test('todas las copias del modelo coinciden con el DDL oficial (gate de paridad)', () => {

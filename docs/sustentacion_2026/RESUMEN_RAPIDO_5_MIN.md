@@ -35,7 +35,7 @@
 - **8 registros** en el dashboard; **480 L** y **4.0 °C** son ejemplos.
 - **90 alerta / 100 meta / 120 crítico** días abiertos.
 - **Free 0 / Pro 119k / Multi-Predio 299k COP/mes.
-- **19/19 tests** de Node.
+- **23/23 tests** de Node.
 - **FK:** RESTRICT historial clínico, CASCADE dependientes, SET NULL potrero.
 
 ## Lo que NO se dice
@@ -62,7 +62,7 @@
 4. **¿Por qué SQLite?** Es un archivo; ideal para demo y para enseñar el flujo.
 5. **¿Por qué PostgreSQL?** Producción: concurrencia, tipos y respaldo.
 6. **¿Qué es Cinta Roja?** Bloqueo por retiro de antibiótico; fail-closed en SQL/TS.
-7. **¿PSeInt es fail-closed?** Todavía no: libera el último día; es un P0 declarado.
+7. **¿PSeInt es fail-closed?** Sí: bloquea el último día y libera al siguiente; quedó alineado con SQL/TS el 31-oct-2026.
 8. **¿La IA hizo el proyecto?** No: se usó como herramienta y se auditó; el equipo explica cada decisión.
 
 ## Tres frases para memorizar

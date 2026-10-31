@@ -14,7 +14,7 @@
 - **Material de estudio:** carpeta oficial de Drive [ProGanado_Sustentacion_Oficial_CESDE](https://drive.google.com/drive/folders/1_Ozo8XA7UjZPFWDf9WtDfhg5XgCmmKns). Guía maestra de 101 páginas corregida, 4 guías individuales, Dummies, deck de 12 slides y guion.
 - **Página web:** https://jeiserlabs.github.io/proganado-producto-momento-2/ — maqueta Bootstrap 5.3; login demo, tabla/filtro/formulario visuales; la persistencia está en la demo SQLite.
 - **Demo SQLite:** `03_PAGINAS_WEB_Y_DEMO_EN_VIVO/demo_sqlite/` (una tabla didáctica; no es el DDL de 12 tablas).
-- **Deuda P0 declarada:** PSeInt no es fail-closed en el último día; tabla UFC distinta entre TS y PSeInt; PDF del M1 con esquema viejo; gate de clon limpio; defaults del DDL; `auth_config.js` del prototipo. Detalle en `SSOT_Y_TIMELINE.md` §6.
+- **P0 de código resueltos (31-oct-2026):** PSeInt fail-closed, tabla UFC única, defaults del DDL, gate de clon limpio y login demo del prototipo. Evidencia: `npm run verify` 23/23 + tests nuevos. El PDF del M1 quedó archivado en `docs/_archivo_2026-08/pdfs_momento1/`.
 - **Prototipo Interfaz:** `prototipo_interfaz/` (v1.0 interactivo aportado por Emilio con servidor local Python). No es la entrega oficial del Momento 2.
 - **Protocolo de Escalabilidad:** `docs/ARQUITECTURA_Y_PLAN_ESCALABILIDAD.md` (4 fases; AWS es hoja de ruta, no despliegue actual).
 

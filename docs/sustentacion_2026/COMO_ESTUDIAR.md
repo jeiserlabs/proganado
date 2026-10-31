@@ -29,8 +29,8 @@
 - **12 tablas 3FN, 7 índices, 1 vista.** SQLite en desarrollo, PostgreSQL en producción.
 - **116 aretes de ejemplo.** No son 163 vacas reales ni tracción comercial.
 - **FK:** RESTRICT en historial clínico, CASCADE en tablas dependientes, SET NULL al desasignar potrero.
-- **Cinta Roja:** fin = `fecha_tratamiento + dias_retiro_ica`; se bloquea si hoy <= fin. SQL/TS son fail-closed; **PSeInt todavía libera el último día** (deuda declarada).
-- **UFC:** TypeScript probado con +80/+40/0/−120; PSeInt usa +120/+50/0/−150. Es una inconsistencia conocida, no la escondas.
+- **Cinta Roja:** fin = `fecha_tratamiento + dias_retiro_ica`; se bloquea si hoy <= fin. SQL/TS **y PSeInt** son fail-closed desde el 31-oct-2026: el último día sigue bloqueado y se libera al siguiente.
+- **UFC:** tabla única +80/+40/0/−120 en TypeScript y PSeInt; los tests la congelan.
 - **Planes:** Free 0 / Pro 119k COP/mes / Multi-Predio 299k COP/mes.
 - **Días abiertos:** 90 alerta, 100 meta, 120 crítico (TS).
 - **Demo:** 8 registros en el dashboard; 480 L y 4.0 °C son datos de ejemplo, no telemetría real.
@@ -44,7 +44,7 @@
 | ¿Es un SaaS en producción? | No. Es un prototipo académico con datos de ejemplo. |
 | ¿Por qué SQLite? | Es un archivo, no un servidor; sirve para la demo y para aprender el flujo. |
 | ¿Por qué PostgreSQL? | Es el motor previsto para producción por concurrencia e integridad. |
-| ¿Qué pasa si una vaca está en Cinta Roja? | Se bloquea el ordeño hasta cumplir el retiro; el último día es el P0 de PSeInt. |
+| ¿Qué pasa si una vaca está en Cinta Roja? | Se bloquea el ordeño hasta cumplir el retiro, incluido el último día; se libera al siguiente. |
 | ¿Qué es la vista de Cinta Roja? | `v_bovinos_cinta_roja`; no es una columna de `bovinos`. |
 
 ## Reglas de honestidad

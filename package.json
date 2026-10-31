@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit",
     "paridad": "node tools/paridad_ssot.mjs",
     "paridad:verbose": "node tools/paridad_ssot.mjs --verbose",
-    "test": "node --test tests/paridad_ssot.test.mjs tests/domain_rules.test.ts",
+    "test": "node --test tests/paridad_ssot.test.mjs tests/pseint_rules.test.mjs tests/domain_rules.test.ts",
     "verify": "npm run typecheck && npm run paridad && npm test"
   },
   "dependencies": {

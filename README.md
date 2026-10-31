@@ -243,7 +243,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
     nombre TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
     contrasena_hash TEXT NOT NULL,
-    rol TEXT CHECK(rol IN ('Administrador', 'Asistente', 'Veterinario', 'Operario')) NOT NULL DEFAULT 'Administrador',
+    rol TEXT CHECK(rol IN ('Administrador', 'Asistente', 'Veterinario', 'Operario')) NOT NULL,
     -- Hora LOCAL de Colombia (UTC-5), no UTC: el rastro de auditoría debe coincidir con
     -- la hora real en que el mayordomo registró el movimiento.
     fecha_registro DATETIME DEFAULT (datetime('now', 'localtime'))
@@ -312,9 +312,9 @@ CREATE TABLE IF NOT EXISTS bovinos (
     id_finca TEXT NOT NULL,
     id_potrero TEXT,
     id_raza TEXT NOT NULL,
-    sexo TEXT CHECK(sexo IN ('Hembra', 'Macho')) NOT NULL DEFAULT 'Hembra',
-    estado_fisiologico TEXT CHECK(estado_fisiologico IN ('En_Ordeño', 'Horra_Seca', 'Novilla_Vientre', 'Ternero_Crecimiento', 'Toro_Reproductor')) NOT NULL DEFAULT 'Novilla_Vientre',
-    estado_vital TEXT CHECK(estado_vital IN ('Activo', 'Muerto', 'Vendido', 'Descarte')) NOT NULL DEFAULT 'Activo',
+    sexo TEXT CHECK(sexo IN ('Hembra', 'Macho')) NOT NULL,
+    estado_fisiologico TEXT CHECK(estado_fisiologico IN ('En_Ordeño', 'Horra_Seca', 'Novilla_Vientre', 'Ternero_Crecimiento', 'Toro_Reproductor')) NOT NULL,
+    estado_vital TEXT CHECK(estado_vital IN ('Activo', 'Muerto', 'Vendido', 'Descarte')) NOT NULL,
     fecha_nacimiento DATE NOT NULL,
     FOREIGN KEY (id_finca) REFERENCES fincas(id_finca) ON DELETE RESTRICT,
     FOREIGN KEY (id_potrero) REFERENCES potreros(id_potrero) ON DELETE SET NULL,
@@ -342,10 +342,15 @@ CREATE TABLE IF NOT EXISTS medicamentos (
 CREATE TABLE IF NOT EXISTS tratamientos_sanitarios (
     id_tratamiento TEXT PRIMARY KEY,
     id_bovino TEXT NOT NULL,
-    tipo_procedimiento TEXT NOT NULL,
+    tipo_procedimiento TEXT NOT NULL CHECK(tipo_procedimiento IN (
+        'Antibiotico', 'Vacunacion_Aftosa', 'Vacunacion_Brucelosis',
+        'Desparasitacion_Interna', 'Desparasitacion_Externa', 'Podologia_Correctiva',
+        'Curacion_Herida', 'Descorne', 'Sincronizacion_IATF', 'Vitaminas_Minerales'
+    )),
     id_medicamento TEXT,
     fecha_tratamiento DATE NOT NULL,
     dosis_ml DECIMAL(5,2),
+    CHECK (tipo_procedimiento NOT IN ('Antibiotico', 'Vacunacion_Aftosa', 'Vacunacion_Brucelosis') OR id_medicamento IS NOT NULL),
     FOREIGN KEY (id_bovino) REFERENCES bovinos(id_bovino) ON DELETE RESTRICT,
     FOREIGN KEY (id_medicamento) REFERENCES medicamentos(id_medicamento) ON DELETE RESTRICT
 );
