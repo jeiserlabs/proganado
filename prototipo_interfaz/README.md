@@ -47,7 +47,7 @@ El prototipo viene con un usuario demo local; no usa correos ni contraseñas rea
 * **Contraseña:** `demo`
 * **Segundo Factor (2FA):** al ingresar las credenciales, el aviso amarillo muestra el código de 6 dígitos del modo demo. Ingrésalo para acceder al panel principal.
 
-> El navegador ya no carga `auth_config.js` (el servidor lo bloquea). Las cuentas reales y los secretos van al backend en la Fase 2; aquí solo existe el usuario demo.
+> El navegador ya no carga `auth_config.js` (el servidor lo bloquea). Las cuentas reales y los secretos van al backend en la Fase 2; aquí solo existe el usuario demo. Las credenciales locales que existían en el equipo se retiraron: si se usaron, deben rotarse.
 
 ---
 
