@@ -35,7 +35,7 @@
 
 ## 📐 3. Reglas Técnicas Inmutables
 1. **Base de Datos 3FN:** 12 tablas normalizadas con llaves compuestas, FKs con integridad referencial estricta y restricciones CHECK.
-2. **Inocuidad Cinta Roja (Fail-Closed):** Bloqueo inmediato de ordeño si `fecha_actual < fecha_tratamiento + dias_retiro_ica`.
+2. **Inocuidad Cinta Roja (Fail-Closed):** Bloqueo inmediato de ordeño si `fecha_actual <= fecha_tratamiento + dias_retiro_ica` (se libera al día siguiente, nunca el último día).
 3. **Maquetación HTML5 Semántica Pura:** Uso exclusivo de etiquetas semánticas (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>`, `<footer>`), formularios con `<fieldset>`, `<legend>`, `<label>` y tablas con `<caption>`, `<thead>`, `<tbody>`, `<tfoot>`.
 4. **Clean Code & Modularidad:** Archivos < 300 líneas, funciones puras, separación estricta de capas (Datos -> Lógica -> Presentación).
 5. **Arquitectura Cloud Evolutiva:** Inicio a $0 COP (Local / Vercel / Render / Supabase) con hoja de ruta documentada de migración a AWS Enterprise (S3, CloudFront, Lambda/Fargate, RDS PostgreSQL Multi-AZ).

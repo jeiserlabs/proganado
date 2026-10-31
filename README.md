@@ -15,7 +15,7 @@
 
 > ### 📌 ALCANCE Y ESPECIFICACIÓN TÉCNICA (NIVEL 1 CESDE)
 > 1. **Capa Visual y Maquetación HTML5:** Especificación semántica pura (HTML5 estructurado sin dependencias) para modelar la experiencia de usuario y validaciones en campo.
-> 2. **Modelo Entidad-Relación y Relacional (12 Tablas 3FN):** DDL SQL estricto (`schema_produccion_proganado_v3.sql`) con soporte de integridad referencial estricta (`ON DELETE RESTRICT` para blindar la trazabilidad e historia clínica inmutable del bovino), telemetría de pesaje con hora exacta, control dinámico de inocuidad lechera (Cinta Roja) y módulo de conciliación de acopio contra tiquete de carrotanque (Colanta).
+> 2. **Modelo Entidad-Relación y Relacional (12 Tablas 3FN):** DDL SQL estricto (`schema_produccion_proganado_v3.sql`) con integridad referencial por caso: `RESTRICT` en historial clínico, `CASCADE` en tablas dependientes y `SET NULL` al desasignar potrero; telemetría de pesaje con hora exacta, control dinámico de inocuidad lechera (Cinta Roja) y módulo de conciliación de acopio contra tiquete de carrotanque (Colanta).
 
 ---
 
@@ -52,7 +52,7 @@ Como **CTO y QA Lead**, la arquitectura de ProGanado implementa el principio de 
 [ Contrato TypeScript ] ─────> Cero 'any'. Tipado estricto de 12 entidades
           │  (src/types/domain.types.ts)
           ▼
-[ Base de Datos 3FN ] ───────> Restricciones CHECK, NOT NULL, FK ON DELETE RESTRICT
+[ Base de Datos 3FN ] ───────> Restricciones CHECK, NOT NULL, FK RESTRICT/CASCADE/SET NULL
 ```
 
 * **Contratos TypeScript:** `src/types/domain.types.ts` (12 interfaces con enums zootécnicos).
