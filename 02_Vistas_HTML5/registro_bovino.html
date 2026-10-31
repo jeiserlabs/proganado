@@ -24,11 +24,15 @@
           <legend><strong>Datos del Animal</strong></legend>
           <br>
 
-          <label for="txtArete">Código de Arete (Único):</label><br>
-          <input type="text" id="txtArete" name="codigo_arete" placeholder="Ej: ARETE-016" required><br><br>
+          <label for="txtIdBovino">Código interno del bovino:</label><br>
+          <input type="text" id="txtIdBovino" name="id_bovino" placeholder="Ej: BOV-016" required><br><br>
 
-          <label for="txtNombre">Nombre del Animal:</label><br>
-          <input type="text" id="txtNombre" name="nombre" placeholder="Ej: Paloma"><br><br>
+          <label for="selFinca">Finca:</label><br>
+          <select id="selFinca" name="id_finca" required>
+            <option value="">-- Seleccionar Finca --</option>
+            <option value="1">Finca La Esperanza</option>
+            <option value="2">Finca El Porvenir</option>
+          </select><br><br>
 
           <p><strong>Sexo:</strong></p>
           <!-- value debe ser el VOCABULARIO DE LA BASE ('Hembra'/'Macho'): el CHECK de
@@ -59,30 +63,21 @@
           <label for="txtFechaNac">Fecha de Nacimiento:</label><br>
           <input type="date" id="txtFechaNac" name="fecha_nacimiento" required><br><br>
 
-          <label for="numPeso">Peso Inicial (Kg):</label><br>
-          <input type="number" id="numPeso" name="peso_kg" step="0.5" min="20" max="1200" placeholder="420.5"><br><br>
-        </fieldset>
-
-        <br>
-
-        <fieldset>
-          <legend><strong>Trazabilidad y Linaje</strong></legend>
-          <br>
-          <label for="selMadre">Madre (Bovino Hembra del Hato):</label><br>
-          <select id="selMadre" name="id_madre">
-            <option value="">-- Sin Registro / Animal Fundador --</option>
-            <option value="1">ARETE-001 - Mariposa (Gyr)</option>
-            <option value="7">ARETE-007 - Estrella (Gyr)</option>
-            <option value="13">ARETE-013 - Cielo (Gyr)</option>
+          <label for="selEstadoFisiologico">Estado Fisiológico:</label><br>
+          <select id="selEstadoFisiologico" name="estado_fisiologico" required>
+            <option value="Novilla_Vientre" selected>Novilla / Vientre</option>
+            <option value="En_Ordeño">En Ordeño</option>
+            <option value="Horra_Seca">Horra / Seca</option>
+            <option value="Ternero_Crecimiento">Ternero / Crecimiento</option>
+            <option value="Toro_Reproductor">Toro Reproductor</option>
           </select><br><br>
 
-          <label for="selPadre">Toro Padre / Pajilla de Inseminación:</label><br>
-          <select id="selPadre" name="id_padre_genetica">
-            <option value="">-- Sin Registro --</option>
-            <option value="1">TORO-001 - Campeón Dorado (Brahman - Propio)</option>
-            <option value="2">TORO-002 - Potro Brillante (Normando - Propio)</option>
-            <option value="3">TORO-003 - Pajilla Holstein Premium (Comercial)</option>
-            <option value="4">TORO-004 - Relámpago Gyr (Prestado)</option>
+          <label for="selEstadoVital">Estado Vital:</label><br>
+          <select id="selEstadoVital" name="estado_vital" required>
+            <option value="Activo" selected>Activo</option>
+            <option value="Muerto">Muerto</option>
+            <option value="Vendido">Vendido</option>
+            <option value="Descarte">Descarte</option>
           </select><br><br>
         </fieldset>
 

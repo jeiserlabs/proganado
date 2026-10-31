@@ -19,6 +19,7 @@ import threading
 import time
 from email.message import EmailMessage
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from urllib.parse import unquote
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(ROOT, "correo_config.json")
@@ -84,8 +85,19 @@ def enviar_codigo_gmail(destino, codigo):
 
 # ------------------------------------------------------------------ handler
 class Manejador(SimpleHTTPRequestHandler):
+    # Configuración con credenciales: vive junto al HTML pero nunca se sirve.
+    PROHIBIDOS = ("auth_config.js", "correo_config.json")
+
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=ROOT, **kw)
+
+    def send_head(self):
+        ruta = unquote(self.path.split("?", 1)[0]).replace("\\", "/")
+        partes = [p for p in ruta.split("/") if p]
+        if partes and (partes[-1] in self.PROHIBIDOS or partes[0] == "__pycache__"):
+            self.send_error(404, "Not Found")
+            return None
+        return super().send_head()
 
     def end_headers(self):
         # sin caché: evita ver versiones viejas de la página al cambiar código

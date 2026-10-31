@@ -1,0 +1,28 @@
+# .geminiignore — ProGanado
+# Evita que Gemini CLI indexe binarios, dependencias y credenciales locales.
+
+node_modules/
+.git/
+__pycache__/
+*.pyc
+
+# Credenciales y configuración local (nunca a Git ni al contexto del agente)
+prototipo_interfaz/auth_config.js
+prototipo_interfaz/correo_config.json
+
+# Entregables y medios pesados
+*.pdf
+*.pptx
+*.ppsx
+*.docx
+*.zip
+*.mp4
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.mp3
+*.wav
+02_Vistas_HTML5/Imagen/
+02_Vistas_HTML5/Audio/
+02_Vistas_HTML5/bootstrap_m2/

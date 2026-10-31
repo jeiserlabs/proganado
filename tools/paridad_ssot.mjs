@@ -472,8 +472,22 @@ for (const abs of archivosHtmlRecursivo(path.join(ROOT, '02_Vistas_HTML5'))) {
     push('ERROR', 'HTML_TABLA_INEXISTENTE', `${rel}: data-tabla="${tabla}" no existe en el DDL oficial`);
     continue;
   }
-  const reales = Object.keys(ssot.tablas[tabla].columnas);
-  for (const [nombre, valores] of camposDeFormulario(html)) {
+  const columnas = ssot.tablas[tabla].columnas;
+  const reales = Object.keys(columnas);
+  const camposForm = camposDeFormulario(html);
+
+  // Un formulario que omite columnas NOT NULL sin default no puede insertar una
+  // fila válida, aunque no tenga ningún campo fantasma. El gate lo exige.
+  for (const [nombreCol, meta] of Object.entries(columnas)) {
+    const obligatoria = meta.es_notnull === 1
+      && (meta.dflt_value === null || meta.dflt_value === undefined)
+      && !meta.generada;
+    if (obligatoria && !camposForm.has(nombreCol)) {
+      push('ERROR', 'HTML_CAMPO_REQUERIDO_FALTANTE', `${rel}: falta name="${nombreCol}" (columna NOT NULL sin default de '${tabla}')`);
+    }
+  }
+
+  for (const [nombre, valores] of camposForm) {
     const ident = `${rel}:${nombre}`;
     if (!reales.includes(nombre)) {
       const codigo = columnasGlobales.has(nombre) ? 'HTML_CAMPO_OTRA_TABLA' : 'HTML_CAMPO_FANTASMA';

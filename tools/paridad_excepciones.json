@@ -114,41 +114,6 @@
       "revisar_antes_de": "2027-06-30"
     },
     {
-      "codigo": "HTML_CAMPO_FANTASMA",
-      "ident": "02_Vistas_HTML5/registro_bovino.html:codigo_arete",
-      "motivo": "DECISIÓN DE DISEÑO PENDIENTE: el arete NO es columna de bovinos, vive en marcaciones.codigo_valor (1:N con tipo_marca Arete_ICA/SINIGAN). Definir si el alta crea una marcación o si se renombra el campo.",
-      "fecha": "2026-09-16",
-      "revisar_antes_de": "2026-10-31"
-    },
-    {
-      "codigo": "HTML_CAMPO_FANTASMA",
-      "ident": "02_Vistas_HTML5/registro_bovino.html:peso_kg",
-      "motivo": "HUECO DEL MODELO v3.1: no existe tabla de pesaje de carne (pesajes_leche mide litros, no kilos). Falta diseñar la tabla de peso/condición corporal y su paridad.",
-      "fecha": "2026-09-16",
-      "revisar_antes_de": "2026-10-31"
-    },
-    {
-      "codigo": "HTML_CAMPO_FANTASMA",
-      "ident": "02_Vistas_HTML5/registro_bovino.html:id_madre",
-      "motivo": "HUECO DEL MODELO v3.1: no existe tabla de genealogía/historial reproductivo por madre. Decidir si el parentesco va en bovinos (id_madre) o en una tabla propia.",
-      "fecha": "2026-09-16",
-      "revisar_antes_de": "2026-10-31"
-    },
-    {
-      "codigo": "HTML_CAMPO_FANTASMA",
-      "ident": "02_Vistas_HTML5/registro_bovino.html:id_padre_genetica",
-      "motivo": "HUECO DEL MODELO v3.1: no existe catálogo de genética/pajillas ni tabla de paternidad. Falta diseñarlo (el formulario ya contempla toro propio y material comercial).",
-      "fecha": "2026-09-16",
-      "revisar_antes_de": "2026-10-31"
-    },
-    {
-      "codigo": "HTML_CAMPO_OTRA_TABLA",
-      "ident": "02_Vistas_HTML5/registro_bovino.html:nombre",
-      "motivo": "HUECO DEL MODELO v3.1: el nombre del animal es un identificador de manejo que bovinos no tiene (usuarios.nombre es el de la persona, no del bovino). Decidir nombre_bovino o eliminar el campo.",
-      "fecha": "2026-09-16",
-      "revisar_antes_de": "2026-10-31"
-    },
-    {
       "codigo": "HTML_SIN_TABLA_DECLARADA",
       "ident": "02_Vistas_HTML5/bootstrap_m2/dashboard.html",
       "motivo": "Maquetación Bootstrap Momento 2 para entrega CESDE (prototipo visual de dashboard interactivo), no es un formulario DDL directo.",

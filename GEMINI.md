@@ -8,7 +8,7 @@ Repo: `C:\PROYECTOS\Mis_Proyectos\ProGanado` | GitHub: `jeiserlabs/proganado`
 
 **R1 — Aislamiento total:** Este repo es SOLO ProGanado. Cero mezcla con LifeOS, DIAN, DiDi.  
 **R2 — Golden Freeze académico:** No cambiar DDL (`schema_produccion_proganado_v3.sql`) sin correr `npm run paridad` primero.  
-**R3 — Paridad SSOT:** Cada cambio al modelo de datos → actualizar DDL + types + schemas + README diagrama simultáneamente. `npm run paridad` debe imprimir "Paridad total".  
+**R3 — Paridad SSOT:** Cada cambio al modelo de datos → actualizar DDL + types + schemas + README diagrama simultáneamente. `npm run paridad` debe imprimir "Paridad total". El gate también exige que cada formulario declare todas las columnas `NOT NULL` sin default.
 **R4 — Zero-Any TypeScript:** Prohibido `any`. Todos los tipos en `src/types/domain.types.ts`.  
 **R5 — Fail-Closed Cinta Roja:** La lógica de inocuidad NUNCA puede liberar una vaca antes de `fecha_tratamiento + dias_retiro_ica + 1 día`. Fail-closed siempre.  
 **R6 — Fecha local Colombia:** SIEMPRE `date('now','localtime')` en SQLite. NUNCA `CURRENT_DATE` ni `CURRENT_TIMESTAMP` (devuelven UTC, bug v3.0 ya corregido en v3.1).  
@@ -33,7 +33,7 @@ Repo: `C:\PROYECTOS\Mis_Proyectos\ProGanado` | GitHub: `jeiserlabs/proganado`
 
 - **Lenguaje:** TypeScript (Node.js) + SQL
 - **BD dev:** SQLite (`better-sqlite3`) | **BD prod:** PostgreSQL (Supabase / AWS RDS)
-- **Validación:** Zod v3
+- **Validación:** Zod v4
 - **Tests:** Node.js `--test` nativo (19/19 PASS)
 - **Typecheck:** `tsc --noEmit` (0 errores)
 - **Paridad:** `node tools/paridad_ssot.mjs`

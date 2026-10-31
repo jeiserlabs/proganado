@@ -55,10 +55,11 @@
 ---
 
 ## 6. Baseline de Errores Conocidos (Known Baseline)
-- 21 excepciones controladas en `tools/paridad_excepciones.json` (campos derivados en TS y reglas de sintaxis de PSeInt para el instructor Jonathan Piedrahita). No son bugs; son tolerancias documentadas del modelo académico.
+- 18 excepciones controladas en `tools/paridad_excepciones.json` (campos derivados en TS y reglas de sintaxis de PSeInt para el instructor Jonathan Piedrahita). No son bugs; son tolerancias documentadas del modelo académico.
 
 ---
 
 ## 7. Progreso y Evidencia In-Place
 - **2026-10-23:** Deep audit completado. `npm run verify` ejecutado con éxito total (19/19 tests PASS, typecheck 0 errores, paridad total verificada). Prototipo interactivo 100% funcional.
 - **2026-10-28:** Re-verificación `npm run verify`: 19/19 tests PASS, paridad SSOT total y typecheck 0. La Tarea 8 (backend REST/SQLite) sigue pendiente para la Fase 2 post-sustentación.
+- **2026-10-31 (auditoría):** `verify` estaba rojo porque 5 excepciones del formulario vencieron ese día. Se alineó `registro_bovino.html` al DDL real (id_bovino, id_finca, id_raza, fecha_nacimiento, estado_fisiologico, estado_vital; se retiraron arete/nombre/peso/genealogía que el modelo v3 no tiene) y se eliminaron las 5 excepciones. El gate ahora también rechaza formularios que omitan columnas `NOT NULL` sin default (`HTML_CAMPO_REQUERIDO_FALTANTE`). Evidencia: `npm run verify` → 19/19 PASS, typecheck 0, paridad total, 18 excepciones restantes.

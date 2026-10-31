@@ -4,7 +4,7 @@
    - Contraseñas con hash SHA-256 + salt único por usuario
    - Bloqueo temporal tras 5 intentos fallidos (5 minutos)
    - Roles: admin (todo) / usuario (consulta + registrar)
-   - Sesión persistente en sessionStorage (expira al cerrar pestaña)
+   - Sesión persistente 7 días en localStorage (respaldo en sessionStorage)
    ============================================================ */
 'use strict';
 
