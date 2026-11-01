@@ -164,7 +164,34 @@ function load() {
   save(fresh);
   return fresh;
 }
-function save(data) { try { localStorage.setItem(DB_KEY, JSON.stringify(syncTablas3FN(data || db))); } catch (e) { /* cuota llena */ } }
+function anunciarFalloPersistencia(err) {
+  // localStorage puede fallar (cuota llena, modo privado, bloqueado por política).
+  // Antes el catch se tragaba el error y la pantalla seguía mostrando todo como si
+  // estuviera guardado: al recargar se perdía el registro. El aviso debe ser visible
+  // sin importar en qué vista esté el operario.
+  const ID = 'avisoPersistencia';
+  let banda = document.getElementById(ID);
+  if (!banda) {
+    banda = document.createElement('div');
+    banda.id = ID;
+    banda.setAttribute('role', 'alert');
+    banda.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:9999;padding:10px 16px;' +
+      'background:#7f1d1d;color:#fecaca;font-size:.9rem;font-family:system-ui,sans-serif;';
+    document.body.appendChild(banda);
+  }
+  banda.textContent = '⚠ Los cambios NO se están guardando en este navegador (' +
+    ((err && err.name) || 'error') + '). Exporta la cartilla o usa otro navegador antes de cerrar.';
+}
+
+function save(data) {
+  try {
+    localStorage.setItem(DB_KEY, JSON.stringify(syncTablas3FN(data || db)));
+    return true;
+  } catch (e) {
+    anunciarFalloPersistencia(e);
+    return false;
+  }
+}
 
 /* ---------- Helpers de dominio ---------- */
 const raza = id => (db.razas.find(r => r.id_raza === id) || {}).nombre_raza || '—';
@@ -173,18 +200,21 @@ const bovino = id => db.bovinos.find(b => b.id_bovino === id);
 const nombreBov = id => (bovino(id) || {}).name || '—';
 const medicamento = id => db.medicamentos.find(m => m.id_medicamento === id);
 
-/* Días de retiro pendientes: >0 => leche suspendida */
-function retiroPendiente(idBov) {
-  let restante = 0;
-  for (const t of db.tratamientos.filter(t => t.id_bovino === idBov)) {
-    const med = medicamento(t.id_medicamento);
-    if (!med || !med.dias_retiro_ica) continue;
-    const fin = new Date(t.fecha_tratamiento + 'T12:00:00');
-    fin.setDate(fin.getDate() + med.dias_retiro_ica);
-    const dias = Math.ceil((fin - new Date()) / 86400000);
-    if (dias > 0) restante = Math.max(restante, dias);
-  }
-  return restante;
+/* Días de retiro pendientes: >0 => leche suspendida.
+   La regla vive en `reglas_retiro.js` (módulo puro, testeable en Node) y es la misma
+   convención del dominio (`src/domain/cinta_roja.rule.ts`) y del schema
+   (`schema_produccion_proganado_v3.sql:185`): bloqueado durante TODO el día de
+   vencimiento, fail-closed. Antes se calculaba acá con ancla de mediodía + ceil sobre
+   horas, así que a las 12:00 del último día devolvía 0 y liberaba la vaca antes del
+   ordeño de la tarde. */
+function retiroPendiente(idBov, ahora) {
+  const tratamientos = db.tratamientos
+    .filter(t => t.id_bovino === idBov)
+    .map(t => {
+      const med = medicamento(t.id_medicamento);
+      return { fecha_tratamiento: t.fecha_tratamiento, dias_retiro_ica: med && med.dias_retiro_ica };
+    });
+  return ReglasRetiro.calcularRetiroPendiente(tratamientos, ahora);
 }
 
 function edadTexto(birth) {
@@ -565,7 +595,15 @@ $('#formEvento').addEventListener('submit', e => {
 $('#formPesaje').addEventListener('submit', e => {
   e.preventDefault();
   const f = Object.fromEntries(new FormData(e.target));
-  if (retiroPendiente(f.bovino) > 0 && !confirm('La vaca está en retiro de leche. ¿Registrar el pesaje de todos modos?')) return;
+  // Bloqueo DURO, sin override: registrar leche de un animal en cinta roja es justo
+  // lo que la regla de inocuidad impide. Antes esto pedía una confirmación y un "Sí"
+  // del operario bastaba para registrar la leche bloqueada.
+  const retiroPesaje = retiroPendiente(f.bovino);
+  if (retiroPesaje > 0) {
+    alert('🚫 ' + nombreBov(f.bovino) + ' está en cinta roja: ' + retiroPesaje +
+          ' día(s) de leche bloqueada (incluye el día de vencimiento). No se puede registrar pesaje de ordeño.');
+    return;
+  }
   db.pesajes.unshift({ id_pesaje: uid('pes'), id_bovino: f.bovino, fecha_pesaje: f.fecha, hora_pesaje: f.hora, litros_obtenidos: Number(f.litros) });
   save(); e.target.reset(); document.getElementById('modalPesaje').close(); renderAll();
 });

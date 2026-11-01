@@ -41,3 +41,6 @@ prototipo_interfaz/correo_config.json
 
 # Entregable visual pesado (binarios van a Drive)
 02_Vistas_HTML5/bootstrap_m2/
+
+# Demo SQLite: el archivo se regenera con `python init_db.py` (Regla 29, cero binarios)
+demo_sqlite/*.db

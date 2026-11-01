@@ -3,7 +3,7 @@
 > **SSOT (Single Source of Truth) del Proyecto Integrador CESDE Nivel 1**  
 > **Proyecto:** ProGanado (Software Integral de Gestión Ganadera e Inocuidad Lechera)  
 > **Repositorio Oficial:** `https://github.com/jeiserlabs/proganado.git`  
-> **Ubicación Local:** `E:\PROYECTOS\Mis_Proyectos\ProGanado`
+> **Ubicación Local:** `C:\PROYECTOS\Mis_Proyectos\ProGanado`
 
 ---
 

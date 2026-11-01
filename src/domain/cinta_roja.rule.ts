@@ -88,7 +88,13 @@ export function evaluarCintaRoja(
   // Solo se libera al día siguiente (tsEvaluacion > maxFinRetiroTs).
   const enCintaRoja = tsEvaluacion <= maxFinRetiroTs;
   const diffMs = maxFinRetiroTs - tsEvaluacion;
-  const diasRestantes = enCintaRoja ? Math.ceil(diffMs / (1000 * 60 * 60 * 24)) : 0;
+  // +1 para que `dias_restantes` sea "días de leche bloqueada que faltan, inclusive
+  // hoy". Sin el +1, el último día devolvía 0 mientras `en_cinta_roja` era true: una
+  // contradicción que el prototipo interpretaba como "liberada" (contrato `>0 ⇒
+  // suspendida`) y que en la pantalla de ordeño de la tarde abría la cinta roja.
+  // Ahora dominio, SQL y prototipo reportan el mismo número. Ver
+  // prototipo_interfaz/reglas_retiro.js y tests/reglas_retiro.test.mjs.
+  const diasRestantes = enCintaRoja ? Math.ceil(diffMs / (1000 * 60 * 60 * 24)) + 1 : 0;
 
   return {
     id_bovino: idBovino,

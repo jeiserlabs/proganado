@@ -455,6 +455,16 @@ for (const [tabla, v] of Object.entries(ssot.tablas)) {
   for (const [c, vals] of Object.entries(v.enums || {})) enumPorColumna.set(c, { tabla, valores: vals });
 }
 
+// Alcance REAL de este recorrido (declarado, no implícito):
+//   Cubre los <form> de 02_Vistas_HTML5 contra el DDL, vía data-tabla.
+//   NO cubre prototipo_interfaz/: sus formularios no declaran data-tabla, y añadirlos
+//   acá pondría el gate en rojo con 6 errores de anotación en vez de vigilar la regla.
+//   Ese hueco fue exactamente lo que dejó pasar la deriva de cinta roja entre el dominio
+//   y el prototipo (incidente 2026-11-01). La regla de inocuidad se vigila ahora en su
+//   propio test de paridad numérica: tests/reglas_retiro.test.mjs ("paridad: prototipo y
+//   dominio TS dan el mismo número en cada día crítico").
+//   Deuda abierta de anotación: marcar data-tabla en los <form> del prototipo y entonces
+//   sí extender este bucle. No es bloqueante para la sustentación.
 for (const abs of archivosHtmlRecursivo(path.join(ROOT, '02_Vistas_HTML5'))) {
   const html = fs.readFileSync(abs, 'utf8');
   const form = /<form\b[^>]*>/i.exec(html);

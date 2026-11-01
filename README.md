@@ -46,17 +46,23 @@ Como **CTO y QA Lead**, la arquitectura de ProGanado implementa el principio de 
 [ Entrada Operario / HTML5 ] 
           │  (Validación nativa: required, pattern, min/max)
           ▼
-[ Esquema Zod en Runtime ] ──> Rechaza si: Litros <= 0, Fecha futura o Fármaco sin tiempo de retiro
-          │  (src/schemas/validation.schemas.ts)
+[ Regla de inocuidad en el cliente ] ──> prototipo_interfaz/reglas_retiro.js (cinta roja, fail-closed)
+          │
+          ▼
+[ Contrato Zod (gate de paridad) ] ──> Rechaza si: Litros <= 0, Fecha futura o Fármaco sin tiempo de retiro
+          │  (src/schemas/validation.schemas.ts · consumido por tools/paridad_ssot.mjs y `npm test`)
           ▼
 [ Contrato TypeScript ] ─────> Cero 'any'. Tipado estricto de 12 entidades
-          │  (src/types/domain.types.ts)
+          │  (src/types/domain.types.ts · verificado con `npm run typecheck`)
           ▼
 [ Base de Datos 3FN ] ───────> Restricciones CHECK, NOT NULL, FK RESTRICT/CASCADE/SET NULL
 ```
 
+> **Trinidad honesta (aclaración de alcance, 01-nov-2026):** el esquema Zod es un **contrato verificado en el gate de paridad y en los tests**, no un middleware que intercepte cada submit del navegador. Decir "validación en runtime de producción" sería falso: el prototipo valida con HTML5 + el módulo de regla de inocuidad, y la BD con CHECK/FK. Conectar Zod al `submit` del navegador está en el roadmap (`docs/ARQUITECTURA_Y_PLAN_ESCALABILIDAD.md`) y es la primera mejora cuando exista un backend real. Esta distinción se escribió acá porque en una sustentación técnica la pregunta obvia es "¿dónde se importa Zod en el runtime?" y la respuesta correcta es "en el gate, no en el navegador".
+
 * **Contratos TypeScript:** `src/types/domain.types.ts` (12 interfaces con enums zootécnicos).
-* **Esquemas Zod:** `src/schemas/validation.schemas.ts` (Validación bidireccional en tiempo de ejecución).
+* **Esquemas Zod:** `src/schemas/validation.schemas.ts` (contrato de validación bidireccional, ejercitado por el gate de paridad).
+* **Regla de inocuidad:** `prototipo_interfaz/reglas_retiro.js` + `src/domain/cinta_roja.rule.ts`, con paridad numérica verificada en `tests/reglas_retiro.test.mjs`.
 
 ---
 
