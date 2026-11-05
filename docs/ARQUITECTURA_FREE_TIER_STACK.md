@@ -1,4 +1,4 @@
-# Stack SaaS $0 COP / mes — The Free Tier Economy
+# Stack SaaS \$0 COP / mes — The Free Tier Economy
 *Blueprint de infraestructura gratuita para MVPs, ProGanado (CESDE) y Proyectos Satélite.*
 
 Este estándar consolida los servicios cloud que ofrecen capas gratuitas permanentes y generosas ("Free Tier Economy"), permitiendo desplegar y operar aplicaciones web completas a **0 COP al mes** sin sorpresas de facturación.

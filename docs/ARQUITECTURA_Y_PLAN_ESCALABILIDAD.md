@@ -41,7 +41,7 @@ Para evitar la sobre-ingeniería y el agotamiento del equipo, el desarrollo se e
   • Conexión UI Emilio ➔ API REST local
            │
            ▼
-[ Fase 3: SaaS Cloud MVP ($0 COP) ]
+[ Fase 3: SaaS Cloud MVP (\$0 COP) ]
   • Supabase PostgreSQL (Cloud)
   • API Serverless en Render / Vercel
   • Autenticación JWT con roles (Admin/Mayordomo)
@@ -88,7 +88,7 @@ Para evitar la sobre-ingeniería y el agotamiento del equipo, el desarrollo se e
 
 ---
 
-### Fase 3: SaaS Cloud MVP a $0 COP (Q2/Q3 2027)
+### Fase 3: SaaS Cloud MVP a \$0 COP (Q2/Q3 2027)
 * **Objetivo:** Desplegar el sistema en la nube para permitir que el propietario consulte los datos de su hato desde la ciudad mientras los mayordomos registran en campo.
 * **Pila Tecnológica Cloud ($0 Costo):**
   * **Base de Datos Cloud:** PostgreSQL administrado en Supabase (Tier gratuito).
@@ -128,7 +128,7 @@ Para evitar la sobre-ingeniería y el agotamiento del equipo, el desarrollo se e
 | **Base de Datos** | Script SQL DDL 12 tablas | SQLite WAL / MariaDB Local | PostgreSQL Supabase Cloud | AWS RDS PostgreSQL Multi-AZ |
 | **Red / Conexión** | Localhost (127.0.0.1) | Red Wi-Fi Local Finca (LAN) | Internet HTTPS | AWS CloudFront + VPC Privada |
 | **Inocuidad ICA** | Declarada en DDL y CHECKs | Validación en Backend API | Vistas SQL + Alertas Push | Eventos automáticos en tiempo real |
-| **Costo Mensual** | **$0 COP** | **$0 COP** | **$0 COP** | Pago por uso (Suscripción SaaS) |
+| **Costo Mensual** | **\$0 COP** | **\$0 COP** | **\$0 COP** | Pago por uso (Suscripción SaaS) |
 
 ---
 

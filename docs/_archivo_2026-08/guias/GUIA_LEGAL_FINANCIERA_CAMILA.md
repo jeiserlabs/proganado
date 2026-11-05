@@ -9,7 +9,7 @@
 
 ProGanado S.A.S. monetiza bajo el modelo **B2B SaaS por Predio (Código ICA Finca)**:
 
-1. **Plan Campesino (Freemium):** $0 COP / mes para predios pequeños ($\le 15$ vacas).
+1. **Plan Campesino (Freemium):** \$0 COP / mes para predios pequeños ($\le 15$ vacas).
 2. **Plan Hacienda Pro:** **$119.000 COP / mes por Finca** (Acceso completo, multi-usuario, alertas WhatsApp y reportes Colanta).
 3. **Plan Corporativo / Multi-Predio:** **$299.000 COP / mes** (Para redes de fincas y asociaciones).
 4. **Política *Zero Data Loss*:** Si un cliente suspende el pago, su cuenta pasa a **`Solo_Lectura`**. Nunca se borra su historial de animales ni pesajes.

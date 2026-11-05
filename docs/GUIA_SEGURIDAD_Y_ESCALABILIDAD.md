@@ -27,7 +27,7 @@
 
 | Nivel | Escala | Infraestructura & Persistencia | Costo Servidor |
 |---|---|---|---|
-| **Nivel 1 (Presente - CESDE)** | 1 a 10 Fincas | SQLite 3 Local / Supabase Free + HTML5 Semántico | $0 COP |
+| **Nivel 1 (Presente - CESDE)** | 1 a 10 Fincas | SQLite 3 Local / Supabase Free + HTML5 Semántico | \$0 COP |
 | **Nivel 2 (Validación Comercial)** | 50 a 1.000 Fincas | Node.js Express TS + PostgreSQL + Redis Cache | ~$120k COP / mes |
 | **Nivel 3 (Nacional Colombia)** | 1.000 a 20.000 Fincas | AWS ECS Fargate (Auto-scaling 4am/2pm) + RDS Multi-AZ + S3 | Autofinanciado |
 | **Nivel 4 (Hyper-Scale LatAm)** | 10M+ Bovinos | Sharding por Finca (`id_finca`), Particionamiento mensual en `pesajes_leche`, streaming Kafka para collares IoT | Autofinanciado |
