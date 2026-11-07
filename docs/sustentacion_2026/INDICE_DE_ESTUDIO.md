@@ -1,5 +1,7 @@
 # Índice de la carpeta oficial — ProGanado
 
+> **OBSOLETO 07-nov-2026:** el material vigente es `SSOT_Y_TIMELINE.md`, `ROADMAP_VERIFICADO_2026-11-07.md`, `COMO_ESTUDIAR.md` y el deck de 7 pasos del hub. Este índice se conserva como histórico.
+
 > Carpeta raíz de Drive: `ProGanado_Sustentacion_Oficial_CESDE`
 > Última actualización: 31-oct-2026.
 

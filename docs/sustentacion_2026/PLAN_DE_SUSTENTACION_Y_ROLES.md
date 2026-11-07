@@ -1,5 +1,7 @@
 # 📋 ProGanado SaaS — Plan Maestro de Sustentación y Roles (CESDE)
 
+> **OBSOLETO 07-nov-2026:** el plan vigente es el de 7 pasos del hub (`04_EXPOSICION_7_PASOS/`); este documento de 12 slides se conserva como histórico. El asesor veterinario es **Humberto Pinto**, no “Dr. Héctor Pinto”.
+
 > **FECHA DURA DE SUSTENTACIÓN:** 14 de Noviembre de 2026  
 > **LUGAR:** CESDE Medellín — Escuela de Nuevas Tecnologías  
 > **DOCENTE EVALUADOR:** Jonathan Piedrahita & Jurado Académico  

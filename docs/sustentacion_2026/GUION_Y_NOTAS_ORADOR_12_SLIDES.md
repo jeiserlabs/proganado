@@ -1,4 +1,7 @@
 # 🎤 ProGanado SaaS — Guion Oficial y Notas de Orador (12 Diapositivas)
+
+> **OBSOLETO 07-nov-2026:** el guion vigente es el de 7 pasos del hub (`04_EXPOSICION_7_PASOS/`). Este documento se conserva como histórico.
+
 **Sustentación Proyecto Integrador · Escuela de Nuevas Tecnologías · CESDE Medellín**
 **Tiempo Total Estimado:** 10 a 12 minutos de exposición + 5 minutos de preguntas.
 

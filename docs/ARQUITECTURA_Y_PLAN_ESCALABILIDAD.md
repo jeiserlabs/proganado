@@ -4,7 +4,20 @@
 > **Sistema:** ProGanado (Software Integral de Gestión Ganadera e Inocuidad Lechera)  
 > **Tech Lead & Arquitectura:** Jeiser Gutiérrez  
 > **Equipo de Proyecto (Oficial 4 Integrantes):** Sebastián Correa (Frontend), Emilio Villanueva (Lógica/Prototipo/Diagramas), Héctor Pinto (Asesor Clínico/Operaciones), Jeiser Gutiérrez (Tech Lead/BD). *(Camila Salas retirada 26-Sep-2026).*  
-> **Fecha de emisión:** Septiembre 2026 — Versión 1.0.0
+> **Fecha de emisión:** Septiembre 2026 — Versión 1.0.0  
+> **Actualización verificada:** 07-nov-2026 — Versión 1.1.0
+
+## Estado real al 07-nov-2026
+
+| Fase | Estado | Qué existe hoy | Qué falta |
+|---|---|---|---|
+| Fase 1 — Académica CESDE | **Cerrada** | DDL 12 tablas 3FN, HTML5/CSS3/JS, PSeInt, 3 PDFs de entrega | Nada para la sustentación |
+| Fase 2 — Monolito local-first | **MVP implementado** | App `ProGanado_M2`: Python 3 + SQLite + login/2FA + 8 módulos | Auth de servidor, RBAC, respaldo automático, API REST |
+| Fase 2.2 — React + PWA | **Pendiente** | Referencia React 19 + Tailwind en `ProGanado_Web` | Refactor, PWA, IndexedDB, demo estática honesta |
+| Fase 3 — SaaS cloud $0 | **Pendiente** | Ninguno desplegado | PostgreSQL, API cloud, multi-finca |
+| Fase 4 — AWS Enterprise | **Hoja de ruta** | Ninguno | Todo |
+
+**Decisión 07-nov-2026:** la página principal es la app de Emilio (`ProGanado_M2`); React queda como referencia para la Fase 2.2. El detalle y los criterios de aceptación están en `docs/sustentacion_2026/ROADMAP_VERIFICADO_2026-11-07.md`.
 
 ---
 
@@ -68,7 +81,8 @@ Para evitar la sobre-ingeniería y el agotamiento del equipo, el desarrollo se e
 
 ---
 
-### Fase 2: Monolito Local-First para Operación en Finca (Q1 2027)
+### Fase 2: Monolito Local-First para Operación en Finca (MVP 2026; API de servidor post-sustentación)
+* **Estado 07-nov-2026:** el MVP ya existe (`ProGanado_M2`: Python 3 + SQLite + login/2FA + 8 módulos). Lo que sigue es mover la autenticación al servidor, agregar RBAC y respaldo automático.
 * **Objetivo:** Permitir que Emilio y el ganadero utilicen el sistema directamente en la finca real sin requerir acceso a internet ni pagar servidores en la nube.
 * **Arquitectura de Red (LAN Rural):**
   * El computador de la casa de la finca actúa como servidor local.

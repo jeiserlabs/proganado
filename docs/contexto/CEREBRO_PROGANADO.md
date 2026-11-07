@@ -19,9 +19,10 @@
      2. Eficiencia Reproductiva y Días Abiertos (`dias_postparto > 100` -> Alerta IATF).
      3. Liquidación Acopio Lechero (Litros * Precio Base +/- Ajuste UFC Colanta).
 3. **Capa de Presentación y Frontend:**
-   - Estándar: HTML5 Semántico + Bootstrap 5.3 + WCAG 2.1 (Accesibilidad para operarios de campo).
-   - Entrega oficial del Momento 2: repo `jeiserlabs/proganado-producto-momento-2` (`index.html`, `landing.html`, `dashboard.html`).
-   - Vistas base del Momento 1: `02_Vistas_HTML5/` (Dashboard, Registro Bovino, Pesajes, Tratamientos, Acopio, Potreros). Son referencia, no la maqueta publicada.
+   - **Producto principal (07-nov-2026):** app `ProGanado_M2` — HTML5 semántico + CSS3 + JavaScript vanilla, servidor Python 3, SQLite, login/2FA y 8 módulos. Copia en el hub: `03_PAGINAS_WEB_Y_DEMO_EN_VIVO/ProGanado_MVP/`.
+   - **Referencia React (no es el producto actual):** `ProGanado_Web` / `jeiserlabs/proganado-producto-momento-2` (React 19 + Tailwind), archivada para la Fase 2.2.
+   - **Archivadas:** maqueta monolítica Bootstrap (`_ARCHIVO_2026-11-07/web_variantes/bootstrap_m2/`) y demo SQLite anterior (`.../demo_sqlite/`).
+   - Vistas base del Momento 1: `02_Vistas_HTML5/` (Dashboard, Registro Bovino, Pesajes, Tratamientos, Acopio, Potreros). Son referencia histórica.
    - Blueprints y manuales: en `docs/_archivo_2026-08/` (M1).
 
 ---
@@ -39,7 +40,7 @@
 
 ## ☁️ 3. Pila Tecnológica y hoja de ruta cloud (NO desplegado)
 
-> **Estado real (31-oct-2026):** maqueta estática en GitHub Pages + demo SQLite local. No hay backend, PostgreSQL ni AWS en producción. Lo siguiente es planificado para después del 14-nov-2026.
+> **Estado real (07-nov-2026):** MVP local con Python 3 + SQLite + HTML/CSS/JS (`ProGanado_M2`). No hay backend desplegado, PostgreSQL ni AWS en producción. La página React de GitHub Pages es un escaparate histórico, no el producto. Lo siguiente es la Fase 2.1 (API de servidor, auth real, respaldo) y la Fase 2.2 (React + PWA), planificadas para después del 14-nov-2026.
 
-- **Hoy:** HTML5 + Bootstrap 5.3.3 + CSS propio; Python + SQLite para la demo didáctica; Node.js + TypeScript + Zod + `node:test` en el repo de código.
+- **Hoy:** HTML5 semántico + CSS3 + JavaScript vanilla; Python 3 (servidor estándar) + SQLite; TypeScript + Zod + `node:test` en el repo del modelo.
 - **Hoja de ruta (planificada):** AWS S3 + CloudFront para hosting y multimedia; ECS Fargate/App Runner para la API; RDS PostgreSQL Multi-AZ; EventBridge + SNS para alertas; Route 53 para DNS.

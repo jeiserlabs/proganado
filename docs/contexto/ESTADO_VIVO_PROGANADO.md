@@ -3,19 +3,21 @@
 > **SSOT (Single Source of Truth) del Proyecto Integrador CESDE Nivel 1**  
 > **Repositorio Oficial:** `https://github.com/jeiserlabs/proganado` (el slug viejo `jeiser270997-source/ProGanado` ya no corresponde)  
 > **Ubicación Local:** `C:\PROYECTOS\Mis_Proyectos\ProGanado`
-> **Página Local:** `C:\PROYECTOS\Mis_Proyectos\ProGanado_Web`
+> **Página Local:** `C:\PROYECTOS\Mis_Proyectos\ProGanado_M2` (MVP final M2) · `C:\PROYECTOS\Mis_Proyectos\ProGanado_Web` (React + Tailwind, anexo M3)
 > **SSOT de rutas y timeline:** [`docs/sustentacion_2026/SSOT_Y_TIMELINE.md`](../sustentacion_2026/SSOT_Y_TIMELINE.md)
-> **Última Actualización:** 31-oct-2026 (auditoría end-to-end del Momento 2, corrección de material, publicación de la web corregida y reorganización de Drive)
+> **Última Actualización:** 07-nov-2026 (auditoría UI/UX del MVP, poda de variantes Bootstrap/React, página principal = app de Emilio, 3 entregas en `Desktop/ENTREGAS`, NoSQL como migración a 5 colecciones y exposición de 7 pasos para el 14-nov)
 
 ---
 
-## 📌 1. Resumen de Estado Actual (Momento 2 — 14-nov-2026)
-- **Estado:** Momento 1 completado y radicado. Momento 2 en preparación para la defensa del **14-nov-2026** (10–12 min + 5 de preguntas).
-- **Material de estudio:** carpeta oficial de Drive [ProGanado_Sustentacion_Oficial_CESDE](https://drive.google.com/drive/folders/1_Ozo8XA7UjZPFWDf9WtDfhg5XgCmmKns). Guía maestra de 101 páginas corregida, 4 guías individuales, Dummies, deck de 12 slides y guion.
-- **Página web:** https://jeiserlabs.github.io/proganado-producto-momento-2/ — maqueta Bootstrap 5.3; login demo, tabla/filtro/formulario visuales; la persistencia está en la demo SQLite.
-- **Demo SQLite:** `03_PAGINAS_WEB_Y_DEMO_EN_VIVO/demo_sqlite/` (una tabla didáctica; no es el DDL de 12 tablas).
-- **P0 de código resueltos (31-oct-2026):** PSeInt fail-closed, tabla UFC única, defaults del DDL, gate de clon limpio y login demo del prototipo. Evidencia: `npm run verify` 23/23 + tests nuevos. El PDF del M1 quedó archivado en `docs/_archivo_2026-08/pdfs_momento1/`.
-- **Prototipo Interfaz:** `prototipo_interfaz/` (v1.0 interactivo aportado por Emilio con servidor local Python). No es la entrega oficial del Momento 2.
+## 📌 1. Resumen de Estado Actual (Momentos 2 y 3 — defensa 14-nov-2026)
+- **Estado:** Momento 1 radicado. Momento 2 cerrado con la app local de ProGanado como producto final; Momento 3 con las entregas SQL y NoSQL. Defensa: **14-nov-2026** (7 pasos del elevator pitch + demo + preguntas).
+- **Producto final (MVP):** `C:\PROYECTOS\Mis_Proyectos\ProGanado_M2` — HTML5, CSS3 y JavaScript vanilla; servidor Python 3; SQLite local; login/2FA; 8 módulos internos; 116 animales de ejemplo. Copia canónica en el hub: `03_PAGINAS_WEB_Y_DEMO_EN_VIVO/ProGanado_MVP/`. El PDF del M2 (página + código) tiene 18 páginas y una versión de subida de 2 MB; el original de 18 MB quedó en `_ARCHIVO_2026-11-07/escritorio/_ORIGINAL_M2_18MB/`.
+- **Auditoría del MVP (07-nov-2026):** login/2FA, 8 módulos, alta de animal, búsqueda, CSV y logout verificados en navegador; 0 errores de consola; 0 overflow a 390/768/1440 px; 0 imágenes rotas. Correcciones: banner de Contabilidad sin solapamiento, etiquetas ARIA en filtros, foco visible, contraste de texto secundario, objetivos táctiles de 24 px y Playfair Display local. Commit local `b72d266` en `ProGanado_M2`.
+- **Página principal:** app de Emilio (`ProGanado_M2`). La variante React 19 + Tailwind (`ProGanado_Web`) queda como referencia para la refactorización futura; la maqueta Bootstrap y la demo SQLite anterior están archivadas en el hub, no son el producto actual.
+- **Entregas M3 (un PDF por entrega):** NoSQL 7 páginas (base creada en MongoDB Compass, 12 tablas agrupadas en 5 colecciones, un documento de ejemplo por colección y capturas); SQL 7 páginas (10 consultas T-SQL con salidas). Carpeta de subida: `C:\Users\dev\Desktop\ENTREGAS`.
+- **Entorno NoSQL local:** MongoDB Server 9.0.4 (servicio), Compass 1.53.2 y mongosh 2.14.1; base `proganado_nosql` con 5 colecciones y un documento de ejemplo por colección.
+- **Exposición 14-nov:** guion y deck de 7 pasos (Problema, Solución, Arquitectura, Modelo de Datos, Demo/Frontend, Escalabilidad, Conclusiones) en `04_EXPOSICION_7_PASOS/`; reemplaza el deck de 12 slides como material de defensa.
+- **Modelo de datos:** el DDL académico de 12 tablas 3FN sigue siendo el SSOT relacional; el MVP guarda las 12 entidades como JSON en SQLite y la migración NoSQL las agrupa en 5 colecciones.
 - **Protocolo de Escalabilidad:** `docs/ARQUITECTURA_Y_PLAN_ESCALABILIDAD.md` (4 fases; AWS es hoja de ruta, no despliegue actual).
 
 ---
@@ -23,10 +25,10 @@
 ## 👥 2. Asignación de Roles y Responsabilidades (Oficial 4 Integrantes — 26-Sep-2026)
 | Integrante | Rol | Entregables Clave |
 |---|---|---|
-| **Jeiser Gutiérrez** | Tech Lead & Arquitecto BD / QA | Modelo Relacional 12 tablas 3FN, schema SQL, gobernanza TS/Zod, hoja de ruta cloud y control Git. |
-| **Sebastián Correa** | Frontend Lead & Diseñador | Maquetación HTML5 semántica, Bootstrap 5.3, accesibilidad WCAG 2.1, UI/UX y demo. |
+| **Jeiser Gutiérrez** | Tech Lead & Arquitecto BD / QA | Modelo Relacional 12 tablas 3FN, SQL/NoSQL, arquitectura, QA y control Git. |
+| **Sebastián Correa** | Frontend Lead & Diseñador | HTML5 semántico, CSS3 (Grid/Flexbox), responsive, accesibilidad y demo. |
 | **Emilio Villanueva** | Algoritmia, Lógica PSeInt & Diagramas | Algoritmos de Cinta Roja, Días Abiertos, Liquidación Leche y diagramación. |
-| **Héctor Pinto (Dr. Pinto)** | Asesor Clínico Veterinario | Sanidad ICA, farmacopea, normativa lechera, inocuidad y apoyo al pitch. |
+| **Humberto Pinto** | Asesor Clínico Veterinario | Sanidad ICA, farmacopea, normativa lechera, inocuidad y apoyo al pitch. |
 
 *(Nota de auditoría: Camila Salas se retiró formalmente del proyecto y del curso el 26-Sep-2026; equipo consolidado en 4 integrantes en piedra).*
 
@@ -49,10 +51,11 @@
 ---
 
 ## ☁️ 4. Hoja de Ruta de Infraestructura Cloud
-> **Estado real:** maqueta en GitHub Pages + demo SQLite local. No hay backend desplegado, ni PostgreSQL en producción, ni AWS. Lo siguiente es hoja de ruta.
-- **Fase 0 (prototipo académico, no desplegado):** maqueta GitHub Pages, demo SQLite local; backend Express y PostgreSQL son fase 2.
-- **Fase 1 (10-30 Clientes / ~120k COP mes):** Cloudflare Pages, VPS Hetzner/Railway, Managed PostgreSQL.
-- **Fase 2 (50-500+ Fincas / AWS Enterprise ~180k-300k COP mes):**
+> **Estado real 07-nov-2026:** MVP local con servidor Python + SQLite; no hay backend desplegado, ni PostgreSQL en producción, ni AWS. La variante React es una referencia, no el producto. Hoja de ruta verificada: `docs/sustentacion_2026/ROADMAP_VERIFICADO_2026-11-07.md`.
+- **Fase 2.1 (post-sustentación, 4–6 semanas):** API Node/TypeScript con Zod, autenticación de servidor, RBAC, respaldo diario verificado y migración al esquema de 12 tablas.
+- **Fase 2.2 (Q1 2027):** refactor React 19 + Tailwind, PWA con IndexedDB y demo estática honesta.
+- **Fase 3 (Q2 2027):** SaaS cloud $0 (Supabase PostgreSQL + Render/Railway), multi-finca y roles.
+- **Fase 4 (2028+ / AWS Enterprise ~180k-300k COP mes):**
   - AWS S3 (imágenes de aretes y actas ICA).
   - AWS CloudFront (CDN global SSL).
   - AWS App Runner / ECS Fargate (API Express en contenedores Docker auto-escalables).
@@ -65,3 +68,5 @@
 - [ ] **Frontend:** Maquetación de las 6 vistas HTML5 por Sebastián (`dashboard.html`, `registro_bovino.html`, `pesaje_leche.html`, `tratamientos_sanitarios.html`, `entregas_acopio.html`, `potreros_prv.html`).
 - [ ] **Backend API:** Creación del servidor Node.js / Express con rutas modulares `/api/v1/bovinos`, `/api/v1/pesajes`, `/api/v1/sanidad`.
 - [ ] **Testing E2E:** Suite de pruebas automatizadas con Playwright para flujos críticos (Cinta Roja y registro de ordeño).
+
+> **Nota 07-nov-2026:** este backlog es histórico. El MVP final es `C:\PROYECTOS\Mis_Proyectos\ProGanado_M2` (HTML/CSS/JS + Python 3 + SQLite), con login/2FA y 8 módulos. La exposición del 14-nov usa los 7 pasos en `04_EXPOSICION_7_PASOS`.

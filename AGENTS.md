@@ -3,9 +3,9 @@
 > **SSOT (Single Source of Truth) del Proyecto Integrador CESDE Nivel 1**  
 > **Proyecto:** ProGanado (Software Integral de Gestión Ganadera e Inocuidad Lechera)  
 > **Repositorio Oficial:** `https://github.com/jeiserlabs/proganado`  
-> **Repositorio de la Página:** `jeiserlabs/proganado-producto-momento-2` (no es el remoto de este repo)
-> **Ubicación Local:** `C:\PROYECTOS\Mis_Proyectos\ProGanado`
-> **Página Local:** `C:\PROYECTOS\Mis_Proyectos\ProGanado_Web`
+> **Producto principal (MVP):** `C:\PROYECTOS\Mis_Proyectos\ProGanado_M2` — app de Emilio depurada (HTML/CSS/JS + Python + SQLite). Copia canónica en el hub: `03_PAGINAS_WEB_Y_DEMO_EN_VIVO/ProGanado_MVP/`.
+> **Referencia React (no es el producto actual):** `C:\PROYECTOS\Mis_Proyectos\ProGanado_Web` · `jeiserlabs/proganado-producto-momento-2`.
+> **Ubicación Local del modelo:** `C:\PROYECTOS\Mis_Proyectos\ProGanado`
 > **Carpeta de Estudio (Drive):** `https://drive.google.com/drive/folders/1_Ozo8XA7UjZPFWDf9WtDfhg5XgCmmKns`
 > **SSOT de rutas y timeline:** `docs/sustentacion_2026/SSOT_Y_TIMELINE.md`
 
@@ -26,9 +26,9 @@
 
 ## 👥 2. Roles del Equipo y Directivas de Trabajo
 - **Jeiser Gutiérrez:** Tech Lead & Arquitecto de Base de Datos / QA. Hoja de ruta cloud (AWS), no despliegue actual.
-- **Sebastián Correa:** Frontend Lead (HTML5 Semántico, Bootstrap 5.3, Accesibilidad WCAG 2.1, UI/UX).
-- **Emilio Villanueva:** Desarrollador de Lógica & Algoritmos PSeInt.
-- **Dr. Héctor Pinto:** Asesor Clínico Veterinario (Sanidad ICA, farmacopea y normativa lechera).
+- **Sebastián Correa:** Frontend Lead (HTML5 semántico, CSS3 Grid/Flexbox, responsive, accesibilidad WCAG 2.1, UI/UX).
+- **Emilio Villanueva:** Desarrollador de Lógica & Algoritmos PSeInt y autor de la maqueta que es el producto principal.
+- **Humberto Pinto:** Asesor Clínico Veterinario (Sanidad ICA, farmacopea y normativa lechera).
 - **Camila Salas:** retirada del proyecto y del curso el **26-sep-2026**. No forma parte del equipo vigente ni del material de estudio.
 
 ---

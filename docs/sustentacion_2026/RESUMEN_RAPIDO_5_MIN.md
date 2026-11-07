@@ -1,5 +1,7 @@
 # Resumen rápido — ProGanado (5 minutos antes de entrar)
 
+> **OBSOLETO 07-nov-2026:** usa `COMO_ESTUDIAR.md` y el deck/guion de 7 pasos del hub. Este resumen se conserva como histórico; varias cifras y el nombre del asesor cambiaron.
+
 > Esta versión reemplaza el resumen viejo de 12–15 minutos. El formato oficial es **10 a 12 minutos + 5 de preguntas**.
 > Equipo: Jeiser Gutiérrez, Sebastián Correa, Emilio Villanueva y Dr. Héctor Pinto.
 
