@@ -88,3 +88,4 @@ Un cambio no está terminado hasta que está en el destino que le corresponde (G
 - Guías desde cero: `02_GUIAS_DE_ESTUDIO_POR_INTEGRANTE/GUIAS_DESDE_CERO/`
 - Exposición: `04_EXPOSICION_7_PASOS/`
 - Roadmap verificado: `docs/sustentacion_2026/ROADMAP_VERIFICADO_2026-11-07.md`
+- Elevator pitch: `docs/sustentacion_2026/ELEVATOR_PITCH_PROGANADO.md` (copia en el hub `04_EXPOSICION_7_PASOS/`)
