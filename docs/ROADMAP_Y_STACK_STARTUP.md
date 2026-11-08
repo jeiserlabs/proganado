@@ -138,12 +138,17 @@
 5. Migración de los datos del MVP al esquema de 12 tablas; script de importación idempotente.
 6. Tests de integración de API y E2E de los flujos críticos.
 7. Retirar la API Python al final de la fase; el frontend del MVP se conecta a la API TypeScript por `fetch`.
+8. Conectar las reglas de dominio que hoy solo viven en TypeScript: días abiertos con categorías (óptimo < 90, alerta 90–119, crítico ≥ 120) calculados desde el último parto, no desde la inseminación; y liquidación UFC con ajuste por litro (+80/+40/0/−120) en el módulo de producción.
+9. Registro de leche bloqueada o segregada: si hay vacas en retiro, la entrega no se registra sin declarar qué litros se descartaron; se elimina el `confirm()` genérico.
 
 **Criterios de aceptación:**
 - Login real sin `localStorage`; una petición sin sesión recibe 401.
 - Restauración desde respaldo probada en un equipo limpio.
 - `npm run verify` + suite de API + E2E en verde.
 - Cero secretos en Git; `correo_config.json` y `datos/` fuera del índice.
+- Una vaca con 120 días o más desde el último parto aparece como crítica y genera alerta; una con 90–119 como alerta temprana.
+- La entrega calcula el ajuste UFC y el valor liquidado con la regla TS; no se acepta un valor manual sin trazabilidad.
+- Una entrega con vacas en retiro exige declarar la leche descartada o segregada; no hay override genérico.
 
 **Riesgo principal:** subestimar la migración de datos. Mitigación: importación idempotente y comparación de conteos/reglas antes de borrar nada.
 
@@ -324,6 +329,7 @@
 | Free tiers cambian o desaparecen | Costo inesperado | Verificar límites al iniciar la fase; presupuesto y plan B |
 | Un solo desarrollador (bus factor) | Bloqueo del proyecto | Documentación, tests y CI; no depender de memoria |
 | Integración Colanta/ICA asumida | Promesa incumplible | Validar con la entidad antes de vender la función |
+| El MVP muestra “días abiertos” desde la inseminación y no liquida UFC | La demo promete más de lo que hace | Fase 1 conecta las reglas TS, con pruebas de dominio y criterios de aceptación |
 | Complejidad prematura | Retraso y deuda | Lista de “no construir” y revisión por fase |
 
 ---

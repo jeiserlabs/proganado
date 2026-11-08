@@ -20,6 +20,7 @@
 - **Modelo de datos:** el DDL académico de 12 tablas 3FN sigue siendo el SSOT relacional; el MVP guarda las 12 entidades como JSON en SQLite y la migración NoSQL las agrupa en 5 colecciones.
 - **Protocolo de Escalabilidad:** `docs/ROADMAP_Y_STACK_STARTUP.md` es el documento canónico (fases con criterios de aceptación, stack TypeScript-first, migración SQLite → PostgreSQL, seguridad y costos). `docs/ARQUITECTURA_Y_PLAN_ESCALABILIDAD.md` queda como histórico; AWS es hoja de ruta, no despliegue actual.
 - **Auditoría 08-nov-2026 (repo):** se corrigió en la copia local `ProGanado_M2` y en el espejo `producto_mvp/` el cálculo de retiro que liberaba la vaca al mediodía del último día; el pesaje ahora bloquea sin `confirm()`. Se agregaron `reglas_retiro.js` (SSOT de la regla en el cliente) y el test del espejo. `npm run verify` = 37/37. El remoto de Emilio no tiene commits nuevos desde el 07-nov; el fix y el commit `b72d266` son locales y quedan pendientes de compartir.
+- **Brechas funcionales detectadas (Fase 1):** el MVP etiqueta como “días abiertos” los días desde la inseminación (deben contarse desde el último parto y clasificarse en 90/120); el módulo de producción muestra el UFC pero no aplica la liquidación (+80/+40/0/−120) y la entrega usa un valor manual; si hay vacas en retiro, la entrega solo advierte con `confirm()`. Las tres están en `docs/ROADMAP_Y_STACK_STARTUP.md`, Fase 1.
 
 ---
 
