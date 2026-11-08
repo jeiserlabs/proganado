@@ -1,5 +1,7 @@
 # Plan Maestro de Mejora & Arquitectura de Producción — ProGanado SaaS
 
+> **ANEXO TÉCNICO.** El stack y las fases vigentes están en [`ROADMAP_Y_STACK_STARTUP.md`](ROADMAP_Y_STACK_STARTUP.md). Este documento conserva el detalle de dominio, UX y offline; las menciones a Next.js, PowerSync/ElectricSQL como decisión y al símbolo de dólar quedan corregidas por el roadmap (React 19 + Vite; sincronización a evaluar en Fase 3).
+
 > **ESTADO DEL DOCUMENTO:** Hoja de ruta técnica de arquitectura para escalado a producción.
 > **REGLA DE ORO:** Este documento es una especificación de ingeniería; no altera el código fuente actual de la entrega académica del CESDE.
 
@@ -32,7 +34,7 @@ flowchart TD
 ```
 
 ### Tecnologías Recomendadas:
-1. **Frontend / Cliente:** Next.js PWA instalable o Capacitor con SQLite embebido.
+1. **Frontend / Cliente:** PWA React 19 + Vite instalable (decisión vigente) o Capacitor con SQLite embebido si se requiere app nativa.
 2. **Capa de Sincronización:** **`PowerSync`** (`powersync-js`) o **`ElectricSQL`**.
    - Permiten consultar y escribir localmente con queries SQL estándar.
    - Sincronizan cambios por streams lógicos con Postgres resolviendo conflictos por marcas temporales (LWW - Last Write Wins o CRDTs).
@@ -49,7 +51,7 @@ flowchart TD
   - Proyección automática de fecha óptima de salida a matadero/subasta al alcanzar 450-480 kg.
 
 ### B. Blindaje de Periodo de Retiro Veterinario (Alerta Colanta)
-- **Riesgo:** Un solo litro de leche con residuos de antibiótico (ej: Oxitetraciclina, Penicilina) contamina el camión cisterna de Colanta $\rightarrow$ Decomiso total y multa de **$25M COP** al ganadero.
+- **Riesgo:** Un solo litro de leche con residuos de antibiótico (ej: Oxitetraciclina, Penicilina) contamina el camión cisterna de Colanta $\rightarrow$ Decomiso total y multa de **25M COP** al ganadero.
 - **Guardrail de Software:**
   - Al registrar un medicamento en `REGISTRO_VACUNACION` con `dias_retiro > 0`:
     1. La vaca entra en estado `EN_RETIRO`.

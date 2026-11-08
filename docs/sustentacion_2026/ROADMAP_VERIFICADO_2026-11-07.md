@@ -1,5 +1,7 @@
 # ProGanado — roadmap verificado al 07-nov-2026
 
+> **Estado medido, no plan vigente.** El plan canónico de fases y stack es [`docs/ROADMAP_Y_STACK_STARTUP.md`](../ROADMAP_Y_STACK_STARTUP.md); este documento conserva la evidencia de lo construido y verificado al 07-nov-2026.
+>
 > **Propósito:** dejar por escrito qué existe de verdad, qué es demo, qué falta y en qué orden se construye. No es una promesa de marketing: es el estado medido y el plan con criterios de aceptación.
 
 ## 1. Qué está construido y verificado

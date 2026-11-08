@@ -1,5 +1,7 @@
-# Stack SaaS \$0 COP / mes — The Free Tier Economy
+# Stack SaaS 0 COP / mes — The Free Tier Economy
 *Blueprint de infraestructura gratuita para MVPs, ProGanado (CESDE) y Proyectos Satélite.*
+
+> **ANEXO DE OPCIONES.** El stack vigente está en [`ROADMAP_Y_STACK_STARTUP.md`](ROADMAP_Y_STACK_STARTUP.md). Este archivo lista free tiers candidatos para la Fase 3; no es una decisión de arquitectura. Verificar límites y condiciones al momento de contratar: cambian sin aviso. En particular, el tier gratuito de Vercel es para proyectos no comerciales, así que no sirve para una startup que cobra.
 
 Este estándar consolida los servicios cloud que ofrecen capas gratuitas permanentes y generosas ("Free Tier Economy"), permitiendo desplegar y operar aplicaciones web completas a **0 COP al mes** sin sorpresas de facturación.
 
@@ -7,7 +9,7 @@ Este estándar consolida los servicios cloud que ofrecen capas gratuitas permane
 
 ## 1. Matriz de Servicios y Capacidad Gratuita
 
-| Servicio | Propósito en el Stack | Capacidad Gratuita ($0/mes) | Límite / Alerta | Uso en ProGanado |
+| Servicio | Propósito en el Stack | Capacidad gratuita (0 COP/mes) | Límite / Alerta | Uso en ProGanado |
 | :--- | :--- | :--- | :--- | :--- |
 | **Supabase** | Base de datos PostgreSQL + Auth + Storage | 500 MB DB, 1 GB Storage, 50.000 usuarios activos mensuales. | Pausa a los 7 días de inactividad (evitable con un ping mensual). | Gestión de ganado, potreros, pesajes y autenticación. |
 | **Resend** | Emails transaccionales | 3.000 correos al mes (máximo 100 correos al día). | Bloqueo al superar los 100 diarios. | Confirmación de registro, alertas de celo o vacunación. |
@@ -41,4 +43,4 @@ Este estándar consolida los servicios cloud que ofrecen capas gratuitas permane
    └── Métricas de Uso ────➔ [ PostHog Analytics ]
 ```
 
-*Costo total mensual estimado:* **0 COP**.
+*Costo total mensual estimado:* **0 COP** dentro de los límites gratuitos. Al superarlos, el servicio se pausa o se cobra: verificar antes de cada fase.

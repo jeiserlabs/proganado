@@ -5,7 +5,7 @@
 > **Ubicación Local:** `C:\PROYECTOS\Mis_Proyectos\ProGanado`
 > **Página Local:** `C:\PROYECTOS\Mis_Proyectos\ProGanado_M2` (MVP final M2) · `C:\PROYECTOS\Mis_Proyectos\ProGanado_Web` (React + Tailwind, anexo M3)
 > **SSOT de rutas y timeline:** [`docs/sustentacion_2026/SSOT_Y_TIMELINE.md`](../sustentacion_2026/SSOT_Y_TIMELINE.md)
-> **Última Actualización:** 07-nov-2026 (auditoría UI/UX del MVP, poda de variantes Bootstrap/React, página principal = app de Emilio, 3 entregas en `Desktop/ENTREGAS`, NoSQL como migración a 5 colecciones y exposición de 7 pasos para el 14-nov)
+> **Última Actualización:** 08-nov-2026 (auditoría del repo, espejo filtrado del MVP en `producto_mvp/`, fix de retiro fail-closed y pesaje sin override, roadmap canónico de escalabilidad y stack TypeScript-first; se mantiene la exposición de 7 pasos para el 14-nov)
 
 ---
 
@@ -18,7 +18,8 @@
 - **Entorno NoSQL local:** MongoDB Server 9.0.4 (servicio), Compass 1.53.2 y mongosh 2.14.1; base `proganado_nosql` con 5 colecciones y un documento de ejemplo por colección.
 - **Exposición 14-nov:** guion y deck de 7 pasos (Problema, Solución, Arquitectura, Modelo de Datos, Demo/Frontend, Escalabilidad, Conclusiones) en `04_EXPOSICION_7_PASOS/`; reemplaza el deck de 12 slides como material de defensa.
 - **Modelo de datos:** el DDL académico de 12 tablas 3FN sigue siendo el SSOT relacional; el MVP guarda las 12 entidades como JSON en SQLite y la migración NoSQL las agrupa en 5 colecciones.
-- **Protocolo de Escalabilidad:** `docs/ARQUITECTURA_Y_PLAN_ESCALABILIDAD.md` (4 fases; AWS es hoja de ruta, no despliegue actual).
+- **Protocolo de Escalabilidad:** `docs/ROADMAP_Y_STACK_STARTUP.md` es el documento canónico (fases con criterios de aceptación, stack TypeScript-first, migración SQLite → PostgreSQL, seguridad y costos). `docs/ARQUITECTURA_Y_PLAN_ESCALABILIDAD.md` queda como histórico; AWS es hoja de ruta, no despliegue actual.
+- **Auditoría 08-nov-2026 (repo):** se corrigió en la copia local `ProGanado_M2` y en el espejo `producto_mvp/` el cálculo de retiro que liberaba la vaca al mediodía del último día; el pesaje ahora bloquea sin `confirm()`. Se agregaron `reglas_retiro.js` (SSOT de la regla en el cliente) y el test del espejo. `npm run verify` = 37/37. El remoto de Emilio no tiene commits nuevos desde el 07-nov; el fix y el commit `b72d266` son locales y quedan pendientes de compartir.
 
 ---
 

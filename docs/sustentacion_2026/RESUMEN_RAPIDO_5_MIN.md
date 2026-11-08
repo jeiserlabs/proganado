@@ -3,7 +3,7 @@
 > **OBSOLETO 07-nov-2026:** usa `COMO_ESTUDIAR.md` y el deck/guion de 7 pasos del hub. Este resumen se conserva como histórico; varias cifras y el nombre del asesor cambiaron.
 
 > Esta versión reemplaza el resumen viejo de 12–15 minutos. El formato oficial es **10 a 12 minutos + 5 de preguntas**.
-> Equipo: Jeiser Gutiérrez, Sebastián Correa, Emilio Villanueva y Dr. Héctor Pinto.
+> Equipo: Jeiser Gutiérrez, Sebastián Correa, Emilio Villanueva y Humberto Pinto.
 
 ## Las 10 ideas que deben quedar
 
@@ -22,7 +22,7 @@
 
 | Tiempo | Quién | Idea que debe quedar |
 |---|---|---|
-| 0:00–2:30 | Dr. Héctor Pinto | El dolor de Colanta y el riesgo sanitario. |
+| 0:00–2:30 | Humberto Pinto | El dolor de Colanta y el riesgo sanitario. |
 | 2:30–5:30 | Emilio Villanueva | Cinta Roja, telemetría AM/PM y pastoreo PRV. |
 | 5:30–7:00 | Jeiser Gutiérrez | Modelo relacional de 12 tablas 3FN e integridad. |
 | 7:00–9:00 | Sebastián Correa | Frontend Bootstrap y demo en navegador. |
@@ -36,8 +36,8 @@
 - **116 aretes de ejemplo**, no 163 vacas reales.
 - **8 registros** en el dashboard; **480 L** y **4.0 °C** son ejemplos.
 - **90 alerta / 100 meta / 120 crítico** días abiertos.
-- **Free 0 / Pro 119k / Multi-Predio 299k COP/mes.
-- **23/23 tests** de Node.
+- **Free 0 / Pro 119k / Multi-Predio 299k COP/mes.**
+- **37/37 tests** de Node (`npm run verify`).
 - **FK:** RESTRICT historial clínico, CASCADE dependientes, SET NULL potrero.
 
 ## Lo que NO se dice

@@ -32,7 +32,7 @@
 > Camila Salas se retiró del proyecto y del curso el **26-sep-2026**. Esta sección queda como referencia documental; el responsable actual del frente administrativo es Jeiser Gutiérrez.
 - **Constitución S.A.S.:** Ley 1780 de 2016 (Jóvenes Emprendedores, 100% exención matrícula mercantil Cámara de Comercio).
 - **Régimen Tributario:** Régimen Simple de Tributación (RST 1.8% a 5.4%).
-- **Exención de IVA:** Estatuto Tributario Art. 476 Numeral 24 (Software SaaS en la Nube excluido de IVA 19%).
+- **IVA:** a verificar con contador. El Estatuto Tributario, artículo 476, numeral 24, excluye servicios de computación en la nube; no se afirma exención para el SaaS sin concepto profesional.
 - **Habeas Data:** Ley 1581 de 2012 (Protección de datos productivos y confidencialidad zootécnica de fincas).
 - **Política Zero Data Loss:** Modo solo lectura en mora de pago, sin borrado de registros históricos.
 
@@ -40,7 +40,7 @@
 
 ## ☁️ 3. Pila Tecnológica y hoja de ruta cloud (NO desplegado)
 
-> **Estado real (07-nov-2026):** MVP local con Python 3 + SQLite + HTML/CSS/JS (`ProGanado_M2`). No hay backend desplegado, PostgreSQL ni AWS en producción. La página React de GitHub Pages es un escaparate histórico, no el producto. Lo siguiente es la Fase 2.1 (API de servidor, auth real, respaldo) y la Fase 2.2 (React + PWA), planificadas para después del 14-nov-2026.
+> **Estado real (08-nov-2026):** MVP local con Python 3 + SQLite + HTML/CSS/JS (`ProGanado_M2`), espejo filtrado en `producto_mvp/`. No hay backend desplegado, PostgreSQL ni AWS en producción. La página React de GitHub Pages es un escaparate histórico, no el producto. El plan vigente está en [`docs/ROADMAP_Y_STACK_STARTUP.md`](../ROADMAP_Y_STACK_STARTUP.md): Fase 1 (auth de servidor, API, respaldo) y Fase 2 (React 19 + Vite + PWA) después del 14-nov-2026.
 
 - **Hoy:** HTML5 semántico + CSS3 + JavaScript vanilla; Python 3 (servidor estándar) + SQLite; TypeScript + Zod + `node:test` en el repo del modelo.
-- **Hoja de ruta (planificada):** AWS S3 + CloudFront para hosting y multimedia; ECS Fargate/App Runner para la API; RDS PostgreSQL Multi-AZ; EventBridge + SNS para alertas; Route 53 para DNS.
+- **Hoja de ruta:** Fase 1 con Fastify + TypeScript y respaldo verificado; Fase 2 con React 19 + Vite y PWA; Fase 3 con PostgreSQL gestionado; Fase 4 con AWS (S3 + CloudFront, ECS Fargate, RDS Multi-AZ, EventBridge + SNS, Route 53). El detalle y los criterios están en el roadmap canónico; AWS no es el siguiente paso.

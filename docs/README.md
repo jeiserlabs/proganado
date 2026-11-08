@@ -6,16 +6,18 @@
 
 | Documento | Qué contiene |
 |---|---|
+| **[`ROADMAP_Y_STACK_STARTUP.md`](ROADMAP_Y_STACK_STARTUP.md)** | **Canónico:** fases con criterios de aceptación, stack TypeScript-first, migración a PostgreSQL, seguridad, costos y riesgos. |
+| [`../producto_mvp/README.md`](../producto_mvp/README.md) | Espejo filtrado del MVP dentro del repo (solo código; assets y datos fuera de Git). |
 | [`sustentacion_2026/`](sustentacion_2026/README.md) | Material fuente del Momento 2: plan, guion, cómo estudiar, resumen, enlaces y HTML de la guía. |
 | [`contexto/CEREBRO_PROGANADO.md`](contexto/CEREBRO_PROGANADO.md) | Arquitectura de 3 capas, modelo de datos, stack real y hoja de ruta. |
 | [`contexto/ESTADO_VIVO_PROGANADO.md`](contexto/ESTADO_VIVO_PROGANADO.md) | Estado actual, roles y deuda declarada. |
 | [`ESTUDIO_DOMINIO_CAMPO.md`](ESTUDIO_DOMINIO_CAMPO.md) | Operación lechera real: rutinas, Colanta, Cinta Roja, PRV. |
-| [`ARQUITECTURA_Y_PLAN_ESCALABILIDAD.md`](ARQUITECTURA_Y_PLAN_ESCALABILIDAD.md) | Plan de escalabilidad en 4 fases. |
-| [`ARQUITECTURA_FREE_TIER_STACK.md`](ARQUITECTURA_FREE_TIER_STACK.md) | Stack $0 para el prototipo. |
+| [`ARQUITECTURA_Y_PLAN_ESCALABILIDAD.md`](ARQUITECTURA_Y_PLAN_ESCALABILIDAD.md) | Histórico (v1.1); el plan vigente es el roadmap canónico. |
+| [`ARQUITECTURA_FREE_TIER_STACK.md`](ARQUITECTURA_FREE_TIER_STACK.md) | Anexo de free tiers candidatos; verificar límites y condiciones al contratar. |
 | [`GUIA_SEGURIDAD_Y_ESCALABILIDAD.md`](GUIA_SEGURIDAD_Y_ESCALABILIDAD.md) | SQLi, concurrencia, integridad, respaldos. |
 | [`DICCIONARIO_VALIDACION_INPUTS_Y_CELDAS.md`](DICCIONARIO_VALIDACION_INPUTS_Y_CELDAS.md) | Validación por campo con Zod/TS. |
 | [`AUDITORIA_PARIDAD_2026-09-15.md`](AUDITORIA_PARIDAD_2026-09-15.md) | Cómo se alineó el modelo en 6 lugares. |
-| [`HOJA_DE_RUTA_CRONOLOGICA_IMPLEMENTACION.md`](HOJA_DE_RUTA_CRONOLOGICA_IMPLEMENTACION.md) | Roadmap de implementación (planificación, no timeline de hitos). |
+| [`HOJA_DE_RUTA_CRONOLOGICA_IMPLEMENTACION.md`](HOJA_DE_RUTA_CRONOLOGICA_IMPLEMENTACION.md) | Histórico (05-sep-2026); su Gantt está derogado por el roadmap canónico. |
 
 ## Documentación histórica
 

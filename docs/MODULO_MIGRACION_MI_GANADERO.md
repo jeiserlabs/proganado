@@ -60,5 +60,5 @@
 ## 💡 4. Ventajas Competitivas para Venta y Sustentación
 
 * **Migración a 1 Clic:** El ganadero no tiene que volver a digitar sus 160+ vacas ni perder 10 años de registros.
-* **Cero Costo de Licencia:** Sustituye licencias de \$1.5M a \$3M COP por suscripción SaaS ligera de $119k/mes o plan gratuito local.
+* **Cero Costo de Licencia:** Sustituye licencias de 1.5M a 3M COP por suscripción SaaS ligera de 119k COP/mes o plan gratuito local.
 * **Móvil en Potrero:** Frente a Software Ganadero que solo funciona sentado en la oficina, ProGanado opera directamente en la sala de ordeño y en el potrero sin internet.

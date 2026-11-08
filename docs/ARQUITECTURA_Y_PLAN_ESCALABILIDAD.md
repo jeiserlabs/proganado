@@ -1,9 +1,11 @@
 # ProGanado SaaS — Protocolo de Arquitectura y Plan de Escalabilidad Orgánica
 
+> **DOCUMENTO HISTÓRICO (v1.1, 07-nov-2026).** El plan vigente de fases y stack es [`ROADMAP_Y_STACK_STARTUP.md`](ROADMAP_Y_STACK_STARTUP.md). Las referencias a Next.js, Java/Spring, “PWA Vanilla/Vite” y React “Enterprise” quedan derogadas por ese documento; este archivo se conserva como contexto de la evolución del proyecto.
+
 > **Documento Rector de Ingeniería y Evolución de Software**  
 > **Sistema:** ProGanado (Software Integral de Gestión Ganadera e Inocuidad Lechera)  
 > **Tech Lead & Arquitectura:** Jeiser Gutiérrez  
-> **Equipo de Proyecto (Oficial 4 Integrantes):** Sebastián Correa (Frontend), Emilio Villanueva (Lógica/Prototipo/Diagramas), Héctor Pinto (Asesor Clínico/Operaciones), Jeiser Gutiérrez (Tech Lead/BD). *(Camila Salas retirada 26-Sep-2026).*  
+> **Equipo de Proyecto (Oficial 4 Integrantes):** Sebastián Correa (Frontend), Emilio Villanueva (Lógica/Prototipo/Diagramas), Humberto Pinto (Asesor Clínico/Operaciones), Jeiser Gutiérrez (Tech Lead/BD). *(Camila Salas retirada 26-Sep-2026).*  
 > **Fecha de emisión:** Septiembre 2026 — Versión 1.0.0  
 > **Actualización verificada:** 07-nov-2026 — Versión 1.1.0
 
@@ -137,8 +139,8 @@ Para evitar la sobre-ingeniería y el agotamiento del equipo, el desarrollo se e
 
 | Capa | Fase 1 (CESDE Actual) | Fase 2 (Finca LAN) | Fase 3 (Cloud MVP $0) | Fase 4 (AWS Enterprise) |
 | :--- | :--- | :--- | :--- | :--- |
-| **Frontend** | HTML5 Semántico + Mock UI Emilio | HTML/JS Modular optimizado | PWA (Vanilla/Vite) con IndexedDB | React / Next.js Enterprise |
-| **Backend API** | N/A (Entregables estáticos) | Python FastAPI / Java Servlet | Node.js / FastAPI en Render | AWS ECS Fargate / Lambda |
+| **Frontend** | HTML5 Semántico + Mock UI Emilio | HTML/JS heredado + fixes | PWA React 19 + Vite con IndexedDB | React 19 + Vite (misma app, sin Next.js) |
+| **Backend API** | N/A (Entregables estáticos) | Fastify + TypeScript (Fase 1) / Python heredado | Fastify + TypeScript en Render/Fly | AWS ECS Fargate (misma API TS) |
 | **Base de Datos** | Script SQL DDL 12 tablas | SQLite WAL / MariaDB Local | PostgreSQL Supabase Cloud | AWS RDS PostgreSQL Multi-AZ |
 | **Red / Conexión** | Localhost (127.0.0.1) | Red Wi-Fi Local Finca (LAN) | Internet HTTPS | AWS CloudFront + VPC Privada |
 | **Inocuidad ICA** | Declarada en DDL y CHECKs | Validación en Backend API | Vistas SQL + Alertas Push | Eventos automáticos en tiempo real |

@@ -39,6 +39,12 @@ Thumbs.db
 prototipo_interfaz/auth_config.js
 prototipo_interfaz/correo_config.json
 
+# Espejo del MVP: datos, assets y credenciales fuera de Git (Regla 29)
+producto_mvp/assets/
+producto_mvp/datos/
+producto_mvp/__pycache__/
+producto_mvp/correo_config.json
+
 # Entregable visual pesado (binarios van a Drive)
 02_Vistas_HTML5/bootstrap_m2/
 

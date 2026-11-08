@@ -37,13 +37,15 @@ SSOT de rutas y timeline: `docs/sustentacion_2026/SSOT_Y_TIMELINE.md`
 - **Lenguaje:** TypeScript (Node.js) + SQL
 - **BD dev:** SQLite (`better-sqlite3`) | **BD prod:** PostgreSQL (Supabase / AWS RDS)
 - **Validación:** Zod v4
-- **Tests:** Node.js `--test` nativo (23/23 PASS)
+- **Tests:** Node.js `--test` nativo (37/37 PASS; `npm run verify`)
 - **Typecheck:** `tsc --noEmit` (0 errores)
 - **Paridad:** `node tools/paridad_ssot.mjs`
 
 ---
 
 ## Fases de implementación — ROADMAP PARA GEMINI
+
+> El plan canónico de fases y stack es [`docs/ROADMAP_Y_STACK_STARTUP.md`](docs/ROADMAP_Y_STACK_STARTUP.md). Esta sección es un resumen; si contradice el canónico, manda el canónico.
 
 ### FASE 1 — COMPLETADA ✅ (Momento 1 CESDE)
 - [x] DDL 12 tablas 3FN (`schema_produccion_proganado_v3.sql`)
@@ -52,7 +54,7 @@ SSOT de rutas y timeline: `docs/sustentacion_2026/SSOT_Y_TIMELINE.md`
 - [x] 3 reglas de dominio puras con tests (cinta_roja, dias_abiertos, liquidacion_leche)
 - [x] Maquetación HTML5 semántica (`02_Vistas_HTML5/`)
 - [x] Algoritmos PSeInt (`03_Logica_PSeInt/`)
-- [x] Paridad SSOT gate (23/23 tests)
+- [x] Paridad SSOT gate (37/37 tests)
 
 ### FASE 2 — SIGUIENTE PRIORIDAD (post sustentación 14-Nov-2026)
 Objetivo: API funcional conectada a la base de datos real.
@@ -105,7 +107,7 @@ Comando de inicio: `node --loader ts-node/esm src/server/index.ts`
 ## Comandos clave
 
 ```bash
-npm test              # 23/23 tests — DEBE PASAR SIEMPRE
+npm test              # 37/37 tests — DEBE PASAR SIEMPRE
 npm run typecheck     # 0 errores TypeScript
 npm run paridad       # "Paridad total" — antes de commitear cambios al modelo
 npm run verify        # typecheck + paridad + test (todo en uno)
@@ -126,7 +128,8 @@ ProGanado/
 │   ├── schemas/       ← Validación Zod
 │   ├── types/         ← Interfaces TypeScript
 │   └── server/        ← [FASE 2] Express API (por crear)
-├── tests/             ← 19 tests, todos pasan
+├── producto_mvp/      ← Espejo filtrado del MVP (reglas_retiro.js + proganado.js)
+├── tests/             ← 37 tests, todos pasan (`npm run verify`)
 ├── docs/
 │   ├── contexto/      ← CEREBRO + ESTADO_VIVO
 │   └── *.md           ← Roadmap, arquitectura, guías del equipo

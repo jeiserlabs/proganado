@@ -1,4 +1,5 @@
 # 🛡️ GUÍA DE SEGURIDAD, ESTABILIDAD Y ESCALABILIDAD — PROGANADO S.A.S.
+> **ANEXO DE SEGURIDAD.** El stack y las fases vigentes están en [`ROADMAP_Y_STACK_STARTUP.md`](ROADMAP_Y_STACK_STARTUP.md). Las referencias a Express y a costos en dólares quedan corregidas por ese documento (Fastify + TypeScript; montos en COP).
 > **Propósito:** Especificación de arquitectura y buenas prácticas para cuando se implemente la capa de backend, base de datos y despliegue en la nube. Cero código muerto, solo directrices de ejecución ("La Flecha Cargada").
 
 ---
@@ -28,13 +29,13 @@
 | Nivel | Escala | Infraestructura & Persistencia | Costo Servidor |
 |---|---|---|---|
 | **Nivel 1 (Presente - CESDE)** | 1 a 10 Fincas | SQLite 3 Local / Supabase Free + HTML5 Semántico | \$0 COP |
-| **Nivel 2 (Validación Comercial)** | 50 a 1.000 Fincas | Node.js Express TS + PostgreSQL + Redis Cache | ~$120k COP / mes |
+| **Nivel 2 (Validación Comercial)** | 50 a 1.000 Fincas | Fastify + TypeScript + PostgreSQL + Redis Cache | ~120k COP / mes |
 | **Nivel 3 (Nacional Colombia)** | 1.000 a 20.000 Fincas | AWS ECS Fargate (Auto-scaling 4am/2pm) + RDS Multi-AZ + S3 | Autofinanciado |
 | **Nivel 4 (Hyper-Scale LatAm)** | 10M+ Bovinos | Sharding por Finca (`id_finca`), Particionamiento mensual en `pesajes_leche`, streaming Kafka para collares IoT | Autofinanciado |
 
 ---
 
 ## 3. MARCO SOCIETARIO Y BENEFICIOS TRIBUTARIOS
-* **Constitución S.A.S. (Ley 1780):** $0 costo de matrícula mercantil para fundadores < 35 años.
+* **Constitución S.A.S. (Ley 1258 de 2008):** verificar con contador los beneficios de emprendimiento juvenil (Ley 1780 de 2016) y los requisitos de matrícula; no se asume costo cero.
 * **Régimen Simple de Tributación (RST):** Tarifa unificada del **1.8% al 5.4%** sobre ingresos brutos.
 * **Exención de IVA Software Cloud (E.T. Art. 476 Numeral 24):** 0% IVA en servicios SaaS en Colombia.

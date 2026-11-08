@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'" />
+  <meta name="referrer" content="no-referrer" />
+  <title>ProGanado · Gestión Ganadera</title>
+  <link rel="icon" type="image/png" href="assets/proganado-logo.png" />
+  <link rel="stylesheet" href="proganado.css" />
+</head>
+<body class="modo-login">
+
+  <!-- ===================== LOGIN ===================== -->
+  <div id="loginView">
+    <div class="login-card">
+      <div class="login-hero">
+        <img src="assets/proganado-logo-blanco.png" alt="ProGanado, Gestión Ganadera" />
+        <h2>Control total y seguro de tu operación ganadera.</h2>
+        <p>Acceso exclusivo para el equipo de la finca.</p>
+      </div>
+      <form class="login-form" id="formLogin" novalidate>
+        <h1>Iniciar sesión</h1>
+        <p>Ingresa tus credenciales para entrar al sistema.</p>
+        <div id="pasoCredenciales">
+          <div class="login-field">
+            <label for="loginUser">Correo (usuario)</label>
+            <input id="loginUser" type="email" autocomplete="username" placeholder="Ej. nombre@gmail.com" required />
+          </div>
+          <div class="login-field">
+            <label for="loginPass">Contraseña</label>
+            <input id="loginPass" type="password" autocomplete="current-password" placeholder="••••••••" required />
+          </div>
+          <div class="login-row">
+            <label><input type="checkbox" id="loginRecordar" /> Mantener sesión 7 días</label>
+          </div>
+        </div>
+
+        <div id="pasoCodigo" style="display:none">
+          <div class="login-field">
+            <label for="loginCodigo">Código de seguridad</label>
+            <input id="loginCodigo" inputmode="numeric" pattern="\d{6}" maxlength="6" autocomplete="one-time-code" placeholder="● ● ● ● ● ●" required />
+          </div>
+          <p class="codigo-acciones"><button type="button" class="link-btn" id="btnReenviar">Reenviar código</button> · <button type="button" class="link-btn" id="btnVolverPaso1">Cambiar cuenta</button></p>
+          <p class="modo-prueba" id="modoPruebaAviso" style="display:none">Modo prueba — tu código es: <b></b></p>
+        </div>
+
+        <div id="pasoConfig" style="display:none">
+          <p style="font-size:12px;color:#d8f5e3;margin:0 0 14px;line-height:1.45;text-align:left">No hay cuentas registradas. Crea la cuenta administradora; su correo recibirá los códigos de seguridad.</p>
+          <div class="login-field">
+            <label for="setupName">Nombre del administrador</label>
+            <input id="setupName" type="text" autocomplete="name" placeholder="Ej. María Pérez" required />
+          </div>
+          <div class="login-field">
+            <label for="setupUser">Correo (usuario)</label>
+            <input id="setupUser" type="email" autocomplete="username" placeholder="Ej. nombre@gmail.com" required />
+          </div>
+          <div class="login-field">
+            <label for="setupPass">Contraseña</label>
+            <input id="setupPass" type="password" autocomplete="new-password" placeholder="Mín. 8, letras y números" required />
+          </div>
+          <div class="login-field">
+            <label for="setupPass2">Confirmar contraseña</label>
+            <input id="setupPass2" type="password" autocomplete="new-password" placeholder="••••••••" required />
+          </div>
+        </div>
+
+        <!-- AVISO LEGAL Y TRATAMIENTO DE DATOS (TEXTO LEGIBLE) -->
+      <div class="login-terms" style="margin: 14px 0 8px; font-size: 12px; color: #ffffff; text-align: center; text-shadow: 0 1px 2px rgba(0,0,0,0.6);">
+       Al continuar, aceptas la <a href="#" id="linkPrivacidadLogin" data-open-privacy style="color: #81c784; text-decoration: underline; font-weight: bold;">Política de Tratamiento de Datos Personales</a>.
+</div>
+
+        <button type="submit" id="btnLogin">Entrar</button>
+        <p class="login-msg" id="loginMsg" role="alert" style="margin-top: 10px; font-size: 13px; color: #ffb4a9; text-align: center; text-shadow: 0 1px 2px rgba(0,0,0,.6);"></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><img src="assets/proganado-logo.png" alt="ProGanado, Gestión Ganadera" /></div>
+      <p class="farm-name" id="farmName">proganado · Gestión ganadera</p>
+      <nav aria-label="Navegación principal">
+        <button class="nav-item active" data-page="inicio"><span>▦</span> Inicio</button>
+        <button class="nav-item" data-page="ganado"><span>♧</span> Ganado <b id="herdCount">0</b></button>
+        <button class="nav-item" data-page="salud"><span>✚</span> Salud</button>
+        <button class="nav-item" data-page="reproduccion"><span>♡</span> Reproducción</button>
+        <button class="nav-item" data-page="produccion"><span>◒</span> Producción</button>
+        <button class="nav-item" data-page="movimientos"><span>↔</span> Potreros PRV</button>
+        <button class="nav-item" data-page="contabilidad"><span>$</span> Contabilidad</button>
+        <button class="nav-item users-icon" data-page="usuarios" id="navUsuarios"><span>♙</span> Usuarios</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <span class="dot"></span> Datos guardados en este equipo
+        <div style="margin-top: 6px;">
+          <a href="#" id="linkPrivacidadSidebar" data-open-privacy style="color: #a7beaf; font-size: 11px; text-decoration: underline;">Políticas de Privacidad</a>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <header>
+        <div><p class="eyebrow" id="today">Resumen del hato</p><h1 id="pageTitle">Panel de control</h1></div>
+        <div class="header-actions"><span class="workspace-label">PROGANADO<br><b>GESTIÓN GANADERA</b></span><span class="session-chip" id="sessionChip"><i class="role-dot"></i><b id="chipNombre">—</b>&nbsp;<span id="chipRol">—</span></span><button class="profile" id="perfilChip" aria-label="Perfil">EM</button><button id="btnLogout" title="Cerrar sesión">Salir ⏻</button></div>
+      </header>
+
+      <!-- ===================== INICIO ===================== -->
+      <section id="inicio" class="page active-page">
+        <div class="welcome"><img src="assets/hero-optimized.jpg" alt="Hato bovino pastoreando en la finca" /><div class="welcome-content"><p><i></i> OPERACIÓN GANADERA</p><h2>Información clara<br>para mejores decisiones.</h2><span>Centraliza la salud, reproducción, ordeño y trazabilidad de tu hato en un solo lugar.</span><div class="hero-actions"><button class="primary" data-open-modal="modalBovino">+ Registrar animal</button><button class="hero-link" data-page-link="ganado">Ver inventario <b>→</b></button></div></div><div class="hero-badge"><b>PRO</b><span>Control<br>del hato</span></div></div>
+        <div class="metrics">
+          <article class="func-card"><span class="metric-icon green">♧</span><p>Total ganado</p><strong id="metricTotal">0</strong><small id="metricComp">—</small></article>
+          <article class="func-card"><span class="metric-icon amber">♡</span><p>En gestación</p><strong id="metricGest">0</strong><small id="metricGestInfo">—</small></article>
+          <article class="func-card"><span class="metric-icon red">✚</span><p>En retiro ICA</p><strong id="metricRetiro">0</strong><small>Leche suspendida por medicamento</small></article>
+          <article class="func-card"><span class="metric-icon blue">◒</span><p>Producción hoy</p><strong id="metricLeche">0 <em>L</em></strong><small id="metricLecheInfo">Sin registro de hoy</small></article>
+        </div>
+        <div class="grid-two">
+          <section class="panel reminders"><div class="panel-heading"><div><p class="eyebrow">Agenda sanitaria</p><h2>Próximos eventos</h2></div><button class="text-button" data-page-link="salud">Ver salud →</button></div>
+            <div id="agendaList"></div>
+          </section>
+          <section class="panel herd-summary"><div class="panel-heading"><div><p class="eyebrow">Inventario</p><h2>Composición del hato</h2></div><button class="text-button" data-page-link="ganado">Ver ganado →</button></div>
+            <div class="donut-wrap"><div class="donut" id="donut"><span><b id="donutTotal">0</b><small>animales</small></span></div><ul id="donutLegend"></ul></div>
+          </section>
+        </div>
+        <div class="two-col">
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Acopio Colanta</p><h2>Última entrega</h2></div><button class="text-button" data-page-link="produccion">Ver producción →</button></div>
+            <div id="ultimaEntrega"></div>
+          </section>
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Trazabilidad</p><h2>Actividad reciente</h2></div></div>
+            <div id="actividadReciente"></div>
+          </section>
+        </div>
+        <section class="visual-strip" aria-label="Galería de la finca"><div class="gallery-intro"><p class="eyebrow">Visión integral</p><h2>Una operación<br>bien gestionada.</h2><span>ProGanado conecta cada momento clave de la finca.</span></div><figure><img loading="lazy" decoding="async" src="assets/foto-corral.jpg" alt="Ternero recién nacido junto a su madre" /><figcaption><small>NACIMIENTOS</small>Terneros recién nacidos, al cuidado de su madre</figcaption></figure><figure><img loading="lazy" decoding="async" src="assets/ganado-v4.jpg" alt="Vaca identificada con arete amarillo" /><figcaption><small>TRAZABILIDAD</small>Identificación y control individual</figcaption></figure><figure><img loading="lazy" decoding="async" src="assets/foto-ordenio.jpg" alt="Vaca Simmental en el potrero" /><figcaption><small>BIENESTAR</small>Vacas sanas y felices en pastura</figcaption></figure></section>
+      </section>
+
+      <!-- ===================== GANADO ===================== -->
+      <section id="ganado" class="page">
+        <div class="page-top banner"><div><p class="eyebrow">Inventario</p><h2>Mi ganado</h2><span>Consulta y administra cada animal de la finca.</span></div><div class="banner-actions"><button class="secondary" id="exportCsv">⇩ Exportar CSV</button> <button class="primary" data-open-modal="modalBovino">+ Registrar animal</button></div></div>
+        <div class="toolbar"><label>⌕ <input id="searchAnimals" aria-label="Buscar animal por arete o nombre" placeholder="Buscar por arete o nombre" /></label><select id="categoryFilter" aria-label="Filtrar por estado del animal"><option value="Todos">Todos los estados</option><option>En Ordeño</option><option>Horra Seca</option><option>Novilla Vientre</option><option>Toro</option><option>Ternera</option><option>Ternero</option><option>Descarte</option></select></div>
+        <section class="panel table-panel"><table><thead><tr><th>ANIMAL</th><th>ARETE</th><th>RAZA</th><th>ESTADO</th><th>POTRERO</th><th>SEG. MÉDICO</th><th></th></tr></thead><tbody id="animalsTable"></tbody></table><p id="emptyState" class="empty">No hay animales que coincidan.</p></section>
+        <section class="panel" id="hojaVidaPanel" style="margin-top:18px"><div class="panel-heading"><div><p class="eyebrow">Seguimiento</p><h2>Hoja de vida por animal</h2><span>Histórico médico, reproductivo y datos productivos de cada bovino.</span></div></div>
+          <div class="toolbar cartilla-toolbar"><select id="cartillaSelect" aria-label="Seleccionar animal"></select><button class="secondary" id="btnEditarHojaVida" type="button">✎ Actualizar datos</button></div>
+          <div id="cartillaContent"></div>
+        </section>
+      </section>
+
+      <!-- ===================== SALUD ===================== -->
+      <section id="salud" class="page">
+        <div class="page-top"><div><p class="eyebrow">Sanidad</p><h2>Salud del hato</h2><span>Tratamientos, vacunas y días de retiro ICA bajo control.</span></div><button class="primary" data-open-modal="modalTratamiento">+ Registrar tratamiento</button></div>
+        <div class="metrics" style="grid-template-columns:repeat(3,1fr)">
+          <article class="func-card"><span class="metric-icon red">⏳</span><p>En retiro de leche</p><strong id="saludRetiro">0</strong><small>Animales con leche suspendida</small></article>
+          <article class="func-card"><span class="metric-icon green">✓</span><p>Tratamientos activos</p><strong id="saludActivos">0</strong><small>En seguimiento actualmente</small></article>
+          <article class="func-card"><span class="metric-icon blue">✚</span><p>Historial total</p><strong id="saludTotal">0</strong><small>Registros médicos de la finca</small></article>
+        </div>
+        <section class="panel"><div class="panel-heading"><h2>Seguimientos médicos activos</h2></div>
+          <table><thead><tr><th>ANIMAL</th><th>PROCEDIMIENTO</th><th>MEDICAMENTO</th><th>FECHA</th><th>DOSIS</th><th>RETIRO ICA</th><th>ESTADO</th></tr></thead><tbody id="tratamientosTable"></tbody></table>
+          <p id="emptyTrat" class="empty">No hay tratamientos registrados.</p>
+        </section>
+        <section class="panel" style="margin-top:18px"><div class="panel-heading"><div><p class="eyebrow">Catálogo</p><h2>Medicamentos</h2></div><button class="text-button" data-open-modal="modalMedicamento">+ Agregar medicamento</button></div>
+          <table><thead><tr><th>FÁRMACO</th><th>DÍAS DE RETIRO ICA</th></tr></thead><tbody id="medicamentosTable"></tbody></table>
+        </section>
+      </section>
+
+      <!-- ===================== REPRODUCCIÓN ===================== -->
+      <section id="reproduccion" class="page">
+        <div class="page-top"><div><p class="eyebrow">Ciclo reproductivo</p><h2>Reproducción</h2><span>Celos, servicios, gestaciones y partos.</span></div><button class="primary" data-open-modal="modalEvento">+ Registrar evento</button></div>
+        <div class="metrics" style="grid-template-columns:repeat(3,1fr)">
+          <article class="func-card"><span class="metric-icon amber">♡</span><p>En gestación</p><strong id="reproGest">0</strong><small id="reproGestInfo">—</small></article>
+          <article class="func-card"><span class="metric-icon red">◌</span><p>Celos por servir</p><strong id="reproCelos">0</strong><small>Últimos 25 días</small></article>
+          <article class="func-card"><span class="metric-icon green">✓</span><p>Partos del año</p><strong id="reproPartos">0</strong><small id="reproPartosInfo">—</small></article>
+        </div>
+        <section class="panel"><div class="panel-heading"><h2>Seguimiento activo</h2></div>
+          <table><thead><tr><th>ANIMAL</th><th>EVENTO</th><th>FECHA</th><th>DÍAS ABIERTOS</th><th>NOTA</th></tr></thead><tbody id="reproTable"></tbody></table>
+          <p id="emptyRepro" class="empty">No hay eventos reproductivos registrados.</p>
+        </section>
+      </section>
+
+      <!-- ===================== PRODUCCIÓN ===================== -->
+      <section id="produccion" class="page">
+        <div class="page-top"><div><p class="eyebrow">Ordeño y acopio</p><h2>Producción</h2><span>Pesajes por vaca, entregas a Colanta y calidad UFC.</span></div><button class="primary" data-open-modal="modalPesaje">+ Registrar pesaje</button></div>
+        <div class="metrics" style="grid-template-columns:repeat(3,1fr)">
+          <article class="func-card"><span class="metric-icon blue">◒</span><p>Litros hoy</p><strong id="prodHoy">0</strong><small id="prodHoyInfo">Sin registro de hoy</small></article>
+          <article class="func-card"><span class="metric-icon green">⇧</span><p>Total mes</p><strong id="prodMes">0</strong><small>Litros acumulados</small></article>
+          <article class="func-card"><span class="metric-icon amber">⚖</span><p>Promedio por vaca</p><strong id="prodProm">0</strong><small>Litros / día (últimos 7)</small></article>
+        </div>
+        <div class="two-col">
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Ordeño</p><h2>Últimos pesajes</h2></div><button class="text-button" data-open-modal="modalPesaje">+ Pesaje</button></div>
+            <table><thead><tr><th>VACA</th><th>FECHA</th><th>HORA</th><th>LITROS</th></tr></thead><tbody id="pesajesTable"></tbody></table>
+            <p id="emptyPesajes" class="empty">No hay pesajes registrados.</p>
+          </section>
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Colanta</p><h2>Entregas de acopio</h2></div><button class="text-button" data-open-modal="modalEntrega">+ Entrega</button></div>
+            <table><thead><tr><th>FECHA</th><th>LITROS</th><th>VALOR EST.</th><th>UFC</th></tr></thead><tbody id="entregasTable"></tbody></table>
+            <p id="emptyEntregas" class="empty">No hay entregas registradas.</p>
+          </section>
+        </div>
+      </section>
+
+      <!-- ===================== POTREROS PRV ===================== -->
+      <section id="movimientos" class="page">
+        <div class="page-top"><div><p class="eyebrow">Trazabilidad</p><h2>Potreros PRV</h2><span>Rotación y ocupación del pasto por potrero.</span></div><button class="primary" data-open-modal="modalMovimiento">+ Registrar pastoreo</button></div>
+        <div class="metrics" style="grid-template-columns:repeat(3,1fr)">
+          <article class="func-card"><span class="metric-icon green">▣</span><p>Potreros</p><strong id="potrerosTotal">0</strong><small id="potrerosInfo">—</small></article>
+          <article class="func-card"><span class="metric-icon blue">♡</span><p>En ocupación</p><strong id="potrerosOcup">0</strong><small>Con ganado pastoreando</small></article>
+          <article class="func-card"><span class="metric-icon amber">☾</span><p>En descanso</p><strong id="potrerosDesc">0</strong><small>Recuperando pastura</small></article>
+        </div>
+        <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Rotación</p><h2>Estado actual de potreros</h2></div><button class="text-button" data-open-modal="modalPotrero">+ Potrero</button></div>
+          <div id="potrerosList" class="reto-list"></div>
+        </section>
+        <section class="panel" style="margin-top:18px"><div class="panel-heading"><h2>Historial de pastoreo</h2></div>
+          <table><thead><tr><th>FECHA</th><th>ANIMALES</th><th>POTRERO</th><th>ACCIÓN</th></tr></thead><tbody id="movsTable"></tbody></table>
+          <p id="emptyMovs" class="empty">No hay movimientos de pastoreo registrados.</p>
+        </section>
+      </section>
+
+      <!-- ===================== CONTABILIDAD ===================== -->
+      <section id="contabilidad" class="page">
+        <div class="page-top banner"><div><p class="eyebrow">Finanzas</p><h2>Contabilidad</h2><span>Entradas y salidas de dinero, con la foto de cada factura.</span></div><div class="banner-actions"><button class="secondary" data-open-modal="modalReporte">⎙ Reporte PDF</button><button class="secondary" id="contabExport">⇩ Exportar CSV</button><button class="primary" data-open-modal="modalContab">+ Registrar movimiento</button></div></div>
+        <p class="estado-datos" id="estadoDatos">● Conectando con el servidor…</p>
+        <div class="metrics">
+          <article class="func-card"><span class="metric-icon green">＋</span><p>Entradas</p><strong id="cIng">$ 0</strong><small id="cIngN">0 registros</small></article>
+          <article class="func-card"><span class="metric-icon red">－</span><p>Salidas</p><strong id="cEgr">$ 0</strong><small id="cEgrN">0 registros</small></article>
+          <article class="func-card"><span class="metric-icon blue">=</span><p>Saldo</p><strong id="cSaldo">$ 0</strong><small>Entradas menos salidas</small></article>
+          <article class="func-card"><span class="metric-icon amber">▤</span><p>Sin factura</p><strong id="cSinFoto">0</strong><small>Movimientos sin foto adjunta</small></article>
+        </div>
+        <section class="panel table-panel">
+          <div class="panel-heading"><div><p class="eyebrow">Libro de movimientos</p><h2>Facturas y pagos</h2></div></div>
+          <div class="toolbar"><label>⌕ <input id="cBuscar" aria-label="Buscar movimiento por concepto, tercero o factura" placeholder="Buscar por concepto, tercero o factura" /></label><select id="cTipo" aria-label="Filtrar por tipo de movimiento"><option value="Todos">Entradas y salidas</option><option>Entrada</option><option>Salida</option></select><input type="month" id="cMes" aria-label="Filtrar por mes" title="Filtrar por mes" /></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Fecha</th><th>Tipo</th><th>Concepto</th><th>Tercero</th><th>Factura</th><th>Categoría</th><th>Método</th><th class="num">Valor</th><th>Soporte</th><th></th></tr></thead>
+            <tbody id="cBody"></tbody>
+          </table></div>
+          <p class="empty" id="cVacio" style="display:none">Aún no hay movimientos. Registra la primera entrada o salida de dinero.</p>
+        </section>
+      </section>
+
+      <section id="usuarios" class="page">
+        <div class="page-top"><div><p class="eyebrow">Seguridad</p><h2>Usuarios del sistema</h2><span>Administra las cuentas con acceso a la información del hato.</span></div></div>
+        <div class="limits-row">
+          <article class="limit-card"><span class="metric-icon amber">★</span><div><p>Administradores</p><strong id="countAdmins">0 / 4</strong></div></article>
+          <article class="limit-card"><span class="metric-icon blue">♙</span><div><p>Usuarios operativos</p><strong id="countUsers">0 / 7</strong></div></article>
+          <article class="limit-card"><span class="metric-icon green">Σ</span><div><p>Total de cuentas</p><strong id="countTotal">0</strong></div></article>
+        </div>
+        <div class="new-user-box">
+          <div class="panel-heading"><div><p class="eyebrow">Alta de cuenta</p><h2>Crear nuevo usuario</h2></div></div>
+          <form id="formNewUser" class="form-grid">
+            <label>Nombre completo<input required name="newName" placeholder="Ej. María Gómez" /></label>
+            <label>Correo del usuario (llegará el código)<input required name="newUser" type="email" placeholder="Ej. nombre@gmail.com" autocomplete="off" /></label>
+            <label>Contraseña inicial (mín. 8, letras y números)<input required name="newPass" type="password" autocomplete="new-password" placeholder="••••••••" /></label>
+            <label>Rol de cuenta
+              <select name="newRole">
+                <option value="usuario">Usuario operativo (consulta y registros)</option>
+                <option value="admin">Administrador (control total)</option>
+              </select>
+            </label>
+          </form>
+          <p class="form-msg" id="newUserMsg" role="status" aria-live="polite"></p>
+          <div class="modal-actions" style="padding:12px 0 0"><button type="submit" form="formNewUser" class="primary">+ Crear cuenta</button></div>
+        </div>
+        <section class="panel table-panel">
+          <table>
+            <thead><tr><th>USUARIO</th><th>ROL</th><th>ÚLTIMO ACCESO</th><th></th></tr></thead>
+            <tbody id="usuariosTabla"></tbody>
+          </table>
+        </section>
+      </section>
+    </main>
+  </div>
+  <dialog id="modalBovino" class="modal-hoja-vida"><form id="formBovino" method="dialog"><div class="modal-header"><div><p class="eyebrow" id="eyebrowBovino">Nuevo registro</p><h2 id="tituloBovino">Registrar animal</h2></div><button class="close" type="button" data-close-dialog aria-label="Cerrar">×</button></div>
+    <div class="form-seccion">
+      <h3>Foto del animal</h3>
+      <div class="foto-animal-editor">
+        <div class="foto-preview">
+          <img id="fotoBovinoPreview" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Foto del animal" hidden />
+          <span id="fotoBovinoSinFoto">Sin foto</span>
+        </div>
+        <div class="foto-campos">
+          <label>Seleccionar foto<input id="fotoBovinoInput" name="foto" type="file" accept="image/jpeg,image/png,image/webp" /></label>
+          <small>JPG, PNG o WEBP. La imagen se ajusta automáticamente para ocupar poco espacio.</small>
+          <label class="foto-quitar" id="fotoBovinoQuitarLabel" hidden><input type="checkbox" name="quitar_foto" id="quitarFotoBovino" /> Quitar foto</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-seccion">
+      <h3>Identificación y manejo</h3>
+      <div class="form-grid hoja-vida-grid">
+        <label>Nombre<input name="name" placeholder="Ej. Canela" /></label>
+        <label>Arete *<input required name="tag" placeholder="Ej. 00128" /></label>
+        <label>Raza<select name="raza" id="razaSelect"></select></label>
+        <label>Sexo<select name="sexo"><option value="">Sin definir</option><option>Hembra</option><option>Macho</option></select></label>
+        <label>Estado fisiológico<select name="estado"><option value="">Sin definir</option><option>En Ordeño</option><option>Horra Seca</option><option>Novilla Vientre</option><option>Toro</option><option>Ternera</option><option>Ternero</option><option>Descarte</option></select></label>
+        <label>Potrero<select name="potrero" id="potreroSelect"></select></label>
+        <label>Fecha de nacimiento<input name="birth" type="date" /></label>
+        <label>Marca / arete ICA<input name="marca" placeholder="Ej. Arete ICA 128" /></label>
+        <label>Chip<input name="chip" placeholder="Ej. 985141000123456" /></label>
+        <label>Color<input name="color" placeholder="Ej. Colorado" /></label>
+        <label>Hierro<input name="hierro" placeholder="Ej. H-12" /></label>
+        <label>Lote / grupo<input name="lote" placeholder="Ej. Lote 2" /></label>
+        <label>Situación<select name="situacion"><option value="">Sin definir</option><option>Activo</option><option>Enfermo</option><option>Venta</option><option>Descarte</option></select></label>
+        <label>Procedencia<input name="procedencia" placeholder="Ej. Finca El Porvenir" /></label>
+      </div>
+    </div>
+    <div class="form-seccion">
+      <h3>Genealogía</h3>
+      <div class="form-grid hoja-vida-grid">
+        <label>Padre (arete o nombre)<input name="padre" placeholder="Ej. 045" /></label>
+        <label>Madre (arete o nombre)<input name="madre" placeholder="Ej. 1024" /></label>
+      </div>
+    </div>
+    <div class="form-seccion">
+      <h3>Reproducción</h3>
+      <div class="form-grid hoja-vida-grid">
+        <label>Último parto<input name="ultimo_parto" type="date" /></label>
+        <label>Último celo<input name="ultimo_celo" type="date" /></label>
+        <label>Fecha de preñez<input name="fecha_prenez" type="date" /></label>
+        <label>Parto esperado<input name="parto_esperado" type="date" /></label>
+        <label>Reproductor / toro<input name="reproductor" placeholder="Ej. Toro 12" /></label>
+        <label>Tipo de servicio<select name="tipo_servicio"><option value="">Sin registrar</option><option>Inseminación artificial</option><option>Monta natural</option></select></label>
+        <label>N.º de servicios<input name="servicios" type="number" min="0" step="1" inputmode="numeric" placeholder="0" /></label>
+        <label>N.º de partos<input name="partos" type="number" min="0" step="1" inputmode="numeric" placeholder="0" /></label>
+        <label>Abortos<input name="abortos" type="number" min="0" step="1" inputmode="numeric" placeholder="0" /></label>
+      </div>
+    </div>
+    <div class="form-seccion">
+      <h3>Peso, salud y observaciones</h3>
+      <div class="form-grid hoja-vida-grid">
+        <label>Peso actual (kg)<input name="peso_kg" type="number" min="0" step="0.1" inputmode="decimal" placeholder="Ej. 420" /></label>
+        <label>Fecha del pesaje<input name="peso_fecha" type="date" /></label>
+        <label>Condición corporal (1–5)<input name="condicion_corporal" type="number" min="1" max="5" step="0.1" inputmode="decimal" placeholder="Ej. 3.5" /></label>
+        <label class="span-3">Notas de salud<textarea name="notas_salud" rows="2" placeholder="Vacunas, alergias, tratamientos o novedades..."></textarea></label>
+        <label class="span-3">Observaciones<textarea name="observaciones" rows="2" placeholder="Información adicional del animal..."></textarea></label>
+      </div>
+    </div>
+    <div class="modal-actions"><button type="button" class="secondary" data-close-dialog>Cancelar</button><button class="primary" value="default">Guardar hoja de vida</button></div></form></dialog>
+
+  <dialog id="modalTratamiento"><form id="formTratamiento" method="dialog"><div class="modal-header"><div><p class="eyebrow">Sanidad</p><h2>Registrar tratamiento</h2></div><button class="close" type="button" data-close-dialog aria-label="Cerrar">×</button></div>
+    <div class="form-grid">
+      <label>Animal<select name="bovino" id="tratBovinoSelect" required></select></label>
+      <label>Medicamento<select name="medicamento" id="tratMedSelect" required></select></label>
+      <label>Tipo de procedimiento<select name="tipo"><option>Vacunación</option><option>Desparasitación</option><option>Tratamiento mastitis</option><option>Tratamiento general</option><option>Cirugía menor</option></select></label>
+      <label>Fecha<input required name="fecha" type="date" /></label>
+      <label>Dosis (ml)<input required name="dosis" type="number" step="0.1" min="0.1" placeholder="Ej. 10" /></label>
+      <label>Nota<input name="nota" placeholder="Observaciones" /></label>
+    </div>
+    <p style="padding:0 25px;font-size:11px;color:#a86c20" id="tratAviso"></p>
+    <div class="modal-actions"><button type="button" class="secondary" data-close-dialog>Cancelar</button><button class="primary" value="default">Guardar tratamiento</button></div></form></dialog>
+
+  <dialog id="modalMedicamento"><form id="formMedicamento" method="dialog"><div class="modal-header"><div><p class="eyebrow">Catálogo</p><h2>Agregar medicamento</h2></div><button class="close" type="button" data-close-dialog aria-label="Cerrar">×</button></div>
+    <div class="form-grid">
+      <label>Nombre del fármaco<input required name="nombre" placeholder="Ej. Oxitetraciclina LA" /></label>
+      <label>Días de retiro ICA<input required name="retiro" type="number" min="0" max="60" placeholder="Ej. 5" /></label>
+    </div>
+    <div class="modal-actions"><button type="button" class="secondary" data-close-dialog>Cancelar</button><button class="primary" value="default">Guardar medicamento</button></div></form></dialog>
+
+  <dialog id="modalEvento"><form id="formEvento" method="dialog"><div class="modal-header"><div><p class="eyebrow">Reproducción</p><h2>Registrar evento</h2></div><button class="close" type="button" data-close-dialog aria-label="Cerrar">×</button></div>
+    <div class="form-grid">
+      <label>Animal<select name="bovino" id="evBovinoSelect" required></select></label>
+      <label>Tipo de evento<select name="tipo"><option>Celo Observable</option><option>Inseminación</option><option>Monta Natural</option><option>Diagnóstico de Gestación</option><option>Parto</option></select></label>
+      <label>Fecha del evento<input required name="fecha" type="date" /></label>
+      <label>Nota<input name="nota" placeholder="Observaciones" /></label>
+    </div>
+    <div class="modal-actions"><button type="button" class="secondary" data-close-dialog>Cancelar</button><button class="primary" value="default">Guardar evento</button></div></form></dialog>
+
+  <dialog id="modalPesaje"><form id="formPesaje" method="dialog"><div class="modal-header"><div><p class="eyebrow">Ordeño</p><h2>Registrar pesaje</h2></div><button class="close" type="button" data-close-dialog aria-label="Cerrar">×</button></div>
+    <div class="form-grid">
+      <label>Vaca en ordeño<select name="bovino" id="pesBovinoSelect" required></select></label>
+      <label>Fecha<input required name="fecha" type="date" /></label>
+      <label>Hora<input required name="hora" type="time" value="06:00" /></label>
+      <label>Litros<input required name="litros" type="number" step="0.1" min="0.1" placeholder="Ej. 12.5" /></label>
+    </div>
+    <p style="padding:0 25px;font-size:11px;color:#b44838" id="pesAviso"></p>
+    <div class="modal-actions"><button type="button" class="secondary" data-close-dialog>Cancelar</button><button class="primary" value="default">Guardar pesaje</button></div></form></dialog>
+
+  <dialog id="modalEntrega"><form id="formEntrega" method="dialog"><div class="modal-header"><div><p class="eyebrow">Acopio Colanta</p><h2>Registrar entrega</h2></div><button class="close" type="button" data-close-dialog aria-label="Cerrar">×</button></div>
+    <div class="form-grid">
+      <label>Fecha de entrega<input required name="fecha" type="date" /></label>
+      <label>Litros totales<input required name="litros" type="number" step="0.1" min="0.1" /></label>
+      <label>Valor bruto estimado ($)<input required name="valor" type="number" step="100" min="0" /></label>
+      <label>Recuento UFC<input required name="ufc" type="number" step="1000" min="0" placeholder="Ej. 80000" /></label>
+    </div>
+    <div class="modal-actions"><button type="button" class="secondary" data-close-dialog>Cancelar</button><button class="primary" value="default">Guardar entrega</button></div></form></dialog>
+
+  <dialog id="modalMovimiento"><form id="formMovimiento" method="dialog"><div class="modal-header"><div><p class="eyebrow">Potreros PRV</p><h2>Registrar pastoreo</h2></div><button class="close" type="button" data-close-dialog aria-label="Cerrar">×</button></div>
+    <div class="form-grid">
+      <label>Acción<select name="accion"><option>Entrada al potrero</option><option>Salida del potrero</option></select></label>
+      <label>Potrero<select name="potrero" id="movPotreroSelect" required></select></label>
+      <label>Fecha<input required name="fecha" type="date" /></label>
+      <label>Cantidad de animales<input required name="cantidad" type="number" min="1" placeholder="Ej. 8" /></label>
+    </div>
+    <div class="modal-actions"><button type="button" class="secondary" data-close-dialog>Cancelar</button><button class="primary" value="default">Registrar</button></div></form></dialog>
+
+  <dialog id="modalPotrero"><form id="formPotrero" method="dialog"><div class="modal-header"><div><p class="eyebrow">Potreros PRV</p><h2>Agregar potrero</h2></div><button class="close" type="button" data-close-dialog aria-label="Cerrar">×</button></div>
+    <div class="form-grid">
+      <label>Nombre del potrero<input required name="nombre" placeholder="Ej. Potrero Norte" /></label>
+      <label>Días de ocupación<input required name="ocupacion" type="number" min="1" max="10" value="1" /></label>
+      <label>Días de descanso (PRV)<input required name="descanso" type="number" min="10" max="90" value="35" /></label>
+    </div>
+    <div class="modal-actions"><button type="button" class="secondary" data-close-dialog>Cancelar</button><button class="primary" value="default">Guardar potrero</button></div></form></dialog>
+
+  <dialog id="modalContab"><form id="formContab" method="dialog"><div class="modal-header"><div><p class="eyebrow">Contabilidad</p><h2>Registrar movimiento</h2></div><button class="close" type="button" data-close-dialog aria-label="Cerrar">×</button></div>
+    <div class="form-grid">
+      <label>Tipo<select name="tipo" required><option value="Entrada">Entrada de dinero (ingreso)</option><option value="Salida">Salida de dinero (gasto)</option></select></label>
+      <label>Fecha<input required name="fecha" type="date" /></label>
+      <label>Concepto<input required name="concepto" placeholder="Ej. Venta de leche semana 42" /></label>
+      <label>Tercero (cliente o proveedor)<input required name="tercero" placeholder="Ej. Colanta" /></label>
+      <label>Número de factura<input name="numero" placeholder="Ej. FE-000123" /></label>
+      <label>Categoría<select name="categoria"><option>Venta de leche</option><option>Venta de ganado</option><option>Otros ingresos</option><option>Alimentación</option><option>Medicamentos y sanidad</option><option>Insumos y potreros</option><option>Nómina</option><option>Servicios públicos</option><option>Transporte</option><option>Impuestos</option><option>Otros gastos</option></select></label>
+      <label>Valor (COP)<input required name="valor" type="number" min="1" step="1" placeholder="Ej. 850000" /></label>
+      <label>Método de pago<select name="metodo"><option>Transferencia</option><option>Efectivo</option><option>Nequi / Daviplata</option><option>Tarjeta</option><option>Cheque</option></select></label>
+      <label style="grid-column:1/-1">Foto de la factura (JPG, PNG o WEBP)<input name="foto" type="file" accept="image/*" /></label>
+      <label style="grid-column:1/-1">Notas<input name="notas" placeholder="Opcional" /></label>
+    </div>
+    <div class="modal-actions"><button type="button" class="secondary" data-close-dialog>Cancelar</button><button class="primary" value="default">Guardar</button></div></form></dialog>
+
+  <dialog id="modalReporte"><form id="formReporte" method="dialog"><div class="modal-header"><div><p class="eyebrow">Contabilidad</p><h2>Reporte mensual en PDF</h2></div><button class="close" type="button" data-close-dialog aria-label="Cerrar">×</button></div>
+    <div class="form-grid">
+      <label>Mes del reporte<input type="month" name="mes" required /></label>
+      <label>Nombre de la empresa<input name="empresa" placeholder="Ej. Hacienda San Pedro" /></label>
+      <label style="grid-column:1/-1;flex-direction:row;align-items:center;gap:8px"><input type="checkbox" name="anexo" checked /> Incluir anexo con las fotos de las facturas</label>
+    </div>
+    <p class="estado-datos">El PDF incluye los movimientos del mes, el resumen por categoría y el saldo.</p>
+    <div class="modal-actions"><button type="button" class="secondary" data-close-dialog>Cancelar</button><button class="primary" value="default">Generar PDF</button></div></form></dialog>
+
+  <dialog id="fotoModal"><div class="lightbox"><button class="close" id="fotoClose" aria-label="Cerrar">×</button><img id="fotoGrande" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Foto del animal" /><div class="lightbox-info"><div><strong id="fotoNombre"></strong><span id="fotoDetalle"></span></div><button class="primary" id="fotoCartilla">Ver hoja de vida</button></div></div></dialog>
+  <dialog id="modalPassword"><form id="formPassword" method="dialog"><div class="modal-header"><div><p class="eyebrow">Seguridad</p><h2>Cambiar contraseña</h2></div><button type="button" class="close" data-close-dialog aria-label="Cerrar">×</button></div>
+    <p id="passTarget" style="padding:0 25px;color:#4a564f;font-size:13px"></p>
+    <div class="form-grid">
+      <label>Nueva contraseña (mín. 8, letras y números)<input required name="pass1" type="password" autocomplete="new-password" placeholder="••••••••" /></label>
+      <label>Confirmar contraseña<input required name="pass2" type="password" autocomplete="new-password" placeholder="••••••••" /></label>
+    </div>
+    <p class="form-msg" id="passMsg"></p>
+    <div class="modal-actions"><button type="button" class="secondary" data-close-dialog>Cancelar</button><button type="submit" class="primary">Guardar contraseña</button></div></form></dialog>
+
+  <dialog id="modalPrivacidad"><div class="modal-header"><div><p class="eyebrow">Política</p><h2>Tratamiento de Datos Personales</h2></div><button class="close" data-close-dialog aria-label="Cerrar">×</button></div>
+    <div style="padding: 18px 25px 24px; font-size: 12.5px; line-height: 1.6; color: #4a564f; max-height: 60vh; overflow: auto;">
+      <p><b>Responsable:</b> ProGanado · Gestión Ganadera.</p>
+      <p><b>Finalidad:</b> identificar a los usuarios autorizados del sistema, mantener la sesión activa y registrar la actividad del hato con fines de trazabilidad operativa.</p>
+      <p><b>Datos tratados:</b> correo electrónico, nombre, rol y contraseñas protegidas mediante hash y salt. La información del hato se guarda en este equipo (base de datos local del servidor y almacenamiento del navegador) y no se transmite a terceros.</p>
+      <p><b>Conservación:</b> los datos permanecen mientras el usuario mantenga la cuenta; puede solicitar su eliminación en cualquier momento.</p>
+      <p><b>Derechos:</b> conforme a la Ley 1581 de 2012 y el Decreto 1377 de 2013, usted puede acceder, corregir, actualizar o suprimir sus datos, así revocar la autorización otorgada, escribiendo al encargado del sistema.</p>
+      <p style="margin-top:18px">Al continuar aceptas el tratamiento de datos aquí descrito.</p>
+      <div class="modal-actions" style="padding: 14px 0 0"><button class="primary" data-close-dialog>Entendido</button></div>
+    </div>
+  </dialog>
+  <script src="reglas_retiro.js"></script>
+  <script src="proganado.js"></script>
+</body>
+</html>

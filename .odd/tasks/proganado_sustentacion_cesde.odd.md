@@ -43,7 +43,7 @@
 ---
 
 ## 5. Acceptance Criteria & Oráculo Determinista
-- `npm test`: 19/19 PASS (Paridad SSOT y reglas biológicas en verde).
+- `npm test`: 37/37 PASS (Paridad SSOT, reglas biológicas y espejo del MVP en verde).
 - `npm run typecheck`: 0 errores.
 - Servidor local: `python prototipo_interfaz/servidor.py` responde HTTP 200 en `localhost:8000`.
 
@@ -56,3 +56,4 @@
 
 ## 7. Progreso y Evidencia In-Place
 - **2026-10-25:** Suite de paridad 100% en verde (19/19 PASS). Prototipo verificado para sustentación.
+- **2026-11-08:** `npm run verify` → 37/37 PASS. Se agregó el espejo `producto_mvp/` y se corrigió el retiro fail-closed con bloqueo de pesaje sin override.

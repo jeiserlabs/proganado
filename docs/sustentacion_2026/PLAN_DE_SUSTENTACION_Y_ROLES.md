@@ -13,7 +13,7 @@
 
 | Integrante | Rol Oficial | Especialidad Técnica | Diapositivas |
 | :--- | :--- | :--- | :---: |
-| **Dr. Héctor Pinto** | Asesor Clínico Veterinario | Sanidad ICA, Farmacopea, Normativa Lechera | **1, 2** |
+| **Humberto Pinto** | Asesor Clínico Veterinario | Sanidad ICA, Farmacopea, Normativa Lechera | **1, 2** |
 | **Emilio Villanueva** | Lead de Lógica & Algoritmia | PSeInt, Reglas Zootécnicas, Cinta Roja, PRV | **3, 4, 5** |
 | **Jeiser Gutiérrez** | Tech Lead, Arquitecto & QA | Modelo Relacional 12 Tablas 3FN, Cloud, ROI | **6, 8, 9, 10, 11, 12** |
 | **Sebastián Correa** | Frontend Lead & Diseñador Web | Maquetación HTML5 Semántica, Bootstrap 5.3, Demo | **7 (Live Demo)** |
@@ -23,7 +23,7 @@
 ## ⏱️ Cronograma de la Sustentación (10 a 12 minutos + 5 de preguntas)
 
 ```
-[00:00 - 02:30] Dr. Héctor Pinto  ➔ Introducción, Portada y El Dolor de Colanta (Pérdidas 5M a 25M COP)
+[00:00 - 02:30] Humberto Pinto  ➔ Introducción, Portada y El Dolor de Colanta (Pérdidas 5M a 25M COP)
 [02:30 - 05:30] Emilio Villanueva ➔ La Solución Tecnológica, Algoritmo Cinta Roja y Telemetría AM/PM
 [05:30 - 07:00] Jeiser Gutiérrez  ➔ Arquitectura Relacional 12 Tablas 3FN e Integridad Referencial
 [07:00 - 09:00] Sebastián Correa  ➔ Gobernanza Frontend, Dualidad Web y Live Demo en Navegador

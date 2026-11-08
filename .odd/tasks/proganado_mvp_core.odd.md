@@ -18,6 +18,8 @@
   - `src/schemas/*.ts` (esquemas Zod)
   - `src/types/*.ts` (contratos TypeScript sin any)
   - `prototipo_interfaz/*` (interfaz visual, dashboard SPA, landing SaaS, servidor local)
+  - `producto_mvp/*` (espejo filtrado del MVP; la regla de retiro se centraliza en `reglas_retiro.js`)
+  - `docs/ROADMAP_Y_STACK_STARTUP.md` (fases y stack canónicos)
   - `tests/*` (pruebas unitarias y de integración)
   - `.odd/tasks/*` (seguimiento vivo de features)
 - **Forbidden (Archivos Prohibidos sin doble confirmación):**
@@ -38,18 +40,19 @@
 - [x] Tarea 1: DDL oficial de 12 tablas normalizadas en 3FN con checks y fechas locales Colombia (`schema_produccion_proganado_v3.sql`).
 - [x] Tarea 2: Tipos estrictos TypeScript (`src/types/domain.types.ts`) y esquemas Zod (`src/schemas/validation.schemas.ts`).
 - [x] Tarea 3: Reglas de dominio puras (`cinta_roja.rule.ts`, `dias_abiertos.rule.ts`, `liquidacion_leche.rule.ts`).
-- [x] Tarea 4: Suite de tests con Node.js test runner (19/19 PASS) y gate de paridad SSOT total (`tools/paridad_ssot.mjs`).
+- [x] Tarea 4: Suite de tests con Node.js test runner (37/37 PASS al 08-nov-2026) y gate de paridad SSOT total (`tools/paridad_ssot.mjs`).
 - [x] Tarea 5: Maquetación HTML5 semántica obligatoria para CESDE (`02_Vistas_HTML5/`).
 - [x] Tarea 6: Prototipo interactivo SPA con persistencia local, 2FA offline y landing SaaS moderna (`prototipo_interfaz/`).
 - [x] Tarea 7: Scripts de arranque automático sin permisos de administrador (`Iniciar ProGanado.bat`).
-- [ ] Tarea 8 (Fase 2 Post-Sustentación): Servidor Express + SQLite local persistente con endpoints CRUD conectados vía fetch.
+- [x] Tarea 8a: API local y persistencia SQLite en `servidor.py` (MVP de Emilio, login/2FA y 8 módulos).
+- [ ] Tarea 8b (Fase 1 Post-Sustentación): autenticación de servidor, RBAC, respaldo verificado y API TypeScript con Zod; el detalle está en `docs/ROADMAP_Y_STACK_STARTUP.md`.
 
 ---
 
 ## 5. Acceptance Criteria & Oráculo Determinista
 - Typecheck: `npm run typecheck` $\rightarrow$ 0 errores.
 - Paridad SSOT: `npm run paridad` $\rightarrow$ "Paridad total: todas las copias coinciden con el DDL oficial".
-- Tests: `npm test` $\rightarrow$ 19/19 PASS (3 suites, 0 fallos).
+- Tests: `npm test` $\rightarrow$ 37/37 PASS (3 suites, 0 fallos).
 - Compuerta integral: `npm run verify` $\rightarrow$ Exit code 0.
 
 ---
@@ -63,3 +66,4 @@
 - **2026-10-23:** Deep audit completado. `npm run verify` ejecutado con éxito total (19/19 tests PASS, typecheck 0 errores, paridad total verificada). Prototipo interactivo 100% funcional.
 - **2026-10-28:** Re-verificación `npm run verify`: 19/19 tests PASS, paridad SSOT total y typecheck 0. La Tarea 8 (backend REST/SQLite) sigue pendiente para la Fase 2 post-sustentación.
 - **2026-10-31 (auditoría):** `verify` estaba rojo porque 5 excepciones del formulario vencieron ese día. Se alineó `registro_bovino.html` al DDL real (id_bovino, id_finca, id_raza, fecha_nacimiento, estado_fisiologico, estado_vital; se retiraron arete/nombre/peso/genealogía que el modelo v3 no tiene) y se eliminaron las 5 excepciones. El gate ahora también rechaza formularios que omitan columnas `NOT NULL` sin default (`HTML_CAMPO_REQUERIDO_FALTANTE`). Evidencia: `npm run verify` → 19/19 PASS, typecheck 0, paridad total, 18 excepciones restantes.
+- **2026-11-08 (auditoría del repo):** se agregó `producto_mvp/` con el código del MVP filtrado y la regla `reglas_retiro.js`. Se corrigió el cálculo de retiro (fail-closed; antes liberaba al mediodía del último día) y el pesaje ahora bloquea sin `confirm()`. `npm run verify` → 37/37 PASS, typecheck 0, paridad total. Roadmap canónico en `docs/ROADMAP_Y_STACK_STARTUP.md`.

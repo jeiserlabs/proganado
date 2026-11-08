@@ -8,8 +8,9 @@
 > **Producto principal (MVP):** app de Emilio depurada en `C:\PROYECTOS\Mis_Proyectos\ProGanado_M2` (HTML/CSS/JS + Python 3 + SQLite; login/2FA y 8 módulos). Copia canónica: hub `03_PAGINAS_WEB_Y_DEMO_EN_VIVO/ProGanado_MVP/`.
 > **Referencia React (no es el producto actual):** repositorio aparte de la página histórica; los enlaces están en `docs/sustentacion_2026/ENLACES_Y_REPOSITORIOS.md`.
 > **Carpeta de estudio (Drive):** [ProGanado_Sustentacion_Oficial_CESDE](https://drive.google.com/drive/folders/1_Ozo8XA7UjZPFWDf9WtDfhg5XgCmmKns)
-> **Material vigente:** [`docs/sustentacion_2026/`](docs/sustentacion_2026/README.md) · **[SSOT de rutas y timeline](docs/sustentacion_2026/SSOT_Y_TIMELINE.md)** · **[Roadmap verificado 07-nov-2026](docs/sustentacion_2026/ROADMAP_VERIFICADO_2026-11-07.md)**
-> **Estado Actual del Proyecto:** **FASE 1 cerrada + FASE 2.0 (MVP local) implementada**. El modelo 3FN, la app local, las entregas M2/M3 y la defensa del 14-nov están listos. La API de servidor, la autenticación real y el refactor React son Fase 2.1/2.2 (post-sustentación).  
+> **Material vigente:** [`docs/sustentacion_2026/`](docs/sustentacion_2026/README.md) · **[SSOT de rutas y timeline](docs/sustentacion_2026/SSOT_Y_TIMELINE.md)** · **[Roadmap verificado 07-nov-2026](docs/sustentacion_2026/ROADMAP_VERIFICADO_2026-11-07.md)** · **[Roadmap y stack de la startup](docs/ROADMAP_Y_STACK_STARTUP.md)**
+> **Producto en el repo:** espejo filtrado del MVP en [`producto_mvp/`](producto_mvp/README.md) (solo código; assets, base SQLite y credenciales fuera de Git).
+> **Estado Actual del Proyecto:** **FASE 0 (académica) cerrada + MVP local con correcciones de inocuidad**. El modelo 3FN, la app local, las entregas M2/M3 y la defensa del 14-nov están listos. La Fase 1 (auth de servidor, API, respaldo) y la Fase 2 (producto TypeScript) son post-sustentación y se rigen por el roadmap canónico.  
 > *Nota de Realidad Técnica:* no es un SaaS comercial desplegado; es un MVP local con datos de ejemplo, autenticación en el navegador y una hoja de ruta explícita.
 
 ---
@@ -22,6 +23,8 @@
 
 ## 📚 DOCUMENTACIÓN MAESTRA DE LA S.A.S.
 
+* **[Roadmap de escalabilidad y stack](docs/ROADMAP_Y_STACK_STARTUP.md):** fases con criterios de aceptación, stack TypeScript-first, migración a PostgreSQL, seguridad, costos y riesgos. Es el documento canónico para decidir tecnología.
+* **[Producto MVP filtrado](producto_mvp/README.md):** espejo de código del MVP dentro del repo; assets, datos y credenciales quedan fuera de Git (Regla 29).
 * 🐄 **[Estudio de Dominio y Rutinas de Campo](docs/ESTUDIO_DOMINIO_CAMPO.md):** SSOT de la operación real lechera (rutinas AM/PM, acopio Colanta, Cinta Roja, protocolo reproductivo y manejo de crías).
 * 🛡️ **[Guía de Seguridad, Estabilidad y Escalabilidad](docs/GUIA_SEGURIDAD_Y_ESCALABILIDAD.md):** Protocolos anti-SQLi (Prepared Statements), concurrencia (`SELECT FOR UPDATE`), integridad referencial, deduplicación S3 y fases de escalado (1 a 10M+).
 * 📋 **[Diccionario de Validación por Celda/Input](docs/DICCIONARIO_VALIDACION_INPUTS_Y_CELDAS.md):** Matriz de validación Zod, tipos TypeScript y restricciones para cada formulario y tabla.
@@ -425,11 +428,15 @@ WHERE DATE(t.fecha_tratamiento, '+' || m.dias_retiro_ica || ' days') >= date('no
 ProGanado/
 ├── README.md                           # SSOT Maestro de la S.A.S.
 ├── AGENTS.md                           # Contrato de aislamiento y reglas globales
-├── src/                                # Código Fuente y Contratos Fuertemente Tipados
+├── src/                                # Dominio y contratos tipados
+│   ├── domain/                         # Reglas puras TS: cinta roja, días abiertos, UFC
 │   ├── types/
 │   │   └── domain.types.ts             # 12 Interfaces TypeScript estrictas (Zero-Any)
 │   └── schemas/
 │       └── validation.schemas.ts       # Esquemas Zod en Runtime para prevención de errores
+├── producto_mvp/                       # Espejo filtrado del MVP (código; sin assets ni DB)
+├── prototipo_interfaz/                 # Prototipo v1 histórico, con tests de paridad
+├── tests/                              # 37 tests: paridad, dominio, retiro y espejo MVP
 ├── 01_Base_de_Datos_SQL/               # Scripts DDL de 12 tablas en 3FN y Diagramas
 │   ├── schema_produccion_proganado_v3.sql
 │   ├── proganado_mer.mmd
@@ -446,8 +453,9 @@ ProGanado/
 │   ├── 03_MODELO_RELACIONAL_12_TABLAS_PROGANADO.pdf
 │   └── PROGANADO_ENTREGA_MOMENTO_1_CESDE.pdf
 └── docs/                               # Documentación Técnica y Dominio
+    ├── ROADMAP_Y_STACK_STARTUP.md      # Fases, stack TypeScript-first y criterios
     ├── ESTUDIO_DOMINIO_CAMPO.md        # Lógica real de la finca lechera y Colanta
-    ├── GUIA_SEGURIDAD_Y_ESCALABILIDAD.md # Anti-SQLi, concurrencia y roadmap de nube
+    ├── GUIA_SEGURIDAD_Y_ESCALABILIDAD.md # Anexo: anti-SQLi, concurrencia y respaldos
     ├── DICCIONARIO_VALIDACION_INPUTS_Y_CELDAS.md # Matriz de validación Zod / TypeScript
     ├── contexto/
     │   ├── ESTADO_VIVO_PROGANADO.md

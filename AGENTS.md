@@ -3,7 +3,7 @@
 > **SSOT (Single Source of Truth) del Proyecto Integrador CESDE Nivel 1**  
 > **Proyecto:** ProGanado (Software Integral de Gestión Ganadera e Inocuidad Lechera)  
 > **Repositorio Oficial:** `https://github.com/jeiserlabs/proganado`  
-> **Producto principal (MVP):** `C:\PROYECTOS\Mis_Proyectos\ProGanado_M2` — app de Emilio depurada (HTML/CSS/JS + Python + SQLite). Copia canónica en el hub: `03_PAGINAS_WEB_Y_DEMO_EN_VIVO/ProGanado_MVP/`.
+> **Producto principal (MVP):** `C:\PROYECTOS\Mis_Proyectos\ProGanado_M2` — app de Emilio depurada (HTML/CSS/JS + Python + SQLite). Copia canónica en el hub: `03_PAGINAS_WEB_Y_DEMO_EN_VIVO/ProGanado_MVP/`. Espejo filtrado en este repo: `producto_mvp/` (código; assets, base y credenciales fuera de Git).
 > **Referencia React (no es el producto actual):** `C:\PROYECTOS\Mis_Proyectos\ProGanado_Web` · `jeiserlabs/proganado-producto-momento-2`.
 > **Ubicación Local del modelo:** `C:\PROYECTOS\Mis_Proyectos\ProGanado`
 > **Carpeta de Estudio (Drive):** `https://drive.google.com/drive/folders/1_Ozo8XA7UjZPFWDf9WtDfhg5XgCmmKns`
@@ -20,6 +20,8 @@
   3. `docs/contexto/ESTADO_VIVO_PROGANADO.md` — Estado vivo del desarrollo, asignaciones y backlog.
   4. `README.md` — Documentación pública oficial del repositorio.
   5. `01_Base_de_Datos_SQL/schema_produccion_proganado_v3.sql` — DDL oficial de las 12 tablas en 3FN.
+  6. `docs/ROADMAP_Y_STACK_STARTUP.md` — fases, stack TypeScript-first, criterios de aceptación, seguridad y costos. Es el canónico para decidir tecnología.
+  7. `producto_mvp/README.md` — espejo filtrado del producto; `producto_mvp/reglas_retiro.js` es la regla de inocuidad del cliente.
 - **Documentación histórica:** `docs/_archivo_2026-08/` (Momento 1 y material con roles derogados). No usar sus cifras ni nombres para el Momento 2.
 
 ---
@@ -60,6 +62,6 @@ y `estado_vital`.
 
 ## GOLDEN FREEZE v1.0.0 (2026-09-03)
 
-- **ESTADO: CONGELADO**. Repo entregables academicos CESDE (SQL 12 tablas 3FN + HTML5 + PSeInt + docs). Sin suite automatizada.
+- **ESTADO: CONGELADO**. Repo de entregables académicos CESDE (SQL 12 tablas 3FN + HTML5 + PSeInt + docs) con suite automatizada: `npm run verify` = typecheck + paridad + 37 tests en verde (medido 08-nov-2026).
 - **MANDATO**: NO cambios sin orden del equipo + doble confirmacion.
 - **Verify (2026-09-03)**: git limpio, 43 files, 0 binarios, 0 secrets.

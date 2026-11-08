@@ -1,5 +1,7 @@
 ﻿# 🗺️ Hoja de Ruta Cronológica de Implementación — ProGanado S.A.S.
 
+> **DOCUMENTO HISTÓRICO (05-sep-2026).** El Gantt de este archivo quedó obsoleto: planificaba la API y la PWA para septiembre-octubre de 2026 y el SaaS para noviembre-diciembre de 2026. El roadmap vigente, con fases y criterios de aceptación, es [`ROADMAP_Y_STACK_STARTUP.md`](ROADMAP_Y_STACK_STARTUP.md). No usar estas fechas para planificar.
+
 > **SSOT de Evolución Técnica y Operativa**  
 > **Proyecto:** ProGanado S.A.S. (Software Ganadero & Inocuidad Lechera)  
 > **Tech Lead & QA Lead:** Jeiser Abraham Gutiérrez | CESDE Nivel 1  
@@ -29,7 +31,7 @@ gantt
     Suites de Pruebas Playwright    :         des10, 2026-11-01, 2026-11-15
     Simulación Corte de Red & Sync  :         des11, 2026-11-05, 2026-11-20
     section Fase 5: SaaS & Producción
-    Multi-tenant por Finca ($119k)  :         des12, 2026-11-15, 2026-12-05
+    Multi-tenant por Finca (119k COP):         des12, 2026-11-15, 2026-12-05
     Integración Acopio Colanta / ICA:         des13, 2026-11-20, 2026-12-15
 ```
 
@@ -80,6 +82,6 @@ gantt
 
 ### 📌 FASE 5: Monetización SaaS y Cumplimiento Normativo
 - [ ] **Paso 5.1:** Activación del modelo Freemium (hasta 15 vacas en `suscripciones_saas`).
-- [ ] **Paso 5.2:** Gatekeeper de suscripción Pro ($119.000 COP/mes por Finca).
+- [ ] **Paso 5.2:** Gatekeeper de suscripción Pro (119k COP/mes por Finca).
 - [ ] **Paso 5.3:** Módulo de exportación oficial de trazabilidad para el ICA (Resolución 20148).
 - [ ] **Paso 5.4:** Conciliación automática de despachos con tiquetes de acopio Colanta.
