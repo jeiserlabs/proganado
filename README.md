@@ -1,17 +1,39 @@
 # 🐄 ProGanado — Sistema de Gestión Ganadera & Inocuidad Lechera
 
+[![verify](https://github.com/jeiserlabs/proganado/actions/workflows/verify.yml/badge.svg)](https://github.com/jeiserlabs/proganado/actions/workflows/verify.yml)
+
 > **SSOT (Single Source of Truth) — Arquitectura de Software, Modelo de Datos Relacional 3FN & Proyecto Integrador CESDE**  
 > **Institución Académica:** CESDE — Escuela de Tecnología e Innovación | Semestre 2026-2  
 > **Proyecto Integrador:** Nivel 1 (Bases de Datos Relacionales, Algoritmia, Frontend Semántico, Tipado Fuerte & Emprendimiento Tech)  
 > **Chief Technology Officer (CTO) & Arquitecto de Datos:** Jeiser Abraham Gutiérrez  
 > **Repositorio Oficial:** [https://github.com/jeiserlabs/proganado](https://github.com/jeiserlabs/proganado)  
-> **Producto principal (MVP):** app de Emilio depurada en `C:\PROYECTOS\Mis_Proyectos\ProGanado_M2` (HTML/CSS/JS + Python 3 + SQLite; login/2FA y 8 módulos). Copia canónica: hub `03_PAGINAS_WEB_Y_DEMO_EN_VIVO/ProGanado_MVP/`.
+> **Producto principal (MVP):** aplicación local en `producto_mvp/` (HTML/CSS/JS + Python 3 + SQLite; login/2FA y 8 módulos). El código es el espejo filtrado que vive en este repositorio.
 > **Referencia React (no es el producto actual):** repositorio aparte de la página histórica; los enlaces están en `docs/sustentacion_2026/ENLACES_Y_REPOSITORIOS.md`.
 > **Carpeta de estudio (Drive):** [ProGanado_Sustentacion_Oficial_CESDE](https://drive.google.com/drive/folders/1_Ozo8XA7UjZPFWDf9WtDfhg5XgCmmKns)
 > **Material vigente:** [`docs/sustentacion_2026/`](docs/sustentacion_2026/README.md) · **[SSOT de rutas y timeline](docs/sustentacion_2026/SSOT_Y_TIMELINE.md)** · **[Roadmap verificado 07-nov-2026](docs/sustentacion_2026/ROADMAP_VERIFICADO_2026-11-07.md)** · **[Roadmap y stack de la startup](docs/ROADMAP_Y_STACK_STARTUP.md)**
 > **Producto en el repo:** espejo filtrado del MVP en [`producto_mvp/`](producto_mvp/README.md) (solo código; assets, base SQLite y credenciales fuera de Git).
 > **Estado Actual del Proyecto:** **FASE 0 (académica) cerrada + MVP local con correcciones de inocuidad**. El modelo 3FN, la app local, las entregas M2/M3 y la defensa del 14-nov están listos. La Fase 1 (auth de servidor, API, respaldo) y la Fase 2 (producto TypeScript) son post-sustentación y se rigen por el roadmap canónico.  
 > *Nota de Realidad Técnica:* no es un SaaS comercial desplegado; es un MVP local con datos de ejemplo, autenticación en el navegador y una hoja de ruta explícita.
+
+---
+
+## ▶️ Ejecutar el proyecto
+
+**La demo (no necesita Node):**
+
+1. `git clone https://github.com/jeiserlabs/proganado.git`
+2. Entra a `producto_mvp/` y abre `Iniciar ProGanado.bat` en Windows. Alternativa: `python servidor.py`.
+3. Abre <http://127.0.0.1:8899/index.html>. El primer arranque pide crear la cuenta administradora; no hay usuarios ni contraseñas por defecto.
+4. Requisitos: Python 3.10+ y un navegador moderno. El servidor escucha solo en `127.0.0.1`.
+
+**El modelo de datos y sus pruebas (requiere Node 22.18+):**
+
+```bash
+npm ci
+npm run verify   # typecheck + paridad del modelo + 37 tests
+```
+
+La guía detallada del MVP está en [`producto_mvp/README.md`](producto_mvp/README.md).
 
 ---
 
@@ -103,10 +125,10 @@ Si una finca en plan **Pro** no renueva su suscripción mensual:
 |---|---|---|---|
 | **Jeiser Abraham Gutiérrez** | Chief Technology Officer (CTO) | Tech Lead & QA Lead | Arquitectura 3FN, gobernanza TypeScript, esquemas Zod, DDL SQL y hoja de ruta cloud (AWS). |
 | **Sebastián Correa** | Chief Design Officer (CDO) | Frontend Lead | UI/UX, maquetación HTML5 semántica, CSS3 Grid/Flexbox, accesibilidad WCAG 2.1 y blueprints. |
-| **Humberto Pinto** | Chief Medical & Scientific Officer (CSO) | Asesor Clínico Veterinario | Sanidad ICA, farmacopea, normativa lechera y protocolos de inocuidad. |
+| **Humberto Pinto** | Chief Medical & Scientific Officer (CSO) | Asesor Clínico | Sanidad animal ICA, farmacopea, normativa lechera y protocolos de inocuidad. |
 | **Emilio Villanueva** | Head of Operations (COO) | Lógica & PSeInt Lead | Algoritmia en PSeInt (Cinta Roja, Días Abiertos, Liquidación UFC), validación de campo y maqueta del producto. |
 
-> **Nota de equipo:** Camila Salas participó en el Momento 1 y se retiró formalmente del proyecto y del curso el **26-sep-2026**. El equipo vigente es de 4 integrantes. El nombre correcto del asesor veterinario es **Humberto Pinto**.
+> **Nota de equipo:** Camila Salas participó en el Momento 1 y se retiró formalmente del proyecto y del curso el **26-sep-2026**. El equipo vigente es de 4 integrantes. El nombre correcto del asesor clínico es **Humberto Pinto**.
 
 ---
 
@@ -447,11 +469,11 @@ ProGanado/
 ├── 03_Logica_PSeInt/                   # Algoritmia de Negocio y Control de Flujo
 │   ├── asistente_logica_proganado_completo.psc
 │   └── asistente_ganadero_refactorizado.psc
-├── 04_Documentos_Sustentacion/         # Documentos de Entrega Oficial Momento 1
-│   ├── 01_SEMANTICA_HTML5_PROGANADO_CESDE.pdf
-│   ├── 02_MODELO_ENTIDAD_RELACION_CHEN_PROGANADO.pdf
-│   ├── 03_MODELO_RELACIONAL_12_TABLAS_PROGANADO.pdf
-│   └── PROGANADO_ENTREGA_MOMENTO_1_CESDE.pdf
+├── 04_Documentos_Sustentacion/         # Datos de entrega y fuente del Momento 1 (los PDF viven en Drive)
+│   ├── DATOS_ENTREGA_INTEGRANTES_CESDE.txt
+│   ├── INTEGRANTES_Y_EQUIPO_GRUPO_3.txt
+│   ├── PROGANADO_ENTREGA_MOMENTO_1_CESDE.md
+│   └── ER PROGANADO.drawio
 └── docs/                               # Documentación Técnica y Dominio
     ├── ROADMAP_Y_STACK_STARTUP.md      # Fases, stack TypeScript-first y criterios
     ├── ESTUDIO_DOMINIO_CAMPO.md        # Lógica real de la finca lechera y Colanta
