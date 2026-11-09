@@ -16,7 +16,7 @@
 1. **Jeiser Abraham Gutiérrez:** Tech Lead, Arquitecto de Base de Datos, QA Lead y Diseñador de Gobernanza Cloud.
 2. **Sebastián Correa:** Frontend Lead & Desarrollador de Maquetación HTML5 Semántica y Accesibilidad.
 3. **Emilio Villanueva:** Desarrollador de Lógica de Negocio, Algoritmia, Validación en Pseudocódigo PSeInt y Diagramación.
-4. **Dr. Héctor Pinto:** Asesor Médico Veterinario, Protocolos de Inocuidad Lechera y Pruebas DML.
+4. **Humberto Pinto:** Asesor Clínico, Protocolos de Inocuidad Lechera y Pruebas DML.
 *(Histórico Momento 1: Camila Salas participó en la entrega inicial de agosto y se retiró formalmente el 26-Sep-2026).*
 
 ---

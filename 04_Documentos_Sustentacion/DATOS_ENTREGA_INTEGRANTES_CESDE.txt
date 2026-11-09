@@ -26,9 +26,9 @@
    • Rol en el Proyecto: Chief Design Officer (CDO) & Frontend Lead
    • Responsabilidad: Maquetación HTML5 Semántica y Accesibilidad WCAG 2.1
 
-3. HÉCTOR PINTO
+3. HUMBERTO PINTO
    • Rol en el Proyecto: Chief Medical & Scientific Officer (CSO)
-   • Responsabilidad: Asesoría Médico-Veterinaria, Telemetría y Protocolos ICA
+   • Responsabilidad: Asesoría Clínica y Sanidad Animal, Protocolos ICA
 
 4. EMILIO VILLANUEVA
    • Rol en el Proyecto: Head of Operations (COO) & Lógica Lead
@@ -45,7 +45,7 @@ MOMENTO: 1 (Bases de Datos & Lógica)
 INTEGRANTES:
 - Jeiser Abraham Gutiérrez - Tech Lead / Base de Datos
 - Sebastián Correa - Frontend / Maquetación HTML5
-- Héctor Pinto - Asesor Médico / Zootecnia
+- Humberto Pinto - Asesor Clínico / Protocolos ICA
 - Emilio Villanueva - Operaciones / Algoritmia PSeInt
 
 ENLACE REPOSITORIO GITHUB:

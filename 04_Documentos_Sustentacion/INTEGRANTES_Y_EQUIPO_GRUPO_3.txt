@@ -12,7 +12,7 @@ INTEGRANTES Y ROLES (EQUIPO OFICIAL: 4 INTEGRANTES):
 1. Jeiser Abraham Gutiérrez (Líder / Tech Lead, Arquitecto de Base de Datos y QA Lead)
 2. Sebastián Correa (Chief Design Officer / Frontend Lead & Maquetación Semántica)
 3. Emilio Villanueva (Head of Operations / Lógica de Negocio y Algoritmos PSeInt)
-4. Héctor Pinto (Chief Scientific Officer / Asesor Médico Veterinario y QA Inocuidad)
+4. Humberto Pinto (Chief Scientific Officer / Asesor Clínico y QA Inocuidad)
 
 NOTA: Camila Salas participó en la entrega inicial del Momento 1 y se retiró formalmente del curso el 26-sep-2026.
 

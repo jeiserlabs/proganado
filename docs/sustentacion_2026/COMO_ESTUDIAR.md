@@ -1,7 +1,7 @@
 # Cómo estudiar ProGanado para el 14-nov-2026
 
 > **Defensa:** sábado 14 de noviembre de 2026 · CESDE Medellín · 10 a 12 minutos + 5 de preguntas.
-> **Equipo:** Jeiser Gutiérrez (Tech Lead, BD/QA), Sebastián Correa (Frontend), Emilio Villanueva (Lógica/PSeInt/UI), Humberto Pinto (Sanidad veterinaria).
+> **Equipo:** Jeiser Gutiérrez (Tech Lead, BD/QA), Sebastián Correa (Frontend), Emilio Villanueva (Lógica/PSeInt/UI), Humberto Pinto (Sanidad animal).
 > **Regla de oro:** si no lo puedes explicar, no lo incluyas. Todo dato de esta carpeta está verificado contra el código, el DDL o la app.
 
 ## Ruta de estudio en 7 sesiones
@@ -57,4 +57,4 @@
 3. No inventes cifras: usa las de esta guía y las de la app.
 4. Si no sabes algo, di “está en la Fase 2.1/2.2” y explica el plan.
 5. La deuda declarada no es debilidad: es madurez de ingeniería.
-6. El asesor veterinario es **Humberto Pinto**. Camila Salas se retiró el 26-sep-2026 y no se menciona.
+6. El asesor clínico es **Humberto Pinto**. Camila Salas se retiró el 26-sep-2026 y no se menciona.
