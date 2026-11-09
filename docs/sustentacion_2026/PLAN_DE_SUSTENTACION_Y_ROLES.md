@@ -1,6 +1,6 @@
 # 📋 ProGanado SaaS — Plan Maestro de Sustentación y Roles (CESDE)
 
-> **OBSOLETO 07-nov-2026:** el plan vigente es el de 7 pasos del hub (`04_EXPOSICION_7_PASOS/`); este documento de 12 slides se conserva como histórico. El asesor clínico es **Humberto Pinto**, no “Dr. Héctor Pinto”.
+> **OBSOLETO 07-nov-2026:** el plan vigente es el de 7 pasos del hub (`04_EXPOSICION_7_PASOS/`); este documento de 12 slides se conserva como histórico. El asesor clínico es **Humberto Pinto** (médico cardiólogo), no “Dr. Héctor Pinto”.
 
 > **FECHA DURA DE SUSTENTACIÓN:** 14 de Noviembre de 2026  
 > **LUGAR:** CESDE Medellín — Escuela de Nuevas Tecnologías  
@@ -13,7 +13,7 @@
 
 | Integrante | Rol Oficial | Especialidad Técnica | Diapositivas |
 | :--- | :--- | :--- | :---: |
-| **Humberto Pinto** | Asesor Clínico | Sanidad ICA, Farmacopea, Normativa Lechera | **1, 2** |
+| **Humberto Pinto** | Médico Cardiólogo · Asesor Clínico | Sanidad ICA, Farmacopea, Normativa Lechera | **1, 2** |
 | **Emilio Villanueva** | Lead de Lógica & Algoritmia | PSeInt, Reglas Zootécnicas, Cinta Roja, PRV | **3, 4, 5** |
 | **Jeiser Gutiérrez** | Tech Lead, Arquitecto & QA | Modelo Relacional 12 Tablas 3FN, Cloud, ROI | **6, 8, 9, 10, 11, 12** |
 | **Sebastián Correa** | Frontend Lead & Diseñador Web | Maquetación HTML5 Semántica, Bootstrap 5.3, Demo | **7 (Live Demo)** |

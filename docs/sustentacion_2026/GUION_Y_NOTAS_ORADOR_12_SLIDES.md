@@ -11,7 +11,7 @@
 
 | Integrante | Rol en la Empresa | Diapositivas | Tiempo Asignado |
 | :--- | :--- | :---: | :---: |
-| **Humberto Pinto** | Asesor Clínico & Sanidad ICA | **1, 2** | 2:30 min |
+| **Humberto Pinto** | Médico Cardiólogo · Asesor Clínico & Sanidad ICA | **1, 2** | 2:30 min |
 | **Emilio Villanueva** | Algoritmia, Lógica Zootécnica & PSeInt | **3, 4, 5** | 3:00 min |
 | **Jeiser Gutiérrez** | Tech Lead, Arquitecto de Datos & QA Lead | **6, 8, 9, 10, 11, 12** | 4:30 min |
 | **Sebastián Correa** | Frontend Lead & Maquetación Web | **7 (Live Demo)** | 2:00 min |
@@ -117,7 +117,7 @@
 * **Texto en Pantalla:** *Los 4 Titanes: Jeiser Gutiérrez · Sebastián Correa · Emilio Villanueva · Humberto Pinto*
 * **Guion Oral:**
   > "La solidez de ProGanado radica en la complementariedad técnica de nuestro equipo:
-  > Sebastián lidera el diseño frontend accesible y el maquetado web; Emilio comanda la algoritmia y la lógica zootécnica de producción; el asesor clínico Humberto aporta el rigor sanitario y la farmacopea del ICA; y mi persona lidera la arquitectura de datos relacional 3FN, la gobernanza de tipado y el aseguramiento de calidad QA."
+  > Sebastián lidera el diseño frontend accesible y el maquetado web; Emilio comanda la algoritmia y la lógica zootécnica de producción; el médico cardiólogo Humberto aporta el rigor clínico y la farmacopea del ICA; y mi persona lidera la arquitectura de datos relacional 3FN, la gobernanza de tipado y el aseguramiento de calidad QA."
 
 ---
 

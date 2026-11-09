@@ -30,7 +30,7 @@
 - **Jeiser Gutiérrez:** Tech Lead & Arquitecto de Base de Datos / QA. Hoja de ruta cloud (AWS), no despliegue actual.
 - **Sebastián Correa:** Frontend Lead (HTML5 semántico, CSS3 Grid/Flexbox, responsive, accesibilidad WCAG 2.1, UI/UX).
 - **Emilio Villanueva:** Desarrollador de Lógica & Algoritmos PSeInt y autor de la maqueta que es el producto principal.
-- **Humberto Pinto:** Asesor Clínico (Sanidad animal ICA, farmacopea y normativa lechera).
+- **Humberto Pinto:** Médico Cardiólogo · Asesor Clínico (Sanidad animal ICA, farmacopea y normativa lechera).
 - **Camila Salas:** retirada del proyecto y del curso el **26-sep-2026**. No forma parte del equipo vigente ni del material de estudio.
 
 ---

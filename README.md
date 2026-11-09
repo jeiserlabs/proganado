@@ -125,7 +125,7 @@ Si una finca en plan **Pro** no renueva su suscripción mensual:
 |---|---|---|---|
 | **Jeiser Abraham Gutiérrez** | Chief Technology Officer (CTO) | Tech Lead & QA Lead | Arquitectura 3FN, gobernanza TypeScript, esquemas Zod, DDL SQL y hoja de ruta cloud (AWS). |
 | **Sebastián Correa** | Chief Design Officer (CDO) | Frontend Lead | UI/UX, maquetación HTML5 semántica, CSS3 Grid/Flexbox, accesibilidad WCAG 2.1 y blueprints. |
-| **Humberto Pinto** | Chief Medical & Scientific Officer (CSO) | Asesor Clínico | Sanidad animal ICA, farmacopea, normativa lechera y protocolos de inocuidad. |
+| **Humberto Pinto** | Chief Medical & Scientific Officer (CSO) | Médico Cardiólogo · Asesor Clínico | Sanidad animal ICA, farmacopea, normativa lechera y protocolos de inocuidad. |
 | **Emilio Villanueva** | Head of Operations (COO) | Lógica & PSeInt Lead | Algoritmia en PSeInt (Cinta Roja, Días Abiertos, Liquidación UFC), validación de campo y maqueta del producto. |
 
 > **Nota de equipo:** Camila Salas participó en el Momento 1 y se retiró formalmente del proyecto y del curso el **26-sep-2026**. El equipo vigente es de 4 integrantes. El nombre correcto del asesor clínico es **Humberto Pinto**.

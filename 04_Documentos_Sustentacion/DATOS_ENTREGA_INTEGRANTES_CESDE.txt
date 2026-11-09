@@ -28,7 +28,7 @@
 
 3. HUMBERTO PINTO
    • Rol en el Proyecto: Chief Medical & Scientific Officer (CSO)
-   • Responsabilidad: Asesoría Clínica y Sanidad Animal, Protocolos ICA
+   • Responsabilidad: Asesoría Clínica (médico cardiólogo) y Sanidad Animal, Protocolos ICA
 
 4. EMILIO VILLANUEVA
    • Rol en el Proyecto: Head of Operations (COO) & Lógica Lead
@@ -45,7 +45,7 @@ MOMENTO: 1 (Bases de Datos & Lógica)
 INTEGRANTES:
 - Jeiser Abraham Gutiérrez - Tech Lead / Base de Datos
 - Sebastián Correa - Frontend / Maquetación HTML5
-- Humberto Pinto - Asesor Clínico / Protocolos ICA
+- Humberto Pinto - Médico Cardiólogo / Asesor Clínico
 - Emilio Villanueva - Operaciones / Algoritmia PSeInt
 
 ENLACE REPOSITORIO GITHUB:

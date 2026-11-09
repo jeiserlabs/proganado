@@ -30,7 +30,7 @@
 | **Jeiser Gutiérrez** | Tech Lead & Arquitecto BD / QA | Modelo Relacional 12 tablas 3FN, SQL/NoSQL, arquitectura, QA y control Git. |
 | **Sebastián Correa** | Frontend Lead & Diseñador | HTML5 semántico, CSS3 (Grid/Flexbox), responsive, accesibilidad y demo. |
 | **Emilio Villanueva** | Algoritmia, Lógica PSeInt & Diagramas | Algoritmos de Cinta Roja, Días Abiertos, Liquidación Leche y diagramación. |
-| **Humberto Pinto** | Asesor Clínico | Sanidad animal ICA, farmacopea, normativa lechera, inocuidad y apoyo al pitch. |
+| **Humberto Pinto** | Médico Cardiólogo · Asesor Clínico | Sanidad animal ICA, farmacopea, normativa lechera, inocuidad y apoyo al pitch. |
 
 *(Nota de auditoría: Camila Salas se retiró formalmente del proyecto y del curso el 26-Sep-2026; equipo consolidado en 4 integrantes en piedra).*
 

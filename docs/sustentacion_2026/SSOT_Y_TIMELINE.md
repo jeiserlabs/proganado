@@ -8,7 +8,7 @@
 - **Proyecto:** ProGanado S.A.S. — gestión ganadera e inocuidad lechera.
 - **Curso:** CESDE, Proyecto Integrador Nivel 1, semestre 2026-2.
 - **Defensa:** sábado **14 de noviembre de 2026**, 10–12 minutos + 5 de preguntas.
-- **Equipo oficial (4):** Jeiser Gutiérrez (Tech Lead, BD/QA), Sebastián Correa (Frontend), Emilio Villanueva (Lógica/PSeInt/UI), Humberto Pinto (Sanidad animal).
+- **Equipo oficial (4):** Jeiser Gutiérrez (Tech Lead, BD/QA), Sebastián Correa (Frontend), Emilio Villanueva (Lógica/PSeInt/UI), Humberto Pinto (médico cardiólogo, sanidad animal).
 - **Retirada:** Camila Salas se retiró del proyecto y del curso el **26-sep-2026**. No se menciona en material vigente.
 
 ## 2. Dónde se trabaja cada cosa

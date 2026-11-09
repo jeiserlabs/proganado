@@ -12,7 +12,7 @@ PROYECTO INTEGRADOR CESDE — MOMENTO 1 (GRUPO N° 3)
 --------------------------------------------------------------------------------
 1. Jeiser Abraham Gutiérrez — CTO & Tech Lead (Arquitectura BD 3FN)
 2. Sebastián Correa — CDO & Frontend Lead (Maquetación HTML5 Semántica)
-3. Humberto Pinto — CSO (Asesoría Clínica y Sanidad Animal)
+3. Humberto Pinto — CSO (Médico Cardiólogo · Asesoría Clínica y Sanidad Animal)
 4. Emilio Villanueva — COO & Lógica Lead (Algoritmia PSeInt & Operaciones)
 
 *(Camila Salas participó en la entrega inicial y se retiró formalmente del curso el 26-sep-2026.)*
