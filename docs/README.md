@@ -7,6 +7,8 @@
 | Documento | Qué contiene |
 |---|---|
 | **[`ROADMAP_Y_STACK_STARTUP.md`](ROADMAP_Y_STACK_STARTUP.md)** | **Canónico:** fases con criterios de aceptación, stack TypeScript-first, migración a PostgreSQL, seguridad, costos y riesgos. |
+| **[`PROYECCION_ESCALABILIDAD_Y_RENTABILIDAD.md`](PROYECCION_ESCALABILIDAD_Y_RENTABILIDAD.md)** | Modelo 1/5/10 años: clientes, cargas, DB, costos, ingresos, punto de equilibrio, load balancer y mantenibilidad. Supuestos explícitos a validar con pilotos. |
+| [`sustentacion_2026/ELEVATOR_PITCH_4_VOCES_14NOV.md`](sustentacion_2026/ELEVATOR_PITCH_4_VOCES_14NOV.md) | Pitch vigente de 4 voces (90-100 s), roles, Q&A y enlace del repositorio. |
 | [`../producto_mvp/README.md`](../producto_mvp/README.md) | Espejo filtrado del MVP dentro del repo (solo código; assets y datos fuera de Git). |
 | [`sustentacion_2026/`](sustentacion_2026/README.md) | Material fuente del Momento 2: plan, guion, cómo estudiar, resumen, enlaces y HTML de la guía. |
 | [`contexto/CEREBRO_PROGANADO.md`](contexto/CEREBRO_PROGANADO.md) | Arquitectura de 3 capas, modelo de datos, stack real y hoja de ruta. |
@@ -21,7 +23,7 @@
 
 ## Documentación histórica
 
-Todo lo que está en [`_archivo_2026-08/`](_archivo_2026-08/) es del Momento 1 o usa roles derogados (Camila Salas, Dr. Humberto Pinto) y cifras viejas (163 bovinos, 249k COP, SQL Server). **No se usa para estudiar el Momento 2.**
+Todo lo que está en [`_archivo_2026-08/`](_archivo_2026-08/) es del Momento 1 o usa roles derogados (Camila Salas y el nombre «Héctor Pinto») y cifras viejas (163 bovinos, 249k COP, SQL Server). **No se usa para estudiar el Momento 2.**
 
 ## Regla
 

@@ -317,6 +317,8 @@
 
 **Unit economics objetivo (a validar):** Pro 119k COP/mes; costo variable por finca bajo (infraestructura compartida); margen bruto alto. No se promete un TAM: se mide la cuenca concreta y se expande con evidencia.
 
+**Proyección cuantitativa 1/5/10 años:** ver [`PROYECCION_ESCALABILIDAD_Y_RENTABILIDAD.md`](PROYECCION_ESCALABILIDAD_Y_RENTABILIDAD.md) (clientes, cargas, DB, costos, ingresos, punto de equilibrio, load balancer y mantenibilidad).
+
 ---
 
 ## 13. Riesgos y mitigaciones

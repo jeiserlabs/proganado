@@ -1,5 +1,7 @@
 # ProGanado S.A.S. — Elevator Pitch Oficial (Sustentación 14-Nov-2026)
 
+> **OBSOLETO 08-nov-2026:** el pitch vigente es [`ELEVATOR_PITCH_4_VOCES_14NOV.md`](ELEVATOR_PITCH_4_VOCES_14NOV.md). Este documento se conserva como histórico.
+
 > **Destino:** Sustentación Proyecto Integrador · Escuela de Nuevas Tecnologías · CESDE Medellín  
 > **Fecha:** Sábado 14 de Noviembre de 2026  
 > **Equipo:** Jeiser Gutiérrez (Tech Lead / Datos) · Sebastián Correa (Frontend) · Emilio Villanueva (Lógica/Zootecnia) · Humberto Pinto (Sanidad/Problema)  
