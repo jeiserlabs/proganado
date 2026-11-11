@@ -50,3 +50,7 @@ producto_mvp/correo_config.json
 
 # Demo SQLite: el archivo se regenera con `python init_db.py` (Regla 29, cero binarios)
 demo_sqlite/*.db
+
+# Copia archivada del Escritorio (10-nov-2026): duplica binarios del hub y contiene
+# correos personales del equipo (Regla 49). El material textual vive en DEFENSA_5MIN_V3/.
+docs/sustentacion_2026/_archivo_entregas_desktop/

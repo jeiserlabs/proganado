@@ -37,8 +37,8 @@
 - [x] **T1: DDL 12 Tablas 3FN Validado:** Paridad total con types, schemas y README.
 - [x] **T2: Prototipo Interactivo SPA:** Servidor local liviano en `prototipo_interfaz/`.
 - [x] **T3: Guiones de Sustentación:** Argumentario técnico de defensa ante el jurado.
-- [ ] **T4: Ensayo General Técnico (07-Nov-2026):** Simulación de preguntas difíciles de jurados.
-- [ ] **T5: DEFENSA ANTE JURADO (14-Nov-2026):** Sustentación presencial en aula CESDE.
+- [ ] **T4: Ensayo General Técnico:** simulación cronometrada a **5:00** con las preguntas del jurado de las 4 guías. (Reprogramado: el 07-nov no se hizo.)
+- [ ] **T5: DEFENSA ANTE JURADO (14-Nov-2026):** sustentación presencial en aula CESDE.
 
 ---
 
@@ -57,3 +57,4 @@
 ## 7. Progreso y Evidencia In-Place
 - **2026-10-25:** Suite de paridad 100% en verde (19/19 PASS). Prototipo verificado para sustentación.
 - **2026-11-08:** `npm run verify` → 37/37 PASS. Se agregó el espejo `producto_mvp/` y se corrigió el retiro fail-closed con bloqueo de pesaje sin override.
+- **2026-11-11:** Duración de defensa confirmada en **~5 min** por el titular. Deck canónico: **V3 de 9 slides y 4 voces** (auditado con `deck:audit`: 9 páginas, pie en 8 slides, 0 frases prohibidas). Material textual dentro del repo en `docs/sustentacion_2026/DEFENSA_5MIN_V3/`; la copia del Escritorio quedó gitignoreada por contener PII (Regla 49). `npm run verify` → 37/37 PASS, typecheck 0, paridad total.

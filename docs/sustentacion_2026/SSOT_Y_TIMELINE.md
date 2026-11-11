@@ -1,13 +1,13 @@
 # ProGanado — SSOT de rutas, repositorios y timeline única
 
 > **Este archivo manda.** Si otro documento dice una ruta, un repo o una fecha distinta, se corrige aquí y se actualiza el otro.
-> **Última actualización:** 08-nov-2026 (auditoría del repo, espejo filtrado del MVP, fix de retiro fail-closed y roadmap canónico de escalabilidad).
+> **Última actualización:** 11-nov-2026 (duración de defensa confirmada en ~5 min por el titular; deck canónico = V3 de 9 slides y 4 voces; material textual de defensa dentro del repo en `docs/sustentacion_2026/DEFENSA_5MIN_V3/`; copia del Escritorio gitignoreada por PII).
 
 ## 1. Identidad del proyecto
 
 - **Proyecto:** ProGanado S.A.S. — gestión ganadera e inocuidad lechera.
 - **Curso:** CESDE, Proyecto Integrador Nivel 1, semestre 2026-2.
-- **Defensa:** sábado **14 de noviembre de 2026**, 10–12 minutos + 5 de preguntas.
+- **Defensa:** sábado **14 de noviembre de 2026**, **~5 minutos** (confirmado por el titular el 11-nov-2026) + preguntas del jurado.
 - **Equipo oficial (4):** Jeiser Gutiérrez (Tech Lead, BD/QA), Sebastián Correa (Frontend), Emilio Villanueva (Lógica/PSeInt/UI), Humberto Pinto (médico cardiólogo, sanidad animal).
 - **Retirada:** Camila Salas se retiró del proyecto y del curso el **26-sep-2026**. No se menciona en material vigente.
 
@@ -24,7 +24,8 @@
 | Página React en vivo (escaparate histórico) | — | https://jeiserlabs.github.io/proganado-producto-momento-2/ |
 | PDFs, PPTX, assets, ZIP, evidencias | — | Hub local + Drive: https://drive.google.com/drive/folders/1_Ozo8XA7UjZPFWDf9WtDfhg5XgCmmKns |
 | Entregas finales para subir | `C:\Users\dev\Desktop\ENTREGAS` y hub `ENTREGAS_PARA_SUBIR/` | 3 PDFs, uno por entrega |
-| Exposición 14-nov | Hub `04_EXPOSICION_7_PASOS/` | Deck + guion de 7 pasos |
+| Exposición 14-nov (canónico) | `docs/sustentacion_2026/DEFENSA_5MIN_V3/` | Deck V3 (9 slides, 4 voces, 5:00) + guion + contrato + evidencia; PDF y PNG en Escritorio, hub y Drive |
+| Exposición 14-nov (histórico) | Hub `04_EXPOSICION_7_PASOS/` | Deck de 7 pasos del 07-nov; reemplazado por el V3 |
 
 **Decisión del 07-nov-2026:** la página principal es la app depurada de Emilio (`ProGanado_M2`). La variante React 19 + Tailwind queda archivada como referencia para la refactorización futura; la maqueta monolítica Bootstrap y la demo SQLite antigua se movieron a `_ARCHIVO_2026-11-07/web_variantes/`. Nada se borró.
 
@@ -93,6 +94,6 @@ Un cambio no está terminado hasta que está en el destino que le corresponde (G
 - Carpeta de estudio: https://drive.google.com/drive/folders/1_Ozo8XA7UjZPFWDf9WtDfhg5XgCmmKns
 - Entregas: `ENTREGAS_PARA_SUBIR/00_LEEME_ENTREGAS.txt`
 - Guías desde cero: `02_GUIAS_DE_ESTUDIO_POR_INTEGRANTE/GUIAS_DESDE_CERO/`
-- Exposición: `04_EXPOSICION_7_PASOS/`
+- Exposición: `docs/sustentacion_2026/DEFENSA_5MIN_V3/` (deck V3 de 9 slides, canónico desde el 11-nov-2026; los binarios van a Drive/hub)
 - Roadmap verificado: `docs/sustentacion_2026/ROADMAP_VERIFICADO_2026-11-07.md`
 - Elevator pitch: `docs/sustentacion_2026/ELEVATOR_PITCH_PROGANADO.md` (copia en el hub `04_EXPOSICION_7_PASOS/`)
