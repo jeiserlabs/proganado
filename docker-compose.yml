@@ -1,0 +1,29 @@
+services:
+  # ----------------------------------------------------------------------------
+  # Base de Datos PostgreSQL 16 para Desarrollo y Evaluación Local
+  # Levanta las 12 tablas en 3FN y la vista de inocuidad en un solo comando.
+  # ----------------------------------------------------------------------------
+  db:
+    image: postgres:16-alpine
+    container_name: proganado-postgres-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: proganado
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      TZ: America/Bogota
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Script de inicialización de las 12 tablas 3FN de ProGanado
+      - ./01_Base_de_Datos_SQL/schema_produccion_proganado_v3.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d proganado"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:
+    driver: local

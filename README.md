@@ -45,6 +45,7 @@ La guía detallada del MVP está en [`producto_mvp/README.md`](producto_mvp/READ
 
 ## 📚 DOCUMENTACIÓN MAESTRA DE LA S.A.S.
 
+* 🏛️ **[Arquitectura de Endpoints, Conexiones y Despliegue Cloud](docs/ARQUITECTURA_ENDPOINTS_Y_CONEXIONES.md):** Matriz REST completa, conexiones frontend-backend, comparativa técnica Firebase vs Supabase y docker-compose.yml.
 * **[Roadmap de escalabilidad y stack](docs/ROADMAP_Y_STACK_STARTUP.md):** fases con criterios de aceptación, stack TypeScript-first, migración a PostgreSQL, seguridad, costos y riesgos. Es el documento canónico para decidir tecnología.
 * **[Producto MVP filtrado](producto_mvp/README.md):** espejo de código del MVP dentro del repo; assets, datos y credenciales quedan fuera de Git (Regla 29).
 * 🐄 **[Estudio de Dominio y Rutinas de Campo](docs/ESTUDIO_DOMINIO_CAMPO.md):** SSOT de la operación real lechera (rutinas AM/PM, acopio Colanta, Cinta Roja, protocolo reproductivo y manejo de crías).
