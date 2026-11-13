@@ -111,14 +111,45 @@ async function authLoad() {
           u.user = String(u.user || u.correo || '').toLowerCase();
           u.correo = String(u.correo || u.user).toLowerCase();
         }
+        // Asegurar cuenta predeterminada de Jeiser Gutiérrez
+        if (!auth.usuarios.some(u => u.user === 'jeiser270997@gmail.com')) {
+          auth.usuarios.push({
+            user: 'jeiser270997@gmail.com',
+            correo: 'jeiser270997@gmail.com',
+            nombre: 'Jeiser Gutiérrez',
+            role: 'admin',
+            salt: 'd3da67096339df50271b16b6a99383ad',
+            hash: '15cd14b8f6b015631d84e49b5aa410d357c4a8e014819f80f8cecb07eff2f133',
+            algo: 'pbkdf2',
+            iter: 150000,
+            creado: '2026-11-12T00:00:00.000Z',
+            ultimoAcceso: null
+          });
+        }
         authSave();
         return;
       }
     }
   } catch (e) { /* datos corruptos: regenerar */ }
 
-  // Primer uso: sin cuentas. El administrador se crea desde la pantalla de acceso.
-  auth = { usuarios: [], intentos: {} };
+  // Cuenta predeterminada de Jeiser Gutiérrez
+  auth = {
+    usuarios: [
+      {
+        user: 'jeiser270997@gmail.com',
+        correo: 'jeiser270997@gmail.com',
+        nombre: 'Jeiser Gutiérrez',
+        role: 'admin',
+        salt: 'd3da67096339df50271b16b6a99383ad',
+        hash: '15cd14b8f6b015631d84e49b5aa410d357c4a8e014819f80f8cecb07eff2f133',
+        algo: 'pbkdf2',
+        iter: 150000,
+        creado: '2026-11-12T00:00:00.000Z',
+        ultimoAcceso: null
+      }
+    ],
+    intentos: {}
+  };
   authSave();
 }
 
