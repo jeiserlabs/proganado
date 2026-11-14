@@ -854,11 +854,24 @@ html, body {
         </div>
         <p class="caption"><b>Estructura modular:</b> 8 menús de navegación conectados, inspirados en los mejores referentes agropecuarios.</p>
       </div>
-      <div class="side">
-        <div class="proof card"><b>8 módulos conectados</b><span>Hato, Ordeño, Sanidad, Reproducción, Potreros, Acopio, Fincas y Reportes.</span></div>
-        <div class="proof card"><b>Paleta rural amigable</b><span>Verde bosque, tonos tierra y contraste optimizado para lectura bajo luz solar directa.</span></div>
-        <div class="proof card"><b>Ergonomía de campo</b><span>Botones amplios y flujos rápidos para registrar con una sola mano en el establo.</span></div>
-        <div class="proof card"><b>Referencias del sector</b><span>Patrones visuales basados en plataformas líderes agropecuarias para adopción inmediata.</span></div>
+            <div class="side">
+        <div class="proof card" style="padding:10px 14px">
+          <b>Código Real · Vanilla JS (Cinta Roja)</b>
+          <div style="background:rgba(0,0,0,0.45);padding:6px 10px;border-radius:6px;font-family:Consolas,monospace;font-size:11px;color:#a7f3d0;margin-top:4px">
+            const enRetiro = (fechaTrat, diasIca) => {<br>
+            &nbsp;&nbsp;return (new Date(fechaTrat).addDays(diasIca) >= new Date());<br>
+            };<br>
+            btnOrdeño.disabled = enRetiro(vaca.tratamiento, vaca.diasIca);
+          </div>
+        </div>
+        <div class="proof card" style="padding:10px 14px">
+          <b>HTML5 Semántico + CSS3 Puro (54 kB)</b>
+          <span style="font-size:11.5px">Single Page Application nativa: <code>&lt;dialog&gt;</code> para modales, CSS Grid/Flexbox y variables nativas. Cero dependencias externas.</span>
+        </div>
+        <div class="proof card" style="padding:10px 14px;border-left:3px solid var(--gold)">
+          <b>Evolución Modular: Astro + React (Fase 2)</b>
+          <span style="font-size:11.5px">Migración a <i>Arquitectura de Islas</i> con <b>Astro</b> y componentes reactivos <b>React</b> (<code>&lt;HealthModule/&gt;</code>, <code>&lt;CowDetail/&gt;</code>) para modularidad empresarial.</span>
+        </div>
       </div>
     </div>
   </div>
@@ -930,25 +943,49 @@ html, body {
     <h1 class="title">Consultas relacionales claras.</h1>
     <p class="lead">Combinación de entidades mediante llaves foráneas para responder preguntas operativas del hato con datos verificados en tiempo real.</p>
 
-    <div class="grid">
+        <div class="grid">
       <div class="sql-box">
         <div class="topbar">
-          <h4>01 · Censo con Finca y Raza</h4>
-          <span class="badge">INNER JOIN · 3 tablas</span>
+          <h4>01 · Vacas con Registro Sanitario</h4>
+          <span class="badge">1 INNER JOIN · Nombre Completo</span>
         </div>
-        <div class="code"><span class="c">-- Censo de bovinos con su finca y raza asignada</span>
-<span class="k">SELECT</span> b.id_bovino <span class="k">AS</span> ID_Animal,
-       b.estado_fisiologico <span class="k">AS</span> Estado,
-       f.nombre_finca <span class="k">AS</span> Finca,
-       r.nombre_raza <span class="k">AS</span> Raza
-<span class="k">FROM</span> bovinos b
-<span class="k">INNER JOIN</span> fincas f <span class="k">ON</span> b.id_finca = f.id_finca
-<span class="k">INNER JOIN</span> razas r <span class="k">ON</span> b.id_raza = r.id_raza;</div>
+        <div class="code"><span class="c">-- Vacas con tratamiento y su farmaco oficial</span>
+<span class="k">SELECT</span> tratamientos_sanitarios.id_bovino <span class="k">AS</span> Vaca,
+       medicamentos.nombre_farmaco <span class="k">AS</span> Farmaco,
+       tratamientos_sanitarios.fecha_tratamiento <span class="k">AS</span> Fecha_Aplicacion,
+       medicamentos.dias_retiro_ica <span class="k">AS</span> Dias_Retiro_ICA
+<span class="k">FROM</span> tratamientos_sanitarios
+<span class="k">INNER JOIN</span> medicamentos 
+    <span class="k">ON</span> tratamientos_sanitarios.id_medicamento = medicamentos.id_medicamento;</div>
         <div class="out">
-          <div class="head" style="grid-template-columns:1.2fr 1fr 1.3fr 1fr"><span>ID Animal</span><span>Estado</span><span>Finca</span><span>Raza</span></div>
-          <div class="row" style="grid-template-columns:1.2fr 1fr 1.3fr 1fr"><b>BOV-001</b><span>En Ordeño</span><span>Hacienda La Pradera</span><span>Holstein</span></div>
-          <div class="row" style="grid-template-columns:1.2fr 1fr 1.3fr 1fr"><b>BOV-002</b><span>Vaca Seca</span><span>El Porvenir</span><span>Jersey</span></div>
+          <div class="head" style="grid-template-columns:1.1fr 1.3fr 1fr .8fr"><span>Vaca</span><span>Fármaco</span><span>Fecha</span><span>Retiro</span></div>
+          <div class="row" style="grid-template-columns:1.1fr 1.3fr 1fr .8fr"><b>BOV-1048</b><span>Ceftiofur Sódico</span><span>2026-11-05</span><span class="badge-red">4 días</span></div>
+          <div class="row" style="grid-template-columns:1.1fr 1.3fr 1fr .8fr"><b>BOV-1053</b><span>Oxitetraciclina L.A.</span><span>2026-11-04</span><span class="badge-red">7 días</span></div>
         </div>
+      </div>
+
+      <div class="sql-box">
+        <div class="topbar">
+          <h4>02 · Alerta de Días Abiertos (>100)</h4>
+          <span class="badge">1 INNER JOIN · Filtro WHERE</span>
+        </div>
+        <div class="code"><span class="c">-- Vacas sin preñez con mas de 100 dias postparto</span>
+<span class="k">SELECT</span> bovinos.id_bovino <span class="k">AS</span> Vaca,
+       bovinos.estado_fisiologico <span class="k">AS</span> Estado,
+       eventos_reproductivos.tipo_evento <span class="k">AS</span> Ultimo_Evento,
+       eventos_reproductivos.dias_abiertos_calc <span class="k">AS</span> Dias_Abiertos
+<span class="k">FROM</span> bovinos
+<span class="k">INNER JOIN</span> eventos_reproductivos 
+    <span class="k">ON</span> bovinos.id_bovino = eventos_reproductivos.id_bovino
+<span class="k">WHERE</span> eventos_reproductivos.dias_abiertos_calc > 100
+<span class="k">ORDER BY</span> eventos_reproductivos.dias_abiertos_calc <span class="k">DESC</span>;</div>
+        <div class="out">
+          <div class="head" style="grid-template-columns:1.1fr 1fr 1.2fr .9fr"><span>Vaca</span><span>Estado</span><span>Evento</span><span>Días Abiertos</span></div>
+          <div class="row" style="grid-template-columns:1.1fr 1fr 1.2fr .9fr"><b>BOV-1050</b><span>En_Ordeño</span><span>Inseminacion</span><span class="badge-red">131 días</span></div>
+          <div class="row" style="grid-template-columns:1.1fr 1fr 1.2fr .9fr"><b>BOV-1048</b><span>En_Ordeño</span><span>Celo_Observable</span><span class="badge-red">109 días</span></div>
+        </div>
+      </div>
+    </div>
       </div>
 
       <div class="sql-box">
