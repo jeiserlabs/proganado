@@ -1,0 +1,448 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 740" width="100%" height="100%" style="background:#05140c; font-family:'Segoe UI',system-ui,sans-serif;">
+  <defs>
+    <!-- Filtros de sombra y glow -->
+    <filter id="shadow" x="-8%" y="-8%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+    <filter id="glow-gold" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#e0b04a" flood-opacity="0.5"/>
+    </filter>
+    
+    <!-- Marcadores de relación 1:N -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#e0b04a" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#34d399" />
+    </marker>
+
+    <!-- Estilos de tabla -->
+    <style>
+      .tbl-card { fill: #081d14; stroke: rgba(255,255,255,0.14); stroke-width: 1.2; rx: 8px; filter: url(#shadow); }
+      .tbl-hub { fill: #0a271a; stroke: #e0b04a; stroke-width: 2; rx: 10px; filter: url(#glow-gold); }
+      .tbl-hdr { font-size: 11.5px; font-weight: 700; fill: #ffffff; letter-spacing: 0.03em; }
+      .tbl-sub { font-size: 8.5px; fill: rgba(255,255,255,0.55); font-weight: 500; }
+      .col-txt { font-family: 'Consolas', 'Courier New', monospace; font-size: 10px; fill: #e2e8f0; }
+      .type-txt { font-size: 9px; fill: #94a3b8; }
+      .badge-pk { fill: rgba(224,176,74,0.25); stroke: #e0b04a; stroke-width: 0.8; rx: 3px; }
+      .badge-pk-txt { font-size: 8px; font-weight: 800; fill: #fcd34d; text-anchor: middle; }
+      .badge-fk { fill: rgba(56,189,248,0.2); stroke: #38bdf8; stroke-width: 0.8; rx: 3px; }
+      .badge-fk-txt { font-size: 8px; font-weight: 800; fill: #7dd3fc; text-anchor: middle; }
+      .rel-line { fill: none; stroke: #e0b04a; stroke-width: 1.4; stroke-dasharray: 4 2; opacity: 0.75; }
+      .rel-line-hub { fill: none; stroke: #34d399; stroke-width: 1.6; opacity: 0.85; }
+      .rel-badge { fill: #0b2c1d; stroke: rgba(255,255,255,0.2); rx: 3px; }
+      .rel-lbl { font-size: 8.5px; font-weight: 700; fill: #e0b04a; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <!-- Fondo sutil con cuadrícula técnica -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.02)" stroke-width="1"/>
+  </pattern>
+  <rect width="100%" height="100%" fill="url(#grid)" />
+
+  <!-- TÍTULO DE CABECERA Y LEYENDA ARQUITECTÓNICA -->
+  <text x="35" y="32" font-size="14" font-weight="800" fill="#fcd34d" letter-spacing="0.05em">MODELO RELACIONAL PROGANADO SaaS · 12 TABLAS EN 3FN</text>
+  <text x="35" y="48" font-size="10" fill="rgba(255,255,255,0.6)">Motor: Microsoft SQL Server · Integridad Referencial Estricta · Centralidad en Entidad 'bovinos' (Cero Registros Huérfanos)</text>
+
+  <!-- LÍNEAS RELACIONALES (CONECTORES) -->
+  <!-- 1. usuarios -> fincas -->
+  <path d="M 140 185 L 140 215" class="rel-line" marker-end="url(#arrow)"/>
+  <!-- 2. fincas -> suscripciones_saas -->
+  <path d="M 140 375 L 140 405" class="rel-line" marker-end="url(#arrow)"/>
+  <!-- 3. fincas -> entregas_acopio -->
+  <path d="M 80 375 L 80 575 L 100 575" class="rel-line" marker-end="url(#arrow)"/>
+  <!-- 4. fincas -> potreros -->
+  <path d="M 255 295 C 290 295, 290 145, 335 145" class="rel-line-hub" marker-end="url(#arrow-green)"/>
+  <!-- 5. fincas -> bovinos -->
+  <path d="M 255 315 C 370 315, 450 315, 545 315" class="rel-line-hub" marker-end="url(#arrow-green)"/>
+  <!-- 6. potreros -> bovinos -->
+  <path d="M 465 175 C 500 175, 510 260, 545 260" class="rel-line-hub" marker-end="url(#arrow-green)"/>
+  <!-- 7. razas -> bovinos -->
+  <path d="M 465 375 C 500 375, 510 355, 545 355" class="rel-line-hub" marker-end="url(#arrow-green)"/>
+  <!-- 8. bovinos -> marcaciones -->
+  <path d="M 545 425 C 510 425, 490 535, 465 535" class="rel-line" marker-end="url(#arrow)"/>
+  <!-- 9. bovinos -> tratamientos_sanitarios -->
+  <path d="M 815 285 C 850 285, 855 235, 890 235" class="rel-line" marker-end="url(#arrow)"/>
+  <!-- 10. medicamentos -> tratamientos_sanitarios -->
+  <path d="M 1010 170 L 1010 205" class="rel-line" marker-end="url(#arrow)"/>
+  <!-- 11. bovinos -> eventos_reproductivos -->
+  <path d="M 815 345 C 850 345, 855 415, 890 415" class="rel-line" marker-end="url(#arrow)"/>
+  <!-- 12. bovinos -> pesajes_leche -->
+  <path d="M 815 385 C 850 385, 855 580, 890 580" class="rel-line" marker-end="url(#arrow)"/>
+
+
+  <!-- ========================================== -->
+  <!-- COLUMNA 1: DOMINIO FINCA Y ACCESO          -->
+  <!-- ========================================== -->
+
+  <!-- TABLA 1: usuarios -->
+  <g transform="translate(35, 65)">
+    <rect width="220" height="120" class="tbl-card"/>
+    <path d="M 0 0 h 220 v 26 h -220 z" fill="#0d3b27" rx="8"/>
+    <rect y="22" width="220" height="4" fill="#0d3b27"/>
+    <text x="12" y="17" class="tbl-hdr">usuarios</text>
+    <text x="160" y="17" class="tbl-sub">Acceso SaaS</text>
+    
+    <!-- Campos -->
+    <rect x="12" y="34" width="22" height="13" class="badge-pk"/>
+    <text x="23" y="44" class="badge-pk-txt">PK</text>
+    <text x="40" y="44" class="col-txt">id_usuario</text>
+    <text x="155" y="44" class="type-txt">varchar</text>
+
+    <text x="14" y="62" class="col-txt">nombre</text>
+    <text x="155" y="62" class="type-txt">varchar</text>
+
+    <text x="14" y="80" class="col-txt">email (UK)</text>
+    <text x="155" y="80" class="type-txt">varchar</text>
+
+    <text x="14" y="98" class="col-txt">rol</text>
+    <text x="135" y="98" class="type-txt">Admin|Vet|Oper</text>
+  </g>
+
+  <!-- TABLA 2: fincas -->
+  <g transform="translate(35, 215)">
+    <rect width="220" height="160" class="tbl-card"/>
+    <path d="M 0 0 h 220 v 26 h -220 z" fill="#0d3b27" rx="8"/>
+    <rect y="22" width="220" height="4" fill="#0d3b27"/>
+    <text x="12" y="17" class="tbl-hdr">fincas</text>
+    <text x="155" y="17" class="tbl-sub">Predio Titular</text>
+
+    <rect x="12" y="34" width="22" height="13" class="badge-pk"/>
+    <text x="23" y="44" class="badge-pk-txt">PK</text>
+    <text x="40" y="44" class="col-txt">id_finca</text>
+    <text x="155" y="44" class="type-txt">varchar</text>
+
+    <rect x="12" y="52" width="22" height="13" class="badge-fk"/>
+    <text x="23" y="62" class="badge-fk-txt">FK</text>
+    <text x="40" y="62" class="col-txt">id_usuario</text>
+    <text x="155" y="62" class="type-txt">varchar</text>
+
+    <text x="14" y="80" class="col-txt">nombre_finca</text>
+    <text x="155" y="80" class="type-txt">varchar</text>
+
+    <text x="14" y="98" class="col-txt">codigo_ica_predio</text>
+    <text x="155" y="98" class="type-txt">varchar UK</text>
+
+    <text x="14" y="116" class="col-txt">documento_titular</text>
+    <text x="155" y="116" class="type-txt">varchar</text>
+
+    <text x="14" y="134" class="col-txt">municipio</text>
+    <text x="155" y="134" class="type-txt">varchar</text>
+  </g>
+
+  <!-- TABLA 3: suscripciones_saas -->
+  <g transform="translate(35, 405)">
+    <rect width="220" height="120" class="tbl-card"/>
+    <path d="M 0 0 h 220 v 26 h -220 z" fill="#1e3a5f" rx="8"/>
+    <rect y="22" width="220" height="4" fill="#1e3a5f"/>
+    <text x="12" y="17" class="tbl-hdr">suscripciones_saas</text>
+    <text x="160" y="17" class="tbl-sub">Membresía</text>
+
+    <rect x="12" y="34" width="22" height="13" class="badge-pk"/>
+    <text x="23" y="44" class="badge-pk-txt">PK</text>
+    <text x="40" y="44" class="col-txt">id_suscripcion</text>
+    <text x="155" y="44" class="type-txt">varchar</text>
+
+    <rect x="12" y="52" width="22" height="13" class="badge-fk"/>
+    <text x="23" y="62" class="badge-fk-txt">FK</text>
+    <text x="40" y="62" class="col-txt">id_finca</text>
+    <text x="155" y="62" class="type-txt">varchar</text>
+
+    <text x="14" y="80" class="col-txt">plan_tipo</text>
+    <text x="142" y="80" class="type-txt">Free|Pro|Multi</text>
+
+    <text x="14" y="98" class="col-txt">estado_acceso</text>
+    <text x="142" y="98" class="type-txt">Activo|Suspend</text>
+  </g>
+
+  <!-- TABLA 4: entregas_acopio -->
+  <g transform="translate(35, 555)">
+    <rect width="220" height="140" class="tbl-card"/>
+    <path d="M 0 0 h 220 v 26 h -220 z" fill="#1e3a5f" rx="8"/>
+    <rect y="22" width="220" height="4" fill="#1e3a5f"/>
+    <text x="12" y="17" class="tbl-hdr">entregas_acopio</text>
+    <text x="150" y="17" class="tbl-sub">Venta Leche</text>
+
+    <rect x="12" y="34" width="22" height="13" class="badge-pk"/>
+    <text x="23" y="44" class="badge-pk-txt">PK</text>
+    <text x="40" y="44" class="col-txt">id_entrega</text>
+    <text x="155" y="44" class="type-txt">varchar</text>
+
+    <rect x="12" y="52" width="22" height="13" class="badge-fk"/>
+    <text x="23" y="62" class="badge-fk-txt">FK</text>
+    <text x="40" y="62" class="col-txt">id_finca</text>
+    <text x="155" y="62" class="type-txt">varchar</text>
+
+    <text x="14" y="80" class="col-txt">planta_destino</text>
+    <text x="150" y="80" class="type-txt">Colanta|Alq</text>
+
+    <text x="14" y="98" class="col-txt">volumen_litros</text>
+    <text x="155" y="98" class="type-txt">decimal</text>
+
+    <text x="14" y="116" class="col-txt">fecha_entrega</text>
+    <text x="155" y="116" class="type-txt">date</text>
+  </g>
+
+
+  <!-- ========================================== -->
+  <!-- COLUMNA 2: POTREROS, RAZAS Y MARCACIONES   -->
+  <!-- ========================================== -->
+
+  <!-- TABLA 5: potreros -->
+  <g transform="translate(285, 95)">
+    <rect width="210" height="140" class="tbl-card"/>
+    <path d="M 0 0 h 210 v 26 h -210 z" fill="#134e34" rx="8"/>
+    <rect y="22" width="210" height="4" fill="#134e34"/>
+    <text x="12" y="17" class="tbl-hdr">potreros</text>
+    <text x="135" y="17" class="tbl-sub">Rotación PRV</text>
+
+    <rect x="12" y="34" width="22" height="13" class="badge-pk"/>
+    <text x="23" y="44" class="badge-pk-txt">PK</text>
+    <text x="40" y="44" class="col-txt">id_potrero</text>
+    <text x="150" y="44" class="type-txt">varchar</text>
+
+    <rect x="12" y="52" width="22" height="13" class="badge-fk"/>
+    <text x="23" y="62" class="badge-fk-txt">FK</text>
+    <text x="40" y="62" class="col-txt">id_finca</text>
+    <text x="150" y="62" class="type-txt">varchar</text>
+
+    <text x="14" y="80" class="col-txt">nombre_codigo</text>
+    <text x="150" y="80" class="type-txt">varchar</text>
+
+    <text x="14" y="98" class="col-txt">area_hectareas</text>
+    <text x="150" y="98" class="type-txt">decimal</text>
+
+    <text x="14" y="116" class="col-txt">dias_ocupacion_max</text>
+    <text x="150" y="116" class="type-txt">int</text>
+  </g>
+
+  <!-- TABLA 6: razas -->
+  <g transform="translate(285, 275)">
+    <rect width="210" height="115" class="tbl-card"/>
+    <path d="M 0 0 h 210 v 26 h -210 z" fill="#134e34" rx="8"/>
+    <rect y="22" width="210" height="4" fill="#134e34"/>
+    <text x="12" y="17" class="tbl-hdr">razas</text>
+    <text x="130" y="17" class="tbl-sub">Catálogo Gen</text>
+
+    <rect x="12" y="34" width="22" height="13" class="badge-pk"/>
+    <text x="23" y="44" class="badge-pk-txt">PK</text>
+    <text x="40" y="44" class="col-txt">id_raza</text>
+    <text x="150" y="44" class="type-txt">varchar</text>
+
+    <text x="14" y="62" class="col-txt">nombre_raza</text>
+    <text x="145" y="62" class="type-txt">Holstein|Jer</text>
+
+    <text x="14" y="80" class="col-txt">aptitud_productiva</text>
+    <text x="150" y="80" class="type-txt">Leche|Doble</text>
+
+    <text x="14" y="98" class="col-txt">origen_geografico</text>
+    <text x="150" y="98" class="type-txt">varchar</text>
+  </g>
+
+  <!-- TABLA 7: marcaciones -->
+  <g transform="translate(285, 455)">
+    <rect width="210" height="140" class="tbl-card"/>
+    <path d="M 0 0 h 210 v 26 h -210 z" fill="#134e34" rx="8"/>
+    <rect y="22" width="210" height="4" fill="#134e34"/>
+    <text x="12" y="17" class="tbl-hdr">marcaciones</text>
+    <text x="135" y="17" class="tbl-sub">Trazabilidad</text>
+
+    <rect x="12" y="34" width="22" height="13" class="badge-pk"/>
+    <text x="23" y="44" class="badge-pk-txt">PK</text>
+    <text x="40" y="44" class="col-txt">id_marcacion</text>
+    <text x="150" y="44" class="type-txt">varchar</text>
+
+    <rect x="12" y="52" width="22" height="13" class="badge-fk"/>
+    <text x="23" y="62" class="badge-fk-txt">FK</text>
+    <text x="40" y="62" class="col-txt">id_bovino</text>
+    <text x="150" y="62" class="type-txt">varchar</text>
+
+    <text x="14" y="80" class="col-txt">tipo_marcacion</text>
+    <text x="135" y="80" class="type-txt">AreteICA|Chap</text>
+
+    <text x="14" y="98" class="col-txt">codigo_valor</text>
+    <text x="150" y="98" class="type-txt">varchar UK</text>
+
+    <text x="14" y="116" class="col-txt">fecha_colocacion</text>
+    <text x="150" y="116" class="type-txt">date</text>
+  </g>
+
+
+  <!-- ========================================== -->
+  <!-- COLUMNA 3: HUB CENTRAL - BOVINOS           -->
+  <!-- ========================================== -->
+
+  <!-- TABLA 8: bovinos (CENTRAL HUB DE 12 TABLAS) -->
+  <g transform="translate(545, 175)">
+    <rect width="270" height="280" class="tbl-hub"/>
+    <path d="M 0 0 h 270 v 30 h -270 z" fill="#b45309" rx="10"/>
+    <rect y="26" width="270" height="4" fill="#b45309"/>
+    <text x="14" y="20" font-size="13" font-weight="800" fill="#ffffff" letter-spacing="0.04em">bovinos (HUB CENTRAL)</text>
+    <text x="185" y="20" class="tbl-sub" fill="#fef3c7">Núcleo Zootécnico</text>
+
+    <!-- PK -->
+    <rect x="14" y="42" width="24" height="15" class="badge-pk"/>
+    <text x="26" y="53" class="badge-pk-txt">PK</text>
+    <text x="44" y="54" class="col-txt" font-weight="700" fill="#fcd34d">id_bovino</text>
+    <text x="200" y="54" class="type-txt">varchar(20)</text>
+
+    <!-- FKs -->
+    <rect x="14" y="65" width="24" height="15" class="badge-fk"/>
+    <text x="26" y="76" class="badge-fk-txt">FK</text>
+    <text x="44" y="77" class="col-txt">id_finca</text>
+    <text x="180" y="77" class="type-txt">varchar ➔ fincas</text>
+
+    <rect x="14" y="88" width="24" height="15" class="badge-fk"/>
+    <text x="26" y="99" class="badge-fk-txt">FK</text>
+    <text x="44" y="100" class="col-txt">id_potrero</text>
+    <text x="175" y="100" class="type-txt">varchar ➔ potreros</text>
+
+    <rect x="14" y="111" width="24" height="15" class="badge-fk"/>
+    <text x="26" y="122" class="badge-fk-txt">FK</text>
+    <text x="44" y="123" class="col-txt">id_raza</text>
+    <text x="185" y="123" class="type-txt">varchar ➔ razas</text>
+
+    <!-- Campos zootécnicos -->
+    <text x="16" y="148" class="col-txt">fecha_nacimiento</text>
+    <text x="205" y="148" class="type-txt">date</text>
+
+    <text x="16" y="171" class="col-txt">sexo</text>
+    <text x="195" y="171" class="type-txt">Hembra|Macho</text>
+
+    <text x="16" y="194" class="col-txt">estado_fisiologico</text>
+    <text x="180" y="194" class="type-txt">En_Ordeño|Horra</text>
+
+    <text x="16" y="217" class="col-txt">peso_actual_kg</text>
+    <text x="205" y="217" class="type-txt">decimal</text>
+
+    <text x="16" y="240" class="col-txt">activo_en_hato</text>
+    <text x="205" y="240" class="type-txt">bit (1/0)</text>
+
+    <line x1="10" y1="255" x2="260" y2="255" stroke="rgba(255,255,255,0.1)"/>
+    <text x="14" y="269" font-size="9" fill="#a7f3d0">11 Relaciones conectadas sin datos huérfanos</text>
+  </g>
+
+
+  <!-- ========================================== -->
+  <!-- COLUMNA 4: SANIDAD, PRODUCCIÓN Y REPROD    -->
+  <!-- ========================================== -->
+
+  <!-- TABLA 9: medicamentos -->
+  <g transform="translate(890, 45)">
+    <rect width="250" height="125" class="tbl-card"/>
+    <path d="M 0 0 h 250 v 26 h -250 z" fill="#881337" rx="8"/>
+    <rect y="22" width="250" height="4" fill="#881337"/>
+    <text x="12" y="17" class="tbl-hdr">medicamentos</text>
+    <text x="165" y="17" class="tbl-sub">Vademécum ICA</text>
+
+    <rect x="12" y="34" width="22" height="13" class="badge-pk"/>
+    <text x="23" y="44" class="badge-pk-txt">PK</text>
+    <text x="40" y="44" class="col-txt">id_medicamento</text>
+    <text x="180" y="44" class="type-txt">varchar</text>
+
+    <text x="14" y="62" class="col-txt">nombre_farmaco</text>
+    <text x="175" y="62" class="type-txt">Ceftiofur|Oxi</text>
+
+    <text x="14" y="80" class="col-txt">principio_activo</text>
+    <text x="180" y="80" class="type-txt">varchar</text>
+
+    <text x="14" y="98" class="col-txt" font-weight="700" fill="#fca5a5">dias_retiro_ica</text>
+    <text x="175" y="98" class="type-txt" fill="#fca5a5">int (Cinta Roja)</text>
+  </g>
+
+  <!-- TABLA 10: tratamientos_sanitarios -->
+  <g transform="translate(890, 205)">
+    <rect width="250" height="160" class="tbl-card"/>
+    <path d="M 0 0 h 250 v 26 h -250 z" fill="#881337" rx="8"/>
+    <rect y="22" width="250" height="4" fill="#881337"/>
+    <text x="12" y="17" class="tbl-hdr">tratamientos_sanitarios</text>
+    <text x="175" y="17" class="tbl-sub">Cinta Roja</text>
+
+    <rect x="12" y="34" width="22" height="13" class="badge-pk"/>
+    <text x="23" y="44" class="badge-pk-txt">PK</text>
+    <text x="40" y="44" class="col-txt">id_tratamiento</text>
+    <text x="180" y="44" class="type-txt">varchar</text>
+
+    <rect x="12" y="52" width="22" height="13" class="badge-fk"/>
+    <text x="23" y="62" class="badge-fk-txt">FK</text>
+    <text x="40" y="62" class="col-txt">id_bovino</text>
+    <text x="180" y="62" class="type-txt">varchar</text>
+
+    <rect x="12" y="70" width="22" height="13" class="badge-fk"/>
+    <text x="23" y="80" class="badge-fk-txt">FK</text>
+    <text x="40" y="80" class="col-txt">id_medicamento</text>
+    <text x="180" y="80" class="type-txt">varchar</text>
+
+    <text x="14" y="98" class="col-txt">fecha_tratamiento</text>
+    <text x="180" y="98" class="type-txt">date</text>
+
+    <text x="14" y="116" class="col-txt">dosis_aplicada_ml</text>
+    <text x="180" y="116" class="type-txt">decimal</text>
+
+    <text x="14" y="134" class="col-txt">lote_farmaco</text>
+    <text x="180" y="134" class="type-txt">varchar</text>
+  </g>
+
+  <!-- TABLA 11: eventos_reproductivos -->
+  <g transform="translate(890, 395)">
+    <rect width="250" height="150" class="tbl-card"/>
+    <path d="M 0 0 h 250 v 26 h -250 z" fill="#431407" rx="8"/>
+    <rect y="22" width="250" height="4" fill="#431407"/>
+    <text x="12" y="17" class="tbl-hdr">eventos_reproductivos</text>
+    <text x="175" y="17" class="tbl-sub">Fertilidad</text>
+
+    <rect x="12" y="34" width="22" height="13" class="badge-pk"/>
+    <text x="23" y="44" class="badge-pk-txt">PK</text>
+    <text x="40" y="44" class="col-txt">id_evento</text>
+    <text x="180" y="44" class="type-txt">varchar</text>
+
+    <rect x="12" y="52" width="22" height="13" class="badge-fk"/>
+    <text x="23" y="62" class="badge-fk-txt">FK</text>
+    <text x="40" y="62" class="col-txt">id_bovino</text>
+    <text x="180" y="62" class="type-txt">varchar</text>
+
+    <text x="14" y="80" class="col-txt">tipo_evento</text>
+    <text x="175" y="80" class="type-txt">Insem|Celo|Parto</text>
+
+    <text x="14" y="98" class="col-txt">fecha_evento</text>
+    <text x="180" y="98" class="type-txt">date</text>
+
+    <text x="14" y="116" class="col-txt" font-weight="700" fill="#fcd34d">dias_abiertos_calc</text>
+    <text x="175" y="116" class="type-txt" fill="#fcd34d">int (&gt;100 alerta)</text>
+  </g>
+
+  <!-- TABLA 12: pesajes_leche -->
+  <g transform="translate(890, 565)">
+    <rect width="250" height="135" class="tbl-card"/>
+    <path d="M 0 0 h 250 v 26 h -250 z" fill="#1e3a5f" rx="8"/>
+    <rect y="22" width="250" height="4" fill="#1e3a5f"/>
+    <text x="12" y="17" class="tbl-hdr">pesajes_leche</text>
+    <text x="180" y="17" class="tbl-sub">Ordeño</text>
+
+    <rect x="12" y="34" width="22" height="13" class="badge-pk"/>
+    <text x="23" y="44" class="badge-pk-txt">PK</text>
+    <text x="40" y="44" class="col-txt">id_pesaje</text>
+    <text x="180" y="44" class="type-txt">varchar</text>
+
+    <rect x="12" y="52" width="22" height="13" class="badge-fk"/>
+    <text x="23" y="62" class="badge-fk-txt">FK</text>
+    <text x="40" y="62" class="col-txt">id_bovino</text>
+    <text x="180" y="62" class="type-txt">varchar</text>
+
+    <text x="14" y="80" class="col-txt">fecha_pesaje</text>
+    <text x="180" y="80" class="type-txt">date</text>
+
+    <text x="14" y="98" class="col-txt">turno_ordeño</text>
+    <text x="180" y="98" class="type-txt">Mañana|Tarde</text>
+
+    <text x="14" y="116" class="col-txt">litros_pesados</text>
+    <text x="180" y="116" class="type-txt">decimal</text>
+  </g>
+
+  <!-- BADGE FOOTER DEL DIAGRAMA -->
+  <g transform="translate(545, 680)">
+    <rect width="270" height="28" fill="rgba(224,176,74,0.12)" stroke="rgba(224,176,74,0.3)" rx="6"/>
+    <text x="135" y="18" font-size="10.5" font-weight="700" fill="#fcd34d" text-anchor="middle">✓ 12 TABLAS 3FN · PARIDAD SCHEMA SQL V3</text>
+  </g>
+</svg>
